@@ -1,32 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Blog</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <div class="menu-icon">&#9776;</div>
-        <div class="logo">
-            <h1>BLCHA</h1>
-        </div>
-        <div class="favorite">
-            <button class="favorite-btn">&#9733; FAVORITED</button>
-        </div>
-    </header>
-    
-    <div class="content">
-        <ul class="article-list">
-            <!-- Dynamicky generovaný seznam článků -->
-        </ul>
-        <div class="article-content">
-            <h2 id="article-title">Click on an article</h2>
-            <p id="article-text">Select an article to see its content here.</p>
-        </div>
-    </div>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #333;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    background: #5cb85c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #4cae4c;
+}
+
+#articles {
+    margin-top: 20px;
+}
+
+.article {
+    background: #fafafa;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.article h3 {
+    margin-top: 0;
+}
