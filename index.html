@@ -1,32 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+!DOCTYPE html>
+<html lang="sk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Blog</title>
+    <title>Jednoduchý Blog</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="menu-icon">&#9776;</div>
-        <div class="logo">
-            <h1>BLCHA</h1>
+    <div class="container">
+        <h1>Môj Blog</h1>
+        <div id="form-container">
+            <h2>Pridať nový článok</h2>
+            <form id="articleForm">
+                <input type="text" id="title" placeholder="Nadpis článku" required>
+                <textarea id="content" placeholder="Obsah článku" required></textarea>
+                <button type="submit">Pridať článok</button>
+            </form>
         </div>
-        <div class="favorite">
-            <button class="favorite-btn">&#9733; FAVORITED</button>
-        </div>
-    </header>
-    
-    <div class="content">
-        <ul class="article-list">
-            <!-- Dynamicky generovaný seznam článků -->
-        </ul>
-        <div class="article-content">
-            <h2 id="article-title">Click on an article</h2>
-            <p id="article-text">Select an article to see its content here.</p>
+        <div id="articles">
+            <h2>Články</h2>
+            <div id="articleList"></div>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
