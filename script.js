@@ -1,23 +1,27 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const articles = [
-        { title: "Article 1", content: "This is the content of article 1." },
-        { title: "Article 2", content: "This is the content of article 2." },
-        { title: "Article 3", content: "This is the content of article 3." },
-        // Přidejte více článků podle potřeby
-    ];
+document.getElementById('articleForm').addEventListener('submit', function(e) {
+    e.preventDefault();
 
-    const articleList = document.querySelector('.article-list');
-    const articleTitle = document.getElementById('article-title');
-    const articleText = document.getElementById('article-text');
+    // Získať hodnoty z formulára
+    const title = document.getElementById('title').value;
+    const content = document.getElementById('content').value;
 
-    // Vytvoření seznamu článků
-    articles.forEach((article, index) => {
-        const li = document.createElement('li');
-        li.textContent = article.title;
-        li.addEventListener('click', () => {
-            articleTitle.textContent = article.title;
-            articleText.textContent = article.content;
-        });
-        articleList.appendChild(li);
-    });
+    // Vytvoriť nový div pre článok
+    const articleDiv = document.createElement('div');
+    articleDiv.classList.add('article');
+
+    // Pridať nadpis článku
+    const articleTitle = document.createElement('h3');
+    articleTitle.textContent = title;
+    articleDiv.appendChild(articleTitle);
+
+    // Pridať obsah článku
+    const articleContent = document.createElement('p');
+    articleContent.textContent = content;
+    articleDiv.appendChild(articleContent);
+
+    // Pridať článok do zoznamu článkov
+    document.getElementById('articleList').appendChild(articleDiv);
+
+    // Vyčistiť formulár
+    document.getElementById('articleForm').reset();
 });
