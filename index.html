@@ -1,1 +1,68 @@
-for sale contact matusvanberes@gmail.com
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punisher Recenzie</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Punisher Recenzie</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Domů</a></li>
+                <li><a href="#">Kategorie</a></li>
+                <li><a href="#">Přidat recenzi</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="categories">
+        <h2>Kategorie filmů</h2>
+        <ul>
+            <li><a href="#">Akční</a></li>
+            <li><a href="#">Drama</a></li>
+            <li><a href="#">Komedie</a></li>
+            <li><a href="#">Horor</a></li>
+        </ul>
+    </section>
+
+    <section class="reviews">
+        <h2>Recenze</h2>
+        <article>
+            <h3>Název filmu</h3>
+            <p>Text recenze...</p>
+            <small>Autor: Jan Novák | Datum: 25. srpna 2024</small>
+        </article>
+    </section>
+
+    <section class="add-review">
+        <h2>Přidat novou recenzi</h2>
+        <form action="#">
+            <label for="category">Kategorie filmu:</label>
+            <select id="category" name="category">
+                <option value="action">Akční</option>
+                <option value="drama">Drama</option>
+                <option value="comedy">Komedie</option>
+                <option value="horror">Horor</option>
+            </select>
+            
+            <label for="title">Název filmu:</label>
+            <input type="text" id="title" name="title">
+
+            <label for="review">Recenze:</label>
+            <textarea id="review" name="review"></textarea>
+
+            <label for="author">Autor:</label>
+            <input type="text" id="author" name="author">
+
+            <button type="submit">Odeslat recenzi</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Punisher Recenzie</p>
+    </footer>
+</body>
+</html>
