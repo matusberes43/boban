@@ -1,14 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doména na predaj</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moje Investičné Portfólio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div>
-    <div class="neon-text">Táto doména je na predaj!</div>
-  </div>
+    <!-- Hlavný nadpis -->
+    <header>
+        <h1>Moje Investičné Portfólio</h1>
+        <p>Celková hodnota: <strong>10 700.49 EUR</strong> | Zisk: <strong>2 562.19 EUR</strong></p>
+    </header>
+
+    <!-- Sekcia s investíciami -->
+    <section class="portfolio">
+        <div class="investment">
+            <h3>Ford Motor</h3>
+            <p>Cena: <strong>9.97 - 9.99 EUR</strong></p>
+            <p>Zmena: <span class="negative">-39.66</span></p>
+        </div>
+
+        <div class="investment">
+            <h3>Cameco</h3>
+            <p>Cena: <strong>54.12 - 54.14 EUR</strong></p>
+            <p>Zmena: <span class="positive">198.58</span></p>
+        </div>
+
+        <div class="investment">
+            <h3>Apple</h3>
+            <p>Cena: <strong>250.94 - 250.96 EUR</strong></p>
+            <p>Zmena: <span class="positive">422.76</span></p>
+        </div>
+
+        <div class="investment">
+            <h3>Publicis</h3>
+            <p>Cena: <strong>105.65 - 105.70 EUR</strong></p>
+            <p>Zmena: <span class="negative">-0.33%</span></p>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
