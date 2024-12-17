@@ -1,70 +1,125 @@
-body {
-    font-family: Arial, sans-serif;
+/* Resetovanie základných štýlov */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
+/* Štýly pre hlavičku a navigáciu */
 header {
     background-color: #333;
     color: #fff;
-    padding: 1rem;
-    text-align: center;
+    padding: 1rem 0;
 }
 
-form {
-    margin-top: 1rem;
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
 }
 
-input[type="text"] {
+nav h1 {
+    font-size: 1.5rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 1.5rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ff6f61;
+}
+
+/* Štýly pre vyhľadávací panel */
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.search-bar input {
+    width: 300px;
     padding: 0.5rem;
-    width: 70%;
     border: none;
-    border-radius: 5px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
 }
 
-button {
+.search-bar button {
     padding: 0.5rem 1rem;
     border: none;
-    border-radius: 5px;
     background-color: #ff6f61;
     color: #fff;
+    border-radius: 0 5px 5px 0;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-button:hover {
+.search-bar button:hover {
     background-color: #ff4c3b;
 }
 
-#movie-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 1rem;
+/* Štýly pre hlavnú časť a zoznam filmov */
+main {
+    width: 90%;
+    margin: 2rem auto;
 }
 
-.movie {
+#movie-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.movie-item {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    margin: 1rem;
-    width: 200px;
-    text-align: center;
     overflow: hidden;
+    transition: transform 0.3s;
 }
 
-.movie img {
+.movie-item:hover {
+    transform: translateY(-10px);
+}
+
+.movie-item img {
     width: 100%;
     height: auto;
 }
 
-.movie h3 {
+.movie-item h3 {
     padding: 0.5rem;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    text-align: center;
 }
 
-.movie p {
+.movie-item p {
     padding: 0 0.5rem 1rem;
     font-size: 0.9rem;
     color: #666;
+    text-align: center;
+}
+
+/* Štýly pre pätičku */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
 }
