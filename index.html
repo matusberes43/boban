@@ -3,20 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filmová databáza</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Filmová Databáza</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Filmová databáza</h1>
-        <form id="search-form">
+        <nav>
+            <h1>Filmová Databáza</h1>
+            <ul>
+                <li><a href="#">Domov</a></li>
+                <li><a href="#">Filmy</a></li>
+                <li><a href="#">Seriály</a></li>
+                <li><a href="#">Kontakt</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
             <input type="text" id="search-input" placeholder="Hľadať film...">
-            <button type="submit">Hľadať</button>
-        </form>
+            <button id="search-button">Hľadať</button>
+        </div>
     </header>
-    <main id="movie-container">
-        <!-- Filmy budú zobrazené tu -->
+    <main>
+        <section id="movie-list">
+            <!-- Filmy budú zobrazené tu -->
+        </section>
     </main>
-    <script src="script.js"></script>
+    <footer>
+        <p>&copy; 2024 Filmová Databáza. Všetky práva vyhradené.</p>
+    </footer>
+    <script src="scripts.js"></script>
 </body>
 </html>
