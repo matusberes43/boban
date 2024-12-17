@@ -1,32 +1,15 @@
-const API_KEY = 'VAŠ_API_KĽÚČ';
-const API_URL = 'https://api.themoviedb.org/3';
-const IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
+const prev = document.querySelector('.prev');
+const next = document.querySelector('.next');
+const carouselItems = document.querySelector('.carousel-items');
 
-document.getElementById('search-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const query = document.getElementById('search-input').value;
-    if (query) {
-        searchMovies(query);
-    }
+let index = 0;
+
+next.addEventListener('click', () => {
+    index = (index + 1) % 3;
+    carouselItems.style.transform = `translateX(-${index * 100}%)`;
 });
 
-async function searchMovies(query) {
-    const response = await fetch(`${API_URL}/search/movie?api_key=${API_KEY}&query=${query}`);
-    const data = await response.json();
-    displayMovies(data.results);
-}
-
-function displayMovies(movies) {
-    const movieContainer = document.getElementById('movie-container');
-    movieContainer.innerHTML = '';
-    movies.forEach(movie => {
-        const movieElement = document.createElement('div');
-        movieElement.classList.add('movie');
-        movieElement.innerHTML = `
-            <img src="${IMAGE_URL + movie.poster_path}" alt="${movie.title}">
-            <h3>${movie.title}</h3>
-            <p>Hodnotenie: ${movie.vote_average}</p>
-        `;
-        movieContainer.appendChild(movieElement);
-    });
-}
+prev.addEventListener('click', () => {
+    index = (index - 1 + 3) % 3;
+    carouselItems.style.transform = `translateX(-${index * 100}%)`;
+});
