@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blcha - Filmová databáza</title>
+    <title>Filmová databáza</title>
     <style>
         body {
             margin: 0;
@@ -15,7 +15,7 @@
 
         header {
             width: 100%;
-            padding: 15px 20px;
+            padding: 10px 20px;
             background-color: rgba(0, 0, 0, 0.7);
             display: flex;
             justify-content: space-between;
@@ -24,42 +24,47 @@
             top: 0;
             left: 0;
             z-index: 1000;
-            flex-wrap: wrap; /* Zajistí zalamování obsahu na menších displejích */
         }
 
-        header .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        header nav {
-            flex: 1;
+        .header-left {
             display: flex;
-            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
         }
 
-        header nav ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
+        .header-left img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .header-left p {
             margin: 0;
-            padding: 0;
+            font-size: 0.9rem;
+            color: #ffffff;
         }
 
-        header nav ul li a {
-            text-decoration: none;
-            color: white;
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-right input[type="text"] {
+            padding: 5px;
             font-size: 1rem;
-            transition: color 0.3s;
+            border: none;
+            border-radius: 5px;
+            outline: none;
         }
 
-        header nav ul li a:hover {
-            color: #ffcc00;
+        .header-right .icon {
+            width: 25px;
+            height: 25px;
         }
 
         .container {
             text-align: center;
-            margin-top: 120px; /* Posunutí kvůli fixnímu headeru */
+            margin-top: 100px; /* Posunutí kvůli fixnímu headeru */
             padding: 20px;
         }
 
@@ -72,41 +77,22 @@
             font-size: 1.5rem;
         }
 
-        .icon {
-            display: inline-block;
-            margin-left: 10px;
-            width: 30px;
-            height: 30px;
-            border: 2px solid white;
-            border-radius: 5px;
-            position: relative;
-        }
-
-        .icon::before {
-            content: '';
-            position: absolute;
-            top: 8px;
-            left: 6px;
-            width: 18px;
-            height: 12px;
-            border: 2px solid white;
-        }
-
         /* MEDIA QUERIES */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 10px;
             }
 
-            header nav ul {
+            .header-right {
                 flex-direction: column;
                 gap: 10px;
-                align-items: flex-start;
+                width: 100%;
             }
 
-            header nav ul li a {
-                font-size: 1.2rem;
+            .header-right input[type="text"] {
+                width: 100%;
             }
 
             .container h1 {
@@ -121,18 +107,19 @@
 </head>
 <body>
     <header>
-        <div class="logo">Blcha.com</div>
-        <nav>
-            <ul>
-                <li><a href="#home">Domů</a></li>
-                <li><a href="#movies">Filmy</a></li>
-                <li><a href="#contact">Kontakt</a></li>
-            </ul>
-        </nav>
+        <div class="header-left">
+            <img src="blcha.png" alt="Blcha Logo">
+            <p>filmová databáza filmov</p>
+        </div>
+        <div class="header-right">
+            <input type="text" placeholder="Vyhledat...">
+            <img src="search-icon.png" alt="Hledat" class="icon">
+            <img src="login-icon.png" alt="Přihlásit se" class="icon">
+        </div>
     </header>
     <div class="container">
-        <h1>blcha.com</h1>
-        <p>filmová databáza filmov <span class="icon"></span></p>
+        <h1>Vítejte ve filmové databázi</h1>
+        <p>Prozkoumejte tisíce filmů na jednom místě.</p>
     </div>
 </body>
 </html>
