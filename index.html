@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stránka s Obrázkom</title>
     <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
         img {
-            width: 50%; /* Zmenší šírku obrázka o 50% */
-            height: auto; /* Zaisťuje, že pomer strán zostane zachovaný */
-            display: block; /* Odstránenie prípadných medzier nad a pod obrázkom */
-            margin: 0 auto; /* Centrálne zarovnanie obrázka */
+            width: 85%; /* Obrázok bude o 15% menší */
+            height: auto; /* Zachovanie pomeru strán */
+            max-width: 100%; /* Zabránenie presahovania obrázka mimo kontajner */
         }
     </style>
 </head>
