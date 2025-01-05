@@ -9,7 +9,6 @@
             --primary-color: #2c3e50;
             --secondary-color: #3498db;
             --text-color: #ecf0f1;
-            --bg-color: #1a1a1d;
             --red-color: #e74c3c;
         }
 
@@ -19,21 +18,20 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-image: url('https://ibb.co/r4wDWXR'); /* Replace with actual image URL if necessary */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             margin: 0;
-            overflow: hidden; /* Prevent scrollbars during the effect */
+            color: var(--text-color);
         }
 
         .timer-container {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.7); /* Semi-transparent white for better readability */
             border-radius: 16px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
             padding: 30px;
             text-align: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
         #countdown {
@@ -100,29 +98,41 @@
             bottom: 10px;
             width: 100%;
             text-align: center;
+            font-size: 0.8em; /* Smaller font */
+            font-weight: 400; /* Normal weight */
             color: var(--text-color);
-            font-size: 2em; /* Larger font */
-            font-weight: 800; /* Bolder font */
+        }
+
+        .top-icons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+        }
+
+        .icon {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+            background-size: contain;
+            background-repeat: no-repeat;
             cursor: pointer;
-            transition: opacity 0.3s ease;
         }
 
-        .dust {
-            animation: dust 1s ease-out forwards;
+        .login-icon {
+            background-image: url('path/to/login/icon.png');
         }
 
-        @keyframes dust {
-            0% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-                transform: scale(10);
-            }
+        .register-icon {
+            background-image: url('path/to/register/icon.png');
         }
     </style>
 </head>
 <body>
+    <div class="top-icons">
+        <div class="icon login-icon" title="Login"></div>
+        <div class="icon register-icon" title="Register"></div>
+    </div>
     <div class="timer-container">
         <h1 id="countdown">00:00:00</h1>
         <div>
@@ -192,14 +202,6 @@
                 lapElement.textContent = `Lap ${lapCounter}: ${lapTime}`;
                 document.getElementById('laps').appendChild(lapElement);
             }
-        });
-
-        // Credit click effect
-        document.getElementById('credit').addEventListener('click', function() {
-            this.classList.add('dust');
-            setTimeout(() => {
-                this.style.display = 'none'; // Hide after animation
-            }, 1000); // Match the animation duration
         });
 
         // Initial update
