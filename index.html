@@ -3,88 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vodka Tracker</title>
+    <title>Animácia Fliaš</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-        .container {
-            text-align: center;
-        }
         .bottle {
-            width: 200px;
-            height: 400px;
+            width: 100px;
+            height: 200px;
             border: 2px solid black;
+            margin: 10px;
             position: relative;
-            background-color: white;
+            display: inline-block;
         }
-        .level {
+        .liquid {
             width: 100%;
+            background-color: blue;
             position: absolute;
             bottom: 0;
-            background-color: green;
-        }
-        select, button {
-            margin: 10px;
-            padding: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="bottle" id="bottle">
-            <div class="level" id="level"></div>
+    <h1>Animácia Fliaš</h1>
+    <div>
+        <div class="bottle" id="bottle1">
+            <div class="liquid" id="liquid1" style="height: 100%;"></div>
         </div>
-        <select id="size">
-            <option value="1">1L (40 shots)</option>
-            <option value="0.7">0.7L (28 shots)</option>
-        </select>
-        <button onclick="drinkShot()">Vypiť Shot</button>
-        <p id="shotsLeft"></p>
-        <p>Autor: Matúš Bereš</p>
-        <p>Prajem príjemné ranné zvracanie.</p>
+        <div class="bottle" id="bottle2">
+            <div class="liquid" id="liquid2" style="height: 70%;"></div>
+        </div>
     </div>
+    <button onclick="drink(1)">Piť z 1 litrovej fľaše</button>
+    <button onclick="drink(2)">Piť z 0,7 litrovej fľaše</button>
 
     <script>
-        let totalVolume = 1000; // Začneme s 1 litrom
-        let shotsPerBottle = 40;
-        let shotSize = 25; // ml
+        const bottle1Max = 40; // 40 poldecakov = 1 liter
+        const bottle2Max = 28; // 28 poldecakov = 0,7 litra
+        let bottle1Current = bottle1Max;
+        let bottle2Current = bottle2Max;
 
-        function updateBottle() {
-            const bottle = document.getElementById('bottle');
-            const level = document.getElementById('level');
-            const percentageFilled = (totalVolume / (totalVolume + shotSize * shotsPerBottle)) * 100;
-            level.style.height = `${percentageFilled}%`;
-            document.getElementById('shotsLeft').innerText = `Zostáva ${shotsPerBottle} shotov.`;
-        }
+        function drink(bottleNum) {
+            const liquidElement = document.getElementById(`liquid${bottleNum}`);
+            let currentVolume = bottleNum === 1 ? bottle1Current : bottle2Current;
+            
+            if (currentVolume > 0) {
+                currentVolume--;
+                let newHeight = (currentVolume / (bottleNum === 1 ? bottle1Max : bottle2Max)) * 100;
+                liquidElement.style.height = `${newHeight}%`;
+                
+                if (bottleNum === 1) {
+                    bottle1Current = currentVolume;
+                } else {
+                    bottle2Current = currentVolume;
+                }
 
-        function drinkShot() {
-            if (shotsPerBottle > 0) {
-                totalVolume -= shotSize;
-                shotsPerBottle--;
-                updateBottle();
-            } else {
-                alert("Fľaša je prázdna!");
+                if (currentVolume === 0) {
+                    let audio = new Audio('path/to/your/sound.mp3'); // Nahradte cestu k vášmu zvukovému súboru
+                    audio.play();
+                }
             }
         }
-
-        document.getElementById('size').addEventListener('change', function() {
-            if (this.value === "1") {
-                totalVolume = 1000;
-                shotsPerBottle = 40;
-            } else {
-                totalVolume = 700;
-                shotsPerBottle = 28;
-            }
-            updateBottle();
-        });
-
-        updateBottle(); // Spustiť pri načítaní stránky
     </script>
 </body>
 </html>
