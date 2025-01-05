@@ -1,32 +1,46 @@
-// Funkcia na formátovanie času
-function formatTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+let mainTime = 600; // 10 minutes in seconds
+const mainTimer = document.getElementById('main-timer');
+const miniTimer = document.getElementById('mini-timer');
+const battery = document.getElementById('battery');
+
+function updateMainTimer() {
+    const minutes = Math.floor(mainTime / 60);
+    const seconds = mainTime % 60;
+    mainTimer.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
-// Funkcia na aktualizáciu odpočtu
-function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = countdownEnd - now;
+function updateBatteryColor() {
+    const percentage = mainTime / 600;
+    const red = Math.min(255, 255 * (1 - percentage));
+    const green = Math.min(255, 255 * percentage);
+    battery.style.backgroundColor = `rgb(${red}, ${green}, 0)`;
+}
 
-    if (distance < 0) {
-        document.getElementById('countdown').innerHTML = "Čas vypršal!";
-        document.getElementById('pushups').innerHTML = "Hotovo!";
-        clearInterval(countdownInterval);
-    } else {
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        document.getElementById('countdown').innerHTML = formatTime(minutes * 60 + Math.floor(distance / 1000) % 60);
+function startMiniTimer() {
+    let miniTime = 10;
+    miniTimer.textContent = miniTime;
+    miniTimer.style.display = 'block';
+    const miniInterval = setInterval(() => {
+        miniTime--;
+        miniTimer.textContent = miniTime;
+        if (miniTime === 0) {
+            clearInterval(miniInterval);
+            miniTimer.style.display = 'none';
+        }
+    }, 1000);
+}
 
-        // Zobraziť počet zdvihov
-        let pushups = minutes * 10;
-        document.getElementById('pushups').innerHTML = pushups === 0 ? "Začnite!" : `${pushups} zdvihov`;
+const mainInterval = setInterval(() => {
+    mainTime--;
+    updateMainTimer();
+    updateBatteryColor();
+
+    if (mainTime % 60 === 0) {
+        startMiniTimer();
     }
-}
 
-// Nastavenie konca odpočtu na 10 minút odo teraz
-const countdownEnd = new Date().getTime() + 10 * 60 * 1000;
-const countdownInterval = setInterval(updateCountdown, 1000);
-
-// Prvé spustenie
-updateCountdown();
+    if (mainTime === 0) {
+        clearInterval(mainInterval);
+        alert('Čas vypršal!');
+    }
+}, 1000);
