@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stránka s Obrázkom</title>
+    <title>Fľaša s Hladinou</title>
     <style>
         body {
             display: flex;
@@ -13,14 +13,47 @@
             margin: 0;
             background-color: #f0f0f0;
         }
+        .container {
+            position: relative;
+        }
         img {
-            width: 30%; /* Obrázok je zmenšený o ďalších 20%, teda celkovo o 70% */
-            height: auto; /* Zachovanie pomeru strán */
-            max-width: 100%; /* Zabránenie presahovania obrázka mimo kontajner */
+            width: 300px; /* Príklad veľkosti, upravte podľa potreby */
+            height: auto;
+        }
+        #level-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            border-top: 2px solid red;
+            transform-origin: bottom;
         }
     </style>
 </head>
 <body>
-    <img src="https://i.postimg.cc/Hj9nPTDS/IMG-7596.png" alt="Popis obrázku">
+    <div class="container">
+        <img src="https://i.postimg.cc/Hj9nPTDS/IMG-7596.png" alt="Fľaša">
+        <div id="level-line" style="transform: scaleY(1);"></div>
+    </div>
+    <input type="number" id="shots" min="0" max="25" placeholder="Počet poldeciakrov">
+    <button onclick="updateLevel()">Aktualizovať hladinu</button>
+
+    <script>
+        function updateLevel() {
+            const shots = document.getElementById('shots').value;
+            const maxShots = 25; // Počet poldeciakrov v jednej litrovej fľaši
+            let scale = 1; // Začiatok na plnej fľaši
+
+            if (shots > 0 && shots <= maxShots) {
+                // Výpočet zostávajúcej hladiny (1 je plná fľaša, 0 je prázdna)
+                scale = 1 - (shots / maxShots);
+            } else if (shots > maxShots) {
+                scale = 0; // Ak presiahnete max, fľaša je prázdna
+            }
+
+            // Aktualizácia CSS vlastnosti na zmenu výšky čiary
+            document.getElementById('level-line').style.transform = `scaleY(${scale})`;
+        }
+    </script>
 </body>
 </html>
