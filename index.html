@@ -1,20 +1,76 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>10 Minútový Odpocet s Mini Odpocetom a Baterkou</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .timer {
+            text-align: center;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>10 Minútový Odpocet</h1>
-        <div id="countdown">10:00</div>
-        <div id="battery">
-            <div id="battery-level" style="background-image: url('battery-full-green.png');"></div>
-        </div>
-        <div id="mini-countdown"></div>
+    <div class="timer">
+        <h1 id="countdown">00:00:00</h1>
+        <button id="restartBtn">Restart</button>
+        <button id="setBtn">Set Time</button>
+        <input type="number" id="hours" placeholder="Hours" min="0" max="23">
+        <input type="number" id="minutes" placeholder="Minutes" min="0" max="59">
+        <input type="number" id="seconds" placeholder="Seconds" min="0" max="59">
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        let countdown;
+        let timeLeft = 0;
+
+        function updateTimer() {
+            const hours = Math.floor(timeLeft / 3600);
+            const minutes = Math.floor((timeLeft % 3600) / 60);
+            const seconds = timeLeft % 60;
+
+            document.getElementById('countdown').innerText = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                clearInterval(countdown);
+            }
+        }
+
+        document.getElementById('restartBtn').addEventListener('click', function() {
+            clearInterval(countdown);
+            timeLeft = 0;
+            updateTimer();
+        });
+
+        document.getElementById('setBtn').addEventListener('click', function() {
+            clearInterval(countdown);
+            const hours = parseInt(document.getElementById('hours').value) || 0;
+            const minutes = parseInt(document.getElementById('minutes').value) || 0;
+            const seconds = parseInt(document.getElementById('seconds').value) || 0;
+            timeLeft = hours * 3600 + minutes * 60 + seconds;
+            countdown = setInterval(updateTimer, 1000);
+            updateTimer();
+        });
+
+        // Initial update
+        updateTimer();
+    </script>
 </body>
 </html>
