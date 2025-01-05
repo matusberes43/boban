@@ -5,18 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stránka s Obrázkom</title>
     <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-        body {
-            background: url('https://i.postimg.cc/Hj9nPTDS/IMG-7596.png') no-repeat center center fixed;
-            background-size: cover;
+        img {
+            width: 50%; /* Zmenší šírku obrázka o 50% */
+            height: auto; /* Zaisťuje, že pomer strán zostane zachovaný */
+            display: block; /* Odstránenie prípadných medzier nad a pod obrázkom */
+            margin: 0 auto; /* Centrálne zarovnanie obrázka */
         }
     </style>
 </head>
 <body>
+    <img src="https://i.postimg.cc/Hj9nPTDS/IMG-7596.png" alt="Popis obrázku">
 </body>
 </html>
