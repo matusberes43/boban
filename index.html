@@ -22,6 +22,7 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
+            overflow: hidden; /* Prevent scrollbars during the effect */
         }
 
         .timer-container {
@@ -100,7 +101,24 @@
             width: 100%;
             text-align: center;
             color: var(--text-color);
-            opacity: 0.7;
+            font-size: 2em; /* Larger font */
+            font-weight: 800; /* Bolder font */
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .dust {
+            animation: dust 1s ease-out forwards;
+        }
+
+        @keyframes dust {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(10);
+            }
         }
     </style>
 </head>
@@ -144,7 +162,7 @@
                 timeLeft--;
             } else {
                 clearInterval(countdown);
-                document.getElementById('countdown').style.color = 'var(--secondary-color)'; // Reset color when timer finishes
+                document.getElementById('countdown').style.color = 'var(--secondary-color)';
             }
         }
 
@@ -174,6 +192,14 @@
                 lapElement.textContent = `Lap ${lapCounter}: ${lapTime}`;
                 document.getElementById('laps').appendChild(lapElement);
             }
+        });
+
+        // Credit click effect
+        document.getElementById('credit').addEventListener('click', function() {
+            this.classList.add('dust');
+            setTimeout(() => {
+                this.style.display = 'none'; // Hide after animation
+            }, 1000); // Match the animation duration
         });
 
         // Initial update
