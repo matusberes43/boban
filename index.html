@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Countdown Timer</title>
+    <title>Modern Countdown Timer with Lap Function</title>
     <style>
         :root {
             --primary-color: #2c3e50;
             --secondary-color: #3498db;
             --text-color: #ecf0f1;
             --bg-color: #1a1a1d;
+            --red-color: #e74c3c;
         }
 
         body {
@@ -40,6 +41,7 @@
             font-weight: bold;
             color: var(--secondary-color);
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: color 0.3s ease;
         }
 
         button {
@@ -83,6 +85,23 @@
         input[type="number"] {
             -moz-appearance: textfield;
         }
+
+        #laps {
+            font-size: 0.9em;
+            color: var(--text-color);
+            max-height: 150px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+
+        #credit {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            color: var(--text-color);
+            opacity: 0.7;
+        }
     </style>
 </head>
 <body>
@@ -91,17 +110,21 @@
         <div>
             <button id="restartBtn">Restart</button>
             <button id="setBtn">Set Time</button>
+            <button id="lapBtn">Lap Time</button>
         </div>
         <div class="inputs">
             <input type="number" id="hours" placeholder="HH" min="0" max="23">
             <input type="number" id="minutes" placeholder="MM" min="0" max="59">
             <input type="number" id="seconds" placeholder="SS" min="0" max="59">
         </div>
+        <div id="laps"></div>
     </div>
+    <footer id="credit">Created by Matúš Bereš</footer>
 
     <script>
         let countdown;
         let timeLeft = 0;
+        let lapCounter = 0;
 
         function updateTimer() {
             const hours = Math.floor(timeLeft / 3600);
@@ -111,16 +134,25 @@
             document.getElementById('countdown').innerText = 
                 `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
+            if (seconds < 10) {
+                document.getElementById('countdown').style.color = 'var(--red-color)';
+            } else {
+                document.getElementById('countdown').style.color = 'var(--secondary-color)';
+            }
+
             if (timeLeft > 0) {
                 timeLeft--;
             } else {
                 clearInterval(countdown);
+                document.getElementById('countdown').style.color = 'var(--secondary-color)'; // Reset color when timer finishes
             }
         }
 
         document.getElementById('restartBtn').addEventListener('click', function() {
             clearInterval(countdown);
             timeLeft = 0;
+            document.getElementById('laps').innerHTML = '';
+            lapCounter = 0;
             updateTimer();
         });
 
@@ -132,6 +164,16 @@
             timeLeft = hours * 3600 + minutes * 60 + seconds;
             countdown = setInterval(updateTimer, 1000);
             updateTimer();
+        });
+
+        document.getElementById('lapBtn').addEventListener('click', function() {
+            if (countdown) {
+                lapCounter++;
+                const lapTime = document.getElementById('countdown').innerText;
+                const lapElement = document.createElement('p');
+                lapElement.textContent = `Lap ${lapCounter}: ${lapTime}`;
+                document.getElementById('laps').appendChild(lapElement);
+            }
         });
 
         // Initial update
