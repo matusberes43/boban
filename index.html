@@ -3,35 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countdown Timer</title>
+    <title>Modern Countdown Timer</title>
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --text-color: #ecf0f1;
+            --bg-color: #1a1a1d;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Montserrat', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
         }
-        .timer {
+
+        .timer-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 30px;
             text-align: center;
         }
+
+        #countdown {
+            font-size: 4em;
+            margin: 0;
+            font-weight: bold;
+            color: var(--secondary-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
         button {
-            margin: 10px;
+            background: var(--secondary-color);
+            color: var(--text-color);
+            border: none;
+            border-radius: 30px;
             padding: 10px 20px;
             font-size: 1em;
             cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+
+        button:hover {
+            background: var(--primary-color);
+        }
+
+        .inputs {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        input[type="number"] {
+            width: 60px;
+            padding: 5px;
+            margin: 0 5px;
+            border-radius: 5px;
+            border: 1px solid var(--secondary-color);
+            background: transparent;
+            color: var(--text-color);
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
         }
     </style>
 </head>
 <body>
-    <div class="timer">
+    <div class="timer-container">
         <h1 id="countdown">00:00:00</h1>
-        <button id="restartBtn">Restart</button>
-        <button id="setBtn">Set Time</button>
-        <input type="number" id="hours" placeholder="Hours" min="0" max="23">
-        <input type="number" id="minutes" placeholder="Minutes" min="0" max="59">
-        <input type="number" id="seconds" placeholder="Seconds" min="0" max="59">
+        <div>
+            <button id="restartBtn">Restart</button>
+            <button id="setBtn">Set Time</button>
+        </div>
+        <div class="inputs">
+            <input type="number" id="hours" placeholder="HH" min="0" max="23">
+            <input type="number" id="minutes" placeholder="MM" min="0" max="59">
+            <input type="number" id="seconds" placeholder="SS" min="0" max="59">
+        </div>
     </div>
 
     <script>
