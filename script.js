@@ -1,17 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const vodkaLevel = document.getElementById('vodka-level');
-    
-    // Animačná funkcia na zmenu výšky "vodky"
-    function drinkVodka() {
-        vodkaLevel.style.height = '100%';
-        setTimeout(() => {
-            vodkaLevel.style.height = '0%';
-        }, 2000); // 2 sekundy na "vypitie"
-    }
+    // Dummy data for theories
+    const theories = [
+        { title: "Moon Landing", content: "Was it real or staged?" },
+        { title: "Flat Earth", content: "Is the Earth really flat?" }
+    ];
 
-    // Spustenie animácie po načítaní stránky
-    drinkVodka();
+    const theoryList = document.getElementById('theoryList');
+    theories.forEach(theory => {
+        const theoryElement = document.createElement('div');
+        theoryElement.innerHTML = `<h3>${theory.title}</h3><p>${theory.content}</p>`;
+        theoryList.appendChild(theoryElement);
+    });
 
-    // Prípadne pridajte interaktivitu, napr. kliknutie pre opätovné spustenie animácie
-    document.body.addEventListener('click', drinkVodka);
+    // Form submission
+    const addTheoryForm = document.getElementById('addTheoryForm');
+    addTheoryForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const title = document.getElementById('theoryTitle').value;
+        const content = document.getElementById('theoryContent').value;
+        
+        // Here you would typically send this data to a server
+        console.log(`New Theory Added: ${title} - ${content}`);
+        this.reset();
+    });
+
+    // Login and Register buttons - functionality not implemented here
+    document.getElementById('loginBtn').addEventListener('click', () => alert('Login functionality not implemented'));
+    document.getElementById('registerBtn').addEventListener('click', () => alert('Register functionality not implemented'));
 });
