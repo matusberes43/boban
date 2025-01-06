@@ -49,6 +49,13 @@
                 : 'https://i.postimg.cc/9fnwyx4x/IMG-7605.png';
         }
 
+        // Tabuľka konverzie z mg/L na promile
+        const conversionTable = [
+            { mgL: 0.00, promile: 0.00 },
+            // ... (všetky ostatné hodnoty z tabuľky)
+            { mgL: 2.00, promile: 4.17 }
+        ];
+
         function calculateBACAndLevel() {
             const alcoholType = document.getElementById('alcoholType').value;
             const maxShots = alcoholType === 'absolut' ? 20 : 14; // 1L = 20 poldecákov (50 ml), 0.7L = 14 poldecákov
@@ -69,7 +76,6 @@
             document.getElementById('level-line').style.height = `${scale * 100}%`;
 
             // Výpočet BAC
-            // Jeden poldecák (50 ml) pri 40% obsahu alkoholu obsahuje 20 gramov alkoholu
             const alcPerShot = 0.05 * 40; // 50 ml pri 40% je 20 gramov alkoholu
             const totalAlcohol = shots * alcPerShot; // v gramoch
             const r = gender === 'male' ? 0.68 : 0.55; // Podiel vody v tele (muži vs. ženy)
@@ -80,17 +86,24 @@
             if (hydration === 1) absorption -= 0.05; // Hydratácia mierne znižuje absorpciu
 
             // Konverzia z gramov na mg/L a potom na promile podľa tabuľky
-            let bacInMgL = (totalAlcohol / weight) * 1000 * absorption; // Konverzia na mg/L
+            let bacInMgL = (totalAlcohol / (weight * r)) * 1000 * absorption; // Konverzia na mg/L
             bacInMgL = Math.min(bacInMgL, 2.00); // Orezanie hodnoty na maximálnu v tabuľke
-            
-            // Interpolácia hodnoty z tabuľky
-            const tableStep = 0.01; // krok v tabuľke pre mg/L
-            const promilePerStep = 0.02; // krok promile na každý 0.01 mg/L
-            let promile = (Math.floor(bacInMgL / tableStep) * promilePerStep).toFixed(3);
 
-            if (bmi > 25) promile = (parseFloat(promile) * 1.1).toFixed(3); // Obezita môže mierne zvyšovať BAC
+            // Vypočet promile na základe tabuľky (jednoduchá interpolácia)
+            let promile = 0;
+            for (let i = 0; i < conversionTable.length - 1; i++) {
+                if (bacInMgL >= conversionTable[i].mgL && bacInMgL < conversionTable[i+1].mgL) {
+                    const range = conversionTable[i+1].mgL - conversionTable[i].mgL;
+                    const rangePromile = conversionTable[i+1].promile - conversionTable[i].promile;
+                    const fraction = (bacInMgL - conversionTable[i].mgL) / range;
+                    promile = conversionTable[i].promile + (rangePromile * fraction);
+                    break;
+                }
+            }
 
-            document.getElementById('result').innerText = `Približné promile: ${promile}‰`;
+            if (bmi > 25) promile = (promile * 1.1).toFixed(3); // Obezita môže mierne zvyšovať BAC
+
+            document.getElementById('result').innerText = `Približné promile: ${promile.toFixed(3)}‰`;
         }
     </script>
 </body>
