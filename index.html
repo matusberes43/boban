@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header s ikonkami</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .icon {
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            margin-right: 20px;
+        }
+        .search-container {
+            position: relative;
+        }
+        #searchField {
+            display: none;
+            position: absolute;
+            top: 30px;
+            left: 0;
+            width: 200px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .show {
+            display: block;
+        }
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Môj Web</div>
+    <div>
+        <i class="fas fa-search icon" onclick="toggleSearch()"></i>
+        <i class="fas fa-user-plus icon" onclick="alert('Registrácia')"></i>
+        <i class="fas fa-sign-in-alt icon" onclick="alert('Prihlásenie')"></i>
+    </div>
+</header>
+
+<div class="search-container">
+    <input type="text" id="searchField" placeholder="Hľadať...">
+</div>
+
+<script>
+    function toggleSearch() {
+        var searchField = document.getElementById('searchField');
+        if (searchField.classList.contains('show')) {
+            searchField.classList.remove('show');
+            searchField.classList.add('hide');
+        } else {
+            searchField.classList.remove('hide');
+            searchField.classList.add('show');
+        }
+    }
+</script>
+
+</body>
+</html>
