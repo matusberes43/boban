@@ -13,7 +13,7 @@
         }
         .sidebar {
             height: 100vh;
-            width: 250px;
+            width: 150px; /* Narrower sidebar */
             position: fixed;
             top: 0;
             left: 0;
@@ -21,9 +21,9 @@
             padding-top: 20px;
         }
         .sidebar a {
-            padding: 15px 25px;
+            padding: 15px 10px; /* Adjusted padding for less width */
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16px;
             color: white;
             display: block;
             transition: 0.3s;
@@ -34,14 +34,14 @@
         .sidebar .profile {
             display: flex;
             align-items: center;
-            padding: 10px 25px;
+            padding: 10px 10px;
         }
         .sidebar .profile img {
             border-radius: 50%;
             margin-right: 10px;
         }
         .main {
-            margin-left: 250px;
+            margin-left: 150px; /* Adjusted for narrower sidebar */
             padding: 20px;
         }
     </style>
@@ -52,13 +52,13 @@
             <img src="profile-pic-url.jpg" alt="Profile Picture" width="40" height="40">
             <span>Kevin</span>
         </div>
-        <a href="#"><i class="icon-play"></i> Watch Now</a>
-        <a href="#"><i class="icon-grid"></i> Browse</a>
-        <a href="#"><i class="icon-search"></i> Search</a>
-        <a href="#"><i class="icon-calendar"></i> Latest</a>
-        <a href="#"><i class="icon-tv"></i> TV Shows</a>
-        <a href="#"><i class="icon-movie"></i> Movies</a>
-        <a href="#"><i class="icon-plus"></i> My List</a>
+        <a href="#">Watch Now</a>
+        <a href="#">Browse</a>
+        <a href="#">Search</a>
+        <a href="#">Latest</a>
+        <a href="#">TV Shows</a>
+        <a href="#">Movies</a>
+        <a href="#">My List</a>
         <a href="#">Settings</a>
         <a href="#">Exit Netflix</a>
     </div>
