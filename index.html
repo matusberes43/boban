@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fľaša s Hladinou</title>
+    <title>Fľaša s Hladinou a Promile</title>
     <style>
         body {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             height: 100vh;
             margin: 0;
             background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
         }
         .container {
             position: relative;
+            margin-bottom: 20px;
         }
         img {
             width: 300px; /* Príklad veľkosti, upravte podľa potreby */
@@ -25,9 +27,15 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 100%; /* Zmeníme výšku na 100% pre správny výpočet */
+            height: 100%;
             border-top: 2px solid red;
-            background-color: rgba(0, 255, 0, 0.3); /* Zelená pre lepšiu viditeľnosť */
+            background-color: rgba(0, 255, 0, 0.3);
+        }
+        .promile-table {
+            text-align: center;
+        }
+        .promile-table td {
+            padding: 5px;
         }
     </style>
 </head>
@@ -37,24 +45,45 @@
         <div id="level-line"></div>
     </div>
     <input type="number" id="shots" min="0" max="25" placeholder="Počet poldeciakrov">
-    <button onclick="updateLevel()">Aktualizovať hladinu</button>
+    <button onclick="updateLevelAndPromile()">Aktualizovať hladinu a promile</button>
+
+    <table class="promile-table">
+        <thead>
+            <tr>
+                <th>Hmotnosť (kg)</th>
+                <th>Promile</th>
+            </tr>
+        </thead>
+        <tbody id="promile-results">
+            <!-- Tu sa budú dynamicky vkladať výsledky -->
+        </tbody>
+    </table>
 
     <script>
-        function updateLevel() {
-            const shots = document.getElementById('shots').value;
+        function updateLevelAndPromile() {
+            const shots = parseInt(document.getElementById('shots').value) || 0;
             const maxShots = 25; // Počet poldeciakrov v jednej litrovej fľaši
-            let scale = 1; // Začiatok na plnej fľaši
+            let scale = 1;
 
             if (shots > 0 && shots <= maxShots) {
-                // Výpočet zostávajúcej hladiny (1 je plná fľaša, 0 je prázdna)
-                // Keďže znižujeme hladinu, používame 1 mínus pomer vypitých poldeciakrov k celkovému počtu
                 scale = 1 - (shots / maxShots);
             } else if (shots > maxShots) {
-                scale = 0; // Ak presiahnete max, fľaša je prázdna
+                scale = 0;
             }
 
-            // Aktualizácia CSS vlastnosti na zmenu výšky čiary
+            // Aktualizácia hladiny
             document.getElementById('level-line').style.height = `${scale * 100}%`;
+
+            // Vypočet promile (jednoduchý model, kde 1 poldecák = 0,03 promile na každých 10 kg)
+            const weights = [60, 65, 70, 75, 80, 85, 90, 95];
+            let promileResults = '';
+            
+            weights.forEach(weight => {
+                let promile = (shots * 0.03 * (10 / weight)).toFixed(2);
+                promileResults += `<tr><td>${weight}</td><td>${promile}</td></tr>`;
+            });
+
+            document.getElementById('promile-results').innerHTML = promileResults;
         }
     </script>
 </body>
