@@ -12,12 +12,16 @@
             padding: 0;
         }
         header {
-            background-color: #333;
+            background-color: #333; /* Farba pozadia hlavičky */
             color: white;
             padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+        .logo img {
+            height: 40px; /* Nastavenie výšky loga */
+            filter: brightness(0) invert(1); /* Zmena farby na bielu */
         }
         .icon {
             color: white;
@@ -32,12 +36,13 @@
             display: none;
             position: absolute;
             top: 30px;
-            right: 0; /* Zmena z left na right pre správne zarovnanie */
+            right: 0;
             width: 200px;
             padding: 5px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            z-index: 1; /* Zvýšenie z-indexu, aby sa pole zobrazilo nad ostatnými prvkami */
+            background-color: white;
+            z-index: 1;
         }
         .show {
             display: block;
@@ -50,7 +55,9 @@
 <body>
 
 <header>
-    <div class="logo">Môj Web</div>
+    <div class="logo">
+        <img src="https://i.postimg.cc/jdwdPCvQ/IMG-7617.jpg" alt="Logo">
+    </div>
     <div>
         <i class="fas fa-search icon" onclick="toggleSearch()"></i>
         <i class="fas fa-user-plus icon" onclick="alert('Registrácia')"></i>
@@ -70,7 +77,6 @@
         } else {
             searchField.style.display = "block";
         }
-        // Pridanie focus na input po jeho zobrazení
         searchField.focus();
     }
 </script>
