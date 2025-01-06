@@ -32,11 +32,12 @@
             display: none;
             position: absolute;
             top: 30px;
-            left: 0;
+            right: 0; /* Zmena z left na right pre správne zarovnanie */
             width: 200px;
             padding: 5px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            z-index: 1; /* Zvýšenie z-indexu, aby sa pole zobrazilo nad ostatnými prvkami */
         }
         .show {
             display: block;
@@ -64,13 +65,13 @@
 <script>
     function toggleSearch() {
         var searchField = document.getElementById('searchField');
-        if (searchField.classList.contains('show')) {
-            searchField.classList.remove('show');
-            searchField.classList.add('hide');
+        if (searchField.style.display === "block") {
+            searchField.style.display = "none";
         } else {
-            searchField.classList.remove('hide');
-            searchField.classList.add('show');
+            searchField.style.display = "block";
         }
+        // Pridanie focus na input po jeho zobrazení
+        searchField.focus();
     }
 </script>
 
