@@ -55,19 +55,23 @@
 </head>
 <body>
     <div class="container">
-        <img src="https://i.postimg.cc/Bbf01Stp/IMG-7602.png" alt="Fľaša">
+        <img id="bottle-image" src="https://i.postimg.cc/Hj9nPTDS/IMG-7596.png" alt="Fľaša">
         <div id="level-line"></div>
     </div>
 
     <div class="calculator">
         <h2>Kalkulačka Alkoholu v Krvi</h2>
+        <select id="alcoholType" onchange="updateBottleImage()">
+            <option value="absolut">VODKA ABSOLUT 1L</option>
+            <option value="jelinek">VODKA JELÍNEK 0,7L</option>
+        </select>
         <select id="gender">
             <option value="male">Muž</option>
             <option value="female">Žena</option>
         </select>
         <input type="number" id="weight" placeholder="Hmotnosť (kg)" min="30" max="200">
         <input type="number" id="height" placeholder="Výška (cm)" min="100" max="250">
-        <input type="number" id="shots" placeholder="Počet poldeciakrov" min="0" max="25">
+        <input type="number" id="shots" placeholder="Počet poldeciakrov" min="0">
         <select id="food">
             <option value="0">Nebolo jedlo</option>
             <option value="1">Ľahké jedlo</option>
@@ -83,14 +87,22 @@
     </div>
 
     <script>
+        function updateBottleImage() {
+            const bottleType = document.getElementById('alcoholType').value;
+            document.getElementById('bottle-image').src = bottleType === 'absolut' 
+                ? 'https://i.postimg.cc/Hj9nPTDS/IMG-7596.png' 
+                : 'https://i.postimg.cc/9fnwyx4x/IMG-7605.png';
+        }
+
         function calculateBACAndLevel() {
+            const alcoholType = document.getElementById('alcoholType').value;
+            const maxShots = alcoholType === 'absolut' ? 25 : 17.5; // 1L = 25 poldeciakrov, 0.7L = 17.5 poldeciakrov
             const gender = document.getElementById('gender').value;
             const weight = parseFloat(document.getElementById('weight').value) || 0;
             const height = parseFloat(document.getElementById('height').value) || 0;
-            const shots = parseInt(document.getElementById('shots').value) || 0;
+            const shots = parseFloat(document.getElementById('shots').value) || 0;
             const food = parseInt(document.getElementById('food').value);
             const hydration = parseInt(document.getElementById('hydration').value);
-            const maxShots = 25; // Počet poldeciakrov v jednej litrovej fľaši
 
             // Aktualizácia hladiny vo fľaši
             let scale = 1;
