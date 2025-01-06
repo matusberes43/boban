@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Webpage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
             margin: 0;
@@ -13,7 +14,7 @@
         }
         .sidebar {
             height: 100vh;
-            width: 150px; /* Narrower sidebar */
+            width: 150px;
             position: fixed;
             top: 0;
             left: 0;
@@ -21,11 +22,12 @@
             padding-top: 20px;
         }
         .sidebar a {
-            padding: 15px 10px; /* Adjusted padding for less width */
+            padding: 15px 10px;
             text-decoration: none;
             font-size: 16px;
             color: white;
-            display: block;
+            display: flex;
+            align-items: center;
             transition: 0.3s;
         }
         .sidebar a:hover {
@@ -40,8 +42,11 @@
             border-radius: 50%;
             margin-right: 10px;
         }
+        .icon {
+            margin-right: 10px;
+        }
         .main {
-            margin-left: 150px; /* Adjusted for narrower sidebar */
+            margin-left: 150px;
             padding: 20px;
         }
     </style>
@@ -52,15 +57,15 @@
             <img src="profile-pic-url.jpg" alt="Profile Picture" width="40" height="40">
             <span>Kevin</span>
         </div>
-        <a href="#">Watch Now</a>
-        <a href="#">Browse</a>
-        <a href="#">Search</a>
-        <a href="#">Latest</a>
-        <a href="#">TV Shows</a>
-        <a href="#">Movies</a>
-        <a href="#">My List</a>
-        <a href="#">Settings</a>
-        <a href="#">Exit Netflix</a>
+        <a href="#"><i class="fas fa-play icon"></i> Watch Now</a>
+        <a href="#"><i class="fas fa-th icon"></i> Browse</a>
+        <a href="#"><i class="fas fa-search icon"></i> Search</a>
+        <a href="#"><i class="fas fa-calendar-alt icon"></i> Latest</a>
+        <a href="#"><i class="fas fa-tv icon"></i> TV Shows</a>
+        <a href="#"><i class="fas fa-film icon"></i> Movies</a>
+        <a href="#"><i class="fas fa-plus icon"></i> My List</a>
+        <a href="#"><i class="fas fa-cog icon"></i> Settings</a>
+        <a href="#"><i class="fas fa-sign-out-alt icon"></i> Exit Netflix</a>
     </div>
     <div class="main">
         <!-- Main content goes here -->
