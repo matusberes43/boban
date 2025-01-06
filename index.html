@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Webpage</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #141414;
+            color: white;
+        }
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #000;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #333;
+        }
+        .sidebar .profile {
+            display: flex;
+            align-items: center;
+            padding: 10px 25px;
+        }
+        .sidebar .profile img {
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .main {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="profile">
+            <img src="profile-pic-url.jpg" alt="Profile Picture" width="40" height="40">
+            <span>Kevin</span>
+        </div>
+        <a href="#"><i class="icon-play"></i> Watch Now</a>
+        <a href="#"><i class="icon-grid"></i> Browse</a>
+        <a href="#"><i class="icon-search"></i> Search</a>
+        <a href="#"><i class="icon-calendar"></i> Latest</a>
+        <a href="#"><i class="icon-tv"></i> TV Shows</a>
+        <a href="#"><i class="icon-movie"></i> Movies</a>
+        <a href="#"><i class="icon-plus"></i> My List</a>
+        <a href="#">Settings</a>
+        <a href="#">Exit Netflix</a>
+    </div>
+    <div class="main">
+        <!-- Main content goes here -->
+    </div>
+</body>
+</html>
