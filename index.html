@@ -3,87 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fľaša s Hladinou a Promile</title>
+    <title>Presná Kalkulačka Alkoholu v Krvi</title>
     <style>
         body {
+            font-family: Arial, sans-serif;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
             background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
+            margin: 0;
         }
-        .container {
-            position: relative;
-            margin-bottom: 20px;
+        .calculator {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        img {
-            width: 300px; /* Príklad veľkosti, upravte podľa potreby */
-            height: auto;
-        }
-        #level-line {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-top: 2px solid red;
-            background-color: rgba(0, 255, 0, 0.3);
-        }
-        .promile-table {
-            text-align: center;
-        }
-        .promile-table td {
+        .calculator input, .calculator select {
+            margin: 5px 0;
             padding: 5px;
+        }
+        .calculator button {
+            margin-top: 10px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="https://i.postimg.cc/Hj9nPTDS/IMG-7596.png" alt="Fľaša">
-        <div id="level-line"></div>
+    <div class="calculator">
+        <h2>Kalkulačka Alkoholu v Krvi</h2>
+        <select id="gender">
+            <option value="male">Muž</option>
+            <option value="female">Žena</option>
+        </select>
+        <input type="number" id="weight" placeholder="Hmotnosť (kg)" min="30" max="200">
+        <input type="number" id="height" placeholder="Výška (cm)" min="100" max="250">
+        <input type="number" id="shots" placeholder="Počet poldeciakrov" min="0">
+        <select id="food">
+            <option value="0">Nebolo jedlo</option>
+            <option value="1">Ľahké jedlo</option>
+            <option value="2">Stredné jedlo</option>
+            <option value="3">Ťažké jedlo</option>
+        </select>
+        <select id="hydration">
+            <option value="0">Bez zapíjania</option>
+            <option value="1">Zapíjam vodou</option>
+        </select>
+        <button onclick="calculateBAC()">Vypočítať BAC</button>
+        <div id="result"></div>
     </div>
-    <input type="number" id="shots" min="0" max="25" placeholder="Počet poldeciakrov">
-    <button onclick="updateLevelAndPromile()">Aktualizovať hladinu a promile</button>
-
-    <table class="promile-table">
-        <thead>
-            <tr>
-                <th>Hmotnosť (kg)</th>
-                <th>Promile</th>
-            </tr>
-        </thead>
-        <tbody id="promile-results">
-            <!-- Tu sa budú dynamicky vkladať výsledky -->
-        </tbody>
-    </table>
 
     <script>
-        function updateLevelAndPromile() {
+        function calculateBAC() {
+            const gender = document.getElementById('gender').value;
+            const weight = parseFloat(document.getElementById('weight').value) || 0;
+            const height = parseFloat(document.getElementById('height').value) || 0;
             const shots = parseInt(document.getElementById('shots').value) || 0;
-            const maxShots = 25; // Počet poldeciakrov v jednej litrovej fľaši
-            let scale = 1;
+            const food = parseInt(document.getElementById('food').value);
+            const hydration = parseInt(document.getElementById('hydration').value);
 
-            if (shots > 0 && shots <= maxShots) {
-                scale = 1 - (shots / maxShots);
-            } else if (shots > maxShots) {
-                scale = 0;
-            }
+            // Základné konštanty
+            const alcPerShot = 0.025 * 40; // 25 ml pri 40% je 10 gramov alkoholu
+            const totalAlcohol = shots * alcPerShot; // v gramoch
+            const r = gender === 'male' ? 0.68 : 0.55; // Podiel vody v tele (muži vs. ženy)
+            const bmi = weight / ((height / 100) ** 2); // BMI
+            let absorption = 1; // Koeficient absorpcie, predvolene 1
 
-            // Aktualizácia hladiny
-            document.getElementById('level-line').style.height = `${scale * 100}%`;
+            // Úprava absorpcie na základe jedla a hydratácie
+            absorption -= (food * 0.05); // Menej alkoholu sa absorbuje s jedlom
+            if (hydration === 1) absorption -= 0.05; // Hydratácia mierne znižuje absorpciu
 
-            // Vypočet promile (jednoduchý model, kde 1 poldecák = 0,03 promile na každých 10 kg)
-            const weights = [60, 65, 70, 75, 80, 85, 90, 95];
-            let promileResults = '';
-            
-            weights.forEach(weight => {
-                let promile = (shots * 0.03 * (10 / weight)).toFixed(2);
-                promileResults += `<tr><td>${weight}</td><td>${promile}</td></tr>`;
-            });
+            // Výpočet BAC (Blood Alcohol Concentration)
+            let bac = (totalAlcohol / (weight * r) * absorption).toFixed(3);
 
-            document.getElementById('promile-results').innerHTML = promileResults;
+            // Výprava BAC podľa BMI (veľmi zjednodušené)
+            if (bmi > 25) bac = (bac * 1.1).toFixed(3); // Obezita môže mierne zvyšovať BAC
+
+            document.getElementById('result').innerText = `Približné promile: ${bac}‰`;
         }
     </script>
 </body>
