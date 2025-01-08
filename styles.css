@@ -1,3 +1,4 @@
+/* Globálny štýl */
 body {
     margin: 0;
     padding: 0;
@@ -6,6 +7,7 @@ body {
     color: #ffffff;
 }
 
+/* Hlavný kontajner */
 .container {
     text-align: center;
     padding: 20px;
@@ -15,6 +17,7 @@ body {
     justify-content: center;
 }
 
+/* Logo */
 .logo h1 {
     font-size: 48px;
     font-weight: bold;
@@ -28,16 +31,19 @@ body {
     color: #6CFF47;
 }
 
+/* Tagline */
 .tagline {
     margin-top: 10px;
     font-size: 18px;
 }
 
+/* Kategórie */
 .categories p {
     margin: 10px 0;
     font-size: 20px;
 }
 
+/* Tlačidlá */
 .buttons {
     margin-top: 20px;
 }
