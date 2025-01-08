@@ -3,108 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NHL Website</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        header {
-            background-color: #000;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 30px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        .logo {
-            height: 30px; /* Menšie logo */
-        }
-        .search-icon {
-            font-size: 18px; /* Menšia ikonka lupy */
-            margin-left: 15px;
-            cursor: pointer;
-            color: #ccc; /* Svetlejšia farba ikonky pre lepší kontrast */
-        }
-        nav {
-            display: flex;
-            align-items: center;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 16px;
-            transition: color 0.3s ease;
-        }
-        nav a:hover {
-            color: #ccc; /* Pri hoveri zmena farby */
-        }
-        .menu-icon {
-            display: none;
-            font-size: 20px;
-            cursor: pointer;
-        }
-        #searchField {
-            display: none;
-            width: 200px;
-            height: 25px;
-            margin-left: 15px;
-            padding: 0 10px;
-            border: none;
-            border-radius: 15px;
-            background-color: #333;
-            color: #fff;
-        }
-        @media (max-width: 768px) {
-            .menu-icon {
-                display: block;
-            }
-            nav a:not(:last-child) {
-                display: none;
-            }
-            nav.responsive a {
-                display: block;
-                text-align: center;
-                padding: 10px 0;
-            }
-        }
-    </style>
+    <title>Blcha.com - Hlavná stránka</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <img class="logo" src="https://i.postimg.cc/tCkKBDNQ/IMG-7627.png" alt="NHL Logo">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" id="searchField" placeholder="Search...">
+        <h1>Blcha.com</h1>
         <nav>
-            <a href="#">News</a>
-            <a href="#">Video</a>
-            <a href="#">Scores</a>
-            <div class="menu-icon">☰</div>
+            <ul>
+                <li><a href="#home">Domov</a></li>
+                <li><a href="#about">O nás</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
         </nav>
     </header>
-
-    <script>
-        document.querySelector('.search-icon').addEventListener('click', function() {
-            var searchField = document.getElementById('searchField');
-            if (searchField.style.display === 'none' || searchField.style.display === '') {
-                searchField.style.display = 'block';
-                searchField.focus();
-            } else {
-                searchField.style.display = 'none';
-            }
-        });
-
-        document.querySelector('.menu-icon').addEventListener('click', function() {
-            var nav = document.querySelector('nav');
-            if (nav.className === '') {
-                nav.className = 'responsive';
-            } else {
-                nav.className = '';
-            }
-        });
-    </script>
+    <main>
+        <section id="home">
+            <h2>Vitajte na Blcha.com</h2>
+            <p>Toto je hlavná stránka vášho webu.</p>
+        </section>
+        <!-- Pridajte ďalšie sekcie podľa potreby -->
+    </main>
+    <footer>
+        <p>&copy; 2025 Blcha.com</p>
+    </footer>
 </body>
 </html>
