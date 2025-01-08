@@ -3,27 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Názov Vašej Stránky</title>
+    <title>NHL Website</title>
     <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
         header {
-            background-color: #f8f9fa;
-            padding: 20px 0;
-            text-align: center;
+            background-color: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
         }
         .logo {
-            max-width: 200px; /* Alebo iná veľkosť, ktorá vyhovuje vášmu dizajnu */
-            height: auto;
+            height: 40px; /* Adjust according to your logo size */
+        }
+        .search-icon {
+            font-size: 24px;
+            margin-left: 20px;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        .menu-icon {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
         }
         @media (max-width: 768px) {
-            .logo {
-                max-width: 150px; /* Zmenšená veľkosť loga na mobilných zariadeniach */
+            .menu-icon {
+                display: block;
+            }
+            nav a:not(:last-child) {
+                display: none;
+            }
+            nav.responsive a {
+                display: block;
+                text-align: center;
+                padding: 10px 0;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <img class="logo" src="https://i.postimg.cc/tCkKBDNQ/IMG-7627.png" alt="Logo">
+        <img class="logo" src="https://i.postimg.cc/tCkKBDNQ/IMG-7627.png" alt="NHL Logo">
+        <div class="search-icon">🔍</div>
+        <nav>
+            <a href="#">News</a>
+            <a href="#">Video</a>
+            <a href="#">Scores</a>
+            <div class="menu-icon">☰</div>
+        </nav>
     </header>
+
+    <script>
+        document.querySelector('.menu-icon').addEventListener('click', function() {
+            var nav = document.querySelector('nav');
+            if (nav.className === '') {
+                nav.className = 'responsive';
+            } else {
+                nav.className = '';
+            }
+        });
+    </script>
 </body>
 </html>
