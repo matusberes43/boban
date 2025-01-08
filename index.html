@@ -3,141 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Stránka</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <title>Názov Vašej Stránky</title>
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
         header {
-            background-color: #1a1a1a;
-            color: white;
-            padding: 10px 0;
-            position: relative;
-            height: 50px; /* Zmenšená výška headera */
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            text-align: center;
         }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 10px; /* Menšie odsadenie */
-            max-width: 1000px; /* Maximálna šírka headeru */
-            margin: 0 auto; /* Centrování headeru */
-            height: 100%;
+        .logo {
+            max-width: 200px; /* Alebo iná veľkosť, ktorá vyhovuje vášmu dizajnu */
+            height: auto;
         }
-
-        .logo img {
-            height: 30px; /* Menšia výška loga */
-            width: auto;
-            max-height: 100%;
-        }
-
-        .header-nav {
-            display: flex;
-            align-items: center;
-        }
-
-        .header-nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-        }
-
-        .header-nav ul li {
-            margin-left: 10px; /* Menšie odsadenie medzi ikonkami */
-        }
-
-        .header-nav ul li a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 5px; /* Menšie padding */
-            transition: background-color 0.3s;
-            user-select: none;
-        }
-
-        .header-nav ul li a:hover {
-            background-color: #333;
-        }
-
-        .search-bar {
-            position: absolute;
-            top: 100%;
-            right: 10px; /* Menšie odsadenie od pravej strany */
-            width: calc(100vw - 20px);
-            max-width: 200px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            padding: 5px;
-            display: none;
-        }
-
-        .search-bar input {
-            width: 100%;
-            padding: 5px;
-            border: none;
-            outline: none;
-        }
-
-        @media screen and (max-width: 600px) {
-            .header-content {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .logo, .header-nav {
-                width: 100%;
-                text-align: center;
-                margin: 5px 0;
-            }
-
-            .header-nav ul {
-                justify-content: center;
-            }
-
-            .header-nav ul li {
-                margin: 0 5px;
-            }
-
-            .search-bar {
-                width: calc(100% - 20px);
-                right: 10px;
+        @media (max-width: 768px) {
+            .logo {
+                max-width: 150px; /* Zmenšená veľkosť loga na mobilných zariadeniach */
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="header-content">
-            <div class="logo">
-                <img src="https://i.postimg.cc/mrJ15Wyq/IMG-7625.png" alt="Logo">
-            </div>
-            <nav class="header-nav">
-                <ul>
-                    <li><a href="#" class="login"><i class="fas fa-user"></i></a></li>
-                    <li><a href="#" class="register"><i class="fas fa-address-card"></i></a></li>
-                    <li><a href="#" class="search-icon"><i class="fas fa-search"></i></a></li>
-                </ul>
-            </nav>
-        </div>
-        <div class="search-bar" style="display: none;">
-            <input type="text" placeholder="Hľadať...">
-        </div>
+        <img class="logo" src="https://i.postimg.cc/tCkKBDNQ/IMG-7627.png" alt="Logo">
     </header>
-
-    <script>
-        document.querySelector('.search-icon').addEventListener('click', function(e) {
-            e.preventDefault();
-            var searchBar = document.querySelector('.search-bar');
-            searchBar.style.display = searchBar.style.display === "none" ? "block" : "none";
-            if (searchBar.style.display === "block") {
-                searchBar.querySelector('input').focus();
-            }
-        });
-    </script>
 </body>
 </html>
