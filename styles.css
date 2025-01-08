@@ -6,8 +6,12 @@ body {
 }
 
 header {
-    background-color: #333;
+    background-color: #000;
     color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
     position: fixed;
     width: 100%;
     z-index: 1000;
@@ -16,20 +20,45 @@ header {
 
 .header-container {
     display: flex;
+    align-items: center;
+    width: 100%;
     justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
 }
 
-.left-icons, .right-icons {
+.logo img {
+    height: 30px; /* Upravte podľa veľkosti vášho loga */
+}
+
+.search-icon, .menu-icon {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.main-menu {
     display: flex;
-    align-items: center;
+    gap: 20px;
 }
 
-.left-icons a, .right-icons a {
+.main-menu a {
     color: white;
     text-decoration: none;
-    margin: 0 5px;
+    font-size: 16px;
 }
 
-.left​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+/* Pre menšie obrazovky */
+@media (max-width: 768px) {
+    .main-menu {
+        display: none;
+    }
+    
+    .header-container {
+        justify-content: space-between;
+    }
+    
+    .search-icon, .menu-icon {
+        display: block;
+    }
+}
+
+main {
+    padding-top: 60px; /* Uistite sa, že hlavný obsah je pod headerom */​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
