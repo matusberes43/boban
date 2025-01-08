@@ -29,7 +29,7 @@
 
         /* Logo */
         .logo {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .logo h1 {
@@ -58,20 +58,27 @@
         /* Kategórie */
         .categories {
             margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
         }
 
-        .categories p {
-            margin: 5px 0;
-            font-size: 18px;
+        .category {
+            text-align: center;
+            font-size: 22px;
             font-weight: 600;
             letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: color 0.3s, transform 0.2s;
         }
 
-        .categories p:hover {
+        .category span:first-child {
+            display: block;
+            font-size: 40px;
             color: #6CFF47;
-            transform: scale(1.05);
+            margin-bottom: 5px;
+        }
+
+        .category:hover {
+            color: #6CFF47;
         }
 
         /* Tlačidlá */
@@ -115,44 +122,6 @@
             box-shadow: 0 8px 15px rgba(108, 255, 71, 0.2);
             transform: translateY(-3px);
         }
-
-        /* Animácia bublín na pozadí */
-        body::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            left: -100px;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(108, 255, 71, 0.1), transparent);
-            border-radius: 50%;
-            animation: float 20s infinite linear;
-        }
-
-        body::after {
-            content: '';
-            position: absolute;
-            bottom: -100px;
-            right: -100px;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(108, 255, 71, 0.1), transparent);
-            border-radius: 50%;
-            animation: float 25s infinite linear reverse;
-        }
-
-        /* Animácia pre bubliny */
-        @keyframes float {
-            0% {
-                transform: translateY(0) translateX(0);
-            }
-            50% {
-                transform: translateY(-20px) translateX(20px);
-            }
-            100% {
-                transform: translateY(0) translateX(0);
-            }
-        }
     </style>
 </head>
 <body>
@@ -165,13 +134,34 @@
         <p class="tagline">Fantasy Sports For The Shooting Enthusiasts</p>
         <!-- Kategórie -->
         <div class="categories">
-            <p>PIŠTOLE</p>
-            <p>ÚTOČNÉ PUŠKY</p>
-            <p>ODSTREĽOVACIE PUŠKY</p>
-            <p>REVOLVERY</p>
-            <p>BROKOVNICE</p>
-            <p>VZDUCHOVÉ ZBRANE</p>
-            <p>PRÍSLUŠENSTVO</p>
+            <div class="category">
+                <span>P</span>
+                PIŠTOLE
+            </div>
+            <div class="category">
+                <span>Ú</span>
+                ÚTOČNÉ PUŠKY
+            </div>
+            <div class="category">
+                <span>O</span>
+                ODSTREĽOVACIE PUŠKY
+            </div>
+            <div class="category">
+                <span>R</span>
+                REVOLVERY
+            </div>
+            <div class="category">
+                <span>B</span>
+                BROKOVNICE
+            </div>
+            <div class="category">
+                <span>V</span>
+                VZDUCHOVÉ ZBRANE
+            </div>
+            <div class="category">
+                <span>P</span>
+                PRÍSLUŠENSTVO
+            </div>
         </div>
         <!-- Tlačidlá -->
         <div class="buttons">
