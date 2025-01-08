@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NHL Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             margin: 0;
@@ -18,11 +19,12 @@
             padding: 10px 20px;
         }
         .logo {
-            height: 40px; /* Adjust according to your logo size */
+            height: 40px;
         }
         .search-icon {
             font-size: 24px;
             margin-left: 20px;
+            cursor: pointer;
         }
         nav {
             display: flex;
@@ -38,6 +40,12 @@
             display: none;
             font-size: 24px;
             cursor: pointer;
+        }
+        #searchField {
+            display: none;
+            width: 200px;
+            height: 30px;
+            margin-left: 20px;
         }
         @media (max-width: 768px) {
             .menu-icon {
@@ -57,7 +65,8 @@
 <body>
     <header>
         <img class="logo" src="https://i.postimg.cc/tCkKBDNQ/IMG-7627.png" alt="NHL Logo">
-        <div class="search-icon">🔍</div>
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="searchField" placeholder="Search...">
         <nav>
             <a href="#">News</a>
             <a href="#">Video</a>
@@ -67,6 +76,16 @@
     </header>
 
     <script>
+        document.querySelector('.search-icon').addEventListener('click', function() {
+            var searchField = document.getElementById('searchField');
+            if (searchField.style.display === 'none' || searchField.style.display === '') {
+                searchField.style.display = 'block';
+                searchField.focus();
+            } else {
+                searchField.style.display = 'none';
+            }
+        });
+
         document.querySelector('.menu-icon').addEventListener('click', function() {
             var nav = document.querySelector('nav');
             if (nav.className === '') {
