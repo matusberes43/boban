@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Stránka</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .header-nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .header-nav ul li {
+            margin-left: 20px;
+        }
+
+        .header-nav ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .header-nav ul li a:hover {
+            background-color: #555;
+        }
+
+        .search-bar {
+            position: absolute;
+            top: 100%;
+            right: 20px;
+            width: 200px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 5px;
+            display: none;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 5px;
+            border: none;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <!-- Logo sem -->
+                <img src="logo.png" alt="Logo">
+            </div>
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="#" class="login">Prihlásenie</a></li>
+                    <li><a href="#" class="register">Registrácia</a></li>
+                    <li><a href="#" class="search-icon">Hľadať</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="search-bar" style="display: none;">
+            <input type="text" placeholder="Hľadať...">
+        </div>
+    </header>
+
+    <script>
+        document.querySelector('.search-icon').addEventListener('click', function(e) {
+            e.preventDefault();
+            var searchBar = document.querySelector('.search-bar');
+            if (searchBar.style.display === "none") {
+                searchBar.style.display = "block";
+                searchBar.querySelector('input').focus();
+            } else {
+                searchBar.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>
