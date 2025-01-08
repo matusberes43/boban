@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grid Rival</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
         /* Globálny štýl */
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #0A1624;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #0A1624 0%, #16273A 100%);
             color: #ffffff;
+            overflow: hidden;
         }
 
         /* Hlavný kontajner */
@@ -26,8 +29,10 @@
 
         /* Logo */
         .logo h1 {
-            font-size: 48px;
-            font-weight: bold;
+            font-size: 56px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            margin: 0;
         }
 
         .grid {
@@ -41,40 +46,102 @@
         /* Tagline */
         .tagline {
             margin-top: 10px;
-            font-size: 18px;
+            font-size: 20px;
+            font-weight: 400;
+            opacity: 0.85;
         }
 
         /* Kategórie */
         .categories p {
             margin: 10px 0;
-            font-size: 20px;
+            font-size: 22px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .categories p:hover {
+            color: #6CFF47;
         }
 
         /* Tlačidlá */
         .buttons {
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
         .join-button, .login-button {
             display: inline-block;
             margin: 10px;
-            padding: 15px 30px;
-            font-size: 16px;
-            border-radius: 5px;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
             cursor: pointer;
+            transition: all 0.3s ease-in-out;
         }
 
         .join-button {
             background-color: #6CFF47;
             color: #0A1624;
+            box-shadow: 0 8px 15px rgba(108, 255, 71, 0.2);
+        }
+
+        .join-button:hover {
+            background-color: #5BE140;
+            box-shadow: 0 12px 20px rgba(108, 255, 71, 0.4);
+            transform: translateY(-3px);
         }
 
         .login-button {
             background-color: transparent;
             border: 2px solid #6CFF47;
             color: #ffffff;
+        }
+
+        .login-button:hover {
+            background-color: #6CFF47;
+            color: #0A1624;
+            box-shadow: 0 8px 15px rgba(108, 255, 71, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Animácia bublín na pozadí */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(108, 255, 71, 0.1), transparent);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(108, 255, 71, 0.1), transparent);
+            border-radius: 50%;
+            animation: float 25s infinite linear reverse;
+        }
+
+        /* Animácia pre bubliny */
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-20px) translateX(20px);
+            }
+            100% {
+                transform: translateY(0) translateX(0);
+            }
         }
     </style>
 </head>
