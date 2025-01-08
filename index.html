@@ -14,7 +14,6 @@
             font-family: 'Montserrat', sans-serif;
             background: linear-gradient(135deg, #0A1624 0%, #16273A 100%);
             color: #ffffff;
-            overflow: hidden;
         }
 
         /* Hlavný kontajner */
@@ -29,7 +28,7 @@
 
         /* Logo */
         .logo {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .logo h1 {
@@ -39,46 +38,21 @@
             margin: 0;
         }
 
-        .grid {
-            color: #ffffff;
-        }
-
-        .rival {
-            color: #6CFF47;
-        }
-
-        /* Tagline */
-        .tagline {
-            margin-top: 10px;
-            font-size: 20px;
-            font-weight: 400;
-            opacity: 0.85;
-        }
-
         /* Kategórie */
         .categories {
-            margin-top: 10px;
             display: flex;
-            justify-content: center;
-            gap: 30px;
+            flex-direction: column;
+            align-items: flex-start;
+            margin: 0 auto;
+            gap: 10px;
         }
 
-        .category {
-            text-align: center;
-            font-size: 22px;
+        .categories p {
+            font-size: 18px;
             font-weight: 600;
             letter-spacing: 1px;
-        }
-
-        .category span:first-child {
-            display: block;
-            font-size: 40px;
-            color: #6CFF47;
-            margin-bottom: 5px;
-        }
-
-        .category:hover {
-            color: #6CFF47;
+            text-transform: uppercase;
+            margin: 0;
         }
 
         /* Tlačidlá */
@@ -130,39 +104,18 @@
         <div class="logo">
             <h1><span class="grid">BLCHA</span><span class="rival">GUNS</span></h1>
         </div>
-        <!-- Tagline -->
-        <p class="tagline">Fantasy Sports For The Shooting Enthusiasts</p>
+
         <!-- Kategórie -->
         <div class="categories">
-            <div class="category">
-                <span>P</span>
-                PIŠTOLE
-            </div>
-            <div class="category">
-                <span>Ú</span>
-                ÚTOČNÉ PUŠKY
-            </div>
-            <div class="category">
-                <span>O</span>
-                ODSTREĽOVACIE PUŠKY
-            </div>
-            <div class="category">
-                <span>R</span>
-                REVOLVERY
-            </div>
-            <div class="category">
-                <span>B</span>
-                BROKOVNICE
-            </div>
-            <div class="category">
-                <span>V</span>
-                VZDUCHOVÉ ZBRANE
-            </div>
-            <div class="category">
-                <span>P</span>
-                PRÍSLUŠENSTVO
-            </div>
+            <p>PIŠTOLE</p>
+            <p>ÚTOČNÉ PUŠKY</p>
+            <p>ODSTREĽOVACIE PUŠKY</p>
+            <p>REVOLVERY</p>
+            <p>BROKOVNICE</p>
+            <p>VZDUCHOVÉ ZBRANE</p>
+            <p>PRÍSLUŠENSTVO</p>
         </div>
+
         <!-- Tlačidlá -->
         <div class="buttons">
             <a href="#" class="join-button">Join The Club</a>
