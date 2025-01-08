@@ -4,28 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blcha.com - Hlavná stránka</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Blcha.com</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Domov</a></li>
-                <li><a href="#about">O nás</a></li>
-                <li><a href="#contact">Kontakt</a></li>
-            </ul>
-        </nav>
+        <div class="header-container">
+            <div class="left-icons">
+                <a href="#menu"><i class="fas fa-bars"></i></a>
+                <a href="#login"><i class="fas fa-sign-in-alt"></i></a>
+                <a href="#register"><i class="fas fa-user-plus"></i></a>
+            </div>
+            <div class="logo">
+                <img src="logo.png" alt="Logo blcha.com" width="50">
+            </div>
+            <div class="right-icons">
+                <a href="#search"><i class="fas fa-search"></i></a>
+            </div>
+        </div>
     </header>
+
     <main>
-        <section id="home">
+        <section id="content">
             <h2>Vitajte na Blcha.com</h2>
-            <p>Toto je hlavná stránka vášho webu.</p>
+            <p>Toto je hlavná stránka vášho webu, kde môžete pridávať články, fotografie a videá.</p>
+            <article>
+                <h3>Prvý článok</h3>
+                <p>Obsah prvého článku...</p>
+                <img src="sample-image.jpg" alt="Ilustračný obrázok" width="300">
+                <p>Zdieľajte svoje príbehy, fotky a videá s nami!</p>
+                <video width="320" height="240" controls>
+                    <source src="sample-video.mp4" type="video/mp4">
+                    Váš prehliadač nepodporuje video tag.
+                </video>
+            </article>
         </section>
-        <!-- Pridajte ďalšie sekcie podľa potreby -->
     </main>
+
     <footer>
-        <p>&copy; 2025 Blcha.com</p>
+        <p>© 2025 Blcha.com</p>
     </footer>
 </body>
 </html>
