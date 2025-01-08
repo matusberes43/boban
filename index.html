@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Stránka</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <style>
         body {
             margin: 0;
@@ -11,11 +12,11 @@
         }
 
         header {
-            background-color: #1a1a1a; /* Tmavší odtieň šedej */
+            background-color: #1a1a1a;
             color: white;
             padding: 10px 0;
             position: relative;
-            height: 60px; /* Fixná výška headera */
+            height: 60px;
         }
 
         .header-content {
@@ -23,13 +24,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 20px;
-            height: 100%; /* Zabezpečí, že obsah vyplní celú výšku headera */
+            height: 100%;
         }
 
         .logo img {
             height: 40px;
             width: auto;
-            max-height: 100%; /* Logo sa prispôsobí výške headera */
+            max-height: 100%;
         }
 
         .header-nav {
@@ -59,16 +60,6 @@
 
         .header-nav ul li a:hover {
             background-color: #333;
-        }
-
-        /* Použitie Font Awesome ikoniek pre navigáciu */
-        .login::before { content: "\f007"; }
-        .register::before { content: "\f0c0"; }
-        .search-icon::before { content: "\f002"; }
-        .login::before, .register::before, .search-icon::before {
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
-            font-size: 20px;
         }
 
         .search-bar {
@@ -114,9 +105,9 @@
             </div>
             <nav class="header-nav">
                 <ul>
-                    <li><a href="#" class="login"></a></li>
-                    <li><a href="#" class="register"></a></li>
-                    <li><a href="#" class="search-icon"></a></li>
+                    <li><a href="#" class="login"><i class="fas fa-user"></i></a></li>
+                    <li><a href="#" class="register"><i class="fas fa-address-card"></i></a></li>
+                    <li><a href="#" class="search-icon"><i class="fas fa-search"></i></a></li>
                 </ul>
             </nav>
         </div>
