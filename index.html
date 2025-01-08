@@ -22,11 +22,19 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 20px;
+            flex-wrap: wrap;
         }
 
         .logo img {
             height: 40px;
             width: auto;
+            max-width: 100%;
+        }
+
+        .header-nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: flex-end;
         }
 
         .header-nav ul {
@@ -34,6 +42,7 @@
             padding: 0;
             margin: 0;
             display: flex;
+            flex-wrap: wrap;
         }
 
         .header-nav ul li {
@@ -46,6 +55,7 @@
             display: block;
             padding: 10px;
             transition: background-color 0.3s;
+            user-select: none; /* Zabráni zvýrazňovaniu textu */
         }
 
         .header-nav ul li a:hover {
@@ -56,7 +66,8 @@
             position: absolute;
             top: 100%;
             right: 20px;
-            width: 200px;
+            width: calc(100vw - 40px);
+            max-width: 200px;
             background-color: #fff;
             border: 1px solid #ddd;
             padding: 5px;
@@ -69,14 +80,28 @@
             border: none;
             outline: none;
         }
+
+        @media screen and (max-width: 600px) {
+            .header-nav ul {
+                justify-content: center;
+            }
+
+            .header-nav ul li {
+                margin: 5px 10px;
+            }
+
+            .search-bar {
+                width: calc(100% - 40px);
+                right: 20px;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="header-content">
             <div class="logo">
-                <!-- Logo sem -->
-                <img src="logo.png" alt="Logo">
+                <img src="https://i.postimg.cc/mrJ15Wyq/IMG-7625.png" alt="Logo">
             </div>
             <nav class="header-nav">
                 <ul>
@@ -95,11 +120,9 @@
         document.querySelector('.search-icon').addEventListener('click', function(e) {
             e.preventDefault();
             var searchBar = document.querySelector('.search-bar');
-            if (searchBar.style.display === "none") {
-                searchBar.style.display = "block";
+            searchBar.style.display = searchBar.style.display === "none" ? "block" : "none";
+            if (searchBar.style.display === "block") {
                 searchBar.querySelector('input').focus();
-            } else {
-                searchBar.style.display = "none";
             }
         });
     </script>
