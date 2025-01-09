@@ -15,11 +15,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 15px;
+    padding: 10px 20px;
     background-color: #ffffff;
-    width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
@@ -32,7 +31,7 @@ body {
 }
 
 .logo img {
-    width: 80px;  /* Zmenšenie loga */
+    width: 70px; /* Zmenšené logo */
     height: auto;
 }
 
@@ -67,12 +66,12 @@ body {
         display: none;
     }
 
+    .logo img {
+        width: 60px; /* Menšie logo pre mobilné zariadenia */
+    }
+
     .menu-icon i,
     .cart-icon i {
         font-size: 20px;
-    }
-
-    .logo img {
-        width: 70px;  /* Zmenšenie loga pre mobilné zariadenia */
     }
 }
