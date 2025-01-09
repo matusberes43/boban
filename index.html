@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLCHAGUNS</title>
+    <title>BLCHAGUNS - Join Form</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -13,71 +13,13 @@
             font-family: 'Montserrat', sans-serif;
             background: #0A1624;
             color: #ffffff;
-            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
-        .container {
-            text-align: center;
-            width: 90%;
-            max-width: 400px;
-        }
-
-        .logo h1 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 72px;
-            color: #ffffff;
-            margin-bottom: 20px;
-        }
-
-        .logo .rival {
-            color: #6CFF47;
-        }
-
-        .categories p {
-            font-size: 18px;
-            margin: 15px 0;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .categories p:hover {
-            color: #6CFF47;
-        }
-
-        .buttons {
-            margin-top: 30px;
-        }
-
-        .join-button {
-            background-color: #6CFF47;
-            padding: 12px 35px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            color: #0A1624;
-            display: inline-block;
-            margin-right: 10px;
-        }
-
-        .login-button {
-            padding: 12px 35px;
-            border: 2px solid #6CFF47;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            color: #ffffff;
-            display: inline-block;
+            height: 100vh;
         }
 
         .form-container {
-            display: none;
             background-color: #0E2436;
             padding: 20px;
             border-radius: 15px;
@@ -87,14 +29,44 @@
             position: relative;
         }
 
-        .form-container h2 {
-            font-family: 'Bebas Neue', sans-serif;
+        .back-arrow {
+            position: absolute;
+            top: 10px;
+            left: 10px;
             font-size: 24px;
-            margin-bottom: 20px;
+            cursor: pointer;
             color: #ffffff;
         }
 
-        .form-container input {
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .login-methods {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .login-methods div {
+            width: 50px;
+            height: 50px;
+            background-color: #0078d4;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .login-methods div img {
+            width: 24px;
+            height: 24px;
+        }
+
+        input {
             width: 100%;
             padding: 12px;
             margin: 10px 0;
@@ -104,7 +76,20 @@
             color: #ffffff;
         }
 
-        .form-container .sign-up-button {
+        .promo-code {
+            background: #0C1E32;
+            padding: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .promo-code:hover {
+            background: #142F49;
+        }
+
+        .sign-up-button {
             width: 100%;
             padding: 15px;
             background-color: #6CFF47;
@@ -116,64 +101,55 @@
             cursor: pointer;
         }
 
-        .form-container .back-arrow {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 24px;
-            cursor: pointer;
-            color: #ffffff;
+        .terms {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #A0A0A0;
+            text-align: center;
+        }
+
+        .terms a {
+            color: #0078d4;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <!-- Hlavná stránka -->
-    <div class="container" id="main-container">
-        <div class="logo">
-            <h1><span class="grid">BLCHA</span><span class="rival">GUNS</span></h1>
-        </div>
 
-        <div class="categories">
-            <p onclick="navigateTo('pistole.html')">PIŠTOLE</p>
-            <p onclick="navigateTo('utocne-pusky.html')">ÚTOČNÉ PUŠKY</p>
-            <p onclick="navigateTo('odstreliovacie-pusky.html')">ODSTREĽOVACIE PUŠKY</p>
-            <p onclick="navigateTo('revolvery.html')">REVOLVERY</p>
-            <p onclick="navigateTo('brokovnice.html')">BROKOVNICE</p>
-            <p onclick="navigateTo('vzduchove-zbrane.html')">VZDUCHOVÉ ZBRANE</p>
-            <p onclick="navigateTo('prislusenstvo.html')">PRÍSLUŠENSTVO</p>
-        </div>
+<div class="form-container">
+    <div class="back-arrow" onclick="goBack()">&#8592;</div>
+    <h2>Create an Account</h2>
 
-        <div class="buttons">
-            <a href="#" class="join-button" onclick="showForm()">Join The Club</a>
-            <a href="#" class="login-button">Login</a>
-        </div>
+    <!-- Select Login Method -->
+    <div class="login-methods">
+        <div><img src="https://img.icons8.com/ios-filled/50/ffffff/email.png" alt="Email"></div>
+        <div><img src="https://img.icons8.com/ios-filled/50/ffffff/mac-os.png" alt="Apple"></div>
+        <div><img src="https://img.icons8.com/ios-filled/50/ffffff/google-logo.png" alt="Google"></div>
     </div>
 
-    <!-- Formulár na registráciu -->
-    <div class="form-container" id="form-container">
-        <div class="back-arrow" onclick="goBack()">&#8592; Späť</div>
-        <h2>Create an Account</h2>
-        <input type="text" placeholder="Choose a Username">
-        <input type="email" placeholder="Enter Your Email Address">
-        <input type="password" placeholder="Create a Password">
-        <div class="sign-up-button">Sign Up</div>
+    <!-- Input Fields -->
+    <input type="text" placeholder="Choose a Username">
+    <input type="email" placeholder="Enter Your Email Address">
+    <input type="password" placeholder="Create a Password">
+
+    <!-- Promo / Referral Code -->
+    <div class="promo-code">+ PROMO / REFERRAL CODE</div>
+
+    <!-- Sign Up Button -->
+    <div class="sign-up-button">Sign Up</div>
+
+    <!-- Terms and Conditions -->
+    <div class="terms">
+        By signing up, you agree to the <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a>, and <a href="#">Unofficial Application Notice</a>.
     </div>
+</div>
 
-    <!-- JavaScript -->
-    <script>
-        function showForm() {
-            document.getElementById('main-container').style.display = 'none';
-            document.getElementById('form-container').style.display = 'block';
-        }
+<!-- JavaScript -->
+<script>
+    function goBack() {
+        alert('Vrátiť späť na hlavnú stránku');
+    }
+</script>
 
-        function goBack() {
-            document.getElementById('form-container').style.display = 'none';
-            document.getElementById('main-container').style.display = 'block';
-        }
-
-        function navigateTo(page) {
-            window.location.href = page;
-        }
-    </script>
 </body>
 </html>
