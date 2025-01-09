@@ -51,28 +51,11 @@ body {
     gap: 20px;
 }
 
-.cart-container {
-    position: relative;
-}
-
 .cart-icon,
 .login-icon {
     font-size: 24px;
     color: #333;
     cursor: pointer;
-}
-
-/* Badge on Cart Icon */
-.cart-badge {
-    position: absolute;
-    top: -5px;
-    right: -10px;
-    background-color: #d32f2f;
-    color: #ffffff;
-    border-radius: 50%;
-    padding: 4px 8px;
-    font-size: 12px;
-    font-weight: bold;
 }
 
 /* Hover Effect for Icons */
@@ -94,10 +77,5 @@ body {
     .cart-icon,
     .login-icon {
         font-size: 20px;
-    }
-
-    .cart-badge {
-        padding: 3px 6px;
-        font-size: 10px;
     }
 }
