@@ -41,6 +41,12 @@
             font-weight: 600;
             text-transform: uppercase;
             margin: 10px 0;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .categories p:hover {
+            color: #6CFF47;
         }
 
         .buttons {
@@ -67,118 +73,10 @@
             border: 2px solid #6CFF47;
             color: #ffffff;
         }
-
-        .form-container {
-            display: none;
-            background-color: #0E2436;
-            padding: 20px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-        }
-
-        h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .login-methods {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-        }
-
-        .login-methods div {
-            width: 50px;
-            height: 50px;
-            background-color: #102C4A;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .login-methods div img {
-            width: 24px;
-            height: 24px;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            background: #102C4A;
-            border: none;
-            border-radius: 5px;
-            color: #ffffff;
-        }
-
-        .promo-code {
-            background: #0C1E32;
-            padding: 10px;
-            margin-bottom: 20px;
-            text-align: center;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .sign-up-button {
-            width: 100%;
-            padding: 15px;
-            background-color: #6CFF47;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #0A1624;
-            cursor: pointer;
-        }
-
-        .terms {
-            margin-top: 20px;
-            font-size: 12px;
-            color: #A0A0A0;
-            text-align: center;
-        }
-
-        .terms a {
-            color: #0078d4;
-            text-decoration: none;
-        }
-
-        /* Krajsia spatna sipka */
-        .back-arrow {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            width: 40px;
-            height: 40px;
-            background-color: #102C4A;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease;
-        }
-
-        .back-arrow:hover {
-            background-color: #6CFF47;
-        }
-
-        .back-arrow img {
-            width: 20px;
-            height: 20px;
-        }
     </style>
 </head>
 <body>
-    <div class="container" id="main-container">
+    <div class="container">
         <!-- Logo -->
         <div class="logo" onclick="reloadPage()">
             <h1><span class="grid">BLCHA</span><span class="rival">GUNS</span></h1>
@@ -186,13 +84,13 @@
 
         <!-- Categories -->
         <div class="categories">
-            <p>PIŠTOLE</p>
-            <p>ÚTOČNÉ PUŠKY</p>
-            <p>ODSTREĽOVACIE PUŠKY</p>
-            <p>REVOLVERY</p>
-            <p>BROKOVNICE</p>
-            <p>VZDUCHOVÉ ZBRANE</p>
-            <p>PRÍSLUŠENSTVO</p>
+            <p onclick="navigateTo('pistole.html')">PIŠTOLE</p>
+            <p onclick="navigateTo('utocne-pusky.html')">ÚTOČNÉ PUŠKY</p>
+            <p onclick="navigateTo('odstreliovacie-pusky.html')">ODSTREĽOVACIE PUŠKY</p>
+            <p onclick="navigateTo('revolvery.html')">REVOLVERY</p>
+            <p onclick="navigateTo('brokovnice.html')">BROKOVNICE</p>
+            <p onclick="navigateTo('vzduchove-zbrane.html')">VZDUCHOVÉ ZBRANE</p>
+            <p onclick="navigateTo('prislusenstvo.html')">PRÍSLUŠENSTVO</p>
         </div>
 
         <!-- Buttons -->
@@ -202,43 +100,14 @@
         </div>
     </div>
 
-    <!-- Registration Form -->
-    <div class="form-container" id="form-container">
-        <!-- Krajsia spatna sipka -->
-        <div class="back-arrow" onclick="goBack()">
-            <img src="https://img.icons8.com/ios-filled/50/ffffff/left.png" alt="Back">
-        </div>
-
-        <h2>Create an Account</h2>
-        <div class="login-methods">
-            <div><img src="https://img.icons8.com/ios-filled/50/ffffff/email.png" alt="Email"></div>
-            <div><img src="https://img.icons8.com/ios-filled/50/ffffff/mac-os.png" alt="Apple"></div>
-            <div><img src="https://img.icons8.com/ios-filled/50/ffffff/google-logo.png" alt="Google"></div>
-        </div>
-        <input type="text" placeholder="Choose a Username">
-        <input type="email" placeholder="Enter Your Email Address">
-        <input type="password" placeholder="Create a Password">
-        <div class="promo-code">+ PROMO / REFERRAL CODE</div>
-        <div class="sign-up-button">Sign Up</div>
-        <div class="terms">
-            By signing up, you agree to the <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a>, and <a href="#">Unofficial Application Notice</a>.
-        </div>
-    </div>
-
     <!-- JavaScript -->
     <script>
         function reloadPage() {
             location.reload();
         }
 
-        function showForm() {
-            document.getElementById('main-container').style.display = 'none';
-            document.getElementById('form-container').style.display = 'block';
-        }
-
-        function goBack() {
-            document.getElementById('form-container').style.display = 'none';
-            document.getElementById('main-container').style.display = 'block';
+        function navigateTo(page) {
+            window.location.href = page;
         }
     </script>
 </body>
