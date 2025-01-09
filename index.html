@@ -15,6 +15,7 @@
             background-color: #f4f4f4;
         }
 
+        /* Header Styling */
         header {
             display: flex;
             align-items: center;
@@ -28,16 +29,17 @@
             z-index: 1000;
         }
 
+        /* Menu Icon */
         .menu-icon {
             font-size: 24px;
             cursor: pointer;
             color: #333;
         }
 
+        /* Logo Section */
         .logo {
             display: flex;
             align-items: center;
-            white-space: nowrap;
         }
 
         .logo h1 {
@@ -45,18 +47,19 @@
             color: #000000;
             margin: 0;
             font-weight: bold;
+            white-space: nowrap;
         }
 
         .logo h1 span {
             color: #ff0000;
         }
 
+        /* Search Bar */
         .search-bar {
             flex-grow: 1;
-            margin: 0 15px;
+            margin: 0 20px;
             position: relative;
-            display: flex;
-            max-width: 300px;
+            max-width: 350px;
         }
 
         .search-bar input {
@@ -78,12 +81,13 @@
             cursor: pointer;
         }
 
+        /* Cart Icon */
         .cart-icon {
             font-size: 24px;
             cursor: pointer;
             color: #333;
+            margin-left: 20px;
             position: relative;
-            margin-left: 40px;
         }
 
         .cart-icon::after {
@@ -103,7 +107,7 @@
             font-weight: bold;
         }
 
-        /* Responzivita */
+        /* Responsive Styling */
         @media (max-width: 768px) {
             .search-bar {
                 display: none;
@@ -114,7 +118,7 @@
             }
 
             .cart-icon {
-                margin-left: 20px;
+                margin-left: 10px;
             }
         }
     </style>
