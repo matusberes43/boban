@@ -37,12 +37,6 @@ body {
 .benefit-item h2 {
     font-size: 18px;
     color: #333;
-    margin-bottom: 5px;
-}
-
-.benefit-item p {
-    font-size: 16px;
-    color: #666;
 }
 
 /* Divider between items */
@@ -52,14 +46,14 @@ body {
     background-color: #ccc;
 }
 
-/* Image Section Styles */
-.image-section {
-    max-width: 1200px;
-    margin: 20px auto;
-}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .benefits-section {
+        flex-direction: column;
+        gap: 20px;
+    }
 
-.image-section img {
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    .divider {
+        display: none;
+    }
 }
