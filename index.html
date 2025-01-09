@@ -150,18 +150,30 @@
             text-decoration: none;
         }
 
-        /* Back Arrow */
+        /* Krajsia spatna sipka */
         .back-arrow {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 24px;
-            color: #ffffff;
+            top: 15px;
+            left: 15px;
+            width: 40px;
+            height: 40px;
+            background-color: #102C4A;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
         }
 
         .back-arrow:hover {
-            color: #6CFF47;
+            background-color: #6CFF47;
+        }
+
+        .back-arrow img {
+            width: 20px;
+            height: 20px;
         }
     </style>
 </head>
@@ -192,8 +204,10 @@
 
     <!-- Registration Form -->
     <div class="form-container" id="form-container">
-        <!-- Back Arrow -->
-        <div class="back-arrow" onclick="goBack()">&#8592;</div>
+        <!-- Krajsia spatna sipka -->
+        <div class="back-arrow" onclick="goBack()">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/left.png" alt="Back">
+        </div>
 
         <h2>Create an Account</h2>
         <div class="login-methods">
@@ -213,18 +227,15 @@
 
     <!-- JavaScript -->
     <script>
-        // Reload page when clicking on the logo
         function reloadPage() {
             location.reload();
         }
 
-        // Show registration form
         function showForm() {
             document.getElementById('main-container').style.display = 'none';
             document.getElementById('form-container').style.display = 'block';
         }
 
-        // Go back to the main page
         function goBack() {
             document.getElementById('form-container').style.display = 'none';
             document.getElementById('main-container').style.display = 'block';
