@@ -4,70 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>Výhody</title>
-    <style>
-        /* Reset styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
-
-        /* Benefits Section Styles */
-        .benefits-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 20px auto;
-            background-color: #ffffff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        .benefit-item {
-            text-align: center;
-            flex: 1;
-        }
-
-        .benefit-item i {
-            font-size: 36px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .benefit-item h2 {
-            font-size: 18px;
-            color: #333;
-        }
-
-        /* Divider between items */
-        .divider {
-            width: 1px;
-            height: 50px;
-            background-color: #ccc;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .benefits-section {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .divider {
-                display: none;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <title>Webstránka</title>
 </head>
 <body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="left-section">
+            <i class="fas fa-bars menu-icon" aria-label="Menu"></i>
+        </div>
+        <div class="logo">
+            <img src="https://i.postimg.cc/VLP3mtXR/IMG-7653.png" alt="Company Logo">
+        </div>
+        <div class="right-section">
+            <i class="fas fa-shopping-cart cart-icon" aria-label="Shopping Cart"></i>
+            <i class="fas fa-user login-icon" aria-label="User Login"></i>
+        </div>
+    </header>
+
     <!-- Benefits Section -->
     <section class="benefits-section">
         <div class="benefit-item">
