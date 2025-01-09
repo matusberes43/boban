@@ -26,15 +26,16 @@ body {
 
 /* Left Section (Menu Icon) */
 .left-section {
+    flex: 1;
     display: flex;
     align-items: center;
 }
 
 /* Logo Section */
 .logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    flex: 1;
 }
 
 .logo img {
@@ -44,7 +45,9 @@ body {
 
 /* Right Section (Cart and Login Icons) */
 .right-section {
+    flex: 1;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     gap: 20px;
 }
