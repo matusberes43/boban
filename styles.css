@@ -21,90 +21,57 @@ body {
     margin: 20px auto;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    position: relative;
+}
+
+/* Left section (menu icon) */
+.left-section {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.menu-icon {
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
 }
 
 /* Center logo */
-.logo-container {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+.logo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
-.logo-container img {
+.logo img {
     width: 52px;
     height: auto;
 }
 
-/* Menu and user actions styles */
-.menu-icon i {
-    font-size: 24px;
-    color: #333;
-    cursor: pointer;
-}
-
-.user-actions {
+/* Right section (cart and login icons) */
+.right-section {
+    flex: 1;
     display: flex;
-    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
 }
 
-.cart-icon {
-    font-size: 24px;
-    color: #333;
-    cursor: pointer;
-    margin-right: 25px;
-}
-
+.cart-icon,
 .login-icon {
     font-size: 24px;
     color: #333;
     cursor: pointer;
 }
 
-/* Search bar (optional) */
-.search-bar {
-    display: flex;
-    flex-grow: 1;
-    margin: 0 20px;
-}
-
-.search-bar input {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px 0 0 4px;
-}
-
-.search-bar button {
-    background-color: #d32f2f;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-}
-
-.search-bar button i {
-    color: #fff;
-    font-size: 18px;
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .search-bar {
-        display: none;
-    }
-
-    .logo-container img {
+    .logo img {
         width: 45px;
     }
 
-    .menu-icon i,
+    .menu-icon,
     .cart-icon,
     .login-icon {
         font-size: 20px;
-    }
-
-    .cart-icon {
-        margin-right: 20px;
     }
 }
