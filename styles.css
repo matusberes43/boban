@@ -69,6 +69,31 @@ body {
     background-color: #ffffff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    flex-wrap: wrap;
+}
+
+.benefit-item {
+    text-align: center;
+    flex: 1 1 calc(33.33% - 20px);
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.benefit-item i {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.benefit-item h2 {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Divider between items */
+.divider {
+    display: none;
 }
 
 /* Banner Section Styles */
@@ -90,7 +115,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: flex-start; /* Zarovnané naľavo */
+    justify-content: flex-start;
 }
 
 .category-link {
@@ -120,16 +145,16 @@ body {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    .category-link {
-        width: 100%;
-    }
-
     .benefits-section {
         flex-direction: column;
         gap: 15px;
     }
 
-    .divider {
-        display: none;
+    .category-section {
+        justify-content: center; /* Zarovná kategórie do stredu na mobiloch */
+    }
+
+    .category-link {
+        width: 100%;
     }
 }
