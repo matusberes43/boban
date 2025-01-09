@@ -19,72 +19,130 @@
             align-items: center;
         }
 
-        .container, .form-container {
-            display: none;
+        .container {
             text-align: center;
             width: 90%;
             max-width: 400px;
         }
 
-        .container.active, .form-container.active {
-            display: block;
-        }
-
-        h1 {
+        .logo h1 {
             font-family: 'Bebas Neue', sans-serif;
             font-size: 72px;
+            color: #ffffff;
             margin-bottom: 20px;
+        }
+
+        .logo .rival {
+            color: #6CFF47;
         }
 
         .categories p {
             font-size: 18px;
-            margin: 10px 0;
+            margin: 15px 0;
             cursor: pointer;
+            transition: color 0.3s;
         }
 
-        .buttons a {
-            display: inline-block;
-            padding: 12px 35px;
-            margin: 10px 5px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            cursor: pointer;
-            color: #0A1624;
+        .categories p:hover {
+            color: #6CFF47;
+        }
+
+        .buttons {
+            margin-top: 30px;
         }
 
         .join-button {
             background-color: #6CFF47;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            color: #0A1624;
+            display: inline-block;
+            margin-right: 10px;
         }
 
         .login-button {
-            background-color: transparent;
+            padding: 12px 35px;
             border: 2px solid #6CFF47;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            color: #ffffff;
+            display: inline-block;
+        }
+
+        .form-container {
+            display: none;
+            background-color: #0E2436;
+            padding: 20px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .form-container h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 24px;
+            margin-bottom: 20px;
             color: #ffffff;
         }
 
-        .back-arrow {
+        .form-container input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: #102C4A;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+        }
+
+        .form-container .sign-up-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #6CFF47;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #0A1624;
+            cursor: pointer;
+        }
+
+        .form-container .back-arrow {
+            position: absolute;
+            top: 10px;
+            left: 10px;
             font-size: 24px;
             cursor: pointer;
             color: #ffffff;
-            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-
     <!-- Hlavná stránka -->
-    <div class="container active" id="main-container">
-        <h1>BLCHAGUNS</h1>
-        <div class="categories">
-            <p>PIŠTOLE</p>
-            <p>ÚTOČNÉ PUŠKY</p>
-            <p>ODSTREĽOVACIE PUŠKY</p>
-            <p>REVOLVERY</p>
-            <p>BROKOVNICE</p>
-            <p>VZDUCHOVÉ ZBRANE</p>
-            <p>PRÍSLUŠENSTVO</p>
+    <div class="container" id="main-container">
+        <div class="logo">
+            <h1><span class="grid">BLCHA</span><span class="rival">GUNS</span></h1>
         </div>
+
+        <div class="categories">
+            <p onclick="navigateTo('pistole.html')">PIŠTOLE</p>
+            <p onclick="navigateTo('utocne-pusky.html')">ÚTOČNÉ PUŠKY</p>
+            <p onclick="navigateTo('odstreliovacie-pusky.html')">ODSTREĽOVACIE PUŠKY</p>
+            <p onclick="navigateTo('revolvery.html')">REVOLVERY</p>
+            <p onclick="navigateTo('brokovnice.html')">BROKOVNICE</p>
+            <p onclick="navigateTo('vzduchove-zbrane.html')">VZDUCHOVÉ ZBRANE</p>
+            <p onclick="navigateTo('prislusenstvo.html')">PRÍSLUŠENSTVO</p>
+        </div>
+
         <div class="buttons">
             <a href="#" class="join-button" onclick="showForm()">Join The Club</a>
             <a href="#" class="login-button">Login</a>
@@ -94,22 +152,28 @@
     <!-- Formulár na registráciu -->
     <div class="form-container" id="form-container">
         <div class="back-arrow" onclick="goBack()">&#8592; Späť</div>
-        <h1>Create an Account</h1>
-        <p>Formulár sa zobrazí tu...</p>
+        <h2>Create an Account</h2>
+        <input type="text" placeholder="Choose a Username">
+        <input type="email" placeholder="Enter Your Email Address">
+        <input type="password" placeholder="Create a Password">
+        <div class="sign-up-button">Sign Up</div>
     </div>
 
     <!-- JavaScript -->
     <script>
         function showForm() {
-            document.getElementById('main-container').classList.remove('active');
-            document.getElementById('form-container').classList.add('active');
+            document.getElementById('main-container').style.display = 'none';
+            document.getElementById('form-container').style.display = 'block';
         }
 
         function goBack() {
-            document.getElementById('form-container').classList.remove('active');
-            document.getElementById('main-container').classList.add('active');
+            document.getElementById('form-container').style.display = 'none';
+            document.getElementById('main-container').style.display = 'block';
+        }
+
+        function navigateTo(page) {
+            window.location.href = page;
         }
     </script>
-
 </body>
 </html>
