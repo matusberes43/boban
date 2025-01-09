@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PIŠTOLE</title>
+    <title>Pištole</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -15,20 +17,48 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            flex-direction: column;
+        }
+
+        .card {
             text-align: center;
+            background-color: #102C4A;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            margin: 20px;
         }
-        h1 {
-            font-size: 48px;
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            cursor: pointer;
         }
-        a {
+
+        .card h2 {
+            font-size: 24px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .card h2:hover,
+        .card img:hover {
             color: #6CFF47;
-            text-decoration: none;
-            font-size: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>PIŠTOLE - Prázdna stránka</h1>
-    <a href="index.html">&#8592; Späť na hlavnú stránku</a>
+
+    <!-- Karta Glock 17 -->
+    <div class="card">
+        <a href="glock17.html">
+            <img src="https://i.postimg.cc/7PnFC1TB/IMG-7641.jpg" alt="GLOCK 17">
+            <h2>GLOCK 17</h2>
+        </a>
+    </div>
+
 </body>
 </html>
