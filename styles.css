@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #000;
+    color: #fff;
+}
+
+.menu-icon i,
+.right-icons i {
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.right-icons i:last-child {
+    margin-right: 0;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.menu-icon,
+.right-icons {
+    display: flex;
+    align-items: center;
+}
+
+.right-icons {
+    gap: 15px;
+}
+
+.menu-icon i:hover,
+.right-icons i:hover {
+    color: #ff9900;
+}
