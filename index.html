@@ -36,6 +36,7 @@
             font-size: 72px;
             letter-spacing: 3px;
             margin: 0;
+            cursor: pointer;
         }
 
         .logo .grid {
@@ -111,7 +112,7 @@
 <body>
     <div class="container">
         <!-- Logo -->
-        <div class="logo">
+        <div class="logo" onclick="reloadPage()">
             <h1><span class="grid">BLCHA</span><span class="rival">GUNS</span></h1>
         </div>
 
@@ -132,5 +133,12 @@
             <a href="#" class="login-button">Login</a>
         </div>
     </div>
+
+    <!-- JavaScript na opätovné načítanie stránky -->
+    <script>
+        function reloadPage() {
+            location.reload();
+        }
+    </script>
 </body>
 </html>
