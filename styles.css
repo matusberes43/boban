@@ -32,7 +32,8 @@ body {
 }
 
 .logo img {
-    width: 120px;
+    width: 80px;  /* Zmenšenie loga */
+    height: auto;
 }
 
 .search-bar {
@@ -72,6 +73,6 @@ body {
     }
 
     .logo img {
-        width: 100px;
+        width: 70px;  /* Zmenšenie loga pre mobilné zariadenia */
     }
 }
