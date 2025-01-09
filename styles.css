@@ -27,13 +27,7 @@ body {
 .left-section {
     flex: 1;
     display: flex;
-    justify-content: flex-start;
-}
-
-.menu-icon {
-    font-size: 24px;
-    color: #333;
-    cursor: pointer;
+    align-items: center;
 }
 
 /* Center Logo */
@@ -52,6 +46,7 @@ body {
 .right-section {
     flex: 1;
     display: flex;
+    align-items: center;
     justify-content: flex-end;
     gap: 20px;
 }
