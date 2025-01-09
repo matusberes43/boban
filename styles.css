@@ -65,12 +65,25 @@ body {
     align-items: center;
     padding: 15px;
     max-width: 1000px;
-    margin: 5px auto;
+    margin: 0 auto;
     background-color: #ffffff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
+/* Banner Section Styles */
+.banner-section {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.banner-section img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Benefit Items */
 .benefit-item {
     text-align: center;
     flex: 1;
@@ -92,19 +105,6 @@ body {
     width: 1px;
     height: 40px;
     background-color: #ccc;
-}
-
-/* Banner Section Styles */
-.banner-section {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 0 20px;
-}
-
-.banner-section img {
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive Adjustments */
