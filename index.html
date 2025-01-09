@@ -76,6 +76,7 @@
             width: 90%;
             max-width: 400px;
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
         }
 
         h2 {
@@ -148,6 +149,20 @@
             color: #0078d4;
             text-decoration: none;
         }
+
+        /* Back Arrow */
+        .back-arrow {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        .back-arrow:hover {
+            color: #6CFF47;
+        }
     </style>
 </head>
 <body>
@@ -177,6 +192,9 @@
 
     <!-- Registration Form -->
     <div class="form-container" id="form-container">
+        <!-- Back Arrow -->
+        <div class="back-arrow" onclick="goBack()">&#8592;</div>
+
         <h2>Create an Account</h2>
         <div class="login-methods">
             <div><img src="https://img.icons8.com/ios-filled/50/ffffff/email.png" alt="Email"></div>
@@ -204,6 +222,12 @@
         function showForm() {
             document.getElementById('main-container').style.display = 'none';
             document.getElementById('form-container').style.display = 'block';
+        }
+
+        // Go back to the main page
+        function goBack() {
+            document.getElementById('form-container').style.display = 'none';
+            document.getElementById('main-container').style.display = 'block';
         }
     </script>
 </body>
