@@ -59,13 +59,28 @@
             cursor: pointer;
         }
 
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            .icons i {
-                font-size: 20px;
+            header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .menu-icon {
+                margin-bottom: 10px;
             }
 
             .logo img {
                 height: 35px;
+            }
+
+            .icons {
+                gap: 15px;
+                margin-top: 10px;
+            }
+
+            .icons i {
+                font-size: 20px;
             }
         }
     </style>
