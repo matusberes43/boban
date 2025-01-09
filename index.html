@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLCHA GUNS</title>
+    <title>BUDS GUNS</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
@@ -12,14 +12,14 @@
         body {
             margin: 0;
             font-family: 'Montserrat', sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f9f9f9;
         }
 
         header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 12px 20px;
+            padding: 10px 20px;
             background-color: #ffffff;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: fixed;
@@ -28,89 +28,44 @@
             z-index: 1000;
         }
 
+        /* Hamburger Menu */
         .menu-icon {
-            font-size: 24px;
-            cursor: pointer;
-            color: #333;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo h1 {
-            font-size: 22px;
-            color: #000000;
-            margin: 0;
-            font-weight: bold;
-        }
-
-        .logo h1 span {
-            color: #ff0000;
-        }
-
-        .search-bar {
-            flex-grow: 1;
-            margin: 0 15px;
-            display: flex;
-            align-items: center;
-            border: 1px solid #ccc;
-            border-radius: 25px;
-            padding: 8px 15px;
-            max-width: 180px;
-        }
-
-        .search-bar input {
-            border: none;
-            outline: none;
-            width: 100%;
-            font-size: 14px;
-        }
-
-        .search-bar .search-icon {
-            font-size: 18px;
-            color: #666;
+            background-color: #8B0000;
+            padding: 10px;
+            border-radius: 5px;
             cursor: pointer;
         }
 
-        .cart-icon {
-            font-size: 24px;
-            color: #333;
-            cursor: pointer;
-            position: relative;
-            margin-left: -20px;
-        }
-
-        .cart-icon::after {
-            content: "2";
-            position: absolute;
-            top: -5px;
-            right: -10px;
-            background-color: #ff0000;
+        .menu-icon i {
+            font-size: 20px;
             color: #ffffff;
-            font-size: 12px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .search-bar {
-                display: none;
-            }
+        /* Logo */
+        .logo img {
+            height: 40px;
+        }
 
-            .logo h1 {
+        /* Icon Section */
+        .icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .icons i {
+            font-size: 24px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .icons i {
                 font-size: 20px;
             }
 
-            .cart-icon {
-                margin-left: -10px;
+            .logo img {
+                height: 35px;
             }
         }
     </style>
@@ -125,17 +80,13 @@
 
     <!-- Logo -->
     <div class="logo">
-        <h1><span>BLCHA</span> GUNS</h1>
+        <img src="https://via.placeholder.com/150x50?text=BUDS+GUNS" alt="Logo">
     </div>
 
-    <!-- Search Bar -->
-    <div class="search-bar">
-        <input type="text" placeholder="Find by description, model number, sku, etc...">
-        <i class="fas fa-search search-icon"></i>
-    </div>
-
-    <!-- Cart Icon -->
-    <div class="cart-icon">
+    <!-- Icons Section -->
+    <div class="icons">
+        <i class="fas fa-envelope"></i>
+        <i class="fas fa-user"></i>
         <i class="fas fa-shopping-cart"></i>
     </div>
 </header>
