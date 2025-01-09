@@ -71,30 +71,6 @@ body {
     border-radius: 8px;
 }
 
-.benefit-item {
-    text-align: center;
-    flex: 1;
-    padding: 10px;
-}
-
-.benefit-item i {
-    font-size: 32px;
-    color: #333;
-    margin-bottom: 5px;
-}
-
-.benefit-item h2 {
-    font-size: 18px;
-    color: #333;
-}
-
-/* Divider between items */
-.divider {
-    width: 1px;
-    height: 60px;
-    background-color: #ccc;
-}
-
 /* Banner Section Styles */
 .banner-section {
     max-width: 1200px;
@@ -112,6 +88,8 @@ body {
     max-width: 1200px;
     margin: 20px auto;
     display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
     justify-content: center;
 }
 
@@ -119,11 +97,12 @@ body {
     text-decoration: none;
     color: #333;
     text-align: center;
+    width: calc(33.33% - 20px);
+    max-width: 300px;
 }
 
 .category-link img {
     width: 100%;
-    max-width: 300px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
@@ -141,6 +120,10 @@ body {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
+    .category-link {
+        width: 100%;
+    }
+
     .benefits-section {
         flex-direction: column;
         gap: 15px;
