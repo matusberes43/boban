@@ -10,7 +10,7 @@ body {
     background-color: #f4f4f4;
 }
 
-/* Header styles */
+/* Header Section Styles */
 .header {
     display: flex;
     justify-content: space-between;
@@ -23,14 +23,13 @@ body {
     border-radius: 8px;
 }
 
-/* Left Section (Menu Icon) */
-.left-section {
+.left-section,
+.right-section {
     flex: 1;
     display: flex;
     align-items: center;
 }
 
-/* Center Logo */
 .logo {
     flex: 2;
     display: flex;
@@ -42,15 +41,6 @@ body {
     height: auto;
 }
 
-/* Right Section (Cart and Login Icons) */
-.right-section {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 20px;
-}
-
 .cart-icon,
 .login-icon {
     font-size: 24px;
@@ -58,24 +48,56 @@ body {
     cursor: pointer;
 }
 
-/* Hover Effect for Icons */
-.menu-icon:hover,
-.cart-icon:hover,
-.login-icon:hover {
-    color: #d32f2f;
-    transform: scale(1.1);
-    transition: all 0.2s ease-in-out;
+.menu-icon {
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Benefits Section Styles */
+.benefits-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.benefit-item {
+    text-align: center;
+    flex: 1;
+}
+
+.benefit-item i {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.benefit-item h2 {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Divider between items */
+.divider {
+    width: 1px;
+    height: 50px;
+    background-color: #ccc;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    .logo img {
-        width: 45px;
+    .benefits-section {
+        flex-direction: column;
+        gap: 20px;
     }
 
-    .menu-icon,
-    .cart-icon,
-    .login-icon {
-        font-size: 20px;
+    .divider {
+        display: none;
     }
 }
