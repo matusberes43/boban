@@ -23,26 +23,36 @@ body {
     border-radius: 8px;
 }
 
-.left-section,
-.right-section {
-    flex: 1;
+/* Left Section (Menu Icon) */
+.left-section {
     display: flex;
     align-items: center;
 }
 
-.right-section i {
-    margin-left: 20px; /* Rozostupy medzi ikonami */
-}
-
+/* Logo Section */
 .logo {
-    flex: 2;
+    flex: 1;
     display: flex;
     justify-content: center;
 }
 
 .logo img {
-    width: 90px; /* Zmenšenie loga */
+    width: 90px;
     height: auto;
+}
+
+/* Right Section (Cart and Login Icons) */
+.right-section {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Pridaná medzera medzi ikonami */
+}
+
+.cart-icon,
+.login-icon {
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
 }
 
 /* Benefits Section Styles */
