@@ -59,7 +59,7 @@
             border: 1px solid #ccc;
             border-radius: 25px;
             padding: 8px 15px;
-            max-width: 250px; /* Zmenšená šírka */
+            max-width: 220px; /* Zmenšená šírka vyhľadávacieho poľa */
         }
 
         .search-bar input {
@@ -80,7 +80,7 @@
             color: #333;
             cursor: pointer;
             position: relative;
-            margin-left: 20px;
+            margin-left: -10px; /* Posunul som ikonu košíka viac doľava */
         }
 
         .cart-icon::after {
@@ -108,6 +108,10 @@
 
             .logo h1 {
                 font-size: 20px;
+            }
+
+            .cart-icon {
+                margin-left: 0;
             }
         }
     </style>
