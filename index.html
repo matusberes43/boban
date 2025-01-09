@@ -1,4 +1,25 @@
-px 20px;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLCHA GUNS</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
             background-color: #ffffff;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: fixed;
@@ -6,24 +27,30 @@ px 20px;
             top: 0;
             z-index: 1000;
         }
+
         .menu-icon {
             font-size: 24px;
             cursor: pointer;
             color: #333;
         }
+
         .logo {
             display: flex;
             align-items: center;
+            gap: 10px;
         }
+
         .logo h1 {
-            font-size: 24px;
+            font-size: 22px;
             color: #000000;
             margin: 0;
             font-weight: bold;
         }
+
         .logo h1 span {
             color: #ff0000;
         }
+
         .search-bar {
             flex-grow: 1;
             margin: 0 15px;
@@ -32,26 +59,30 @@ px 20px;
             border: 1px solid #ccc;
             border-radius: 25px;
             padding: 8px 15px;
-            max-width: 300px;
+            max-width: 220px;
         }
+
         .search-bar input {
             border: none;
             outline: none;
             width: 100%;
             font-size: 14px;
         }
+
         .search-bar .search-icon {
             font-size: 18px;
             color: #666;
             cursor: pointer;
         }
+
         .cart-icon {
             font-size: 24px;
             color: #333;
             cursor: pointer;
             position: relative;
-            margin-left: 15px;
+            margin-left: -15px;
         }
+
         .cart-icon::after {
             content: "2";
             position: absolute;
@@ -68,39 +99,38 @@ px 20px;
             align-items: center;
             font-weight: bold;
         }
-        /* Responzívne úpravy */
+
         @media (max-width: 768px) {
             .search-bar {
                 display: none;
             }
+
             .logo h1 {
-                font-size: 20px;
-            }
-            .cart-icon {
-                margin-left: 10px;
+                font-size: 18px;
             }
         }
     </style>
 </head>
 <body>
+
 <header>
-    <!-- Ikona menu -->
     <div class="menu-icon">
         <i class="fas fa-bars"></i>
     </div>
-    <!-- Logo -->
+
     <div class="logo">
         <h1><span>BLCHA</span> GUNS</h1>
     </div>
-    <!-- Vyhľadávacie pole -->
+
     <div class="search-bar">
-        <input type="text" placeholder="Hľadať...">
+        <input type="text" placeholder="Find by description, model number, sku, etc...">
         <i class="fas fa-search search-icon"></i>
     </div>
-    <!-- Ikona košíka -->
+
     <div class="cart-icon">
         <i class="fas fa-shopping-cart"></i>
     </div>
 </header>
+
 </body>
 </html>
