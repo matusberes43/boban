@@ -24,21 +24,16 @@ body {
 }
 
 /* Left section (menu icon) */
-.left-section {
-    flex: 0 1 auto;
+.left-section,
+.right-section {
+    flex: 1;
     display: flex;
-    justify-content: flex-start;
-}
-
-.menu-icon {
-    font-size: 24px;
-    color: #333;
-    cursor: pointer;
+    align-items: center;
 }
 
 /* Center logo */
 .logo {
-    flex: 0 1 auto;
+    flex: 2;
     display: flex;
     justify-content: center;
 }
@@ -50,8 +45,6 @@ body {
 
 /* Right section (cart and login icons) */
 .right-section {
-    flex: 0 1 auto;
-    display: flex;
     justify-content: flex-end;
     gap: 20px;
 }
