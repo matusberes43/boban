@@ -29,6 +29,7 @@
             font-size: 72px;
             letter-spacing: 3px;
             color: #ffffff;
+            cursor: pointer;
         }
 
         .logo .rival {
@@ -152,7 +153,7 @@
 <body>
     <div class="container" id="main-container">
         <!-- Logo -->
-        <div class="logo">
+        <div class="logo" onclick="reloadPage()">
             <h1><span class="grid">BLCHA</span><span class="rival">GUNS</span></h1>
         </div>
 
@@ -194,6 +195,12 @@
 
     <!-- JavaScript -->
     <script>
+        // Reload page when clicking on the logo
+        function reloadPage() {
+            location.reload();
+        }
+
+        // Show registration form
         function showForm() {
             document.getElementById('main-container').style.display = 'none';
             document.getElementById('form-container').style.display = 'block';
