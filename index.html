@@ -24,11 +24,15 @@
             padding: 20px;
         }
 
-        .logo img {
-            width: 120px;
-            height: auto;
-            margin-bottom: 20px;
-            border-radius: 10px;
+        .logo {
+            width: 180px;
+            height: 180px;
+            background-image: url('https://i.postimg.cc/Qx77ncyg/IMG-7638.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0 auto 20px auto;
+            border-radius: 50%;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
@@ -88,11 +92,14 @@
 <body>
     <div class="container">
         <!-- Logo -->
+        <div class="logo"></div>
+
+        <!-- Nadpis -->
         <div class="logo">
-            <img src="https://i.postimg.cc/Qx77ncyg/IMG-7638.png" alt="BLCHAGUNS Logo">
             <h1><span class="grid">BLCHA</span><span class="rival">GUNS</span></h1>
         </div>
 
+        <!-- Kategórie -->
         <div class="categories">
             <p onclick="navigateTo('pistole.html')">PIŠTOLE</p>
             <p onclick="navigateTo('utocne-pusky.html')">ÚTOČNÉ PUŠKY</p>
@@ -103,6 +110,7 @@
             <p onclick="navigateTo('prislusenstvo.html')">PRÍSLUŠENSTVO</p>
         </div>
 
+        <!-- Tlačidlá -->
         <div class="buttons">
             <a href="#" class="join-button" onclick="navigateToForm()">Join The Club</a>
             <a href="#" class="login-button">Login</a>
