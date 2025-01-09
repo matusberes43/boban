@@ -37,7 +37,6 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
         }
 
         .logo h1 {
@@ -59,7 +58,7 @@
             border: 1px solid #ccc;
             border-radius: 25px;
             padding: 8px 15px;
-            max-width: 220px;
+            max-width: 180px;
         }
 
         .search-bar input {
@@ -80,7 +79,7 @@
             color: #333;
             cursor: pointer;
             position: relative;
-            margin-left: -15px;
+            margin-left: -20px;
         }
 
         .cart-icon::after {
@@ -100,13 +99,18 @@
             font-weight: bold;
         }
 
+        /* Responsive adjustments */
         @media (max-width: 768px) {
             .search-bar {
                 display: none;
             }
 
             .logo h1 {
-                font-size: 18px;
+                font-size: 20px;
+            }
+
+            .cart-icon {
+                margin-left: -10px;
             }
         }
     </style>
@@ -114,19 +118,23 @@
 <body>
 
 <header>
+    <!-- Hamburger Menu -->
     <div class="menu-icon">
         <i class="fas fa-bars"></i>
     </div>
 
+    <!-- Logo -->
     <div class="logo">
         <h1><span>BLCHA</span> GUNS</h1>
     </div>
 
+    <!-- Search Bar -->
     <div class="search-bar">
         <input type="text" placeholder="Find by description, model number, sku, etc...">
         <i class="fas fa-search search-icon"></i>
     </div>
 
+    <!-- Cart Icon -->
     <div class="cart-icon">
         <i class="fas fa-shopping-cart"></i>
     </div>
