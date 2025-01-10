@@ -87,11 +87,6 @@ body {
     color: #333;
 }
 
-/* Divider between items */
-.divider {
-    display: none;
-}
-
 /* Banner Section Styles */
 .banner-section {
     max-width: 1200px;
@@ -133,6 +128,7 @@ body {
     margin-top: 10px;
     font-size: 20px;
     color: #333;
+    text-transform: uppercase;
 }
 
 .category-link:hover img {
