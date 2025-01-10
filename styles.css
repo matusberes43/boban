@@ -51,6 +51,10 @@ body {
     transform: scale(1.05);
 }
 
+.logo a:focus {
+    outline: none; /* Removes the default focus outline */
+}
+
 /* Right Section (Cart and Login Icons) */
 .right-section {
     flex: 1;
