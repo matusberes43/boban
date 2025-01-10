@@ -106,7 +106,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: space-between;
+    justify-content: flex-start;
+    padding: 0 10px; /* Medzera medzi obrázkami a okrajmi stránky */
 }
 
 .category-link {
@@ -143,6 +144,6 @@ body {
 
 @media (max-width: 768px) {
     .category-link {
-        width: calc(50% - 10px); /* 2 kategórie vedľa seba na mobiloch */
+        width: calc(50% - 20px); /* 2 kategórie vedľa seba na mobiloch */
     }
 }
