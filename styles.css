@@ -106,15 +106,14 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: flex-start;
+    justify-content: space-between;
 }
 
 .category-link {
     text-decoration: none;
     color: #333;
     text-align: center;
-    width: calc(33.33% - 20px);
-    max-width: 300px;
+    width: calc(25% - 20px); /* 4 kategórie vedľa seba na veľkých obrazovkách */
 }
 
 .category-link img {
@@ -136,18 +135,14 @@ body {
 }
 
 /* Responsive Adjustments */
-@media (max-width: 768px) {
-    .benefits-section {
-        flex-direction: column;
-        padding: 15px;
-        gap: 15px;
-    }
-
-    .category-section {
-        justify-content: center;
-    }
-
+@media (max-width: 1024px) {
     .category-link {
-        width: 100%;
+        width: calc(33.33% - 20px); /* 3 kategórie vedľa seba na tabletoch */
+    }
+}
+
+@media (max-width: 768px) {
+    .category-link {
+        width: calc(50% - 10px); /* 2 kategórie vedľa seba na mobiloch */
     }
 }
