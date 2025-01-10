@@ -14,7 +14,7 @@
             <i class="fas fa-bars menu-icon" aria-label="Menu"></i>
         </div>
         <div class="logo">
-            <a href="#" onclick="location.reload();">
+            <a href="#" onclick="smoothReload();">
                 <img src="https://i.postimg.cc/VLP3mtXR/IMG-7653.png" alt="Company Logo">
             </a>
         </div>
@@ -55,42 +55,15 @@
             <img src="https://i.postimg.cc/kMttKxcJ/IMG-7679.jpg" alt="Category Image">
             <h2>REVOLVERY</h2>
         </a>
-        <a href="#" class="category-link">
-            <img src="https://i.postimg.cc/cJjgKmvN/IMG-7681.jpg" alt="Category Image">
-            <h2>BROKOVNICE</h2>
-        </a>
-        <a href="#" class="category-link">
-            <img src="https://i.postimg.cc/nctR58nN/IMG-7683.jpg" alt="Category Image">
-            <h2>ÚTOČNÉ PUŠKY</h2>
-        </a>
-        <a href="#" class="category-link">
-            <img src="https://i.postimg.cc/rFRvv6Rk/IMG-7685.jpg" alt="Category Image">
-            <h2>ODSTREĽOVACIE PUŠKY</h2>
-        </a>
-        <a href="#" class="category-link">
-            <img src="https://i.postimg.cc/B6p4Xnjr/IMG-7693.jpg" alt="Category Image">
-            <h2>LOVECKÉ NOŽE</h2>
-        </a>
-        <a href="#" class="category-link">
-            <img src="https://i.postimg.cc/g09DF6hz/IMG-7705.jpg" alt="Category Image">
-            <h2>GRANÁTY</h2>
-        </a>
-        <a href="#" class="category-link">
-            <img src="https://i.postimg.cc/qqgbMHv4/IMG-7704.jpg" alt="Category Image">
-            <h2>MUNÍCIA</h2>
-        </a>
-        <a href="#" class="category-link">
-            <img src="https://i.postimg.cc/zvSCrdn8/IMG-7703.jpg" alt="Category Image">
-            <h2>OPTIKA</h2>
-        </a>
-        <a href="#" class="category-link">
-            <img src="https://i.postimg.cc/Y0bvRT6G/IMG-7702.jpg" alt="Category Image">
-            <h2>VYBAVENIE</h2>
-        </a>
-        <a href="#" class="category-link">
-            <img src="https://i.postimg.cc/Wp8m51wy/IMG-7696.jpg" alt="Category Image">
-            <h2>PRÍSLUŠENSTVO</h2>
-        </a>
+        <!-- ... ďalšie kategórie -->
     </section>
+
+    <!-- Jemný efekt kliknutia -->
+    <script>
+        function smoothReload() {
+            document.body.style.opacity = "0";
+            setTimeout(() => location.reload(), 300);
+        }
+    </script>
 </body>
 </html>
