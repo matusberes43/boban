@@ -1,146 +1,197 @@
-/* Reset styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kategórie</title>
+    <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-}
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
 
-/* Header Section Styles */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #ffffff;
-    max-width: 1200px;
-    margin: 0 auto;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
+        /* Header Section Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            max-width: 1200px;
+            margin: 0 auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
 
-/* Logo Section */
-.logo {
-    text-align: center;
-    flex: 1;
-}
+        /* Left Section (Menu Icon) */
+        .left-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
 
-.logo img {
-    width: 90px;
-    height: auto;
-    transition: transform 0.1s ease;
-}
+        /* Logo Section */
+        .logo {
+            display: flex;
+            justify-content: center;
+            flex: 1;
+        }
 
-/* Odstránenie škaredého štvorca pri kliknutí */
-.no-outline {
-    outline: none;
-}
+        .logo img {
+            width: 90px;
+            height: auto;
+        }
 
-.logo a:focus {
-    outline: none;
-}
+        /* Right Section (Cart and Login Icons) */
+        .right-section {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 20px;
+        }
 
-.logo img:active {
-    transform: scale(0.98);
-}
+        .cart-icon,
+        .login-icon {
+            font-size: 24px;
+            color: #333;
+            cursor: pointer;
+        }
 
-/* Right Section (Cart and Login Icons) */
-.right-section {
-    display: flex;
-    justify-content: flex-end;
-    gap: 20px;
-}
+        /* Benefits Section Styles */
+        .benefits-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: transparent;
+            flex-wrap: wrap;
+        }
 
-.cart-icon,
-.login-icon {
-    font-size: 24px;
-    color: #333;
-    cursor: pointer;
-}
+        .benefit-item {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+        }
 
-/* Benefits Section Styles */
-.benefits-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0;
-    max-width: 1200px;
-    margin: 20px auto;
-    background-color: transparent;
-    flex-wrap: wrap;
-}
+        .benefit-item i {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 5px;
+        }
 
-.benefit-item {
-    flex: 1;
-    text-align: center;
-    padding: 10px;
-}
+        .benefit-item h2 {
+            font-size: 18px;
+            color: #333;
+        }
 
-.benefit-item i {
-    font-size: 32px;
-    color: #333;
-    margin-bottom: 5px;
-}
+        /* Banner Section Styles */
+        .banner-section {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-.benefit-item h2 {
-    font-size: 18px;
-    color: #333;
-}
+        .banner-section img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
-/* Banner Section */
-.banner-section img {
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+        /* Category Section Styles */
+        .category-section {
+            max-width: 1200px;
+            margin: 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: flex-start;
+            padding: 0 10px; /* Medzera medzi obrázkami a okrajmi stránky */
+        }
 
-/* Categories Section Styles */
-.category-section {
-    max-width: 1200px;
-    margin: 20px auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: flex-start;
-}
+        .category-link {
+            text-decoration: none;
+            color: #333;
+            text-align: center;
+            width: calc(25% - 20px); /* 4 kategórie vedľa seba na veľkých obrazovkách */
+        }
 
-.category-link {
-    text-decoration: none;
-    color: #333;
-    text-align: center;
-    width: calc(25% - 20px);
-}
+        .category-link img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
 
-.category-link img {
-    width: 100%;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-}
+        .category-link h2 {
+            margin-top: 10px;
+            font-size: 20px;
+            color: #333;
+            text-transform: uppercase;
+        }
 
-.category-link h2 {
-    margin-top: 10px;
-    font-size: 20px;
-    color: #333;
-    text-transform: uppercase;
-}
+        .category-link:hover img {
+            transform: scale(1.05);
+        }
 
-.category-link:hover img {
-    transform: scale(1.05);
-}
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .category-link {
+                width: calc(33.33% - 20px); /* 3 kategórie vedľa seba na tabletoch */
+            }
+        }
 
-/* Responsive Styles */
-@media (max-width: 1024px) {
-    .category-link {
-        width: calc(33.33% - 20px);
-    }
-}
+        @media (max-width: 768px) {
+            .category-link {
+                width: calc(50% - 20px); /* 2 kategórie vedľa seba na mobiloch */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="left-section">☰</div>
+        <div class="logo">
+            <img src="URL_LOGA" alt="Logo">
+        </div>
+        <div class="right-section">
+            <span class="cart-icon">🛒</span>
+            <span class="login-icon">🔑</span>
+        </div>
+    </div>
 
-@media (max-width: 768px) {
-    .category-link {
-        width: calc(50% - 20px);
-    }
-}
+    <!-- Banner Section -->
+    <div class="banner-section">
+        <img src="https://via.placeholder.com/1200x300" alt="Banner">
+    </div>
+
+    <!-- Category Section -->
+    <div class="category-section">
+        <a href="#" class="category-link">
+            <img src="https://via.placeholder.com/300" alt="Category 1">
+            <h2>Kategória 1</h2>
+        </a>
+        <a href="#" class="category-link">
+            <img src="https://via.placeholder.com/300" alt="Category 2">
+            <h2>Kategória 2</h2>
+        </a>
+        <a href="#" class="category-link">
+            <img src="https://via.placeholder.com/300" alt="Category 3">
+            <h2>Kategória 3</h2>
+        </a>
+        <a href="#" class="category-link">
+            <img src="https://via.placeholder.com/300" alt="Category 4">
+            <h2>Kategória 4</h2>
+        </a>
+    </div>
+</body>
+</html>
