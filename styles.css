@@ -23,39 +23,19 @@ body {
     border-radius: 8px;
 }
 
-/* Left Section (Menu Icon) */
-.left-section {
-    flex: 1;
-    display: flex;
-    align-items: center;
-}
-
 /* Logo Section */
-.logo {
-    display: flex;
-    justify-content: center;
-    flex: 1;
+.logo a {
+    text-decoration: none;
 }
 
 .logo img {
     width: 90px;
     height: auto;
+    transition: transform 0.1s ease;
 }
 
-/* Right Section (Cart and Login Icons) */
-.right-section {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 20px;
-}
-
-.cart-icon,
-.login-icon {
-    font-size: 24px;
-    color: #333;
-    cursor: pointer;
+.logo img:active {
+    transform: scale(0.98);
 }
 
 /* Benefits Section Styles */
@@ -87,19 +67,13 @@ body {
     color: #333;
 }
 
-/* Banner Section Styles */
-.banner-section {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
+/* Banner Section */
 .banner-section img {
     width: 100%;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Category Section Styles */
+/* Categories Section Styles */
 .category-section {
     max-width: 1200px;
     margin: 20px auto;
@@ -107,20 +81,18 @@ body {
     flex-wrap: wrap;
     gap: 20px;
     justify-content: flex-start;
-    padding: 0 10px; /* Medzera medzi obrázkami a okrajmi stránky */
 }
 
 .category-link {
     text-decoration: none;
     color: #333;
     text-align: center;
-    width: calc(25% - 20px); /* 4 kategórie vedľa seba na veľkých obrazovkách */
+    width: calc(25% - 20px);
 }
 
 .category-link img {
     width: 100%;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
 
@@ -135,15 +107,15 @@ body {
     transform: scale(1.05);
 }
 
-/* Responsive Adjustments */
+/* Responsive Styles */
 @media (max-width: 1024px) {
     .category-link {
-        width: calc(33.33% - 20px); /* 3 kategórie vedľa seba na tabletoch */
+        width: calc(33.33% - 20px);
     }
 }
 
 @media (max-width: 768px) {
     .category-link {
-        width: calc(50% - 20px); /* 2 kategórie vedľa seba na mobiloch */
+        width: calc(50% - 20px);
     }
 }
