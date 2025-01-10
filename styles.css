@@ -24,8 +24,9 @@ body {
 }
 
 /* Logo Section */
-.logo a {
-    text-decoration: none;
+.logo {
+    text-align: center;
+    flex: 1;
 }
 
 .logo img {
@@ -34,8 +35,31 @@ body {
     transition: transform 0.1s ease;
 }
 
+/* Odstránenie škaredého štvorca pri kliknutí */
+.no-outline {
+    outline: none;
+}
+
+.logo a:focus {
+    outline: none;
+}
+
 .logo img:active {
     transform: scale(0.98);
+}
+
+/* Right Section (Cart and Login Icons) */
+.right-section {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.cart-icon,
+.login-icon {
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
 }
 
 /* Benefits Section Styles */
@@ -71,6 +95,7 @@ body {
 .banner-section img {
     width: 100%;
     border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Categories Section Styles */
