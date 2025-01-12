@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falcon 9 Rocket Parts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            position: relative;
+            max-width: 800px;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .label {
+            position: absolute;
+            background-color: #ffffff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            font-size: 14px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .line {
+            position: absolute;
+            width: 2px;
+            background-color: #333;
+        }
+
+        /* Specific labels and lines */
+        #fairing { top: 10%; left: 70%; }
+        #fairing-line { top: 10%; left: 60%; height: 1px; width: 10%; }
+
+        #second-stage { top: 25%; left: 70%; }
+        #second-stage-line { top: 25%; left: 60%; height: 1px; width: 10%; }
+
+        #first-stage { top: 55%; left: 70%; }
+        #first-stage-line { top: 55%; left: 60%; height: 1px; width: 10%; }
+
+        #grid-fins { top: 45%; left: 10%; }
+        #grid-fins-line { top: 45%; left: 30%; height: 1px; width: 20%; }
+
+        #engines { top: 90%; left: 70%; }
+        #engines-line { top: 90%; left: 60%; height: 1px; width: 10%; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://i.postimg.cc/xdxSLjsJ/IMG-7738.png" alt="Falcon 9 Rocket">
+        
+        <div id="fairing" class="label">Payload Fairing</div>
+        <div id="fairing-line" class="line"></div>
+
+        <div id="second-stage" class="label">Second Stage</div>
+        <div id="second-stage-line" class="line"></div>
+
+        <div id="first-stage" class="label">First Stage</div>
+        <div id="first-stage-line" class="line"></div>
+
+        <div id="grid-fins" class="label">Grid Fins</div>
+        <div id="grid-fins-line" class="line"></div>
+
+        <div id="engines" class="label">Merlin Engines</div>
+        <div id="engines-line" class="line"></div>
+    </div>
+</body>
+</html>
