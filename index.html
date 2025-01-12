@@ -6,7 +6,7 @@
     <title>Falcon 9 Rocket Parts</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: #f4f4f9;
             margin: 0;
             padding: 0;
@@ -18,7 +18,7 @@
 
         .container {
             position: relative;
-            max-width: 800px;
+            max-width: 900px;
         }
 
         img {
@@ -28,58 +28,82 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .label {
-            position: absolute;
-            background-color: #ffffff;
-            padding: 5px 10px;
-            border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-            font-size: 14px;
-            color: #333;
-            font-weight: bold;
-        }
-
         .line {
             position: absolute;
             width: 2px;
             background-color: #333;
+            transition: width 0.3s ease;
         }
 
-        /* Specific labels and lines */
-        #fairing { top: 10%; left: 70%; }
-        #fairing-line { top: 10%; left: 60%; height: 1px; width: 10%; }
+        .label {
+            position: absolute;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+        }
 
-        #second-stage { top: 25%; left: 70%; }
-        #second-stage-line { top: 25%; left: 60%; height: 1px; width: 10%; }
+        .label:hover + .line {
+            width: 15%;
+        }
 
-        #first-stage { top: 55%; left: 70%; }
-        #first-stage-line { top: 55%; left: 60%; height: 1px; width: 10%; }
+        .tooltip {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+        }
 
-        #grid-fins { top: 45%; left: 10%; }
-        #grid-fins-line { top: 45%; left: 30%; height: 1px; width: 20%; }
+        .label:hover + .tooltip {
+            display: block;
+        }
 
-        #engines { top: 90%; left: 70%; }
-        #engines-line { top: 90%; left: 60%; height: 1px; width: 10%; }
+        /* Specific positions for labels and lines */
+        #fairing { top: 10%; left: 65%; }
+        #fairing-line { top: 10%; left: 50%; height: 2px; }
+
+        #second-stage { top: 25%; left: 65%; }
+        #second-stage-line { top: 25%; left: 50%; height: 2px; }
+
+        #first-stage { top: 55%; left: 65%; }
+        #first-stage-line { top: 55%; left: 50%; height: 2px; }
+
+        #grid-fins { top: 45%; left: 5%; }
+        #grid-fins-line { top: 45%; left: 25%; height: 2px; }
+
+        #engines { top: 90%; left: 65%; }
+        #engines-line { top: 90%; left: 50%; height: 2px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="https://i.postimg.cc/xdxSLjsJ/IMG-7738.png" alt="Falcon 9 Rocket">
-        
+        <img src="https://i.postimg.cc/NF7x3F2p/IMG-7738.png" alt="Falcon 9 Rocket">
+
+        <!-- Labels, lines, and tooltips -->
         <div id="fairing" class="label">Payload Fairing</div>
         <div id="fairing-line" class="line"></div>
+        <div class="tooltip" style="top: 12%; left: 70%;">Horná časť rakety, ktorá chráni náklad počas štartu.</div>
 
         <div id="second-stage" class="label">Second Stage</div>
         <div id="second-stage-line" class="line"></div>
+        <div class="tooltip" style="top: 27%; left: 70%;">Druhý stupeň rakety, ktorý dopraví náklad na orbitu.</div>
 
         <div id="first-stage" class="label">First Stage</div>
         <div id="first-stage-line" class="line"></div>
+        <div class="tooltip" style="top: 57%; left: 70%;">Hlavný stupeň rakety, ktorý sa po štarte vracia na Zem.</div>
 
         <div id="grid-fins" class="label">Grid Fins</div>
         <div id="grid-fins-line" class="line"></div>
+        <div class="tooltip" style="top: 47%; left: 10%;">Riadiace mriežky, ktoré pomáhajú pri navigácii rakety počas návratu.</div>
 
         <div id="engines" class="label">Merlin Engines</div>
         <div id="engines-line" class="line"></div>
+        <div class="tooltip" style="top: 92%; left: 70%;">Motory poháňajúce raketu Falcon 9 pri vzlete.</div>
     </div>
 </body>
 </html>
