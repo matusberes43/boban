@@ -3,51 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail článku</title>
+    <title>Article</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="article-container"></div>
-
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const articleId = urlParams.get('id');
-
-        const articles = [
-            { id: 1, title: "Článok 1", content: "Obsah článku 1" },
-            { id: 2, title: "Článok 2", content: "Obsah článku 2" },
-            { id: 3, title: "Článok 3", content: "Obsah článku 3" },
-            { id: 4, title: "Článok 4", content: "Obsah článku 4" },
-            { id: 5, title: "Článok 5", content: "Obsah článku 5" },
-            { id: 6, title: "Článok 6", content: "Obsah článku 6" },
-            { id: 7, title: "Článok 7", content: "Obsah článku 7" },
-            { id: 8, title: "Článok 8", content: "Obsah článku 8" },
-            { id: 9, title: "Článok 9", content: "Obsah článku 9" },
-            { id: 10, title: "Článok 10", content: "Obsah článku 10" },
-            { id: 11, title: "Článok 11", content: "Obsah článku 11" },
-            { id: 12, title: "Článok 12", content: "Obsah článku 12" },
-            { id: 13, title: "Článok 13", content: "Obsah článku 13" },
-            { id: 14, title: "Článok 14", content: "Obsah článku 14" },
-            { id: 15, title: "Článok 15", content: "Obsah článku 15" },
-            { id: 16, title: "Článok 16", content: "Obsah článku 16" },
-            { id: 17, title: "Článok 17", content: "Obsah článku 17" },
-            { id: 18, title: "Článok 18", content: "Obsah článku 18" },
-            { id: 19, title: "Článok 19", content: "Obsah článku 19" },
-            { id: 20, title: "Článok 20", content: "Obsah článku 20" },
-        ];
-
-        const article = articles.find(a => a.id == articleId);
-
-        if (article) {
-            document.getElementById("article-container").innerHTML = `
-                <h1>${article.title}</h1>
-                <p><strong>Autor:</strong> PunisherEDNA</p>
-                <p><strong>Dátum:</strong> ${new Date().toLocaleDateString()}</p>
-                <p>${article.content}</p>
-            `;
-        } else {
-            document.getElementById("article-container").innerHTML = `<h1>Článok nenájdený</h1>`;
-        }
-    </script>
+    <h1>IS UFO REAL?</h1>
+    <p>Autor: PunisherEDNA</p>
+    <p>Čas přidání: 12.1.2025</p>
+    <div class="article-content">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla condimentum nisl sit amet tortor aliquet, id scelerisque orci porttitor.</p>
+        <p>Curabitur eget nibh et eros malesuada commodo. Vivamus vel diam magna. Praesent vehicula bibendum eros in tempus.</p>
+        <p>Phasellus fringilla lectus sit amet arcu malesuada, quis gravida odio fringilla. Nulla facilisi. Aenean consectetur massa nec auctor auctor.</p>
+    </div>
 </body>
 </html>
