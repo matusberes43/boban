@@ -1,24 +1,22 @@
-/* Font a základné nastavenia */
+/* Nastavenie základného štýlu */
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #1c1c1e;
-    color: #f5f5f5;
+    margin: 0;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #fff;
 }
 
-.search-container {
+.container {
     text-align: center;
     max-width: 500px;
-    width: 100%;
 }
 
 h1 {
-    font-weight: 600;
-    font-size: 42px;
+    font-size: 48px;
     margin-bottom: 20px;
     color: #fff;
 }
@@ -27,6 +25,7 @@ h1 {
 .search-box {
     position: relative;
     width: 100%;
+    max-width: 500px;
 }
 
 #movie-search {
@@ -34,12 +33,12 @@ h1 {
     padding: 15px 20px;
     font-size: 18px;
     border: none;
-    border-radius: 30px;
+    border-radius: 50px;
     outline: none;
-    background-color: #2c2c2e;
-    color: #fff;
+    background-color: #fff;
+    color: #333;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    transition: all 0.3s ease-in-out;
 }
 
 #movie-search:focus {
@@ -53,26 +52,25 @@ h1 {
     right: 20px;
     transform: translateY(-50%);
     font-size: 20px;
-    color: #aaa;
+    color: #333;
 }
 
-/* Výsledky */
-#movie-result {
+/* Kartička s výsledkami */
+.movie-card {
     margin-top: 20px;
     padding: 20px;
-    background-color: #2c2c2e;
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     display: none;
 }
 
-#movie-result h2 {
+.movie-card h2 {
     font-size: 24px;
     margin-bottom: 10px;
 }
 
-#movie-result p {
+.movie-card p {
     font-size: 16px;
     margin: 5px 0;
 }
