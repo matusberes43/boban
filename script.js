@@ -1,32 +1,29 @@
-async function searchMovie() {
-    const query = document.getElementById('movie-search').value.trim();
-    if (query.length < 3) {
-        document.getElementById('movie-result').style.display = 'none';
-        return;
-    }
+const stocks = {
+    "ALB": "Albemarle",
+    "NVDA": "Nvidia",
+    "LRCX": "Lam Research"
+};
 
-    const apiKey = '79adf4be';
-    const url = `https://www.omdbapi.com/?t=${encodeURIComponent(query)}&apikey=${apiKey}`;
+const apiKey = "YOUR_API_KEY"; // Použi vlastný kľúč z Finnhub alebo Alpha Vantage
 
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
+async function fetchStockData(stockSymbol, elementPrice, elementChange) {
+    const response = await fetch(`https://finnhub.io/api/v1/quote?symbol=${stockSymbol}&token=${apiKey}`);
+    const data = await response.json();
 
-        if (data.Response === "True") {
-            document.getElementById('movie-result').innerHTML = `
-                <h2>${data.Title} (${data.Year})</h2>
-                <p><strong>Director:</strong> ${data.Director}</p>
-                <p><strong>Actors:</strong> ${data.Actors}</p>
-                <p><strong>Country:</strong> ${data.Country}</p>
-                <p><strong>Box Office:</strong> ${data.BoxOffice || 'N/A'}</p>
-            `;
-            document.getElementById('movie-result').style.display = 'block';
-        } else {
-            document.getElementById('movie-result').innerHTML = `<p>Movie not found!</p>`;
-            document.getElementById('movie-result').style.display = 'block';
-        }
-    } catch (error) {
-        document.getElementById('movie-result').innerHTML = `<p>Error: ${error.message}</p>`;
-        document.getElementById('movie-result').style.display = 'block';
-    }
+    const currentPrice = data.c;
+    const previousClose = data.pc;
+    const change = currentPrice - previousClose;
+    const changePercent = ((change / previousClose) * 100).toFixed(2);
+
+    document.getElementById(elementPrice).innerText = `$${currentPrice.toFixed(2)}`;
+    document.getElementById(elementChange).innerText = `${change >= 0 ? '+' : ''}${change.toFixed(2)} (${changePercent}%)`;
 }
+
+function updateStocks() {
+    fetchStockData("ALB", "alb-price", "alb-change");
+    fetchStockData("NVDA", "nvda-price", "nvda-change");
+    fetchStockData("LRCX", "lrcx-price", "lrcx-change");
+}
+
+updateStocks();
+setInterval(updateStocks, 15000); // Aktualizácia každých 15 sekúnd
