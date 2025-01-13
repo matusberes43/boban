@@ -1,68 +1,33 @@
-let map;
-let geocoder;
-let markers = [];
-
-function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 0, lng: 0 },
-        zoom: 2,
-    });
-    geocoder = new google.maps.Geocoder();
-}
+// Zoznam hlavných miest a ich súradníc
+const capitals = {
+    "Bratislava": { lat: 48.1486, lon: 17.1077 },
+    "Paris": { lat: 48.8566, lon: 2.3522 },
+    "London": { lat: 51.5074, lon: -0.1278 },
+    "Berlin": { lat: 52.5200, lon: 13.4050 },
+    "Tokyo": { lat: 35.6895, lon: 139.6917 },
+    "Washington": { lat: 38.9072, lon: -77.0369 },
+    "Canberra": { lat: -35.2809, lon: 149.1300 },
+    // Pridaj viac hlavných miest podľa potreby
+};
 
 function calculateDistance() {
     const city1 = document.getElementById('city1').value;
     const city2 = document.getElementById('city2').value;
 
-    if (!city1 || !city2) {
-        alert('Please enter both capital cities.');
+    if (!capitals[city1] || !capitals[city2]) {
+        alert('One or both cities not found. Please enter valid capital cities.');
         return;
     }
 
-    Promise.all([geocodeCity(city1), geocodeCity(city2)])
-        .then(results => {
-            const [location1, location2] = results;
-            addMarker(location1);
-            addMarker(location2);
+    const location1 = capitals[city1];
+    const location2 = capitals[city2];
 
-            const distance = haversineDistance(location1, location2);
-            document.getElementById('distance').innerText = `Distance: ${distance.toFixed(2)} km`;
-
-            map.setCenter(location1);
-            map.setZoom(4);
-        })
-        .catch(error => {
-            alert('Error: ' + error.message);
-        });
+    const distance = haversineDistance(location1.lat, location1.lon, location2.lat, location2.lon);
+    document.getElementById('distance').innerText = `Distance: ${distance.toFixed(2)} km`;
 }
 
-function geocodeCity(city) {
-    return new Promise((resolve, reject) => {
-        geocoder.geocode({ address: city }, (results, status) => {
-            if (status === "OK" && results[0]) {
-                resolve(results[0].geometry.location);
-            } else {
-                reject(new Error("City not found."));
-            }
-        });
-    });
-}
-
-function addMarker(location) {
-    const marker = new google.maps.Marker({
-        position: location,
-        map: map,
-    });
-    markers.push(marker);
-}
-
-function haversineDistance(location1, location2) {
-    const R = 6371; // Earth's radius in km
-    const lat1 = location1.lat();
-    const lon1 = location1.lng();
-    const lat2 = location2.lat();
-    const lon2 = location2.lng();
-
+function haversineDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Polomer Zeme v kilometroch
     const dLat = degreesToRadians(lat2 - lat1);
     const dLon = degreesToRadians(lon2 - lon1);
 
