@@ -1,6 +1,9 @@
 async function searchMovie() {
     const query = document.getElementById('movie-search').value.trim();
-    if (query.length < 3) return;
+    if (query.length < 3) {
+        document.getElementById('movie-result').style.display = 'none';
+        return;
+    }
 
     const apiKey = '79adf4be';
     const url = `https://www.omdbapi.com/?t=${encodeURIComponent(query)}&apikey=${apiKey}`;
@@ -17,10 +20,13 @@ async function searchMovie() {
                 <p><strong>Country:</strong> ${data.Country}</p>
                 <p><strong>Box Office:</strong> ${data.BoxOffice || 'N/A'}</p>
             `;
+            document.getElementById('movie-result').style.display = 'block';
         } else {
             document.getElementById('movie-result').innerHTML = `<p>Movie not found!</p>`;
+            document.getElementById('movie-result').style.display = 'block';
         }
     } catch (error) {
         document.getElementById('movie-result').innerHTML = `<p>Error: ${error.message}</p>`;
+        document.getElementById('movie-result').style.display = 'block';
     }
 }
