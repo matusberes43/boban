@@ -4,19 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <title>Movie Finder</title>
+    <title>Stock Prices in Real-Time</title>
 </head>
 <body>
-    <div class="container">
-        <h1>🎬 Movie Finder</h1>
-        <div class="search-box">
-            <input type="text" id="movie-search" placeholder="Enter movie title..." onkeyup="searchMovie()">
-            <span class="search-icon">🔍</span>
-        </div>
-        <div id="movie-result" class="movie-card"></div>
-    </div>
-
+    <h1>Real-Time Stock Prices</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Stock</th>
+                <th>Current Price ($)</th>
+                <th>Change from Previous Day</th>
+            </tr>
+        </thead>
+        <tbody id="stock-data">
+            <tr>
+                <td>Albemarle (ALB)</td>
+                <td id="alb-price">Loading...</td>
+                <td id="alb-change">Loading...</td>
+            </tr>
+            <tr>
+                <td>Nvidia (NVDA)</td>
+                <td id="nvda-price">Loading...</td>
+                <td id="nvda-change">Loading...</td>
+            </tr>
+            <tr>
+                <td>Lam Research (LRCX)</td>
+                <td id="lrcx-price">Loading...</td>
+                <td id="lrcx-change">Loading...</td>
+            </tr>
+        </tbody>
+    </table>
     <script src="script.js"></script>
 </body>
 </html>
