@@ -3,127 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Distance Between Capitals</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-            padding: 20px;
-        }
-        input, button {
-            padding: 10px;
-            margin: 10px;
-            font-size: 16px;
-        }
-        #result {
-            margin-top: 20px;
-            font-size: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <title>Movie Finder</title>
 </head>
 <body>
+    <div class="search-container">
+        <h1>Movie Finder</h1>
+        <input type="text" id="movie-search" placeholder="Enter movie title..." onkeyup="searchMovie()">
+        <div id="movie-result"></div>
+    </div>
 
-    <h1>Distance Between Capitals</h1>
-    <input type="text" id="city1" placeholder="Enter first capital city">
-    <input type="text" id="city2" placeholder="Enter second capital city">
-    <button onclick="calculateDistance()">Calculate Distance</button>
-
-    <div id="result"></div>
-
-    <script>
-        // Zoznam hlavných miest a ich geografických súradníc (viac ako 200 miest)
-        const capitals = {
-            "Kabul": { lat: 34.5553, lon: 69.2075 },
-            "Tirana": { lat: 41.3275, lon: 19.8189 },
-            "Algiers": { lat: 36.7525, lon: 3.0419 },
-            "Andorra la Vella": { lat: 42.5078, lon: 1.5211 },
-            "Luanda": { lat: -8.8368, lon: 13.2343 },
-            "Buenos Aires": { lat: -34.6037, lon: -58.3816 },
-            "Yerevan": { lat: 40.1792, lon: 44.4991 },
-            "Canberra": { lat: -35.2809, lon: 149.1300 },
-            "Vienna": { lat: 48.2082, lon: 16.3738 },
-            "Baku": { lat: 40.4093, lon: 49.8671 },
-            "Nassau": { lat: 25.0343, lon: -77.3963 },
-            "Manama": { lat: 26.2285, lon: 50.5860 },
-            "Dhaka": { lat: 23.8103, lon: 90.4125 },
-            "Bridgetown": { lat: 13.0975, lon: -59.6167 },
-            "Minsk": { lat: 53.9000, lon: 27.5667 },
-            "Brussels": { lat: 50.8503, lon: 4.3517 },
-            "Belmopan": { lat: 17.2510, lon: -88.7590 },
-            "Porto-Novo": { lat: 6.4969, lon: 2.6289 },
-            "Thimphu": { lat: 27.4728, lon: 89.6393 },
-            "La Paz": { lat: -16.5000, lon: -68.1500 },
-            "Sarajevo": { lat: 43.8563, lon: 18.4131 },
-            "Gaborone": { lat: -24.6544, lon: 25.9089 },
-            "Brasília": { lat: -15.7942, lon: -47.8822 },
-            "Bandar Seri Begawan": { lat: 4.9031, lon: 114.9398 },
-            "Sofia": { lat: 42.6975, lon: 23.3242 },
-            "Ouagadougou": { lat: 12.3686, lon: -1.5275 },
-            "Bujumbura": { lat: -3.3762, lon: 29.3608 },
-            "Phnom Penh": { lat: 11.5564, lon: 104.9282 },
-            "Yaoundé": { lat: 3.8480, lon: 11.5021 },
-            "Ottawa": { lat: 45.4215, lon: -75.6972 },
-            "Praia": { lat: 14.9167, lon: -23.5092 },
-            "Bangui": { lat: 4.3667, lon: 18.5833 },
-            "N'Djamena": { lat: 12.1000, lon: 15.0333 },
-            "Santiago": { lat: -33.4489, lon: -70.6693 },
-            "Beijing": { lat: 39.9042, lon: 116.4074 },
-            "Bogotá": { lat: 4.7110, lon: -74.0721 },
-            "Moroni": { lat: -11.7022, lon: 43.2551 },
-            "Brazzaville": { lat: -4.2634, lon: 15.2429 },
-            "Kinshasa": { lat: -4.4419, lon: 15.2663 },
-            "San José": { lat: 9.9281, lon: -84.0907 },
-            "Zagreb": { lat: 45.8150, lon: 15.9819 },
-            "Havana": { lat: 23.1136, lon: -82.3666 },
-            "Nicosia": { lat: 35.1727, lon: 33.3650 },
-            "Prague": { lat: 50.0755, lon: 14.4378 },
-            "Copenhagen": { lat: 55.6761, lon: 12.5683 },
-            "Djibouti": { lat: 11.5721, lon: 43.1456 },
-            "Roseau": { lat: 15.3014, lon: -61.3883 },
-            "Santo Domingo": { lat: 18.4861, lon: -69.9312 },
-            "Quito": { lat: -0.2299, lon: -78.5249 },
-            "Cairo": { lat: 30.0444, lon: 31.2357 },
-            "San Salvador": { lat: 13.6929, lon: -89.2182 },
-            "Tallinn": { lat: 59.4370, lon: 24.7536 },
-            "Addis Ababa": { lat: 9.1450, lon: 38.7170 },
-            "Suva": { lat: -18.1416, lon: 178.4419 },
-            "Helsinki": { lat: 60.1699, lon: 24.9384 },
-            "Paris": { lat: 48.8566, lon: 2.3522 },
-            "Libreville": { lat: 0.4162, lon: 9.4673 },
-            "Tbilisi": { lat: 41.7151, lon: 44.8271 },
-            "Berlin": { lat: 52.5200, lon: 13.4050 }
-        };
-
-        function calculateDistance() {
-            const city1 = document.getElementById('city1').value.trim();
-            const city2 = document.getElementById('city2').value.trim();
-
-            if (!capitals[city1] || !capitals[city2]) {
-                document.getElementById('result').innerText = 'One or both cities not found.';
-                return;
-            }
-
-            const loc1 = capitals[city1];
-            const loc2 = capitals[city2];
-            const distance = haversineDistance(loc1.lat, loc1.lon, loc2.lat, loc2.lon);
-            document.getElementById('result').innerText = `Distance: ${distance.toFixed(2)} km`;
-        }
-
-        function haversineDistance(lat1, lon1, lat2, lon2) {
-            const R = 6371;
-            const dLat = degreesToRadians(lat2 - lat1);
-            const dLon = degreesToRadians(lon2 - lon1);
-            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                      Math.cos(degreesToRadians(lat1)) * Math.cos(degreesToRadians(lat2)) *
-                      Math.sin(dLon / 2) * Math.sin(dLon / 2);
-            return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        }
-
-        function degreesToRadians(deg) {
-            return deg * Math.PI / 180;
-        }
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
