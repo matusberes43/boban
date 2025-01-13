@@ -1,10 +1,11 @@
-/* Reset */
+/* Reset stylů */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Styl pro celé tělo stránky */
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #0d0d1a, #1b1b2f);
@@ -12,7 +13,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Kontejner pro hlavní obsah */
+/* Kontejner pro obsah */
 .container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -20,38 +21,24 @@ body {
     padding: 40px;
 }
 
-/* Boxy s informacemi */
+/* Styl boxů */
 .box {
     background: rgba(31, 31, 47, 0.9);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
-    border: 1px solid #3c3c4c;
-    position: relative;
-    overflow: hidden;
 }
 
-.box:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.03);
-    pointer-events: none;
-    transform: rotate(45deg);
-}
-
+/* Nadpisy */
 h1, h2 {
     font-size: 36px;
     text-transform: uppercase;
     margin-bottom: 20px;
     color: #ffffff;
-    letter-spacing: 2px;
     text-shadow: 0 0 10px #03a9f4;
 }
 
+/* Sekce */
 .section-title {
     font-size: 20px;
     color: #03a9f4;
@@ -62,35 +49,26 @@ h1, h2 {
     padding-bottom: 5px;
 }
 
+/* Texty a seznamy */
 p, li {
     font-size: 16px;
     line-height: 1.8;
 }
 
+/* Zvýraznění textu */
 .highlight {
     color: #ff3b3b;
     font-weight: bold;
 }
 
 /* Statistiky a sociální sítě */
-.stats ul, .social ul {
+.stats ul {
     list-style: none;
     padding: 0;
 }
 
-.stats ul li, .social ul li {
+.stats ul li {
     padding: 5px 0;
-}
-
-.social-links a {
-    color: #03a9f4;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.social-links a:hover {
-    color: #ff3b3b;
 }
 
 /* Tlačítko */
