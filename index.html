@@ -1,24 +1,39 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prihlásenie</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Distance Between Capitals</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+        }
+        #map {
+            height: 500px;
+            width: 80%;
+            margin: 20px auto;
+            border: 2px solid #333;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-    <h2>Prihlásenie</h2>
-    <form action="login.php" method="POST">
-        <input type="text" name="username" placeholder="Používateľské meno" required>
-        <input type="password" name="password" placeholder="Heslo" required>
-        <button type="submit">Prihlásiť sa</button>
-    </form>
+    <h1>Distance Between Capitals</h1>
+    <input type="text" id="city1" placeholder="Enter first capital city" required>
+    <input type="text" id="city2" placeholder="Enter second capital city" required>
+    <button onclick="calculateDistance()">Calculate Distance</button>
 
-    <h2>Registrácia</h2>
-    <form action="register.php" method="POST">
-        <input type="text" name="username" placeholder="Používateľské meno" required>
-        <input type="password" name="password" placeholder="Heslo" required>
-        <button type="submit">Registrovať sa</button>
-    </form>
+    <h3 id="distance"></h3>
+    <div id="map"></div>
+
+    <script src="script.js"></script>
+    <!-- Add your Google Maps API key below -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
 </body>
 </html>
