@@ -4,19 +4,29 @@ const stocks = {
     "LRCX": "Lam Research"
 };
 
-const apiKey = "YOUR_API_KEY"; // Použi vlastný kľúč z Finnhub alebo Alpha Vantage
+const apiKey = "U80PJ8035GV7GKIC";
 
 async function fetchStockData(stockSymbol, elementPrice, elementChange) {
-    const response = await fetch(`https://finnhub.io/api/v1/quote?symbol=${stockSymbol}&token=${apiKey}`);
-    const data = await response.json();
+    try {
+        const response = await fetch(`https://finnhub.io/api/v1/quote?symbol=${stockSymbol}&token=${apiKey}`);
+        const data = await response.json();
 
-    const currentPrice = data.c;
-    const previousClose = data.pc;
-    const change = currentPrice - previousClose;
-    const changePercent = ((change / previousClose) * 100).toFixed(2);
+        if (data.c && data.pc) {
+            const currentPrice = data.c;
+            const previousClose = data.pc;
+            const change = currentPrice - previousClose;
+            const changePercent = ((change / previousClose) * 100).toFixed(2);
 
-    document.getElementById(elementPrice).innerText = `$${currentPrice.toFixed(2)}`;
-    document.getElementById(elementChange).innerText = `${change >= 0 ? '+' : ''}${change.toFixed(2)} (${changePercent}%)`;
+            document.getElementById(elementPrice).innerText = `$${currentPrice.toFixed(2)}`;
+            document.getElementById(elementChange).innerText = `${change >= 0 ? '+' : ''}${change.toFixed(2)} (${changePercent}%)`;
+        } else {
+            document.getElementById(elementPrice).innerText = "Error loading";
+            document.getElementById(elementChange).innerText = "Error loading";
+        }
+    } catch (error) {
+        document.getElementById(elementPrice).innerText = "Error";
+        document.getElementById(elementChange).innerText = "Error";
+    }
 }
 
 function updateStocks() {
