@@ -1,51 +1,24 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="sk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue Ring Mission NG-1</title>
-    <!-- Připojení správného CSS souboru -->
-    <link rel="stylesheet" href="styles.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Prihlásenie</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Hlavní kontejner -->
-    <div class="container">
-        <!-- Levý panel -->
-        <div class="box neon-box">
-            <h1>Blue Ring Pathfinder</h1>
-            <div class="section-title">Základní údaje</div>
-            <p><strong>Nosná Raketa:</strong> New Glenn</p>
-            <p><strong>Mise:</strong> NG-1</p>
-            <p><strong>Účel:</strong> Zkouška rakety</p>
-            <p><strong>Finální oběžná dráha:</strong> 2 300 x 19 300 km (sklon 30°)</p>
-            <p><strong>Nosnost nákladu:</strong> cca 20 tun</p>
-            <p><strong>Startovní Okno:</strong> 7:00 - 10:00</p>
-        </div>
+    <h2>Prihlásenie</h2>
+    <form action="login.php" method="POST">
+        <input type="text" name="username" placeholder="Používateľské meno" required>
+        <input type="password" name="password" placeholder="Heslo" required>
+        <button type="submit">Prihlásiť sa</button>
+    </form>
 
-        <!-- Pravý panel -->
-        <div class="box neon-box">
-            <h2>Živý Přenos</h2>
-            <p class="highlight">New Glenn Mission NG-1</p>
-            <p>Díky za sledování!</p>
-            <div class="section-title">Statistiky</div>
-            <ul class="stats">
-                <li>Počet startů New Glenn: 0</li>
-                <li>Přistání 1. stupně: 0</li>
-                <li>Přistání v řadě za sebou: 0</li>
-                <li>Startů z rampy LC-36: 0</li>
-                <li>Orbitálních startů letos: 6</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Sekce sociálních sítí -->
-    <div class="social-icons">
-        <a href="#"><img src="facebook-icon.svg" alt="Facebook"></a>
-        <a href="#"><img src="instagram-icon.svg" alt="Instagram"></a>
-        <a href="#"><img src="twitter-icon.svg" alt="Twitter"></a>
-        <a href="#"><img src="youtube-icon.svg" alt="YouTube"></a>
-    </div>
+    <h2>Registrácia</h2>
+    <form action="register.php" method="POST">
+        <input type="text" name="username" placeholder="Používateľské meno" required>
+        <input type="password" name="password" placeholder="Heslo" required>
+        <button type="submit">Registrovať sa</button>
+    </form>
 </body>
 </html>
