@@ -3,73 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue Ring Pathfinder</title>
+    <title>Blue Ring Mission NG-1</title>
     <style>
         body {
             margin: 0;
+            padding: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #0f0f1f;
+            background-color: #0d0d1a;
             color: #ffffff;
         }
+
+        /* Kontejner pro hlavní obsah */
         .container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto auto;
-            padding: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
-        }
-        .box {
-            background-color: #1f1f2f;
             padding: 20px;
+        }
+
+        /* Boxy s informacemi */
+        .box {
+            background: linear-gradient(135deg, #1b1b2f, #2c2c44);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
             border: 1px solid #3c3c4c;
-            border-radius: 8px;
         }
-        h1 {
-            font-size: 36px;
+
+        h1, h2 {
+            font-size: 32px;
             text-transform: uppercase;
-            color: #ffffff;
+            margin-bottom: 20px;
         }
+
         .section-title {
             font-size: 20px;
-            background-color: #03a9f4;
-            padding: 10px;
-            border-radius: 4px;
+            color: #03a9f4;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #03a9f4;
             display: inline-block;
+            padding-bottom: 5px;
         }
-        .highlight {
-            color: #ff3b3b;
-            font-weight: bold;
+
+        p, li {
+            font-size: 16px;
+            line-height: 1.6;
         }
+
+        /* Statistiky a sociální sítě */
         .stats ul, .social ul {
             list-style: none;
             padding: 0;
         }
+
         .stats ul li, .social ul li {
             padding: 5px 0;
         }
+
         .social-links a {
             color: #03a9f4;
             text-decoration: none;
+            transition: color 0.3s;
         }
+
+        .social-links a:hover {
+            color: #ff3b3b;
+        }
+
+        /* Tlačítko */
         .button {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 12px 24px;
             background-color: #ff3b3b;
             color: #ffffff;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             text-transform: uppercase;
             font-weight: bold;
             text-align: center;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
         }
+
         .button:hover {
             background-color: #d32f2f;
+        }
+
+        /* Responzivní stylování */
+        @media (max-width: 768px) {
+            h1, h2 {
+                font-size: 28px;
+            }
+
+            p, li {
+                font-size: 14px;
+            }
+
+            .button {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Left Panel -->
+        <!-- Levý panel -->
         <div class="box">
             <h1>Blue Ring Pathfinder</h1>
             <div class="section-title">Základní údaje</div>
@@ -86,7 +126,7 @@
             <p><strong>Místo startu:</strong> CCSFS / LC-36</p>
         </div>
 
-        <!-- Right Panel -->
+        <!-- Pravý panel -->
         <div class="box">
             <h2>Živý Přenos</h2>
             <p class="highlight">New Glenn Mission NG-1</p>
