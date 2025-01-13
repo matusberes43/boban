@@ -8,7 +8,8 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #f0f0f0;
+            background-color: #f4f4f4;
+            padding: 20px;
         }
         input, button {
             padding: 10px;
@@ -17,7 +18,7 @@
         }
         #result {
             margin-top: 20px;
-            font-size: 18px;
+            font-size: 20px;
         }
     </style>
 </head>
@@ -31,6 +32,7 @@
     <div id="result"></div>
 
     <script>
+        // Zoznam hlavných miest a ich geografických súradníc
         const capitals = {
             "Bratislava": { lat: 48.1486, lon: 17.1077 },
             "Paris": { lat: 48.8566, lon: 2.3522 },
@@ -43,6 +45,7 @@
             "Rome": { lat: 41.9028, lon: 12.4964 }
         };
 
+        // Funkcia na výpočet vzdialenosti
         function calculateDistance() {
             const city1 = document.getElementById('city1').value.trim();
             const city2 = document.getElementById('city2').value.trim();
@@ -59,8 +62,9 @@
             document.getElementById('result').innerText = `Distance between ${city1} and ${city2}: ${distance.toFixed(2)} km`;
         }
 
+        // Haversine formula na výpočet vzdialenosti medzi dvoma súradnicami
         function haversineDistance(lat1, lon1, lat2, lon2) {
-            const R = 6371; // Earth's radius in km
+            const R = 6371; // Polomer Zeme v kilometroch
             const dLat = degreesToRadians(lat2 - lat1);
             const dLon = degreesToRadians(lon2 - lon1);
 
@@ -72,6 +76,7 @@
             return R * c;
         }
 
+        // Konverzia stupňov na radiány
         function degreesToRadians(degrees) {
             return degrees * Math.PI / 180;
         }
