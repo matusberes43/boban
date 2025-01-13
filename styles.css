@@ -1,76 +1,35 @@
-/* Nastavenie základného štýlu */
 body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    color: #fff;
-}
-
-.container {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
     text-align: center;
-    max-width: 500px;
 }
 
 h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-    color: #fff;
-}
-
-/* Vyhľadávacie pole */
-.search-box {
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-}
-
-#movie-search {
-    width: 100%;
-    padding: 15px 20px;
-    font-size: 18px;
-    border: none;
-    border-radius: 50px;
-    outline: none;
-    background-color: #fff;
-    color: #333;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
-}
-
-#movie-search:focus {
-    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.5);
-}
-
-/* Ikona vyhľadávania */
-.search-icon {
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-    font-size: 20px;
-    color: #333;
-}
-
-/* Kartička s výsledkami */
-.movie-card {
     margin-top: 20px;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    display: none;
+    color: #333;
 }
 
-.movie-card h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 60%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.movie-card p {
-    font-size: 16px;
-    margin: 5px 0;
+th, td {
+    padding: 15px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+td {
+    font-size: 18px;
+}
+
+#stock-data tr:nth-child(even) {
+    background-color: #f9f9f9;
 }
