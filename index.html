@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Prehrávač</title>
+    <title>Vlastný Videoprehrávač</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Prehraj si video</h1>
+    <h1>Vlastný Videoprehrávač</h1>
     <div class="video-container">
-        <iframe src="https://streamable.com/e/oqy966" allowfullscreen></iframe>
+        <video id="video" src="https://streamable.com/oqy966/video.mp4"></video>
+        <div class="controls">
+            <button id="play-pause">Play</button>
+            <input type="range" id="progress" value="0" min="0" max="100">
+            <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+        </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
