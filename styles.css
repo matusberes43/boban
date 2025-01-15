@@ -1,50 +1,20 @@
-body {
+ body {
     font-family: Arial, sans-serif;
-    background-color: #1a1a2e;
-    color: #fff;
     text-align: center;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
 }
 
 h1 {
+    font-size: 2em;
+}
+
+.video-container {
     margin-top: 20px;
-    font-size: 2.5em;
-    color: #e94560;
-}
-
-table {
-    margin: 20px auto;
-    border-collapse: collapse;
-    width: 80%;
-    max-width: 800px;
-    background-color: #16213e;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-}
-
-th, td {
-    padding: 15px;
-    border: 1px solid #333;
-    text-align: center;
-}
-
-th {
-    background-color: #0f3460;
-}
-
-td {
-    font-size: 1.2em;
-}
-
-@media screen and (max-width: 600px) {
-    table {
-        width: 100%;
-    }
-
-    th, td {
-        padding: 10px;
-        font-size: 1em;
-    }
-
-    h1 {
-        font-size: 2em;
-    }
+    display: inline-block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
