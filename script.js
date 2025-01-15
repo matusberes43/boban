@@ -1,40 +1,32 @@
-const stocks = {
-    "ALB": "Albemarle",
-    "NVDA": "Nvidia",
-    "LRCX": "Lam Research"
-};
+const video = document.getElementById('video');
+const playPauseBtn = document.getElementById('play-pause');
+const progressBar = document.getElementById('progress');
+const volumeControl = document.getElementById('volume');
 
-const apiKey = "U80PJ8035GV7GKIC";
-
-async function fetchStockData(stockSymbol, elementPrice, elementChange) {
-    try {
-        const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${stockSymbol}&interval=5min&apikey=${apiKey}`);
-        const data = await response.json();
-
-        if (data["Time Series (5min)"]) {
-            const lastUpdate = Object.keys(data["Time Series (5min)"])[0];
-            const currentPrice = parseFloat(data["Time Series (5min)"][lastUpdate]["1. open"]).toFixed(2);
-            const previousClose = parseFloat(data["Time Series (5min)"][lastUpdate]["4. close"]).toFixed(2);
-            const change = (currentPrice - previousClose).toFixed(2);
-            const changePercent = (((change / previousClose) * 100).toFixed(2));
-
-            document.getElementById(elementPrice).innerText = `$${currentPrice}`;
-            document.getElementById(elementChange).innerText = `${change >= 0 ? '+' : ''}${change} (${changePercent}%)`;
-        } else {
-            document.getElementById(elementPrice).innerText = "Error loading";
-            document.getElementById(elementChange).innerText = "Error loading";
-        }
-    } catch (error) {
-        document.getElementById(elementPrice).innerText = "Error";
-        document.getElementById(elementChange).innerText = "Error";
+// Play/Pause toggle
+playPauseBtn.addEventListener('click', () => {
+    if (video.paused || video.ended) {
+        video.play();
+        playPauseBtn.textContent = 'Pause';
+    } else {
+        video.pause();
+        playPauseBtn.textContent = 'Play';
     }
-}
+});
 
-function updateStocks() {
-    fetchStockData("ALB", "alb-price", "alb-change");
-    fetchStockData("NVDA", "nvda-price", "nvda-change");
-    fetchStockData("LRCX", "lrcx-price", "lrcx-change");
-}
+// Aktualizácia progress baru
+video.addEventListener('timeupdate', () => {
+    const progress = (video.currentTime / video.duration) * 100;
+    progressBar.value = progress;
+});
 
-updateStocks();
-setInterval(updateStocks, 15000);
+// Skákanie na čas podľa progress baru
+progressBar.addEventListener('input', () => {
+    const time = (progressBar.value / 100) * video.duration;
+    video.currentTime = time;
+});
+
+// Ovládanie hlasitosti
+volumeControl.addEventListener('input', () => {
+    video.volume = volumeControl.value;
+});
