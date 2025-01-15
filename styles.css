@@ -15,16 +15,9 @@ h1 {
 .video-container {
     position: relative;
     width: 100%;
-    max-width: 560px;
+    max-width: 720px;
     margin: 0 auto;
-}
-
-.video-container img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding-top: 56.25%; /* Pomáha udržať pomer strán 16:9 */
 }
 
 .video-container iframe {
@@ -34,9 +27,6 @@ h1 {
     width: 100%;
     height: 100%;
     border: none;
-    display: none;
-}
-
-.video-container a {
-    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
