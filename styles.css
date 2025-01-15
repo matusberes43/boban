@@ -1,4 +1,4 @@
- body {
+body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #f4f4f9;
@@ -9,12 +9,34 @@
 
 h1 {
     font-size: 2em;
+    margin-bottom: 20px;
 }
 
 .video-container {
-    margin-top: 20px;
-    display: inline-block;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.video-container img {
+    width: 100%;
+    height: auto;
     border-radius: 8px;
-    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: none;
+}
+
+.video-container a {
+    text-decoration: none;
 }
