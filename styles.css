@@ -5,21 +5,18 @@ body {
   font-family: Arial, sans-serif;
   color: white;
   text-align: center;
-}
-
-/* Pozadie stránky */
-body {
-  background-image: url('https://i.postimg.cc/bvjFyxgS/IMG-7814.jpg');
-  background-size: cover; /* Obrázok pokryje celú stránku */
+  background-image: url('https://i.postimg.cc/rs4zGR0W/IMG-7816.jpg');
+  background-size: cover; /* Obrázok pokryje celú obrazovku */
   background-repeat: no-repeat;
-  background-attachment: fixed; /* Pozadie sa neposúva pri scrollovaní */
   background-position: center;
+  background-attachment: fixed; /* Pozadie ostáva pevné pri scrollovaní */
+  height: 100vh; /* Výška tela nastavená na celú obrazovku */
 }
 
-/* Hlavný obsah */
+/* Obsah stránky */
 header {
   padding: 2rem 1rem;
-  background: rgba(0, 0, 0, 0.6); /* Polopriehľadné pozadie pre lepšiu čitateľnosť */
+  background: rgba(0, 0, 0, 0.6); /* Polopriehľadné pozadie pre čitateľnosť */
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -33,18 +30,13 @@ header p {
   margin: 0.5rem 0 0;
 }
 
-main {
-  padding: 2rem;
-  background: rgba(0, 0, 0, 0.5); /* Polopriehľadné pozadie */
-  margin: 2rem auto;
-  max-width: 800px;
-  border-radius: 10px;
-}
-
 footer {
   padding: 1rem;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.6); /* Polopriehľadné pozadie */
   border-top: 1px solid rgba(255, 255, 255, 0.2);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 /* Responzívne štýly */
@@ -55,9 +47,6 @@ footer {
   header p {
     font-size: 1rem;
   }
-  main {
-    padding: 1rem;
-  }
 }
 
 @media (max-width: 480px) {
@@ -66,8 +55,5 @@ footer {
   }
   header p {
     font-size: 0.9rem;
-  }
-  main {
-    padding: 0.5rem;
   }
 }
