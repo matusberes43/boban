@@ -21,7 +21,7 @@ body {
 /* Header */
 header {
   width: 100%;
-  background: rgba(0, 0, 0, 0.7); /* Polopriehľadný čierny pás */
+  background: rgba(0, 0, 0, 0.7);
   position: fixed;
   top: 0;
   left: 0;
@@ -30,7 +30,7 @@ header {
   align-items: center;
   padding: 15px 0;
   z-index: 100;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.5); /* Tenká biela čiara */
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .logo-container {
@@ -40,50 +40,47 @@ header {
 }
 
 .logo {
-  width: 120px; /* Zvýšená veľkosť loga */
+  width: 120px;
   height: auto;
 }
 
 /* Sekundárny header */
 .secondary-header {
-  margin-top: 82px; /* Odstup od headeru */
+  margin-top: 82px;
   display: flex;
   justify-content: center;
-  gap: 30px; /* Väčšia medzera medzi boxmi */
+  gap: 30px;
   padding: 20px 0;
   width: 100%;
 }
 
 .box {
-  background: rgba(0, 0, 0, 0.8); /* Tmavé pozadie boxu */
+  background: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 10px 20px; /* Menšie rozmery boxu */
-  border-radius: 10px; /* Zaoblené rohy */
-  border: 2px solid red; /* Červená čiara okolo boxu */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8); /* Jemný tieň */
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 2px solid red;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
   font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
   transition: transform 0.3s ease, background 0.3s ease;
   cursor: pointer;
-  width: 200px; /* Fixná šírka boxu */
+  width: 200px;
   text-align: center;
 }
 
 .box:hover {
-  background: rgba(255, 255, 255, 0.2); /* Svetlejšie pri hover */
-  transform: scale(1.05); /* Zvýraznenie pri hover */
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
 }
 
 /* Obsah */
 .content {
-  background: rgba(0, 0, 0, 0.5); /* Polopriehľadné pozadie pre text */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
   padding: 20px;
-  border-radius: 10px;
-  max-width: 90%;
-  margin-top: 30px; /* Odstup kvôli sekundárnemu headeru */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
-  color: white;
-  font-size: 1rem;
-  line-height: 1.5;
+  margin-top: 30px;
 }
