@@ -56,8 +56,11 @@ const articles = {
       <p>Napriek oficiálnym výsledkom vyšetrovania, ktoré označili Usámu bin Ládina a al-Káidu za zodpovedných za útoky, 11. september vyvolal množstvo konšpiračných teórií. Najznámejšia z nich tvrdí, že útoky boli „inside job“, teda že ich naplánovala samotná americká vláda alebo iné mocenské skupiny s cieľom získať zámienku na vojny na Blízkom východe a posilnenie kontroly nad občanmi.</p>
       <img src="https://i.postimg.cc/FR0bnSKX/IMG-7829.webp" alt="Pentagon 11. september" class="article-image">
       
-      <p>Ďalšou populárnou teóriou je, že Pentagon nezasiahlo lietadlo, ale raketa. Kritici tvrdia, že veľkosť a tvar diery v budove nezodpovedajú poškodeniu spôsobenému lietadlom. Iní poukazujú na podivné správanie americkej armády a vládnych inštitúcií v deň útokov.</p>
+      <p>Ďalšou populárnou teóriou je, že Pentagon nezasiahlo lietadlo, ale raketa. Kritici tvrdia, že veľkosť a tvar diery v budove nezodpovedajú poškodeniu spôsobenému lietadlom. Iní poukazujú na podivné správanie americkej armády a vládnych inštitúcií v deň útokov, ako napríklad na to, že letecké sily zlyhali pri odklonení unesených lietadiel. Niektoré teórie dokonca naznačujú, že Usáma bin Ládin bol len bábkou v rukách mocnejších hráčov.</p>
       <img src="https://i.postimg.cc/CxWqTKXh/IMG-7830.jpg" alt="Pentagon po útoku" class="article-image">
+      
+      <p>Útoky z 11. septembra 2001 spustili obrovskú zmenu v bezpečnostnej politike a zvýšili dohľad nad občanmi. Zákony ako Patriot Act umožnili rozsiahle sledovanie a obmedzili niektoré občianske slobody. Táto reakcia spolu s kontroverznými vojnami v Afganistane a Iraku len posilnila podozrenia, že za útokmi mohli byť hlbšie politické a ekonomické záujmy.</p>
+      <p>Hoci väčšina expertov a vyšetrovateľov odmieta konšpiračné teórie ako neopodstatnené, otázky a pochybnosti pretrvávajú. 11. september zostáva nielen symbolom tragédie a boja proti terorizmu, ale aj príkladom, ako nejasnosti a tajomstvá môžu viesť k nedôvere voči autoritám a vytváraniu alternatívnych verzií reality.</p>
     </div>
   `
 };
