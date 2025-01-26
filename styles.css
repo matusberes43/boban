@@ -14,7 +14,6 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   text-align: center;
 }
@@ -45,19 +44,41 @@ header {
   height: auto;
 }
 
+/* Sekundárny header */
+.secondary-header {
+  margin-top: 100px; /* Odstup od hlavného headeru */
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Medzera medzi boxmi */
+  padding: 20px;
+}
+
+.box {
+  background: rgba(0, 0, 0, 0.8); /* Tmavé pozadie boxu */
+  color: white;
+  padding: 15px 30px;
+  border-radius: 10px; /* Zaoblené rohy */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8); /* Jemný tieň */
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: transform 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+}
+
+.box:hover {
+  background: rgba(255, 255, 255, 0.2); /* Svetlejšie pri hover */
+  transform: scale(1.05); /* Zvýraznenie pri hover */
+}
+
 /* Obsah */
 .content {
   background: rgba(0, 0, 0, 0.5); /* Polopriehľadné pozadie pre text */
   padding: 20px;
   border-radius: 10px;
   max-width: 90%;
-  margin-top: 120px; /* Odstup kvôli fixnému headeru */
+  margin-top: 50px; /* Odstup kvôli sekundárnemu headeru */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
-}
-
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
 }
 
 p {
