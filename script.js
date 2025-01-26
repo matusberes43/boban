@@ -12,7 +12,7 @@ const conspiracies = {
     { title: "Projekt Rainbow/Philadelphia", link: "#" }
   ],
   usa: [
-    { title: "Area 51 a mimozemšťania", link: "#" },
+    { title: "Area 51 a mimozemšťania", link: "area-51" },
     { title: "11. september 2001 (9/11)", link: "#" },
     { title: "Zavraždenie Johna F. Kennedyho", link: "#" },
     { title: "Pristátie na Mesiaci", link: "#" },
@@ -30,14 +30,31 @@ const conspiracies = {
   ]
 };
 
-// Funkcia na zobrazenie konšpirácií
+// Články
+const articles = {
+  "area-51": `
+    <div class="article">
+      <h2>Area 51</h2>
+      <p>Area 51 je jednou z najznámejších tajných vojenských základní na svete...</p>
+      <!-- Celý obsah článku -->
+    </div>
+  `
+};
+
+// Zobrazenie zoznamu
 function showConspiracies(category) {
   const container = document.getElementById("content-container");
   container.innerHTML = ""; // Vyčistí obsah
   conspiracies[category].forEach(conspiracy => {
     const box = document.createElement("div");
     box.className = "content-box";
-    box.innerHTML = `<a href="${conspiracy.link}">${conspiracy.title}</a>`;
+    box.innerHTML = `<a href="#" onclick="showArticle('${conspiracy.link}')">${conspiracy.title}</a>`;
     container.appendChild(box);
   });
+}
+
+// Zobrazenie článku
+function showArticle(articleKey) {
+  const container = document.getElementById("content-container");
+  container.innerHTML = articles[articleKey] || "<p>Článok neexistuje.</p>";
 }
