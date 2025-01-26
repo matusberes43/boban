@@ -5,7 +5,7 @@ function showUSA() {
 
   const usaTheories = [
     "Area 51 a mimozemšťania",
-    "11. september 2001 (9/11)",
+    "11. september 2001",
     "Zavraždenie Johna F. Kennedyho",
     "Pristátie na Mesiaci",
     "Projekt MKUltra",
@@ -17,7 +17,7 @@ function showUSA() {
     "HAARP a manipulácia počasia",
     "QAnon",
     "Denver International Airport a podzemné základne",
-    "Paul McCartney je mŕtvy (Beatles teória)",
+    "Paul McCartney je mŕtvy",
     "COVID-19 ako biologická zbraň alebo podvod"
   ];
 
@@ -35,13 +35,13 @@ function showWorld() {
   contentBox.innerHTML = ""; // Vyčistiť obsah
 
   const worldTheories = [
-    "Smrť princeznej Diany (Spojené kráľovstvo)",
-    "Záhada Dyatlovovej výpravy (Rusko)",
-    "Zmiznutie letu MH370 (Malajzia)",
-    "Černobyľská katastrofa (Ukrajina/Sovietsky zväz)",
-    "Tunguská udalosť (Rusko)",
-    "Stonehenge (Spojené kráľovstvo)",
-    "Nacisti v Antarktíde (Nemecko)"
+    "Smrť princeznej Diany",
+    "Záhada Dyatlovovej výpravy",
+    "Zmiznutie letu MH370",
+    "Černobyľská katastrofa",
+    "Tunguská udalosť",
+    "Stonehenge",
+    "Nacisti v Antarktíde"
   ];
 
   worldTheories.forEach((theory) => {
