@@ -14,32 +14,23 @@ body {
   background-attachment: fixed;
 }
 
-/* Hlavný header s obrázkom */
+/* Hlavný header */
 header {
-  position: relative;
+  background: #000; /* Čierne pozadie */
+  padding: 20px 0; /* Vertikálne odsadenie */
   text-align: center;
-  margin-bottom: 10px; /* Priestor medzi headerom a sekundárnym headerom */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Jemný tieň */
 }
 
-.header-image {
-  background-image: url('https://i.postimg.cc/fyBm8Z9M/IMG-7822.jpg');
-  background-size: cover; /* Obrázok sa prispôsobí šírke a výške */
-  background-position: center; /* Zarovnané na stred */
-  background-repeat: no-repeat; /* Žiadne opakovanie obrázka */
-  width: 100%; /* Obrázok vyplní celú šírku zariadenia */
-  height: 30vh; /* Výška zaberá 30% výšky obrazovky */
+.logo-container {
+  display: inline-block;
 }
 
-@media screen and (max-width: 768px) {
-  .header-image {
-    height: 40vh; /* Väčšia výška pre menšie obrazovky (mobily a tablety) */
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .header-image {
-    height: 50vh; /* Ešte väčšia výška pre úzke obrazovky (mobily) */
-  }
+.logo {
+  width: 150px; /* Šírka loga */
+  height: auto; /* Automatické prispôsobenie výšky */
+  border-radius: 10px; /* Jemne zaoblené rohy */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Jemný tieň loga */
 }
 
 /* Sekundárny header */
