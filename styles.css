@@ -2,36 +2,42 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   text-align: center;
   color: white;
 
   /* Pozadie stránky */
   background-image: url('https://i.postimg.cc/rs4zGR0W/IMG-7816.jpg');
-  background-size: cover; /* Obrázok pokryje celú stránku */
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-attachment: fixed; /* Pozadie ostáva na mieste pri scrollovaní */
+  background-attachment: fixed;
 }
 
 /* Header štýly */
 header {
-  background-color: rgba(0, 0, 0, 0.5); /* Polopriehľadné pozadie pre čitateľnosť */
-  padding: 10px 0; /* Zmenšená výška headeru */
+  background: rgba(0, 0, 0, 0.7); /* Polopriehľadné čierne pozadie */
+  padding: 10px 0; /* Menší padding pre nižšiu výšku */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Jemný tieň pre moderný efekt */
 }
 
 header h1 {
   margin: 0;
-  font-size: 2rem; /* Veľkosť textu názvu */
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  font-size: 2rem; /* Stredne veľký text */
+  color: #f4e242; /* Zlatožltá farba pre zvýraznenie */
+  text-transform: uppercase; /* Veľké písmená */
+  font-weight: bold;
+  letter-spacing: 1.5px; /* Štýlové medzery medzi písmenami */
 }
 
 /* Footer štýly */
 footer {
-  background-color: rgba(0, 0, 0, 0.5); /* Polopriehľadné pozadie */
+  background: rgba(0, 0, 0, 0.7); /* Rovnaké pozadie ako header */
   padding: 10px;
   color: #ccc;
   font-size: 0.9rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3); /* Jemný tieň hore */
 }
