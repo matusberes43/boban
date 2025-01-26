@@ -14,7 +14,7 @@ body {
 
 /* Hlavný header */
 header {
-  background: #000;
+  background: #000; /* Čierne pozadie */
   padding: 18px 0;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -25,25 +25,25 @@ header {
 }
 
 .logo {
-  width: 150px;
-  height: auto;
-  border-radius: 10px;
+  width: 150px; /* Šírka loga */
+  height: auto; /* Automatické prispôsobenie výšky */
+  border-radius: 10px; /* Zaoblené rohy */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 /* Sekundárny header */
 .secondary-header {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5); /* Polopriehľadné čierne pozadie */
   padding: 10px 0;
   display: flex;
   justify-content: center;
   gap: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Jemný tieň */
 }
 
 .secondary-header a {
   text-decoration: none;
-  color: #f4e242;
+  color: #f4e242; /* Zlatožltá farba */
   font-size: 1.2rem;
   font-family: 'Verdana', sans-serif;
   font-weight: bold;
@@ -60,7 +60,7 @@ header {
   transform: scale(1.05);
 }
 
-/* Obsah */
+/* Obsahový kontajner */
 .content-container {
   display: flex;
   flex-wrap: wrap;
@@ -69,6 +69,7 @@ header {
   gap: 15px;
 }
 
+/* Boxy so zoznamom konšpirácií */
 .content-box {
   background: rgba(0, 0, 0, 0.7);
   color: #f4e242;
@@ -90,21 +91,48 @@ header {
 
 .content-box a {
   text-decoration: none;
-  color: inherit;
+  color: inherit; /* Zachová farbu rodiča */
   font-weight: bold;
 }
 
-/* Článok */
+/* Štýly pre článok */
 .article {
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
+  background: rgba(0, 0, 0, 0.85); /* Jemne tmavšie pozadie */
+  color: white; /* Biela farba textu */
   font-size: 1rem;
   font-family: 'Arial', sans-serif;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  max-width: 800px;
-  margin: 20px auto;
-  text-align: left;
-  line-height: 1.6;
+  max-width: 800px; /* Maximálna šírka článku */
+  margin: 20px auto; /* Centrovanie článku */
+  text-align: left; /* Zarovnanie textu naľavo */
+  line-height: 1.8; /* Zlepšené riadkovanie */
+}
+
+/* Štýl pre obrázky v článku */
+.article-image {
+  display: block;
+  max-width: 100%; /* Obrázok sa prispôsobí šírke kontajnera */
+  height: auto; /* Automatické prispôsobenie výšky */
+  margin: 15px auto; /* Vertikálne zarovnanie */
+  border-radius: 10px; /* Zaoblené rohy obrázkov */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Jemný tieň */
+}
+
+/* Štýly pre nadpis článku */
+.article h2 {
+  font-size: 2rem;
+  color: #f4e242; /* Zlatožltá farba nadpisu */
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Footer (voliteľný) */
+footer {
+  background: none;
+  padding: 10px;
+  font-size: 0.9rem;
+  color: #f4e242;
+  text-align: center;
 }
