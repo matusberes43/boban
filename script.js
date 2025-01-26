@@ -1,32 +1,32 @@
 // Dáta pre konšpirácie
 const conspiracies = {
   world: [
-    "Smrť princeznej Diany (Spojené kráľovstvo)",
-    "Černobyľská katastrofa (Ukrajina/Sovietsky zväz)",
-    "Roswellský incident v Brazílii (Varghinha)",
-    "Záhada Dyatlovovej výpravy (Rusko)",
-    "Tunguská udalosť (Rusko)",
-    "Smrť Pierra Bérégovoy (Francúzsko)",
-    "Sprisahanie okolo Titanicu (Británia)",
-    "Záhada zmiznutia letu MH370 (Malajzia)",
-    "Projekt Rainbow/Philadelphia"
+    { title: "Smrť princeznej Diany", link: "#" },
+    { title: "Černobyľská katastrofa", link: "#" },
+    { title: "Roswellský incident v Brazílii", link: "#" },
+    { title: "Záhada Dyatlovovej výpravy", link: "#" },
+    { title: "Tunguská udalosť", link: "#" },
+    { title: "Smrť Pierra Bérégovoy", link: "#" },
+    { title: "Sprisahanie okolo Titanicu", link: "#" },
+    { title: "Záhada zmiznutia letu MH370", link: "#" },
+    { title: "Projekt Rainbow/Philadelphia", link: "#" }
   ],
   usa: [
-    "Area 51 a mimozemšťania",
-    "11. september 2001 (9/11)",
-    "Zavraždenie Johna F. Kennedyho",
-    "Pristátie na Mesiaci",
-    "Projekt MKUltra",
-    "Roswellský incident",
-    "Chemtrails",
-    "Illumináti a Nový svetový poriadok",
-    "Smrť Marilyn Monroe",
-    "Smrť Jeffreyho Epsteina",
-    "HAARP a manipulácia počasia",
-    "QAnon",
-    "Denver International Airport a podzemné základne",
-    "Paul McCartney je mŕtvy (Beatles teória)",
-    "COVID-19 ako biologická zbraň alebo podvod"
+    { title: "Area 51 a mimozemšťania", link: "#" },
+    { title: "11. september 2001 (9/11)", link: "#" },
+    { title: "Zavraždenie Johna F. Kennedyho", link: "#" },
+    { title: "Pristátie na Mesiaci", link: "#" },
+    { title: "Projekt MKUltra", link: "#" },
+    { title: "Roswellský incident", link: "#" },
+    { title: "Chemtrails", link: "#" },
+    { title: "Illumináti a Nový svetový poriadok", link: "#" },
+    { title: "Smrť Marilyn Monroe", link: "#" },
+    { title: "Smrť Jeffreyho Epsteina", link: "#" },
+    { title: "HAARP a manipulácia počasia", link: "#" },
+    { title: "QAnon", link: "#" },
+    { title: "Denver International Airport", link: "#" },
+    { title: "Paul McCartney je mŕtvy", link: "#" },
+    { title: "COVID-19 ako biologická zbraň alebo podvod", link: "#" }
   ]
 };
 
@@ -37,7 +37,7 @@ function showConspiracies(category) {
   conspiracies[category].forEach(conspiracy => {
     const box = document.createElement("div");
     box.className = "content-box";
-    box.textContent = conspiracy;
+    box.innerHTML = `<a href="${conspiracy.link}">${conspiracy.title}</a>`;
     container.appendChild(box);
   });
 }
