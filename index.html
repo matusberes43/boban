@@ -15,12 +15,15 @@
 
   <!-- Sekundárny header -->
   <div class="secondary-header">
-    <div class="box">KONŠPIRAČNÉ TEÓRIE USA</div>
-    <div class="box">KONŠPIRAČNÉ TEÓRIE SVET</div>
+    <div class="box" id="usa-box" onclick="showUSA()">KONŠPIRAČNÉ TEÓRIE USA</div>
+    <div class="box" id="world-box" onclick="showWorld()">KONŠPIRAČNÉ TEÓRIE SVET</div>
   </div>
 
-  <div class="content">
-    <p>Tu bude hlavný obsah stránky...</p>
+  <!-- Obsah boxov -->
+  <div class="content" id="content-box">
+    <p>Kliknite na jednu z kategórií vyššie pre zobrazenie teórií.</p>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
