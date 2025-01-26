@@ -5,8 +5,6 @@ body {
   font-family: 'Arial', sans-serif;
   text-align: center;
   color: white;
-
-  /* Pozadie stránky */
   background-image: url('https://i.postimg.cc/rs4zGR0W/IMG-7816.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -92,6 +90,21 @@ header {
 
 .content-box a {
   text-decoration: none;
-  color: inherit; /* Zachovanie farby rodiča */
+  color: inherit;
   font-weight: bold;
+}
+
+/* Článok */
+.article {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 1rem;
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: left;
+  line-height: 1.6;
 }
