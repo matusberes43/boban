@@ -14,25 +14,48 @@ body {
   background-attachment: fixed;
 }
 
-/* Header štýly */
+/* Hlavný header */
 header {
   background: rgba(0, 0, 0, 0.7); /* Polopriehľadné čierne pozadie */
-  padding: 5px 0; /* Menší padding pre nižšiu výšku */
+  padding: 5px 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Jemný tieň */
 }
 
 header h1 {
   margin: 0;
-  font-size: 1.8rem; /* Veľkosť textu */
+  font-size: 1.8rem;
   color: #f4e242; /* Zlatožltá farba */
-  text-transform: uppercase; /* Veľké písmená */
+  text-transform: uppercase;
   font-weight: bold;
-  letter-spacing: 1.5px; /* Medzery medzi písmenami */
+  letter-spacing: 1.5px;
 }
 
-/* Footer štýly */
+/* Sekundárny header */
+.secondary-header {
+  background: rgba(0, 0, 0, 0.5); /* Polopriehľadné čierne pozadie */
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Jemný spodný tieň */
+}
+
+.secondary-header a {
+  text-decoration: none;
+  color: #f4e242; /* Zlatožltá farba odkazov */
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.secondary-header a:hover {
+  color: #ffffff; /* Biela farba pri prechode myšou */
+}
+
+/* Footer */
 footer {
-  background: none; /* Pätička je prázdna, bez obsahu */
+  background: none;
   padding: 0;
   height: 0;
 }
