@@ -14,7 +14,19 @@ const conspiracies = {
   usa: [
     { title: "Area 51 a mimozemšťania", link: "area-51" },
     { title: "11. september 2001", link: "11-september" },
-    { title: "Zavraždenie Johna F. Kennedyho", link: "jfk" }
+    { title: "Zavraždenie Johna F. Kennedyho", link: "jfk" },
+    { title: "Pristátie na Mesiaci", link: "#" },
+    { title: "Projekt MKUltra", link: "#" },
+    { title: "Roswellský incident", link: "#" },
+    { title: "Chemtrails", link: "#" },
+    { title: "Illumináti a Nový svetový poriadok", link: "#" },
+    { title: "Smrť Marilyn Monroe", link: "#" },
+    { title: "Smrť Jeffreyho Epsteina", link: "#" },
+    { title: "HAARP a manipulácia počasia", link: "#" },
+    { title: "QAnon", link: "#" },
+    { title: "Denver International Airport", link: "#" },
+    { title: "Paul McCartney je mŕtvy", link: "#" },
+    { title: "COVID-19 ako biologická zbraň alebo podvod", link: "#" }
   ]
 };
 
@@ -50,11 +62,17 @@ const articles = {
   "jfk": `
     <div class="article">
       <h2>Atentát na Johna F. Kennedyho</h2>
-      <p>Atentát na Johna Fitzgeralda Kennedyho, 35. prezidenta Spojených štátov amerických...</p>
+      <p>Atentát na Johna Fitzgeralda Kennedyho, 35. prezidenta Spojených štátov amerických, 22. novembra 1963 v Dallase v Texase patrí medzi najdiskutovanejšie a najzáhadnejšie udalosti 20. storočia...</p>
       <img src="https://i.postimg.cc/5jccmkf1/IMG-7832.jpg" alt="JFK a manželka" class="article-image">
       
-      <p>Atentát sa odohral počas Kennedyho návštevy Dallasu, kde sa prezident stretával...</p>
+      <p>Atentát sa odohral počas Kennedyho návštevy Dallasu, kde sa prezident stretával s miestnymi politickými predstaviteľmi...</p>
       <img src="https://i.postimg.cc/2yLRhfR2/IMG-7833.jpg" alt="Dealey Plaza" class="article-image">
+      
+      <p>Jednou z najznámejších konšpiračných teórií je, že atentát bol výsledkom interného sprisahania v americkej vláde...</p>
+      <img src="https://i.postimg.cc/PxRnC5cC/IMG-7834.webp" alt="Kennedy počas prejavu" class="article-image">
+      
+      <p>Ďalšia významná teória zahŕňa mafiu. Kennedyho rodina, najmä jeho brat Robert Kennedy...</p>
+      <img src="https://i.postimg.cc/GpzC1QxJ/IMG-7835.jpg" alt="Mafia teórie" class="article-image">
     </div>
   `
 };
