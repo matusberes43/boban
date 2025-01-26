@@ -14,20 +14,17 @@ body {
   background-attachment: fixed;
 }
 
-/* Hlavný header */
+/* Hlavný header s obrázkom */
 header {
-  background: rgba(0, 0, 0, 0.7); /* Polopriehľadné čierne pozadie */
-  padding: 5px 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Jemný tieň */
+  position: relative;
+  text-align: center;
+  margin-bottom: 10px; /* Priestor medzi headerom a sekundárnym headerom */
 }
 
-header h1 {
-  margin: 0;
-  font-size: 1.8rem;
-  color: #f4e242; /* Zlatožltá farba */
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: 1.5px;
+header .header-image {
+  width: 100%; /* Obrázok zaberá celú šírku stránky */
+  max-height: 250px; /* Nastavená maximálna výška pre lepšiu vizuálnu rovnováhu */
+  object-fit: cover; /* Orezanie obrázka, aby vyplnil priestor rovnomerne */
 }
 
 /* Sekundárny header */
