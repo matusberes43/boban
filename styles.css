@@ -46,10 +46,10 @@ header {
 
 /* Sekundárny header */
 .secondary-header {
-  margin-top: 82px; /* Odstup od headeru (80px výška + 2px čiaru) */
+  margin-top: 82px; /* Odstup od headeru */
   display: flex;
   justify-content: center;
-  gap: 10px; /* Menšia medzera medzi boxmi */
+  gap: 30px; /* Väčšia medzera medzi boxmi */
   padding: 20px 0;
   width: 100%;
 }
@@ -61,11 +61,13 @@ header {
   border-radius: 10px; /* Zaoblené rohy */
   border: 2px solid red; /* Červená čiara okolo boxu */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8); /* Jemný tieň */
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
   transition: transform 0.3s ease, background 0.3s ease;
   cursor: pointer;
+  width: 200px; /* Fixná šírka boxu */
+  text-align: center;
 }
 
 .box:hover {
@@ -81,9 +83,7 @@ header {
   max-width: 90%;
   margin-top: 30px; /* Odstup kvôli sekundárnemu headeru */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
-}
-
-p {
-  font-size: 1.2rem;
+  color: white;
+  font-size: 1rem;
   line-height: 1.5;
 }
