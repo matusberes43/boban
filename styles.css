@@ -32,25 +32,27 @@ header h1 {
 
 /* Sekundárny header */
 .secondary-header {
-  background: rgba(0, 0, 0, 0.5); /* Polopriehľadné čierne pozadie */
-  padding: 10px 0;
+  background: rgba(255, 255, 255, 0.1); /* Jemné priehľadné biele pozadie */
+  padding: 15px 0;
   display: flex;
   justify-content: center;
-  gap: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Jemný spodný tieň */
+  gap: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Jemný tieň pre oddelenie */
 }
 
 .secondary-header a {
   text-decoration: none;
   color: #f4e242; /* Zlatožltá farba odkazov */
-  font-size: 1.2rem;
+  font-size: 1.5rem; /* Väčší a elegantný font */
+  font-family: 'Georgia', serif; /* Elegantný a čitateľný font */
   font-weight: bold;
-  text-transform: uppercase;
-  transition: color 0.3s ease;
+  text-transform: capitalize;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .secondary-header a:hover {
   color: #ffffff; /* Biela farba pri prechode myšou */
+  transform: scale(1.1); /* Jemné zväčšenie pri prechode */
 }
 
 /* Footer */
