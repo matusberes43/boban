@@ -81,10 +81,17 @@ header {
   width: 250px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease;
+  cursor: pointer;
 }
 
 .content-box:hover {
   transform: scale(1.05);
   background: rgba(255, 255, 255, 0.1);
+}
+
+.content-box a {
+  text-decoration: none;
+  color: inherit; /* Zachovanie farby rodiča */
+  font-weight: bold;
 }
