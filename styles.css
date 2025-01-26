@@ -49,7 +49,7 @@ header {
   margin-top: 82px; /* Odstup od headeru (80px výška + 2px čiaru) */
   display: flex;
   justify-content: center;
-  gap: 20px; /* Medzera medzi boxmi */
+  gap: 10px; /* Menšia medzera medzi boxmi */
   padding: 20px 0;
   width: 100%;
 }
@@ -57,10 +57,11 @@ header {
 .box {
   background: rgba(0, 0, 0, 0.8); /* Tmavé pozadie boxu */
   color: white;
-  padding: 15px 30px;
+  padding: 10px 20px; /* Menšie rozmery boxu */
   border-radius: 10px; /* Zaoblené rohy */
+  border: 2px solid red; /* Červená čiara okolo boxu */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8); /* Jemný tieň */
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
   text-transform: uppercase;
   transition: transform 0.3s ease, background 0.3s ease;
