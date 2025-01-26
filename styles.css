@@ -110,6 +110,18 @@ header {
   line-height: 1.8; /* Zlepšené riadkovanie */
 }
 
+/* Upravený nadpis článku */
+.article h2 {
+  font-size: 2.5rem; /* Väčší nadpis */
+  color: #f4e242; /* Zlatožltá farba */
+  font-family: 'Montserrat', sans-serif; /* Moderný a elegantný font */
+  text-align: center; /* Centrovanie nadpisu */
+  margin-bottom: 20px; /* Priestor pod nadpisom */
+  text-transform: uppercase; /* Veľké písmená */
+  letter-spacing: 2px; /* Zvýraznené medzery medzi písmenami */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Jemný tieň pre hĺbku */
+}
+
 /* Štýl pre obrázky v článku */
 .article-image {
   display: block;
@@ -118,14 +130,6 @@ header {
   margin: 15px auto; /* Vertikálne zarovnanie */
   border-radius: 10px; /* Zaoblené rohy obrázkov */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Jemný tieň */
-}
-
-/* Štýly pre nadpis článku */
-.article h2 {
-  font-size: 2rem;
-  color: #f4e242; /* Zlatožltá farba nadpisu */
-  text-align: center;
-  margin-bottom: 15px;
 }
 
 /* Footer (voliteľný) */
