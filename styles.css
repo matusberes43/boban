@@ -16,10 +16,10 @@ body {
 
 /* Hlavný header */
 header {
-  background: #000; /* Čierne pozadie */
-  padding: 18px 0; /* Znížený padding o 10 % */
+  background: #000;
+  padding: 18px 0;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Jemný tieň */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .logo-container {
@@ -27,46 +27,64 @@ header {
 }
 
 .logo {
-  width: 150px; /* Šírka loga */
-  height: auto; /* Automatické prispôsobenie výšky */
-  border-radius: 10px; /* Jemne zaoblené rohy */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Jemný tieň loga */
+  width: 150px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 /* Sekundárny header */
 .secondary-header {
-  background: rgba(0, 0, 0, 0.5); /* Polopriehľadné čierne pozadie */
+  background: rgba(0, 0, 0, 0.5);
   padding: 10px 0;
   display: flex;
   justify-content: center;
   gap: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Jemný spodný tieň */
-  border-top: 1px solid rgba(255, 255, 255, 0.2); /* Jemná horná línia */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Jemná spodná línia */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .secondary-header a {
   text-decoration: none;
-  color: #f4e242; /* Zlatožltá farba odkazov */
-  font-size: 1.2rem; /* Menší a elegantnejší text */
-  font-family: 'Verdana', sans-serif; /* Čistý, moderný font */
+  color: #f4e242;
+  font-size: 1.2rem;
+  font-family: 'Verdana', sans-serif;
   font-weight: bold;
-  text-transform: uppercase; /* Veľké písmená */
-  padding: 5px 15px; /* Vnútorné odsadenie pre lepší dizajn */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Jemný rámček okolo odkazu */
-  border-radius: 5px; /* Zaoblené rohy */
+  text-transform: uppercase;
+  padding: 5px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
   transition: all 0.3s ease;
 }
 
 .secondary-header a:hover {
-  background: rgba(255, 255, 255, 0.1); /* Svetlé pozadie pri hover */
-  color: #ffffff; /* Biela farba textu pri hover */
-  transform: scale(1.05); /* Jemné zväčšenie pri hover */
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  transform: scale(1.05);
 }
 
-/* Footer */
-footer {
-  background: none;
-  padding: 0;
-  height: 0;
+/* Obsah */
+.content-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  gap: 15px;
+}
+
+.content-box {
+  background: rgba(0, 0, 0, 0.7);
+  color: #f4e242;
+  font-size: 1rem;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  padding: 15px;
+  width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.content-box:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.1);
 }
