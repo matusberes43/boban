@@ -1,142 +1,51 @@
-/* Globálne štýly */
 body {
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif;
-  text-align: center;
-  color: white;
-  background-image: url('https://i.postimg.cc/rs4zGR0W/IMG-7816.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
+  background-color: #f4f4f4;
 }
 
-/* Hlavný header */
 header {
-  background: #000; /* Čierne pozadie */
-  padding: 18px 0;
+  background-color: #333;
+  color: white;
+  padding: 1em 0;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-.logo-container {
-  display: inline-block;
+h1, h2 {
+  margin: 0;
 }
 
-.logo {
-  width: 150px; /* Šírka loga */
-  height: auto; /* Automatické prispôsobenie výšky */
-  border-radius: 10px; /* Zaoblené rohy */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+main {
+  padding: 1em;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-/* Sekundárny header */
-.secondary-header {
-  background: rgba(0, 0, 0, 0.5); /* Polopriehľadné čierne pozadie */
-  padding: 10px 0;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Jemný tieň */
+.category {
+  margin: 2em 0;
 }
 
-.secondary-header a {
+.category h2 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+  color: #444;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 0.5em 0;
+}
+
+a {
   text-decoration: none;
-  color: #f4e242; /* Zlatožltá farba */
-  font-size: 1.2rem;
-  font-family: 'Verdana', sans-serif;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding: 5px 15px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 5px;
-  transition: all 0.3s ease;
+  color: #007BFF;
 }
 
-.secondary-header a:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  transform: scale(1.05);
-}
-
-/* Obsahový kontajner */
-.content-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 20px;
-  gap: 15px;
-}
-
-/* Boxy so zoznamom konšpirácií */
-.content-box {
-  background: rgba(0, 0, 0, 0.7);
-  color: #f4e242;
-  font-size: 1rem;
-  font-family: 'Arial', sans-serif;
-  text-align: center;
-  padding: 15px;
-  width: 250px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, background 0.3s ease;
-  cursor: pointer;
-}
-
-.content-box:hover {
-  transform: scale(1.05);
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.content-box a {
-  text-decoration: none;
-  color: inherit; /* Zachová farbu rodiča */
-  font-weight: bold;
-}
-
-/* Štýly pre článok */
-.article {
-  background: rgba(0, 0, 0, 0.85); /* Jemne tmavšie pozadie */
-  color: white; /* Biela farba textu */
-  font-size: 1rem;
-  font-family: 'Arial', sans-serif;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  max-width: 800px; /* Maximálna šírka článku */
-  margin: 20px auto; /* Centrovanie článku */
-  text-align: left; /* Zarovnanie textu naľavo */
-  line-height: 1.8; /* Zlepšené riadkovanie */
-}
-
-/* Upravený nadpis článku */
-.article h2 {
-  font-size: 2.5rem; /* Väčší nadpis */
-  color: #f4e242; /* Zlatožltá farba */
-  font-family: 'Montserrat', sans-serif; /* Moderný a elegantný font */
-  text-align: center; /* Centrovanie nadpisu */
-  margin-bottom: 20px; /* Priestor pod nadpisom */
-  text-transform: uppercase; /* Veľké písmená */
-  letter-spacing: 2px; /* Zvýraznené medzery medzi písmenami */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Jemný tieň pre hĺbku */
-}
-
-/* Štýl pre obrázky v článku */
-.article-image {
-  display: block;
-  max-width: 100%; /* Obrázok sa prispôsobí šírke kontajnera */
-  height: auto; /* Automatické prispôsobenie výšky */
-  margin: 15px auto; /* Vertikálne zarovnanie */
-  border-radius: 10px; /* Zaoblené rohy obrázkov */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Jemný tieň */
-}
-
-/* Footer (voliteľný) */
-footer {
-  background: none;
-  padding: 10px;
-  font-size: 0.9rem;
-  color: #f4e242;
-  text-align: center;
+a:hover {
+  text-decoration: underline;
 }
