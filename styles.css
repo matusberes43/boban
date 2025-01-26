@@ -17,14 +17,14 @@ body {
 /* Header štýly */
 header {
   background: rgba(0, 0, 0, 0.7); /* Polopriehľadné čierne pozadie */
-  padding: 10px 0; /* Menší padding pre nižšiu výšku */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Jemný tieň pre moderný efekt */
+  padding: 5px 0; /* Ešte menší padding pre nižšiu výšku */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Jemný tieň */
 }
 
 header h1 {
   margin: 0;
-  font-size: 2rem; /* Stredne veľký text */
-  color: #f4e242; /* Zlatožltá farba pre zvýraznenie */
+  font-size: 1.8rem; /* Menšie písmo pre nižší header */
+  color: #f4e242; /* Zlatožltá farba */
   text-transform: uppercase; /* Veľké písmená */
   font-weight: bold;
   letter-spacing: 1.5px; /* Štýlové medzery medzi písmenami */
