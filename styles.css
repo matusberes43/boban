@@ -11,20 +11,46 @@ body {
   color: white;
   background: url('https://i.postimg.cc/hjNPsDC6/IMG-7843.jpg') no-repeat center center fixed;
   background-size: cover;
-  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+/* Header */
+header {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Polopriehľadný čierny pás */
+  position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  overflow: hidden;
+  padding: 10px 0;
+  z-index: 100;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 50px; /* Upraviť veľkosť loga podľa potreby */
+  height: auto;
 }
 
 /* Obsah */
 .content {
-  background: rgba(0, 0, 0, 0.5); /* Polopriehľadné pozadie pre lepšiu čitateľnosť textu */
+  background: rgba(0, 0, 0, 0.5); /* Polopriehľadné pozadie pre text */
   padding: 20px;
   border-radius: 10px;
   max-width: 90%;
+  margin-top: 80px; /* Odstup kvôli fixnému headeru */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
 }
 
