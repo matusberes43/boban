@@ -21,10 +21,25 @@ header {
   margin-bottom: 10px; /* Priestor medzi headerom a sekundárnym headerom */
 }
 
-header .header-image {
-  width: 100%; /* Obrázok zaberá celú šírku stránky */
-  max-height: 250px; /* Nastavená maximálna výška pre lepšiu vizuálnu rovnováhu */
-  object-fit: cover; /* Orezanie obrázka, aby vyplnil priestor rovnomerne */
+.header-image {
+  background-image: url('https://i.postimg.cc/fyBm8Z9M/IMG-7822.jpg');
+  background-size: cover; /* Obrázok sa prispôsobí šírke a výške */
+  background-position: center; /* Zarovnané na stred */
+  background-repeat: no-repeat; /* Žiadne opakovanie obrázka */
+  width: 100%; /* Obrázok vyplní celú šírku zariadenia */
+  height: 30vh; /* Výška zaberá 30% výšky obrazovky */
+}
+
+@media screen and (max-width: 768px) {
+  .header-image {
+    height: 40vh; /* Väčšia výška pre menšie obrazovky (mobily a tablety) */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header-image {
+    height: 50vh; /* Ešte väčšia výška pre úzke obrazovky (mobily) */
+  }
 }
 
 /* Sekundárny header */
