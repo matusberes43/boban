@@ -17,27 +17,22 @@ body {
 /* Header štýly */
 header {
   background: rgba(0, 0, 0, 0.7); /* Polopriehľadné čierne pozadie */
-  padding: 5px 0; /* Ešte menší padding pre nižšiu výšku */
+  padding: 5px 0; /* Menší padding pre nižšiu výšku */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Jemný tieň */
 }
 
 header h1 {
   margin: 0;
-  font-size: 1.8rem; /* Menšie písmo pre nižší header */
+  font-size: 1.8rem; /* Veľkosť textu */
   color: #f4e242; /* Zlatožltá farba */
   text-transform: uppercase; /* Veľké písmená */
   font-weight: bold;
-  letter-spacing: 1.5px; /* Štýlové medzery medzi písmenami */
+  letter-spacing: 1.5px; /* Medzery medzi písmenami */
 }
 
 /* Footer štýly */
 footer {
-  background: rgba(0, 0, 0, 0.7); /* Rovnaké pozadie ako header */
-  padding: 10px;
-  color: #ccc;
-  font-size: 0.9rem;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3); /* Jemný tieň hore */
+  background: none; /* Pätička je prázdna, bez obsahu */
+  padding: 0;
+  height: 0;
 }
