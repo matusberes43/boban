@@ -35,16 +35,17 @@ const articles = {
   "area-51": `
     <div class="article">
       <h2>Area 51 a mimozemšťania</h2>
-      <p>Area 51 je jednou z najznámejších tajných vojenských základní na svete, ktorá leží v Nevadskej púšti, približne 135 km severozápadne od Las Vegas. Oficiálne je známa ako Groom Lake alebo Homey Airport, ale pre verejnosť sa stala symbolom tajomstiev a konšpirácií. Základňa bola založená v roku 1955 počas studenej vojny ako testovacie miesto pre vývoj špionážneho lietadla Lockheed U-2. Neskôr slúžila na testovanie pokročilých lietadiel, ako SR-71 Blackbird a F-117 Nighthawk. Dlhoročné utajovanie jej existencie prispelo k množstvu špekulácií, pričom vláda oficiálne potvrdila jej existenciu až v roku 2013.</p>
+      <p>Area 51, tajomná vojenská základňa ukrytá v púšti štátu Nevada, je už desaťročia stredobodom pozornosti konšpiračných teórií a záhad. Nachádza sa približne 135 kilometrov severozápadne od Las Vegas a oficiálne je známa ako Groom Lake alebo Homey Airport. Vláda Spojených štátov dlhé roky existenciu tejto základne popierala, až kým ju v roku 2013 oficiálne nepotvrdila.</p>
       <img src="https://i.postimg.cc/R0RgVtYX/IMG-7823.jpg" alt="Area 51 základňa" class="article-image">
       
-      <p>Najpopulárnejšia konšpiračná teória spojená s Area 51 tvrdí, že základňa uchováva mimozemské technológie a telá mimozemšťanov. Tieto tvrdenia často odkazujú na haváriu UFO v Roswelli v roku 1947, po ktorej mali byť trosky a telá prevezené práve do Area 51. Niektorí konšpirátori veria, že tu prebiehajú tajné experimenty spätne analyzujúce (reverse engineering) mimozemské lode, aby ich technológie mohli byť využité vo vojenských projektoch. Medzi ďalšie populárne teórie patrí tvrdenie, že sa tu vykonávajú genetické experimenty, vývoj futuristických zbraní, manipulácia s počasím alebo dokonca experimenty s cestovaním časom.</p>
+      <p>História Area 51 siaha do 50. rokov minulého storočia, kedy bola založená počas vrcholiacej studenej vojny. Jej pôvodným účelom bolo poskytnúť izolované miesto na vývoj a testovanie špionážneho lietadla Lockheed U-2. Po úspechu U-2 sa základňa stala centrom ďalších pokročilých projektov, vrátane vývoja lietadiel SR-71 Blackbird a F-117 Nighthawk.</p>
       <img src="https://i.postimg.cc/VLqGH2Fx/IMG-7824.jpg" alt="Mimozemšťan" class="article-image">
       
-      <p>Jednou z kľúčových postáv, ktorá posilnila tieto teórie, je Bob Lazar. V roku 1989 tvrdil, že pracoval v blízkosti Area 51 na mieste zvanom S-4, kde mal analyzovať mimozemskú technológiu. Tvrdil, že mimozemské lode boli poháňané neznámym prvkom 115 (neskôr pomenovaným Moscovium), ktorý umožňoval gravitačnú manipuláciu. Hoci sú jeho tvrdenia kontroverzné, stali sa základom mnohých ďalších špekulácií.</p>
+      <p>Jednou z najpopulárnejších konšpiračných teórií je, že Area 51 je miestom, kde sa uchovávajú trosky mimozemskej lode, ktorá údajne havarovala v Roswelli v roku 1947. Táto teória tvrdí, že vláda nielenže ukrýva technológie mimozemského pôvodu, ale aj telá mimozemšťanov, ktoré boli objavené pri havárii. Podľa konšpirátorov sú tieto predmety podrobované intenzívnemu skúmaniu.</p>
       <img src="https://i.postimg.cc/pXJCBzWx/IMG-7825.webp" alt="Bob Lazar" class="article-image">
       
-      <p>Oficiálne vláda tvrdí, že Area 51 slúži na vývoj a testovanie pokročilých vojenských technológií, pričom utajenie je nevyhnutné pre národnú bezpečnosť. Napriek tomu zostáva Area 51 jedným z najväčších symbolov tajomstiev a konšpirácií na svete. Tajomstvá Area 51 pravdepodobne nikdy nebudú úplne odhalené, čo len ďalej živí legendy o tomto ikonickom mieste.</p>
+      <p>V roku 2019 Area 51 opäť upútala pozornosť celého sveta, keď sa na sociálnych sieťach objavila výzva „Storm Area 51“, ktorá mala za cieľ preniknúť na základňu a odhaliť jej tajomstvá. Napriek tomu, že nikto základňu neprelomil, udalosť ukázala, aký silný kultúrny fenomén Area 51 predstavuje.</p>
+      <p>Oficiálne vláda Spojených štátov tvrdí, že Area 51 slúži výlučne na vývoj a testovanie pokročilých vojenských technológií a že utajenie je nevyhnutné pre národnú bezpečnosť.</p>
     </div>
   `,
   "11-september": `
