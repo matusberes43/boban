@@ -29,8 +29,9 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 0;
+  padding: 15px 0;
   z-index: 100;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5); /* Tenká biela čiara */
 }
 
 .logo-container {
@@ -40,7 +41,7 @@ header {
 }
 
 .logo {
-  width: 50px; /* Upraviť veľkosť loga podľa potreby */
+  width: 120px; /* Zvýšená veľkosť loga */
   height: auto;
 }
 
@@ -50,7 +51,7 @@ header {
   padding: 20px;
   border-radius: 10px;
   max-width: 90%;
-  margin-top: 80px; /* Odstup kvôli fixnému headeru */
+  margin-top: 120px; /* Odstup kvôli fixnému headeru */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
 }
 
