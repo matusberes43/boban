@@ -37,16 +37,16 @@ header h1 {
   display: flex;
   justify-content: center;
   gap: 30px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Jemný tieň pre oddelenie */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Jemný spodný tieň */
 }
 
 .secondary-header a {
   text-decoration: none;
   color: #f4e242; /* Zlatožltá farba odkazov */
-  font-size: 1.5rem; /* Väčší a elegantný font */
-  font-family: 'Georgia', serif; /* Elegantný a čitateľný font */
+  font-size: 1.5rem; /* Väčší a elegantný text */
+  font-family: 'Georgia', serif; /* Elegantný font */
   font-weight: bold;
-  text-transform: capitalize;
+  text-transform: uppercase; /* Veľké písmená */
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
