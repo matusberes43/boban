@@ -32,27 +32,33 @@ header h1 {
 
 /* Sekundárny header */
 .secondary-header {
-  background: rgba(255, 255, 255, 0.1); /* Jemné priehľadné biele pozadie */
-  padding: 15px 0;
+  background: rgba(0, 0, 0, 0.5); /* Polopriehľadné čierne pozadie */
+  padding: 10px 0;
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Jemný spodný tieň */
+  border-top: 1px solid rgba(255, 255, 255, 0.2); /* Jemná horná línia */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Jemná spodná línia */
 }
 
 .secondary-header a {
   text-decoration: none;
   color: #f4e242; /* Zlatožltá farba odkazov */
-  font-size: 1.5rem; /* Väčší a elegantný text */
-  font-family: 'Georgia', serif; /* Elegantný font */
+  font-size: 1.2rem; /* Menší a elegantnejší text */
+  font-family: 'Verdana', sans-serif; /* Čistý, moderný font */
   font-weight: bold;
   text-transform: uppercase; /* Veľké písmená */
-  transition: color 0.3s ease, transform 0.3s ease;
+  padding: 5px 15px; /* Vnútorné odsadenie pre lepší dizajn */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Jemný rámček okolo odkazu */
+  border-radius: 5px; /* Zaoblené rohy */
+  transition: all 0.3s ease;
 }
 
 .secondary-header a:hover {
-  color: #ffffff; /* Biela farba pri prechode myšou */
-  transform: scale(1.1); /* Jemné zväčšenie pri prechode */
+  background: rgba(255, 255, 255, 0.1); /* Svetlé pozadie pri hover */
+  color: #ffffff; /* Biela farba textu pri hover */
+  transform: scale(1.05); /* Jemné zväčšenie pri hover */
 }
 
 /* Footer */
