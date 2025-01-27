@@ -6,7 +6,7 @@ function createBoxes(theories, containerId) {
   theories.forEach((theory) => {
     const box = document.createElement("div");
     box.className = "box";
-    box.innerHTML = `<span class="icon">🛸</span> ${theory}`; // Pridaná ikona
+    box.innerHTML = `<i class="fas fa-question"></i> ${theory}`; // Pridaná ikona
     contentBox.appendChild(box);
   });
 }
@@ -64,7 +64,7 @@ function showRandomTheory() {
 
   const randomTheory = allTheories[Math.floor(Math.random() * allTheories.length)];
   const contentBox = document.getElementById("content-box");
-  contentBox.innerHTML = `<div class="box"><span class="icon">🎲</span> ${randomTheory}</div>`;
+  contentBox.innerHTML = `<div class="box"><i class="fas fa-dice"></i> ${randomTheory}</div>`;
   playClickSound();
 }
 
