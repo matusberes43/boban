@@ -1,3 +1,6 @@
+// Globálna premenná pre stav zvuku
+let isMuted = false;
+
 // Funkcia pre vytvorenie a pridanie boxov
 function createBoxes(theories, containerId) {
   const contentBox = document.getElementById(containerId);
@@ -44,13 +47,13 @@ const worldTheories = [
 // Funkcia pre zobrazenie konšpiračných teórií USA
 function showUSA() {
   createBoxes(usaTheories, "content-box");
-  playClickSound("click-sound-usa");
+  playClickSound();
 }
 
 // Funkcia pre zobrazenie konšpiračných teórií sveta
 function showWorld() {
   createBoxes(worldTheories, "content-box");
-  playClickSound("click-sound-world");
+  playClickSound();
 }
 
 // Funkcia pre zobrazenie náhodnej teórie
@@ -59,14 +62,14 @@ function showRandomTheory() {
   const randomTheory = allTheories[Math.floor(Math.random() * allTheories.length)];
   const contentBox = document.getElementById("content-box");
   contentBox.innerHTML = `<div class="box"><i class="${randomTheory.icon}"></i> ${randomTheory.name}</div>`;
-  playClickSound("click-sound-random");
+  playClickSound();
 }
 
 // Funkcia pre resetovanie obsahu
 function resetContent() {
   const contentBox = document.getElementById("content-box");
   contentBox.innerHTML = "";
-  playClickSound("click-sound-reset");
+  playClickSound();
 }
 
 // Funkcia pre prepínanie tmavého režimu
@@ -80,16 +83,29 @@ function toggleDarkMode() {
   } else {
     button.innerHTML = '<span class="icon">🌙</span> Režim tmavého svetla';
   }
-  playClickSound("click-sound-darkmode");
+  playClickSound();
 }
 
 // Funkcia pre prehratie zvukového efektu
-function playClickSound(soundId) {
-  const clickSound = document.getElementById(soundId);
-  if (clickSound) {
-    clickSound.play();
+function playClickSound() {
+  if (!isMuted) {
+    const clickSound = document.getElementById("click-sound");
+    if (clickSound) {
+      clickSound.play();
+    } else {
+      console.error("Zvukový súbor nebol nájdený!");
+    }
+  }
+}
+
+// Funkcia pre prepínanie zvuku (mute/unmute)
+function toggleMute() {
+  isMuted = !isMuted;
+  const muteButton = document.querySelector(".mute-button");
+  if (isMuted) {
+    muteButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
   } else {
-    console.error("Zvukový súbor nebol nájdený!");
+    muteButton.innerHTML = '<i class="fas fa-volume-up"></i>';
   }
 }
 
@@ -105,6 +121,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Tlačidlo pre tmavý režim
   document.querySelector(".interactive-button").addEventListener("click", toggleDarkMode);
+
+  // Tlačidlo na vypnutie/zapnutie zvuku
+  document.querySelector(".mute-button").addEventListener("click", toggleMute);
 
   // Kliknutie na boxy
   const contentBox = document.getElementById("content-box");
