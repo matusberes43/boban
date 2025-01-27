@@ -55,6 +55,19 @@ function resetContent() {
   contentBox.innerHTML = "";
 }
 
+// Funkcia pre prepínanie tmavého režimu
+function toggleDarkMode() {
+  const body = document.body;
+  body.classList.toggle("dark-mode");
+
+  const button = document.querySelector(".interactive-button");
+  if (body.classList.contains("dark-mode")) {
+    button.innerHTML = '<span class="icon">☀️</span> Režim svetlého svetla';
+  } else {
+    button.innerHTML = '<span class="icon">🌙</span> Režim tmavého svetla';
+  }
+}
+
 // Pridanie event listenera pre boxy
 document.addEventListener("DOMContentLoaded", function() {
   const contentBox = document.getElementById("content-box");
