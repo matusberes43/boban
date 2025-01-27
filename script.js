@@ -79,9 +79,9 @@ function toggleDarkMode() {
 
   const button = document.querySelector(".interactive-button");
   if (body.classList.contains("dark-mode")) {
-    button.innerHTML = '<span class="icon">☀️</span> Režim svetlého svetla';
+    button.innerHTML = '<i class="fas fa-sun"></i>';
   } else {
-    button.innerHTML = '<span class="icon">🌙</span> Režim tmavého svetla';
+    button.innerHTML = '<i class="fas fa-moon"></i>';
   }
   playClickSound();
 }
