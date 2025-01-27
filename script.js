@@ -92,7 +92,11 @@ function toggleDarkMode() {
 // Funkcia pre prehratie zvukového efektu
 function playClickSound() {
   const clickSound = document.getElementById("click-sound");
-  clickSound.play();
+  if (clickSound) {
+    clickSound.play();
+  } else {
+    console.error("Zvukový súbor nebol nájdený!");
+  }
 }
 
 // Pridanie event listenerov pre tlačidlá
