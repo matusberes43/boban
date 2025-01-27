@@ -69,7 +69,7 @@ function toggleDarkMode() {
 }
 
 // Pridanie event listenerov pre tlačidlá
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Tlačidlá pre teórie
   document.getElementById("usa-box").addEventListener("click", showUSA);
   document.getElementById("world-box").addEventListener("click", showWorld);
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Kliknutie na boxy
   const contentBox = document.getElementById("content-box");
-  contentBox.addEventListener("click", function(event) {
+  contentBox.addEventListener("click", function (event) {
     if (event.target.classList.contains("box")) {
       alert(`Vybrali ste teóriu: ${event.target.textContent}`);
     }
