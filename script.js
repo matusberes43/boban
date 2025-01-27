@@ -1,8 +1,18 @@
-// Funkcia pre zobrazenie konšpiračných teórií USA
-function showUSA() {
-  const contentBox = document.getElementById("content-box");
+// Funkcia pre vytvorenie a pridanie boxov
+function createBoxes(theories, containerId) {
+  const contentBox = document.getElementById(containerId);
   contentBox.innerHTML = ""; // Vyčistiť obsah
 
+  theories.forEach((theory) => {
+    const box = document.createElement("div");
+    box.className = "box";
+    box.textContent = theory;
+    contentBox.appendChild(box);
+  });
+}
+
+// Funkcia pre zobrazenie konšpiračných teórií USA
+function showUSA() {
   const usaTheories = [
     "Area 51 a mimozemšťania",
     "11. september 2001",
@@ -21,19 +31,11 @@ function showUSA() {
     "COVID-19 ako biologická zbraň alebo podvod"
   ];
 
-  usaTheories.forEach((theory) => {
-    const box = document.createElement("div");
-    box.className = "box";
-    box.textContent = theory;
-    contentBox.appendChild(box);
-  });
+  createBoxes(usaTheories, "content-box");
 }
 
 // Funkcia pre zobrazenie konšpiračných teórií sveta
 function showWorld() {
-  const contentBox = document.getElementById("content-box");
-  contentBox.innerHTML = ""; // Vyčistiť obsah
-
   const worldTheories = [
     "Smrť princeznej Diany",
     "Záhada Dyatlovovej výpravy",
@@ -44,10 +46,21 @@ function showWorld() {
     "Nacisti v Antarktíde"
   ];
 
-  worldTheories.forEach((theory) => {
-    const box = document.createElement("div");
-    box.className = "box";
-    box.textContent = theory;
-    contentBox.appendChild(box);
-  });
+  createBoxes(worldTheories, "content-box");
 }
+
+// Funkcia pre resetovanie obsahu
+function resetContent() {
+  const contentBox = document.getElementById("content-box");
+  contentBox.innerHTML = "";
+}
+
+// Pridanie event listenera pre boxy
+document.addEventListener("DOMContentLoaded", function() {
+  const contentBox = document.getElementById("content-box");
+  contentBox.addEventListener("click", function(event) {
+    if (event.target.classList.contains("box")) {
+      alert(`Vybrali ste teóriu: ${event.target.textContent}`);
+    }
+  });
+});
