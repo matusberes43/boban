@@ -68,8 +68,19 @@ function toggleDarkMode() {
   }
 }
 
-// Pridanie event listenera pre boxy
+// Pridanie event listenerov pre tlačidlá
 document.addEventListener("DOMContentLoaded", function() {
+  // Tlačidlá pre teórie
+  document.getElementById("usa-box").addEventListener("click", showUSA);
+  document.getElementById("world-box").addEventListener("click", showWorld);
+
+  // Resetovacie tlačidlo
+  document.querySelector(".reset-button").addEventListener("click", resetContent);
+
+  // Tlačidlo pre tmavý režim
+  document.querySelector(".interactive-button").addEventListener("click", toggleDarkMode);
+
+  // Kliknutie na boxy
   const contentBox = document.getElementById("content-box");
   contentBox.addEventListener("click", function(event) {
     if (event.target.classList.contains("box")) {
