@@ -6,7 +6,7 @@ function createBoxes(theories, containerId) {
   theories.forEach((theory) => {
     const box = document.createElement("div");
     box.className = "box";
-    box.textContent = theory;
+    box.innerHTML = `<span class="icon">🛸</span> ${theory}`; // Pridaná ikona
     contentBox.appendChild(box);
   });
 }
@@ -32,6 +32,7 @@ function showUSA() {
   ];
 
   createBoxes(usaTheories, "content-box");
+  playClickSound();
 }
 
 // Funkcia pre zobrazenie konšpiračných teórií sveta
@@ -47,12 +48,31 @@ function showWorld() {
   ];
 
   createBoxes(worldTheories, "content-box");
+  playClickSound();
+}
+
+// Funkcia pre zobrazenie náhodnej teórie
+function showRandomTheory() {
+  const allTheories = [
+    "Area 51 a mimozemšťania",
+    "11. september 2001",
+    "Zavraždenie Johna F. Kennedyho",
+    "Smrť princeznej Diany",
+    "Záhada Dyatlovovej výpravy",
+    "COVID-19 ako biologická zbraň alebo podvod"
+  ];
+
+  const randomTheory = allTheories[Math.floor(Math.random() * allTheories.length)];
+  const contentBox = document.getElementById("content-box");
+  contentBox.innerHTML = `<div class="box"><span class="icon">🎲</span> ${randomTheory}</div>`;
+  playClickSound();
 }
 
 // Funkcia pre resetovanie obsahu
 function resetContent() {
   const contentBox = document.getElementById("content-box");
   contentBox.innerHTML = "";
+  playClickSound();
 }
 
 // Funkcia pre prepínanie tmavého režimu
@@ -66,6 +86,13 @@ function toggleDarkMode() {
   } else {
     button.innerHTML = '<span class="icon">🌙</span> Režim tmavého svetla';
   }
+  playClickSound();
+}
+
+// Funkcia pre prehratie zvukového efektu
+function playClickSound() {
+  const clickSound = document.getElementById("click-sound");
+  clickSound.play();
 }
 
 // Pridanie event listenerov pre tlačidlá
@@ -73,6 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Tlačidlá pre teórie
   document.getElementById("usa-box").addEventListener("click", showUSA);
   document.getElementById("world-box").addEventListener("click", showWorld);
+  document.getElementById("random-box").addEventListener("click", showRandomTheory);
 
   // Resetovacie tlačidlo
   document.querySelector(".reset-button").addEventListener("click", resetContent);
