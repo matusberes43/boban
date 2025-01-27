@@ -94,66 +94,6 @@ header {
 
 /* Resetovacie tlačidlo */
 .reset-button {
-  background: linear-gradient(135deg, #ff416c, #ff4b2b);
-  color: white;
-  padding: 12px 24px;
-  border-radius: 25px;
-  border: none;
-  cursor: pointer;
-  margin-top: 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-}
-
-.reset-button:hover {
-  background: linear-gradient(135deg, #ff4b2b, #ff416c);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
-
-.reset-button:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-/* Interaktívne tlačidlo */
-.interactive-button {
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  color: white;
-  padding: 12px 24px;
-  border-radius: 25px;
-  border: none;
-  cursor: pointer;
-  margin-top: 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.interactive-button:hover {
-  background: linear-gradient(135deg, #2575fc, #6a11cb);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
-
-.interactive-button:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-/* Tlačidlo na vypnutie/zapnutie zvuku */
-.mute-button {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
   background: rgba(0, 0, 0, 0.8);
   color: white;
   border: none;
@@ -165,15 +105,75 @@ header {
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.3s ease;
+  position: fixed;
+  bottom: 140px;
+  right: 20px;
+}
+
+.reset-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.reset-button i {
+  font-size: 1rem;
+}
+
+/* Interaktívne tlačidlo */
+.interactive-button {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease, transform 0.3s ease;
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+}
+
+.interactive-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.interactive-button i {
+  font-size: 1rem;
+}
+
+/* Tlačidlo na vypnutie/zapnutie zvuku */
+.mute-button {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease, transform 0.3s ease;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }
 
 .mute-button:hover {
   background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
 }
 
 .mute-button i {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 /* Footer */
