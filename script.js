@@ -48,6 +48,14 @@ const worldTheories = [
 function showUSA() {
   createBoxes(usaTheories, "content-box");
   playClickSound();
+
+  // Pridanie event listenera pre teóriu "Area 51 a mimozemšťania"
+  const area51Box = document.querySelector(".box:first-child");
+  if (area51Box) {
+    area51Box.addEventListener("click", function () {
+      window.location.href = "area51.html";
+    });
+  }
 }
 
 // Funkcia pre zobrazenie konšpiračných teórií sveta
