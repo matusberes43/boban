@@ -1,0 +1,23 @@
+/* Štýly pre článok */
+.article-container {
+  max-width: 800px;
+  margin: 100px auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  color: white;
+  line-height: 1.6;
+}
+
+.article-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: red;
+}
+
+.article-container p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
