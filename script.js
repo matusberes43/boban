@@ -14,6 +14,23 @@ function createBoxes(theories, containerId) {
   });
 }
 
+// Funkcia pre zobrazenie konšpiračných teórií USA
+function showUSA() {
+  createBoxes(usaTheories, "content-box");
+  playClickSound();
+
+  // Pridanie event listenerov pre jednotlivé teórie
+  const contentBox = document.getElementById("content-box");
+  contentBox.addEventListener("click", function (event) {
+    if (event.target.classList.contains("box")) {
+      const theoryName = event.target.textContent.trim();
+      if (theoryName === "Area 51 a mimozemšťania") {
+        window.location.href = "area51.html"; // Presmerovanie na stránku s článkom
+      }
+    }
+  });
+}
+
 // Zoznam teórií USA s ikonkami
 const usaTheories = [
   { name: "Area 51 a mimozemšťania", icon: "fas fa-ufo" },
