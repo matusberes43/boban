@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Area 51 a mimozemšťania</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="https://i.postimg.cc/SRB3XQ6G/IMG-7822.jpg" alt="Logo" class="logo">
+    </div>
+  </header>
+
+  <!-- Sekundárny header -->
+  <nav class="secondary-header">
+    <div class="box" id="back-box"><i class="fas fa-arrow-left"></i> Späť na hlavnú stránku</div>
+  </nav>
+
+  <!-- Obsah článku -->
+  <div class="article-content">
+    <h1>Area 51 a mimozemšťania</h1>
+    <textarea id="article-text" placeholder="Sem napíšte svoj článok..."></textarea>
+  </div>
+
+  <!-- Resetovacie tlačidlo -->
+  <button class="reset-button"><i class="fas fa-sync-alt"></i></button>
+
+  <!-- Interaktívne tlačidlo -->
+  <button class="interactive-button">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <!-- Tlačidlo na vypnutie/zapnutie zvuku -->
+  <button class="mute-button">
+    <i class="fas fa-volume-up"></i>
+  </button>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2023 Konšpiračné teórie. Všetky práva vyhradené.</p>
+  </footer>
+
+  <!-- Zvukový efekt (načítaný z externého zdroja) -->
+  <audio id="click-sound" src="https://assets.mixkit.co/active_storage/sfx/2215/2215-preview.mp3"></audio>
+
+  <script src="article-script.js"></script>
+</body>
+</html>
