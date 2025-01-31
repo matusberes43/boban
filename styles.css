@@ -28,11 +28,11 @@ body, html {
 }
 
 #skull {
-    font-size: 8rem; /* Väčšia lebka */
+    font-size: 8rem;
     color: #00ff00;
     margin-bottom: 20px;
     animation: skullGlow 2s infinite;
-    font-family: 'Press Start 2P', cursive; /* Pixelový font pre lebku */
+    font-family: 'Press Start 2P', cursive;
 }
 
 @keyframes skullGlow {
@@ -46,7 +46,7 @@ body, html {
     font-size: 4rem;
     text-transform: uppercase;
     animation: pixelGlow 2s ease-in-out;
-    font-family: 'Press Start 2P', cursive; /* Pixelový font pre text */
+    font-family: 'Press Start 2P', cursive;
 }
 
 @keyframes pixelGlow {
@@ -74,7 +74,7 @@ button {
     font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
-    font-family: 'Press Start 2P', cursive; /* Pixelový font pre tlačidlá */
+    font-family: 'Press Start 2P', cursive;
     text-transform: uppercase;
     box-shadow: 5px 5px 0 #000;
     transition: all 0.2s ease;
@@ -103,8 +103,8 @@ button:active {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    font-family: 'Press Start 2P', cursive; /* Pixelový font pre zoznam */
-    display: none; /* Skryje obdĺžnik, kým sa nezobrazí zoznam */
+    font-family: 'Press Start 2P', cursive;
+    display: none;
 }
 
 #list-title {
@@ -139,7 +139,7 @@ button:active {
     }
 
     #skull {
-        font-size: 5rem; /* Menšia lebka pre mobilné zariadenia */
+        font-size: 5rem;
     }
 
     button {
