@@ -1,4 +1,1 @@
-// Dynamické vytvorenie pirátskej lebky
-const skull = document.createElement('div');
-skull.classList.add('pirate-skull');
-document.body.appendChild(skull);
+// Nie je potrebný žiadny JavaScript pre túto funkcionalitu
