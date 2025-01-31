@@ -1,291 +1,39 @@
-/* Globálny štýl */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Základné štýly */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background-color: black;
 }
 
-/* Telo stránky */
-body {
-  font-family: Arial, sans-serif;
-  color: white;
-  background: url('https://i.postimg.cc/hjNPsDC6/IMG-7843.jpg') no-repeat center center fixed;
-  background-size: cover;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  transition: background-color 0.5s, color 0.5s;
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: white;
+    text-align: center;
 }
 
-body.dark-mode {
-  background: #121212;
-  color: #ffffff;
-}
-
-/* Header */
-header {
-  width: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 15px 0;
-  z-index: 100;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
-}
-
-.logo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.logo {
-  width: 120px;
-  height: auto;
-}
-
-/* Sekundárny header */
-.secondary-header {
-  margin-top: 82px;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  padding: 20px 0;
-  width: 100%;
-}
-
-.box {
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 7px 14px;
-  border-radius: 8px;
-  border: 2px solid red;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.8);
-  font-size: 0.7rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  transition: transform 0.3s ease, background 0.3s ease;
-  cursor: pointer;
-  width: 140px;
-  text-align: center;
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-.box:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
-}
-
-/* Obsah */
-.content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  padding: 15px;
-  margin-top: 30px;
-}
-
-/* Štýly pre článok */
-.article-content {
-  margin-top: 120px;
-  padding: 20px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 10px;
-  border: 2px solid red;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.8);
-}
-
-.article-content h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-#article-text {
-  width: 100%;
-  height: 400px;
-  padding: 10px;
-  font-size: 1rem;
-  border-radius: 8px;
-  border: 2px solid #ccc;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  resize: none;
-}
-
-#article-text::placeholder {
-  color: #ccc;
-}
-
-/* Tlačidlo späť */
-#back-box {
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 7px 14px;
-  border-radius: 8px;
-  border: 2px solid red;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.8);
-  font-size: 0.7rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  transition: transform 0.3s ease, background 0.3s ease;
-  cursor: pointer;
-  width: 140px;
-  text-align: center;
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-#back-box:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
-}
-
-/* Resetovacie tlačidlo */
-.reset-button {
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s ease, transform 0.3s ease;
-  position: fixed;
-  bottom: 140px;
-  right: 20px;
-}
-
-.reset-button:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.1);
-}
-
-.reset-button i {
-  font-size: 1rem;
-}
-
-/* Interaktívne tlačidlo */
-.interactive-button {
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s ease, transform 0.3s ease;
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-}
-
-.interactive-button:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.1);
-}
-
-.interactive-button i {
-  font-size: 1rem;
-}
-
-/* Tlačidlo na vypnutie/zapnutie zvuku */
-.mute-button {
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s ease, transform 0.3s ease;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-}
-
-.mute-button:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.1);
-}
-
-.mute-button i {
-  font-size: 1rem;
-}
-
-/* Footer */
-footer {
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 10px 0;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  text-align: center;
-  border-top: 2px solid rgba(255, 255, 255, 0.5);
-}
-
-/* Animácia pre boxy */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Media queries pre responzívnosť */
-@media (max-width: 768px) {
-  .secondary-header {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .box {
-    width: 100%;
-    font-size: 0.8rem;
-  }
-
-  .content {
-    padding: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .logo {
+/* Pixel art pirátska lebka */
+.pirate-skull {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100px;
-  }
+    height: 100px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><rect width="10" height="10" fill="black"/><rect x="2" y="2" width="2" height="2" fill="lime"/><rect x="6" y="2" width="2" height="2" fill="lime"/><rect x="3" y="4" width="4" height="2" fill="lime"/><rect x="2" y="6" width="6" height="2" fill="lime"/></svg>');
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 1;
+    animation: blink 2s infinite;
+}
 
-  .secondary-header {
-    margin-top: 70px;
-  }
-
-  .box {
-    font-size: 0.7rem;
-  }
+/* Animácia blikania */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
