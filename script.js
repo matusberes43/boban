@@ -40,7 +40,7 @@ function showConspiracies(type) {
     const listItems = document.getElementById('list-items');
     const conspiracyList = document.getElementById('conspiracy-list');
 
-    listTitle.textContent = 10 najznámejších konšpiračných teórií: ${type === 'world' ? 'SVET' : 'USA'};
+    listTitle.textContent = `10 najznámejších konšpiračných teórií: ${type === 'world' ? 'SVET' : 'USA'}`;
     listItems.innerHTML = '';
 
     conspiracies[type].forEach(item => {
@@ -49,7 +49,7 @@ function showConspiracies(type) {
         listItems.appendChild(li);
     });
 
-    conspiracyList.style.display = 'block'; // Zobrazí zoznam
+    conspiracyList.style.display = 'block';
 }
 
 // Event listenery pre tlačidlá
