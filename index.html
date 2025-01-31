@@ -3,12 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pirátska lebka</title>
+    <title>BLCHA.COM</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="background">
-        <img id="skull" src="pirate-skull.png" alt="Pirátska lebka">
+    <div id="loading-screen">
+        <div id="skull">☠</div>
+        <h1 id="loading-text">BLCHA.COM</h1>
+    </div>
+
+    <div id="content" class="hidden">
+        <div class="button-container">
+            <button id="conspiracy-world">KONŠPIRAČNÉ TEÓRIE SVET</button>
+            <button id="conspiracy-usa">KONŠPIRAČNÉ TEÓRIE USA</button>
+        </div>
+
+        <div id="conspiracy-list" class="hidden">
+            <h2 id="list-title"></h2>
+            <ul id="list-items"></ul>
+        </div>
     </div>
 
     <script src="script.js"></script>
