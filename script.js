@@ -52,6 +52,12 @@ function showConspiracies(type) {
                 window.location.href = 'article.html';
             });
         }
+        if (item === "Vražda prezidenta Kennedyho") {
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'ken.html';
+            });
+        }
         listItems.appendChild(li);
     });
 
