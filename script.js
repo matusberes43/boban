@@ -64,6 +64,12 @@ function showConspiracies(type) {
                 window.location.href = 'ufo.html';
             });
         }
+        if (item === "FEMA a koncentračné tábory") {
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'fema.html';
+            });
+        }
         listItems.appendChild(li);
     });
 
