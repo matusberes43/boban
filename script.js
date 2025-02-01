@@ -11,15 +11,20 @@ window.onload = function () {
 
 const conspiracies = {
     world: ["Smrt princeznej Diany", "HAARP", "Iluminati", "Chemtrails"],
-    usa: ["11. september", "Roswell", "FEMA tábory", "JFK vražda"]
+    usa: ["11. september", "Roswell", "FEMA tabory", "JFK vrazda"]
 };
 
+function playClickSound() {
+    document.getElementById('click-sound').play();
+}
+
 function showConspiracies(type) {
+    playClickSound();
     const listTitle = document.getElementById('list-title');
     const listItems = document.getElementById('list-items');
     const conspiracyList = document.getElementById('conspiracy-list');
 
-    listTitle.textContent = type === 'world' ? "Tajne teorie SVET" : "Tajne teorie USA";
+    listTitle.textContent = type === 'world' ? "Svetove teorie" : "Teorie USA";
     listItems.innerHTML = '';
 
     conspiracies[type].forEach(item => {
