@@ -25,6 +25,7 @@ body, html {
     top: 0;
     left: 0;
     z-index: 1000;
+    transition: opacity 1s ease-out;
 }
 
 #skull {
@@ -45,7 +46,7 @@ body, html {
     color: #00ff00;
     font-size: 4rem;
     text-transform: uppercase;
-    animation: pixelGlow 2s ease-in-out;
+    animation: pixelGlow 2s infinite;
     font-family: 'Press Start 2P', cursive;
 }
 
@@ -66,7 +67,7 @@ body, html {
 }
 
 button {
-    background-color: #00cc00;
+    background: linear-gradient(45deg, #00cc00, #009900);
     color: #000;
     border: 4px solid #000;
     padding: 15px 30px;
@@ -82,18 +83,18 @@ button {
 }
 
 button:hover {
-    background-color: #00ff00;
+    background: #00ff00;
     box-shadow: 3px 3px 0 #000;
     transform: translate(2px, 2px);
 }
 
 button:active {
-    background-color: #009900;
+    background: #009900;
     box-shadow: 1px 1px 0 #000;
     transform: translate(4px, 4px);
 }
 
-/* Zoznam konšpiračných teórií */
+/* Zoznam teórií */
 #conspiracy-list {
     margin-top: 30px;
     background-color: #2a2a2a;
@@ -103,19 +104,10 @@ button:active {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    font-family: 'Press Start 2P', cursive;
+    text-align: center;
     display: none;
-}
-
-#list-title {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    color: #00ff00;
-}
-
-#list-items {
-    list-style-type: none;
-    padding: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
 }
 
 #list-items li {
@@ -132,30 +124,11 @@ button:active {
     background-color: #444;
 }
 
-/* Responzívny dizajn */
-@media (max-width: 768px) {
-    #loading-text {
-        font-size: 2rem;
-    }
-
-    #skull {
-        font-size: 5rem;
-    }
-
-    button {
-        padding: 10px 20px;
-        font-size: 1rem;
-    }
-
-    #conspiracy-list {
-        padding: 15px;
-    }
-
-    #list-title {
-        font-size: 1.2rem;
-    }
-
-    #list-items li {
-        font-size: 0.9rem;
-    }
+#close-list {
+    margin-top: 15px;
+    padding: 10px;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
