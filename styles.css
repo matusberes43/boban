@@ -9,7 +9,7 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    overflow: auto; /* Povolenie scrollovania */
 }
 
 /* Načítavací screen */
@@ -18,7 +18,7 @@ body, html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 100vh; /* Použitie celej výšky obrazovky */
     width: 100%;
     background-color: #000;
     position: fixed;
@@ -29,10 +29,12 @@ body, html {
 
 #loading-text {
     color: #00ff00;
-    font-size: 6rem; /* Zväčšený názov */
+    font-size: 4rem; /* Menší font pre lepšiu čitateľnosť */
     text-transform: uppercase;
     animation: pixelGlow 2s ease-in-out;
-    font-family: 'Press Start 2P', cursive; /* Pixelový font pre text */
+    font-family: 'Press Start 2P', cursive;
+    text-align: center; /* Zarovnanie textu na stred */
+    padding: 0 20px; /* Odsadenie pre malé obrazovky */
 }
 
 @keyframes pixelGlow {
@@ -45,6 +47,9 @@ body, html {
 #content {
     text-align: center;
     display: none;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .button-container {
@@ -60,7 +65,7 @@ button {
     font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
-    font-family: 'Press Start 2P', cursive; /* Pixelový font pre tlačidlá */
+    font-family: 'Press Start 2P', cursive;
     text-transform: uppercase;
     box-shadow: 5px 5px 0 #000;
     transition: all 0.2s ease;
@@ -86,11 +91,13 @@ button:active {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    max-width: 600px;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    font-family: 'Press Start 2P', cursive; /* Pixelový font pre zoznam */
-    display: none; /* Skryje obdĺžnik, kým sa nezobrazí zoznam */
+    font-family: 'Press Start 2P', cursive;
+    display: none;
+    overflow-y: auto; /* Povolenie scrollovania */
+    max-height: 60vh; /* Maximálna výška zoznamu */
 }
 
 #list-title {
@@ -112,6 +119,7 @@ button:active {
     font-size: 1rem;
     color: #fff;
     transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
 #list-items li:hover {
@@ -126,8 +134,9 @@ button:active {
     background-color: #2a2a2a;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    font-family: Arial, sans-serif; /* Normálny font pre článok */
+    font-family: Arial, sans-serif;
     color: #fff;
+    overflow-y: auto; /* Povolenie scrollovania */
 }
 
 #article-content h1 {
@@ -171,7 +180,7 @@ button:active {
 /* Responzívny dizajn */
 @media (max-width: 768px) {
     #loading-text {
-        font-size: 4rem; /* Menší názov pre mobilné zariadenia */
+        font-size: 2.5rem; /* Menší font pre mobilné zariadenia */
     }
 
     button {
@@ -181,6 +190,7 @@ button:active {
 
     #conspiracy-list {
         padding: 15px;
+        max-height: 50vh; /* Menšia výška pre mobilné zariadenia */
     }
 
     #list-title {
