@@ -1,46 +1,25 @@
-// Simulácia načítania
 window.onload = function () {
     setTimeout(function () {
-        document.getElementById('loading-screen').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
-    }, 2000); // Načítanie trvá maximálne 2 sekundy
+        let loadingScreen = document.getElementById('loading-screen');
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        }, 1000);
+    }, 2000);
 };
 
-// Dáta pre konšpiračné teórie
 const conspiracies = {
-    world: [
-        "Smrť princeznej Diany",
-        "Cheopsova pyramída a mimozemšťania",
-        "Nový svetový poriadok",
-        "Ilumináti",
-        "HAARP a ovládanie počasia",
-        "Prázdna Zem",
-        "Fenomén roku 2012",
-        "Chemtrails",
-        "Bilderbergská skupina",
-        "Area 51 a mimozemské technológie"
-    ],
-    usa: [
-        "Pád dvojčiat (11. september 2001)",
-        "Vražda prezidenta Kennedyho",
-        "Fenomén UFO v Roswelle",
-        "FEMA a koncentračné tábory",
-        "Sandy Hook ako fáma",
-        "Moon landing ako podvod",
-        "JFK Jr. a QAnon",
-        "11. september ako vnútorná záležitosť",
-        "COVID-19 ako biologická zbraň",
-        "Volby v USA 2020 ako podvod"
-    ]
+    world: ["Smrt princeznej Diany", "HAARP", "Iluminati", "Chemtrails"],
+    usa: ["11. september", "Roswell", "FEMA tábory", "JFK vražda"]
 };
 
-// Funkcia pre zobrazenie teórií
 function showConspiracies(type) {
     const listTitle = document.getElementById('list-title');
     const listItems = document.getElementById('list-items');
     const conspiracyList = document.getElementById('conspiracy-list');
 
-    listTitle.textContent = `10 najznámejších konšpiračných teórií: ${type === 'world' ? 'SVET' : 'USA'}`;
+    listTitle.textContent = type === 'world' ? "Tajne teorie SVET" : "Tajne teorie USA";
     listItems.innerHTML = '';
 
     conspiracies[type].forEach(item => {
@@ -49,9 +28,13 @@ function showConspiracies(type) {
         listItems.appendChild(li);
     });
 
+    conspiracyList.style.opacity = '1';
     conspiracyList.style.display = 'block';
 }
 
-// Event listenery pre tlačidlá
 document.getElementById('conspiracy-world').addEventListener('click', () => showConspiracies('world'));
 document.getElementById('conspiracy-usa').addEventListener('click', () => showConspiracies('usa'));
+document.getElementById('close-list').addEventListener('click', () => {
+    document.getElementById('conspiracy-list').style.opacity = '0';
+    setTimeout(() => document.getElementById('conspiracy-list').style.display = 'none', 500);
+});
