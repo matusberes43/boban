@@ -58,6 +58,12 @@ function showConspiracies(type) {
                 window.location.href = 'ken.html';
             });
         }
+        if (item === "Fenomén UFO v Roswelle") {
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'ufo.html';
+            });
+        }
         listItems.appendChild(li);
     });
 
