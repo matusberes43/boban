@@ -3,32 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLCHA ARCADE</title>
+    <title>BLCHA.COM</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <div id="loading-screen">
-        <div id="scanlines"></div>
-        <div id="skull">☠</div>
-        <h1 id="loading-text">BLCHA ARCADE</h1>
+        <h1 id="loading-text">BLCHA.COM</h1>
     </div>
 
-    <div id="content">
+    <div id="content" class="hidden">
         <div class="button-container">
-            <button id="conspiracy-world">▶ SVET</button>
-            <button id="conspiracy-usa">▶ USA</button>
+            <button id="conspiracy-world">CONSPIRACY THEORY (SVET)</button>
+            <button id="conspiracy-usa">CONSPIRACY THEORY (USA)</button>
         </div>
 
-        <div id="conspiracy-list">
+        <div id="conspiracy-list" class="hidden">
             <h2 id="list-title"></h2>
             <ul id="list-items"></ul>
-            <button id="close-list">❌ BACK</button>
         </div>
     </div>
-
-    <audio id="click-sound" src="click.mp3" preload="auto"></audio>
 
     <script src="script.js"></script>
 </body>
