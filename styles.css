@@ -1,15 +1,31 @@
-/* Základné štýly */
+/* Základný arkádový štýl */
 body, html {
     margin: 0;
     padding: 0;
     font-family: 'Press Start 2P', cursive;
-    background-color: #1a1a1a;
-    color: #fff;
+    background-color: #000;
+    color: #00ff00;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+}
+
+/* CRT scanlines efekt */
+#scanlines {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.1) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none;
+    z-index: 999;
 }
 
 /* Načítavací screen */
@@ -30,105 +46,62 @@ body, html {
 
 #skull {
     font-size: 8rem;
-    color: #00ff00;
+    color: #ff0000;
     margin-bottom: 20px;
-    animation: skullGlow 2s infinite;
-    font-family: 'Press Start 2P', cursive;
+    animation: blink 0.5s infinite alternate;
 }
 
-@keyframes skullGlow {
-    0% { text-shadow: 0 0 5px #00ff00; }
-    50% { text-shadow: 0 0 20px #00ff00; }
-    100% { text-shadow: 0 0 5px #00ff00; }
+@keyframes blink {
+    from { opacity: 1; }
+    to { opacity: 0.5; }
 }
 
 #loading-text {
-    color: #00ff00;
-    font-size: 4rem;
+    color: #ffcc00;
+    font-size: 3rem;
     text-transform: uppercase;
-    animation: pixelGlow 2s infinite;
-    font-family: 'Press Start 2P', cursive;
+    animation: glitch 0.2s infinite;
 }
 
-@keyframes pixelGlow {
-    0% { opacity: 0; text-shadow: 0 0 5px #00ff00; }
-    50% { opacity: 1; text-shadow: 0 0 20px #00ff00; }
-    100% { opacity: 1; text-shadow: 0 0 5px #00ff00; }
+@keyframes glitch {
+    0% { text-shadow: 2px 2px #ff0000; }
+    50% { text-shadow: -2px -2px #00ff00; }
+    100% { text-shadow: 2px 2px #ff0000; }
 }
 
-/* Hlavný obsah */
+/* Obsah */
 #content {
     text-align: center;
     display: none;
 }
 
-.button-container {
-    margin-top: 20px;
-}
-
+/* Arkádové tlačidlá */
 button {
-    background: linear-gradient(45deg, #00cc00, #009900);
-    color: #000;
-    border: 4px solid #000;
+    background: #000;
+    color: #00ff00;
+    border: 3px solid #ffcc00;
     padding: 15px 30px;
     margin: 10px;
     font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
     font-family: 'Press Start 2P', cursive;
     text-transform: uppercase;
-    box-shadow: 5px 5px 0 #000;
-    transition: all 0.2s ease;
-    position: relative;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 #ff0000;
+    transition: all 0.1s ease-in-out;
 }
 
 button:hover {
-    background: #00ff00;
-    box-shadow: 3px 3px 0 #000;
-    transform: translate(2px, 2px);
+    background: #ffcc00;
+    color: #000;
+    transform: translateY(2px);
+    box-shadow: 1px 1px 0 #ff0000;
 }
 
-button:active {
-    background: #009900;
-    box-shadow: 1px 1px 0 #000;
-    transform: translate(4px, 4px);
-}
-
-/* Zoznam teórií */
+/* Zoznam konšpiračných teórií */
 #conspiracy-list {
     margin-top: 30px;
-    background-color: #2a2a2a;
+    background-color: #111;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
-#list-items li {
-    background-color: #333;
-    margin: 10px 0;
-    padding: 10px;
+    border: 2px solid #ff0000;
     border-radius: 5px;
-    font-size: 1rem;
-    color: #fff;
-    transition: background-color 0.3s ease;
-}
-
-#list-items li:hover {
-    background-color: #444;
-}
-
-#close-list {
-    margin-top: 15px;
-    padding: 10px;
-    background: red;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
+    box-shadow: 0 0
