@@ -146,7 +146,7 @@ button:active {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    font-family: 'Press Start 2P', cursive; /* Rovnaký font ako predtým */
+    font-family: Arial, sans-serif; /* Základný font pre články */
     display: none;
 }
 
