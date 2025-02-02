@@ -70,6 +70,12 @@ function showConspiracies(type) {
                 window.location.href = 'fema.html';
             });
         }
+        if (item === "Sandy Hook ako fáma") {
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'sandy.html';
+            });
+        }
         listItems.appendChild(li);
     });
 
