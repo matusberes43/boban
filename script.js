@@ -82,6 +82,30 @@ function showConspiracies(type) {
                 window.location.href = 'moon.html';
             });
         }
+        if (item === "JFK Jr. a QAnon") {
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'jfk.html';
+            });
+        }
+        if (item === "11. september ako vnútorná záležitosť") {
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'september.html';
+            });
+        }
+        if (item === "COVID-19 ako biologická zbraň") {
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'covid.html';
+            });
+        }
+        if (item === "Volby v USA 2020 ako podvod") {
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'volby.html';
+            });
+        }
         listItems.appendChild(li);
     });
 
