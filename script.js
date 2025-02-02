@@ -76,6 +76,12 @@ function showConspiracies(type) {
                 window.location.href = 'sandy.html';
             });
         }
+        if (item === "Moon landing ako podvod") {
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'moon.html';
+            });
+        }
         listItems.appendChild(li);
     });
 
