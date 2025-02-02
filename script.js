@@ -49,64 +49,124 @@ function showConspiracies(type) {
         li.style.cursor = 'pointer';
 
         if (item === "Pád dvojčiat (11. september 2001)") {
-            li.addEventListener('click', () => { window.location.href = 'article.html'; });
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'article.html';
+            });
         }
         if (item === "Vražda prezidenta Kennedyho") {
-            li.addEventListener('click', () => { window.location.href = 'ken.html'; });
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'ken.html';
+            });
         }
         if (item === "Fenomén UFO v Roswelle") {
-            li.addEventListener('click', () => { window.location.href = 'ufo.html'; });
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'ufo.html';
+            });
         }
         if (item === "FEMA a koncentračné tábory") {
-            li.addEventListener('click', () => { window.location.href = 'fema.html'; });
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'fema.html';
+            });
         }
         if (item === "Sandy Hook ako fáma") {
-            li.addEventListener('click', () => { window.location.href = 'sandy.html'; });
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'sandy.html';
+            });
         }
         if (item === "Moon landing ako podvod") {
-            li.addEventListener('click', () => { window.location.href = 'moon.html'; });
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'moon.html';
+            });
         }
         if (item === "JFK Jr. a QAnon") {
-            li.addEventListener('click', () => { window.location.href = 'jfk.html'; });
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'jfk.html';
+            });
         }
         if (item === "11. september ako vnútorná záležitosť") {
-            li.addEventListener('click', () => { window.location.href = 'september.html'; });
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'september.html';
+            });
         }
         if (item === "COVID-19 ako biologická zbraň") {
-            li.addEventListener('click', () => { window.location.href = 'covid.html'; });
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'covid.html';
+            });
         }
         if (item === "Volby v USA 2020 ako podvod") {
-            li.addEventListener('click', () => { window.location.href = 'volby.html'; });
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'volby.html';
+            });
         }
         if (item === "Smrť princeznej Diany") {
-            li.addEventListener('click', () => { window.location.href = 'diana.html'; });
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'diana.html';
+            });
         }
         if (item === "Cheopsova pyramída a mimozemšťania") {
-            li.addEventListener('click', () => { window.location.href = 'cheops.html'; });
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'cheops.html';
+            });
         }
         if (item === "Nový svetový poriadok") {
-            li.addEventListener('click', () => { window.location.href = 'nwo.html'; });
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'nwo.html';
+            });
         }
         if (item === "Ilumináti") {
-            li.addEventListener('click', () => { window.location.href = 'illuminati.html'; });
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'illuminati.html';
+            });
         }
         if (item === "HAARP a ovládanie počasia") {
-            li.addEventListener('click', () => { window.location.href = 'haarp.html'; });
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'haarp.html';
+            });
         }
         if (item === "Prázdna Zem") {
-            li.addEventListener('click', () => { window.location.href = 'hollowearth.html'; });
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'hollowearth.html';
+            });
         }
         if (item === "Fenomén roku 2012") {
-            li.addEventListener('click', () => { window.location.href = '2012.html'; });
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = '2012.html';
+            });
         }
         if (item === "Chemtrails") {
-            li.addEventListener('click', () => { window.location.href = 'chemtrails.html'; });
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'chemtrails.html';
+            });
         }
         if (item === "Bilderbergská skupina") {
-            li.addEventListener('click', () => { window.location.href = 'bilderberg.html'; });
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'bilderberg.html';
+            });
         }
         if (item === "Area 51 a mimozemské technológie") {
-            li.addEventListener('click', () => { window.location.href = 'area51.html'; });
+            li.style.cursor = 'pointer';
+            li.addEventListener('click', () => {
+                window.location.href = 'area51.html';
+            });
         }
 
         listItems.appendChild(li);
