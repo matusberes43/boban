@@ -178,20 +178,3 @@ function showConspiracies(type) {
 // Event listenery pre tlačidlá
 document.getElementById('conspiracy-world').addEventListener('click', () => showConspiracies('world'));
 document.getElementById('conspiracy-usa').addEventListener('click', () => showConspiracies('usa'));
-
-// Zobrazenie boxov pre novinky
-document.getElementById('novinky').addEventListener('click', () => {
-    const conspiracyList = document.getElementById('conspiracy-list');
-    const novinkyList = document.getElementById('novinky-list');
-
-    conspiracyList.style.display = 'none'; // Skryje zoznam teórií
-    novinkyList.style.display = 'block'; // Zobrazí boxy pre novinky
-});
-
-// Otvorenie článku po kliknutí na minitlačidlo
-document.querySelectorAll('.open-article').forEach(button => {
-    button.addEventListener('click', () => {
-        // Tu môžete pridať presmerovanie na konkrétny článok
-        alert('Otvoriť článok');
-    });
-});
