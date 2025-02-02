@@ -6,7 +6,7 @@ body, html {
     background-color: #1a1a1a;
     color: #fff;
     height: 100%;
-    overflow: auto; /* Povolenie scrollovania */
+    overflow: auto;
 }
 
 /* Načítavací screen */
@@ -15,7 +15,7 @@ body, html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Použitie celej výšky obrazovky */
+    height: 100vh;
     width: 100%;
     background-color: #000;
     position: fixed;
@@ -26,12 +26,12 @@ body, html {
 
 #loading-text {
     color: #00ff00;
-    font-size: 4rem; /* Menší font pre lepšiu čitateľnosť */
+    font-size: 4rem;
     text-transform: uppercase;
     animation: pixelGlow 2s ease-in-out;
     font-family: 'Press Start 2P', cursive;
-    text-align: center; /* Zarovnanie textu na stred */
-    padding: 0 20px; /* Odsadenie pre malé obrazovky */
+    text-align: center;
+    padding: 0 20px;
 }
 
 @keyframes pixelGlow {
@@ -69,6 +69,11 @@ button {
     position: relative;
 }
 
+#novinky {
+    background-color: #ff0000; /* Červené pozadie */
+    color: #fff;
+}
+
 button:hover {
     background-color: #00ff00;
     box-shadow: 3px 3px 0 #000;
@@ -79,6 +84,14 @@ button:active {
     background-color: #009900;
     box-shadow: 1px 1px 0 #000;
     transform: translate(4px, 4px);
+}
+
+#novinky:hover {
+    background-color: #ff4444;
+}
+
+#novinky:active {
+    background-color: #cc0000;
 }
 
 /* Zoznam konšpiračných teórií */
@@ -93,8 +106,8 @@ button:active {
     margin-right: auto;
     font-family: 'Press Start 2P', cursive;
     display: none;
-    overflow-y: auto; /* Povolenie scrollovania */
-    max-height: 60vh; /* Maximálna výška zoznamu */
+    overflow-y: auto;
+    max-height: 60vh;
 }
 
 #list-title {
@@ -123,72 +136,84 @@ button:active {
     background-color: #444;
 }
 
-/* Štýly pre článok */
-#article-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Zarovnanie na začiatok */
-    min-height: 100vh; /* Minimálna výška celej obrazovky */
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-#article-content {
-    max-width: 800px;
-    width: 100%;
+/* Boxy pre novinky */
+#novinky-list {
+    margin-top: 30px;
     background-color: #2a2a2a;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    font-family: Arial, sans-serif;
-    color: #fff;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial, sans-serif; /* Základný font pre články */
+    display: none;
 }
 
-#article-content h1 {
-    font-size: 2rem;
+#novinky-list h2 {
+    font-size: 1.5rem;
     color: #00ff00;
     margin-bottom: 20px;
-    text-align: center; /* Zarovnanie nadpisu na stred */
+    text-align: center;
 }
 
-#article-content p {
-    font-size: 1rem;
-    line-height: 1.6;
+.novinky-box {
+    display: flex;
+    align-items: center;
+    background-color: #333;
     margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 5px;
 }
 
-#article-content button {
+.novinky-box img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.novinky-info {
+    flex: 1;
+}
+
+.novinky-info h3 {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.novinky-info .open-article {
     background-color: #00cc00;
     color: #000;
-    border: 4px solid #000;
-    padding: 15px 30px;
-    font-size: 1.2rem;
+    border: 2px solid #000;
+    padding: 8px 16px;
+    font-size: 0.9rem;
     font-weight: bold;
     cursor: pointer;
     font-family: 'Press Start 2P', cursive;
     text-transform: uppercase;
-    box-shadow: 5px 5px 0 #000;
-    transition: all 0.2s ease;
-    display: block; /* Tlačidlo na samostatnom riadku */
-    margin: 20px auto; /* Centrovanie tlačidla */
-}
-
-#article-content button:hover {
-    background-color: #00ff00;
     box-shadow: 3px 3px 0 #000;
-    transform: translate(2px, 2px);
+    transition: all 0.2s ease;
 }
 
-#article-content button:active {
+.novinky-info .open-article:hover {
+    background-color: #00ff00;
+    box-shadow: 2px 2px 0 #000;
+    transform: translate(1px, 1px);
+}
+
+.novinky-info .open-article:active {
     background-color: #009900;
     box-shadow: 1px 1px 0 #000;
-    transform: translate(4px, 4px);
+    transform: translate(2px, 2px);
 }
 
 /* Responzívny dizajn */
 @media (max-width: 768px) {
     #loading-text {
-        font-size: 2.5rem; /* Menší font pre mobilné zariadenia */
+        font-size: 2.5rem;
     }
 
     button {
@@ -198,7 +223,7 @@ button:active {
 
     #conspiracy-list {
         padding: 15px;
-        max-height: 50vh; /* Menšia výška pre mobilné zariadenia */
+        max-height: 50vh;
     }
 
     #list-title {
@@ -209,20 +234,13 @@ button:active {
         font-size: 0.9rem;
     }
 
-    #article-content {
-        padding: 15px;
+    .novinky-box {
+        flex-direction: column;
+        text-align: center;
     }
 
-    #article-content h1 {
-        font-size: 1.5rem;
-    }
-
-    #article-content p {
-        font-size: 0.9rem;
-    }
-
-    #article-content button {
-        padding: 10px 20px;
-        font-size: 1rem;
+    .novinky-box img {
+        margin-right: 0;
+        margin-bottom: 10px;
     }
 }
