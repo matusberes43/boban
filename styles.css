@@ -1,13 +1,13 @@
 /* Základné štýly */
 :root {
-    --primary-color: #00ff88; /* Neonová zelená */
-    --secondary-color: #ff0088; /* Neonová ružová */
-    --background-color: #0a0a0a; /* Tmavé pozadie */
-    --card-background: #1a1a1a; /* Pozadie pre karty */
-    --text-color: #ffffff; /* Biela farba textu */
-    --glow-effect: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
-    --font-primary: 'Orbitron', sans-serif;
-    --font-secondary: 'Montserrat', sans-serif;
+    --primary-color: #6c5ce7; /* Moderná fialová */
+    --secondary-color: #00b894; /* Moderná zelená */
+    --background-color: #f5f6fa; /* Svetlé pozadie */
+    --card-background: #ffffff; /* Biele pozadie pre karty */
+    --text-color: #2d3436; /* Tmavý text */
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --font-primary: 'Inter', sans-serif;
+    --font-secondary: 'Poppins', sans-serif;
 }
 
 body, html {
@@ -29,7 +29,7 @@ body, html {
     align-items: center;
     height: 100vh;
     width: 100%;
-    background: radial-gradient(circle, var(--background-color), #000);
+    background-color: var(--background-color);
     position: fixed;
     top: 0;
     left: 0;
@@ -38,18 +38,17 @@ body, html {
 
 #loading-text {
     color: var(--primary-color);
-    font-size: 4rem;
-    text-transform: uppercase;
-    animation: neonGlow 1.5s infinite alternate;
-    text-shadow: var(--glow-effect);
+    font-size: 3rem;
+    font-weight: 600;
     font-family: var(--font-primary);
     text-align: center;
     padding: 0 20px;
+    animation: fadeIn 2s ease-in-out;
 }
 
-@keyframes neonGlow {
-    0% { opacity: 0.8; text-shadow: 0 0 5px var(--primary-color); }
-    100% { opacity: 1; text-shadow: 0 0 20px var(--primary-color), 0 0 40px var(--primary-color); }
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 /* Hlavný obsah */
@@ -57,7 +56,7 @@ body, html {
     text-align: center;
     display: none;
     width: 100%;
-    padding: 20px;
+    padding: 40px 20px;
     box-sizing: border-box;
 }
 
@@ -71,48 +70,27 @@ body, html {
 
 button {
     background-color: var(--primary-color);
-    color: #000;
+    color: #ffffff;
     border: none;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    font-weight: bold;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 500;
     cursor: pointer;
     font-family: var(--font-primary);
-    text-transform: uppercase;
-    box-shadow: var(--glow-effect);
-    transition: all 0.3s ease;
     border-radius: 8px;
-    position: relative;
-    overflow: hidden;
-}
-
-button::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    height: 300%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.5s ease;
-    border-radius: 50%;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
 }
 
 button:hover {
     background-color: var(--secondary-color);
-    box-shadow: 0 0 15px var(--secondary-color), 0 0 30px var(--secondary-color);
-    transform: scale(1.05);
-}
-
-button:hover::before {
-    transform: translate(-50%, -50%) scale(1);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 button:active {
-    background-color: #cc0077;
-    box-shadow: 0 0 5px var(--secondary-color), 0 0 10px var(--secondary-color);
-    transform: scale(0.95);
+    transform: translateY(0);
+    box-shadow: var(--shadow);
 }
 
 /* Zoznam konšpiračných teórií */
@@ -120,8 +98,8 @@ button:active {
     margin-top: 30px;
     background-color: var(--card-background);
     padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
@@ -135,7 +113,7 @@ button:active {
     font-size: 1.5rem;
     margin-bottom: 20px;
     color: var(--primary-color);
-    text-shadow: var(--glow-effect);
+    font-weight: 600;
 }
 
 #list-items {
@@ -144,7 +122,7 @@ button:active {
 }
 
 #list-items li {
-    background-color: #2a2a2a;
+    background-color: var(--card-background);
     margin: 10px 0;
     padding: 15px;
     border-radius: 8px;
@@ -152,12 +130,13 @@ button:active {
     color: var(--text-color);
     transition: all 0.3s ease;
     cursor: pointer;
+    border: 1px solid #e0e0e0;
 }
 
 #list-items li:hover {
-    background-color: #333;
-    box-shadow: var(--glow-effect);
-    transform: translateY(-5px);
+    background-color: #f8f9fa;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
 }
 
 /* Štýly pre článok */
@@ -166,7 +145,7 @@ button:active {
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-    padding: 20px;
+    padding: 40px 20px;
     box-sizing: border-box;
 }
 
@@ -174,9 +153,9 @@ button:active {
     max-width: 800px;
     width: 100%;
     background-color: var(--card-background);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
     font-family: var(--font-secondary);
     color: var(--text-color);
 }
@@ -186,53 +165,52 @@ button:active {
     color: var(--primary-color);
     margin-bottom: 20px;
     text-align: center;
-    text-shadow: var(--glow-effect);
+    font-weight: 600;
 }
 
 #article-content p {
     font-size: 1.1rem;
     line-height: 1.8;
     margin-bottom: 20px;
+    color: var(--text-color);
 }
 
 #article-content button {
     background-color: var(--primary-color);
-    color: #000;
+    color: #ffffff;
     border: none;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    font-weight: bold;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 500;
     cursor: pointer;
     font-family: var(--font-primary);
-    text-transform: uppercase;
-    box-shadow: var(--glow-effect);
+    border-radius: 8px;
     transition: all 0.3s ease;
     display: block;
     margin: 20px auto;
-    border-radius: 8px;
+    box-shadow: var(--shadow);
 }
 
 #article-content button:hover {
     background-color: var(--secondary-color);
-    box-shadow: 0 0 15px var(--secondary-color), 0 0 30px var(--secondary-color);
-    transform: scale(1.05);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 #article-content button:active {
-    background-color: #cc0077;
-    box-shadow: 0 0 5px var(--secondary-color), 0 0 10px var(--secondary-color);
-    transform: scale(0.95);
+    transform: translateY(0);
+    box-shadow: var(--shadow);
 }
 
 /* Responzívny dizajn */
 @media (max-width: 768px) {
     #loading-text {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     button {
         padding: 10px 20px;
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     #conspiracy-list {
@@ -249,11 +227,11 @@ button:active {
     }
 
     #article-content {
-        padding: 15px;
+        padding: 20px;
     }
 
     #article-content h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     #article-content p {
@@ -262,6 +240,6 @@ button:active {
 
     #article-content button {
         padding: 10px 20px;
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 }
