@@ -1,33 +1,20 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLCHA.COM</title>
+    <title>Conspiracy Hub</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Načítavací screen -->
-    <div id="loading-screen">
-        <h1 id="loading-text">BLCHA.COM</h1>
-    </div>
-
-    <!-- Hlavný obsah -->
-    <div id="content" class="hidden">
-        <div class="button-container">
-            <button id="conspiracy-world">CONSPIRACY THEORY (SVET)</button>
-            <button id="conspiracy-usa">CONSPIRACY THEORY (USA)</button>
-        </div>
-
-        <!-- Zoznam konšpiračných teórií -->
-        <div id="conspiracy-list" class="hidden">
-            <h2 id="list-title"></h2>
-            <ul id="list-items"></ul>
+    <div class="container">
+        <h1>🔮 Conspiracy Hub 🔮</h1>
+        <div class="buttons">
+            <button class="arcade-button" onclick="navigate('usa')">Conspiracy Theories (USA)</button>
+            <button class="arcade-button" onclick="navigate('world')">Conspiracy Theories (SVET)</button>
+            <button class="arcade-button" onclick="navigate('news')">NOVINKY</button>
         </div>
     </div>
-
-    <!-- JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
