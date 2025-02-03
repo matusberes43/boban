@@ -9,16 +9,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="button-container">
+    <div class="button-container" id="main-buttons">
         <div class="button" onclick="navigate('usa')">
             <div class="icon"><i class="fa-solid fa-flag-usa"></i></div>
             <div class="text">CONSPIRACY THEORIES (USA)</div>
         </div>
-        <div class="button" onclick="toggleWorldConspiracies()">
+        <div class="button" onclick="showWorldConspiracies()">
             <div class="icon"><i class="fa-solid fa-globe"></i></div>
             <div class="text">CONSPIRACY THEORIES (SVET)</div>
         </div>
-        <div class="sub-button-container" id="world-conspiracies"></div>
         <div class="button" onclick="navigate('news')">
             <div class="icon"><i class="fa-solid fa-newspaper"></i></div>
             <div class="text">NOVINKY</div>
@@ -28,6 +27,13 @@
             <div class="text">VIDEA</div>
         </div>
     </div>
+
+    <!-- Kontajner pre konšpiračné teórie -->
+    <div class="sub-button-container" id="world-conspiracies" style="display: none;"></div>
+
+    <!-- Mini tlačidlo BACK -->
+    <div class="back-button" id="back-button" style="display: none;" onclick="showMainMenu()">BACK</div>
+
     <script src="script.js"></script>
 </body>
 </html>
