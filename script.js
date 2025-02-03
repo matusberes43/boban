@@ -37,9 +37,6 @@ function navigate(page) {
         case 'usa':
             window.location.href = "usa.html";
             break;
-        case 'world':
-            toggleWorldConspiracies();
-            break;
         case 'news':
             window.location.href = "news.html";
             break;
