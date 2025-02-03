@@ -1,9 +1,11 @@
-/* Resetovanie základných štýlov */
+/* Importovanie Arcade fontu */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Press Start 2P', cursive;
 }
 
 /* Celé telo */
@@ -26,32 +28,30 @@ body {
 .button {
     display: flex;
     align-items: center;
-    width: 280px;
-    height: 60px;
-    background: linear-gradient(to right, #ddd 20%, var(--color) 80%);
+    width: 350px;
+    height: 70px;
+    background: linear-gradient(to right, #222 20%, var(--color) 80%);
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
 }
 
 /* Efekt po prechode myšou */
 .button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
 /* Ikona vľavo */
 .icon {
-    background: #ddd;
-    padding: 15px;
+    background: #222;
+    padding: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.icon img {
-    width: 30px;
-    height: 30px;
+    font-size: 24px;
+    color: #fff;
 }
 
 /* Text na tlačidle */
@@ -59,13 +59,13 @@ body {
     flex-grow: 1;
     text-align: center;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     padding-right: 15px;
 }
 
 /* Špecifické farby tlačidiel */
-.button:nth-child(1) { --color: #4CAF50; } /* PRINT NOW */
-.button:nth-child(2) { --color: #008000; } /* SUBMIT */
-.button:nth-child(3) { --color: #2196F3; } /* UPLOAD */
-.button:nth-child(4) { --color: #555; }    /* FIND MORE */
+.button:nth-child(1) { --color: #ff4500; } /* USA - červená */
+.button:nth-child(2) { --color: #0088ff; } /* SVET - modrá */
+.button:nth-child(3) { --color: #32cd32; } /* NOVINKY - zelená */
+.button:nth-child(4) { --color: #ff00ff; } /* VIDEA - fialová */
