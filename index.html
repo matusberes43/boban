@@ -3,27 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Buttons</title>
+    <title>Conspiracy Hub</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="button-container">
-        <div class="button">
-            <div class="icon"><img src="print.svg" alt="Print"></div>
-            <div class="text">PRINT NOW</div>
+        <div class="button" onclick="navigate('usa')">
+            <div class="icon"><i class="fas fa-flag-usa"></i></div>
+            <div class="text">Conspiracy Theories (USA)</div>
         </div>
-        <div class="button">
-            <div class="icon"><img src="submit.svg" alt="Submit"></div>
-            <div class="text">SUBMIT</div>
+        <div class="button" onclick="navigate('world')">
+            <div class="icon"><i class="fas fa-globe"></i></div>
+            <div class="text">Conspiracy Theories (SVET)</div>
         </div>
-        <div class="button">
-            <div class="icon"><img src="upload.svg" alt="Upload"></div>
-            <div class="text">UPLOAD</div>
+        <div class="button" onclick="navigate('news')">
+            <div class="icon"><i class="fas fa-newspaper"></i></div>
+            <div class="text">NOVINKY</div>
         </div>
-        <div class="button">
-            <div class="icon"><img src="search.svg" alt="Find More"></div>
-            <div class="text">FIND MORE</div>
+        <div class="button" onclick="navigate('videos')">
+            <div class="icon"><i class="fas fa-video"></i></div>
+            <div class="text">VIDEA</div>
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
