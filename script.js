@@ -12,23 +12,29 @@ const worldConspiracies = [
     "Area 51 a mimozemské technológie"
 ];
 
-// Funkcia na zobrazenie/skrytie konšpiračných teórií
-function toggleWorldConspiracies() {
+// Funkcia na zobrazenie konšpiračných teórií a skrytie ostatných tlačidiel
+function showWorldConspiracies() {
+    document.getElementById("main-buttons").style.display = "none";
     const container = document.getElementById("world-conspiracies");
+    container.innerHTML = ""; // Vyčistí predchádzajúci obsah
 
-    if (container.style.display === "none" || container.style.display === "") {
-        container.innerHTML = ""; // Vyčistí predchádzajúci obsah
-        worldConspiracies.forEach(conspiracy => {
-            const btn = document.createElement("div");
-            btn.classList.add("sub-button");
-            btn.textContent = conspiracy;
-            btn.onclick = () => alert(`Vybrali ste: ${conspiracy}`);
-            container.appendChild(btn);
-        });
-        container.style.display = "flex";
-    } else {
-        container.style.display = "none";
-    }
+    worldConspiracies.forEach(conspiracy => {
+        const btn = document.createElement("div");
+        btn.classList.add("sub-button");
+        btn.textContent = conspiracy;
+        btn.onclick = () => alert(`Vybrali ste: ${conspiracy}`);
+        container.appendChild(btn);
+    });
+
+    container.style.display = "flex";
+    document.getElementById("back-button").style.display = "block";
+}
+
+// Funkcia na návrat na hlavnú obrazovku
+function showMainMenu() {
+    document.getElementById("main-buttons").style.display = "flex";
+    document.getElementById("world-conspiracies").style.display = "none";
+    document.getElementById("back-button").style.display = "none";
 }
 
 // Funkcia na navigáciu
