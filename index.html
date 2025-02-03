@@ -10,11 +10,11 @@
 </head>
 <body>
     <div class="button-container" id="main-buttons">
-        <div class="button" onclick="navigate('usa')">
+        <div class="button" onclick="showConspiracies('usa')">
             <div class="icon"><i class="fa-solid fa-flag-usa"></i></div>
             <div class="text">CONSPIRACY THEORIES (USA)</div>
         </div>
-        <div class="button" onclick="showWorldConspiracies()">
+        <div class="button" onclick="showConspiracies('world')">
             <div class="icon"><i class="fa-solid fa-globe"></i></div>
             <div class="text">CONSPIRACY THEORIES (SVET)</div>
         </div>
@@ -29,7 +29,7 @@
     </div>
 
     <!-- Kontajner pre konšpiračné teórie -->
-    <div class="sub-button-container" id="world-conspiracies" style="display: none;"></div>
+    <div class="sub-button-container" id="conspiracy-container" style="display: none;"></div>
 
     <!-- Mini tlačidlo BACK -->
     <div class="back-button" id="back-button" style="display: none;" onclick="showMainMenu()">BACK</div>
