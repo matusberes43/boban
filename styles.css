@@ -100,15 +100,24 @@ body {
     box-shadow: 0 0 15px #ffcc00;
 }
 
-/* Responzívne nastavenia pre menšie obrazovky */
-@media (max-width: 500px) {
-    .button {
-        height: 60px;
-        font-size: 14px;
-    }
+/* Mini tlačidlo BACK */
+.back-button {
+    display: none;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #ff0000;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-align: center;
+    transition: 0.3s;
+}
 
-    .sub-button {
-        height: 45px;
-        font-size: 12px;
-    }
+/* Efekt po prechode myšou na BACK */
+.back-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #ff0000;
 }
