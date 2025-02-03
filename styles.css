@@ -1,11 +1,9 @@
-/* Importovanie Arcade fontu */
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
+/* Resetovanie základných štýlov */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Press Start 2P', cursive;
+    font-family: Arial, sans-serif; /* Normálny font */
 }
 
 /* Celé telo */
@@ -28,13 +26,14 @@ body {
 .button {
     display: flex;
     align-items: center;
-    width: 350px;
-    height: 70px;
+    width: 400px;
+    height: 80px;
     background: linear-gradient(to right, #222 20%, var(--color) 80%);
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.2s, box-shadow 0.2s;
     cursor: pointer;
+    text-transform: uppercase; /* Všetko veľkými písmenami */
 }
 
 /* Efekt po prechode myšou */
@@ -50,7 +49,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 32px;
     color: #fff;
 }
 
@@ -59,7 +58,7 @@ body {
     flex-grow: 1;
     text-align: center;
     color: white;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: bold;
     padding-right: 15px;
 }
