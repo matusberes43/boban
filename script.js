@@ -1,180 +1,58 @@
-// Simulácia načítania
-window.onload = function () {
-    setTimeout(function () {
-        document.getElementById('loading-screen').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
-    }, 2000); // Načítanie trvá maximálne 2 sekundy
-};
-
-// Dáta pre konšpiračné teórie
-const conspiracies = {
-    world: [
-        "Smrť princeznej Diany",
-        "Cheopsova pyramída a mimozemšťania",
-        "Nový svetový poriadok",
-        "Ilumináti",
-        "HAARP a ovládanie počasia",
-        "Prázdna Zem",
-        "Fenomén roku 2012",
-        "Chemtrails",
-        "Bilderbergská skupina",
-        "Area 51 a mimozemské technológie"
-    ],
-    usa: [
-        "Pád dvojčiat (11. september 2001)",
-        "Vražda prezidenta Kennedyho",
-        "Fenomén UFO v Roswelle",
-        "FEMA a koncentračné tábory",
-        "Sandy Hook ako fáma",
-        "Moon landing ako podvod",
-        "JFK Jr. a QAnon",
-        "11. september ako vnútorná záležitosť",
-        "COVID-19 ako biologická zbraň",
-        "Volby v USA 2020 ako podvod"
-    ]
-};
-
-// Funkcia pre zobrazenie teórií
-function showConspiracies(type) {
-    const listTitle = document.getElementById('list-title');
-    const listItems = document.getElementById('list-items');
-    const conspiracyList = document.getElementById('conspiracy-list');
-
-    listTitle.textContent = `10 najznámejších konšpiračných teórií: ${type === 'world' ? 'SVET' : 'USA'}`;
-    listItems.innerHTML = '';
-
-    conspiracies[type].forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item;
-        li.style.cursor = 'pointer';
-
-        if (item === "Pád dvojčiat (11. september 2001)") {
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-                window.location.href = 'article.html';
-            });
-        }
-        if (item === "Vražda prezidenta Kennedyho") {
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-                window.location.href = 'ken.html';
-            });
-        }
-        if (item === "Fenomén UFO v Roswelle") {
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-                window.location.href = 'ufo.html';
-            });
-        }
-        if (item === "FEMA a koncentračné tábory") {
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-                window.location.href = 'fema.html';
-            });
-        }
-        if (item === "Sandy Hook ako fáma") {
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-                window.location.href = 'sandy.html';
-            });
-        }
-        if (item === "Moon landing ako podvod") {
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-                window.location.href = 'moon.html';
-            });
-        }
-        if (item === "JFK Jr. a QAnon") {
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-                window.location.href = 'jfk.html';
-            });
-        }
-        if (item === "11. september ako vnútorná záležitosť") {
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-                window.location.href = 'september.html';
-            });
-        }
-        if (item === "COVID-19 ako biologická zbraň") {
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-                window.location.href = 'covid.html';
-            });
-        }
-        if (item === "Volby v USA 2020 ako podvod") {
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-                window.location.href = 'volby.html';
-            });
-        }
-        if (item === "Smrť princeznej Diany") {
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-                window.location.href = 'diana.html';
-            });
-        }
-        if (item === "Cheopsova pyramída a mimozemšťania") {
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-                window.location.href = 'cheops.html';
-            });
-        }
-        if (item === "Nový svetový poriadok") {
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-                window.location.href = 'nwo.html';
-            });
-        }
-        if (item === "Ilumináti") {
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-                window.location.href = 'illuminati.html';
-            });
-        }
-        if (item === "HAARP a ovládanie počasia") {
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-                window.location.href = 'haarp.html';
-            });
-        }
-        if (item === "Prázdna Zem") {
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-                window.location.href = 'hollowearth.html';
-            });
-        }
-        if (item === "Fenomén roku 2012") {
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-                window.location.href = '2012.html';
-            });
-        }
-        if (item === "Chemtrails") {
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-                window.location.href = 'chemtrails.html';
-            });
-        }
-        if (item === "Bilderbergská skupina") {
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-                window.location.href = 'bilderberg.html';
-            });
-        }
-        if (item === "Area 51 a mimozemské technológie") {
-            li.style.cursor = 'pointer';
-            li.addEventListener('click', () => {
-                window.location.href = 'area51.html';
-            });
-        }
-
-        listItems.appendChild(li);
-    });
-
-    conspiracyList.style.display = 'block'; // Zobrazí zoznam
+/* Resetovanie základných štýlov */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive;
 }
 
-// Event listenery pre tlačidlá
-document.getElementById('conspiracy-world').addEventListener('click', () => showConspiracies('world'));
-document.getElementById('conspiracy-usa').addEventListener('click', () => showConspiracies('usa'));
+/* Tmavé neónové pozadie */
+body {
+    background: radial-gradient(circle, #111 40%, #000 100%);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Kontajner pre obsah */
+.container {
+    text-align: center;
+}
+
+/* Nadpis s neonovým efektom */
+h1 {
+    font-size: 28px;
+    color: #0ff;
+    text-shadow: 0 0 10px #0ff, 0 0 20px #00f, 0 0 30px #00f;
+    margin-bottom: 30px;
+}
+
+/* Arcade tlačidlá */
+.arcade-button {
+    background: linear-gradient(45deg, #ff00ff, #ff4500);
+    border: 3px solid #fff;
+    color: white;
+    font-size: 16px;
+    padding: 15px 20px;
+    margin: 15px;
+    width: 300px;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff4500;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Efekt pri prechode myšou */
+.arcade-button:hover {
+    background: linear-gradient(45deg, #ff4500, #ff00ff);
+    box-shadow: 0 0 20px #ff00ff, 0 0 40px #ff4500, 0 0 60px #ff00ff;
+    transform: scale(1.1);
+}
+
+/* Efekt po kliknutí */
+.arcade-button:active {
+    transform: scale(0.9);
+}
