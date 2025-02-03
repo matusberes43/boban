@@ -13,6 +13,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    flex-direction: column;
 }
 
 /* Kontajner pre tlačidlá */
@@ -68,3 +69,33 @@ body {
 .button:nth-child(2) { --color: #0088ff; } /* SVET - modrá */
 .button:nth-child(3) { --color: #32cd32; } /* NOVINKY - zelená */
 .button:nth-child(4) { --color: #ff00ff; } /* VIDEA - fialová */
+
+/* Štýl pre menšie tlačidlá konšpiračných teórií */
+.sub-button-container {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    margin-left: 40px;
+}
+
+.sub-button {
+    width: 350px;
+    height: 50px;
+    background: linear-gradient(to right, #222 20%, #ffcc00 80%);
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+/* Efekt po prechode myšou */
+.sub-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #ffcc00;
+}
