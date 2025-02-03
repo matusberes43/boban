@@ -1,91 +1,71 @@
-/* Import arcade herného fontu */
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
+/* Resetovanie základných štýlov */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Arial', sans-serif;
 }
 
-/* Animované herné pozadie */
+/* Celé telo */
 body {
-    background: black;
-    overflow: hidden;
+    background: #000; /* Čierne pozadie */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+/* Kontajner pre tlačidlá */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Štýl tlačidiel */
+.button {
+    display: flex;
+    align-items: center;
+    width: 280px;
+    height: 60px;
+    background: linear-gradient(to right, #ddd 20%, var(--color) 80%);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Efekt po prechode myšou */
+.button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Ikona vľavo */
+.icon {
+    background: #ddd;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon img {
+    width: 30px;
+    height: 30px;
+}
+
+/* Text na tlačidle */
+.text {
+    flex-grow: 1;
     text-align: center;
-    position: relative;
-}
-
-/* Efekt animácie */
-.background-animation {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, #21007d, #000);
-    animation: pulse 5s infinite alternate;
-    z-index: -1;
-}
-
-@keyframes pulse {
-    0% { background: radial-gradient(circle, #21007d, #000); }
-    100% { background: radial-gradient(circle, #ff0080, #000); }
-}
-
-/* Kontajner pre obsah */
-.container {
-    text-align: center;
-    z-index: 2;
-}
-
-/* Nadpis s neónovým efektom */
-h1 {
-    font-size: 24px;
-    color: #0ff;
-    text-shadow: 0 0 10px #0ff, 0 0 20px #00f, 0 0 40px #0ff;
-    margin-bottom: 30px;
-}
-
-/* Arcade tlačidlá */
-.arcade-button {
-    background: transparent;
     color: white;
-    font-size: 14px;
-    padding: 15px 25px;
-    margin: 15px;
-    width: 320px;
-    cursor: pointer;
-    text-transform: uppercase;
-    border: 3px solid #0ff;
-    box-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
-    transition: all 0.3s ease-in-out;
-    position: relative;
-    outline: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding-right: 15px;
 }
 
-/* 3D efekt tlačidiel */
-.arcade-button::before {
-    content: '';
-    position: absolute;
-    top: -4px;
-    left: -4px;
-    width: 100%;
-    height: 100%;
-    border: 3px solid #ff00ff;
-    transition: all 0.3s ease-in-out;
-}
-
-/* Efekt pri prechode myšou */
-.arcade-button:hover {
-    background: rgba(255, 0, 255, 0.2);
-    box-shadow: 0 0 20px #ff00ff, 0 0 40px #ff0080;
-    transform: scale(1.1);
-}
-
-/* Efekt po kliknutí */
-.arcade-button:active {
-    transform: scale(0.95);
-}
+/* Špecifické farby tlačidiel */
+.button:nth-child(1) { --color: #4CAF50; } /* PRINT NOW */
+.button:nth-child(2) { --color: #008000; } /* SUBMIT */
+.button:nth-child(3) { --color: #2196F3; } /* UPLOAD */
+.button:nth-child(4) { --color: #555; }    /* FIND MORE */
