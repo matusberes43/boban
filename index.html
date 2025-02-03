@@ -3,19 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conspiracy Hub</title>
+    <title>Custom Buttons</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="background-animation"></div> <!-- Animované pozadie -->
-    <div class="container">
-        <h1>👽 Conspiracy Hub 👽</h1>
-        <div class="buttons">
-            <button class="arcade-button" onclick="navigate('usa')">Conspiracy Theories (USA)</button>
-            <button class="arcade-button" onclick="navigate('world')">Conspiracy Theories (SVET)</button>
-            <button class="arcade-button" onclick="navigate('news')">NOVINKY</button>
+    <div class="button-container">
+        <div class="button">
+            <div class="icon"><img src="print.svg" alt="Print"></div>
+            <div class="text">PRINT NOW</div>
+        </div>
+        <div class="button">
+            <div class="icon"><img src="submit.svg" alt="Submit"></div>
+            <div class="text">SUBMIT</div>
+        </div>
+        <div class="button">
+            <div class="icon"><img src="upload.svg" alt="Upload"></div>
+            <div class="text">UPLOAD</div>
+        </div>
+        <div class="button">
+            <div class="icon"><img src="search.svg" alt="Find More"></div>
+            <div class="text">FIND MORE</div>
         </div>
     </div>
-    <script src="script.js"></script>
 </body>
 </html>
