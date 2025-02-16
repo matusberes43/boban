@@ -23,21 +23,22 @@ body {
     justify-content: center;
 }
 
+/* Štvorcová profilová fotka s bielym lemom */
 .profile-pic {
     width: 100px;
     height: 100px;
-    border-radius: 50%;
-    border: 5px solid #1C39BB; /* Lazuritová farba */
+    border: 5px solid white; /* Biely okraj */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Jemný tieň */
     object-fit: cover;
     transition: transform 0.2s ease-in-out;
 }
 
-/* Pridáme mierne zväčšenie pri prechode myšou */
+/* Efekt zväčšenia pri prechode myšou */
 .profile-pic:hover {
     transform: scale(1.05);
 }
 
+/* Červená notifikačná bublina */
 .notification {
     position: absolute;
     top: 5px;
@@ -59,7 +60,7 @@ body {
     transition: transform 0.2s ease-in-out;
 }
 
-/* Efekt "bubliny" pri prechode myšou */
+/* Efekt zväčšenia notifikačnej bubliny pri prechode myšou */
 .notification:hover {
     transform: scale(1.2);
 }
