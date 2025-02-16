@@ -1,123 +1,65 @@
-/* Resetovanie základných štýlov */
+/* Resetovanie základného štýlu */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif; /* Normálny font */
 }
 
-/* Celé telo */
 body {
-    background: #000; /* Čierne pozadie */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    flex-direction: column;
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
 }
 
-/* Kontajner pre tlačidlá */
-.button-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 90%;
-    max-width: 450px;
-}
-
-/* Štýl tlačidiel */
-.button {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 70px;
-    background: linear-gradient(to right, #222 20%, var(--color) 80%);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
-    text-transform: uppercase;
-}
-
-/* Efekt po prechode myšou */
-.button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-}
-
-/* Ikona vľavo */
-.icon {
-    background: #222;
-    padding: 20px;
+.profile-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-    color: #fff;
 }
 
-/* Text na tlačidle */
-.text {
-    flex-grow: 1;
-    text-align: center;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 5px solid #1C39BB; /* Lazuritová farba */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Jemný tieň */
+    object-fit: cover;
+    transition: transform 0.2s ease-in-out;
 }
 
-/* Špecifické farby tlačidiel */
-.button:nth-child(1) { --color: #ff4500; } /* USA - červená */
-.button:nth-child(2) { --color: #0088ff; } /* SVET - modrá */
-.button:nth-child(3) { --color: #32cd32; } /* NOVINKY - zelená */
-.button:nth-child(4) { --color: #ffcc00; } /* VIDEA - žltá */
-
-/* Menšie tlačidlá konšpiračných teórií */
-.sub-button-container {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    margin-top: 10px;
-}
-
-.sub-button {
-    width: 100%;
-    height: 50px;
-    background: linear-gradient(to right, #222 20%, #ffcc00 80%);
-    border-radius: 5px;
-    color: white;
-    font-size: 10px; /* ZMENŠENÝ TEXT */
-    font-weight: bold;
-    text-align: center;
-    line-height: 50px;
-    cursor: pointer;
-    transition: 0.3s;
-    text-transform: uppercase;
-}
-
-/* Efekt po prechode myšou */
-.sub-button:hover {
+/* Pridáme mierne zväčšenie pri prechode myšou */
+.profile-pic:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 15px #ffcc00;
 }
 
-/* Mini tlačidlo BACK */
-.back-button {
-    display: none;
-    margin-top: 20px;
-    padding: 8px 15px;
-    background: #ff0000;
+.notification {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: red;
     color: white;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    text-transform: uppercase;
+    padding: 6px 10px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 28px;
     text-align: center;
-    transition: 0.3s;
+    transform: scale(1);
+    transition: transform 0.2s ease-in-out;
 }
 
-/* Efekt po prechode myšou na BACK */
-.back-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 10px #ff0000;
+/* Efekt "bubliny" pri prechode myšou */
+.notification:hover {
+    transform: scale(1.2);
 }
