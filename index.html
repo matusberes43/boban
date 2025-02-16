@@ -5,25 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ovládací panel</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="sidebar">
         <h2>Ovládací panel</h2>
-        <ul>
-            <li class="section"><a href="#">Punisher bude trestať</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Pošta</a></li>
-            <li class="divider"></li>
-        </ul>
-        <ul>
-            <li><a href="#">Bedna</a></li>
-            <li><a href="#">Diskuze</a></li>
-            <li><a href="#">Oblíbené seriály</a></li>
-        </ul>
-        <ul class="logout">
-            <li class="divider"></li>
-            <li><a href="#">Odhlásiť sa</a></li>
-        </ul>
+
+        <div class="menu-section">
+            <a href="#" class="menu-item"><i class="fas fa-user-shield"></i> Punisher bude trestať</a>
+        </div>
+
+        <hr class="divider">
+
+        <div class="menu-section">
+            <a href="#" class="menu-item"><i class="fas fa-envelope"></i> Pošta</a>
+        </div>
+
+        <hr class="divider">
+
+        <div class="menu-list">
+            <a href="#" class="menu-item"><i class="fas fa-box"></i> Bedna</a>
+            <a href="#" class="menu-item"><i class="fas fa-comments"></i> Diskuze</a>
+            <a href="#" class="menu-item"><i class="fas fa-tv"></i> Oblíbené seriály</a>
+        </div>
+
+        <hr class="divider">
+
+        <div class="menu-section logout">
+            <a href="#" class="menu-item logout-btn"><i class="fas fa-sign-out-alt"></i> Odhlásiť sa</a>
+        </div>
     </div>
 </body>
 </html>
