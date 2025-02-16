@@ -30,8 +30,8 @@ body {
 
 /* Efekt pri najetí myšou */
 .message-button:hover {
-    transform: scale(1.05);
-    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.4);
+    transform: scale(1.08);
+    box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.4);
 }
 
 /* Ikonka správy */
@@ -43,21 +43,23 @@ body {
 /* Červený indikátor novej správy */
 .notification {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    background-color: red;
+    top: 6px;
+    right: 6px;
+    background: radial-gradient(circle, #ff4e4e, #d60000);
     color: white;
-    font-size: 14px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
     font-weight: bold;
-    padding: 4px 8px;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    min-width: 24px;
+    padding: 5px 10px;
+    border-radius: 50px;
+    box-shadow: 0 2px 6px rgba(255, 0, 0, 0.4);
+    min-width: 28px;
     text-align: center;
-    transition: transform 0.2s;
+    transition: transform 0.2s, background 0.3s;
 }
 
 /* Efekt na červený indikátor */
 .notification:hover {
-    transform: scale(1.1);
+    transform: scale(1.15);
+    background: radial-gradient(circle, #ff6666, #ff0000);
 }
