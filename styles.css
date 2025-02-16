@@ -1,4 +1,4 @@
-/* Reset štýlov */
+/* Reset základného štýlu */
 * {
     margin: 0;
     padding: 0;
@@ -16,11 +16,11 @@ body {
 
 /* Minimalistický panel */
 .sidebar {
-    width: 220px;
+    width: 200px;
     background: #2cbfe1;
-    padding: 20px;
+    padding: 15px;
     border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -29,17 +29,17 @@ body {
 /* Nadpis */
 .sidebar h2 {
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 /* Navigácia */
 nav {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 4px;
 }
 
 /* Položky menu */
@@ -47,12 +47,12 @@ nav {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 10px;
+    padding: 8px;
     font-size: 14px;
     font-weight: 500;
     color: white;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 6px;
     transition: background 0.2s ease-in-out;
 }
 
@@ -67,7 +67,7 @@ nav {
 
 /* Sekcia pre odhlásenie */
 .logout-section {
-    margin-top: 15px;
+    margin-top: 10px;
     display: flex;
     justify-content: center;
 }
@@ -77,8 +77,8 @@ nav {
     font-weight: bold;
     width: 100%;
     text-align: center;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 8px;
+    border-radius: 6px;
 }
 
 .logout-btn:hover {
