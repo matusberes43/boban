@@ -6,21 +6,24 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Inter', sans-serif;
+    background-color: #E3F2FD;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-/* Bočný panel - moderný dizajn */
+/* Ovládací panel */
 .sidebar {
-    width: 280px;
-    background-color: #2cbfe1;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    width: 320px;
+    background: #2cbfe1;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 /* Nadpis */
@@ -28,60 +31,66 @@ body {
     color: white;
     font-size: 22px;
     font-weight: bold;
-    margin-bottom: 20px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
-/* Základné nastavenie zoznamu */
-.sidebar ul {
-    list-style: none;
-    padding: 0;
+/* Štýl sekcií */
+.menu-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Položky menu */
-.sidebar ul li {
-    margin: 10px 0;
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    text-align: left;
+    padding: 12px 15px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
 }
 
-/* Odkazy */
-.sidebar ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    display: block;
-    padding: 12px;
-    border-radius: 8px;
-    transition: background 0.3s, transform 0.2s;
+.menu-item i {
+    font-size: 18px;
 }
 
 /* Hover efekt */
-.sidebar ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
 }
 
-/* Oddelenie sekcií takmer neviditeľnou bielou čiarou */
+/* Oddelenie sekcií */
 .divider {
+    border: none;
     height: 1px;
-    background-color: rgba(255, 255, 255, 0.2);
-    margin: 8px 0;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 5px 0;
 }
 
-/* Štýl pre sekciu */
-.section a {
-    font-size: 18px;
-    font-weight: bold;
+/* Štýl zoznamu menu */
+.menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 /* Odhlásenie */
-.logout li a {
-    color: #ff4c4c;
+.logout-btn {
+    background: rgba(255, 76, 76, 0.8);
     font-weight: bold;
-    text-align: center;
 }
 
-.logout li a:hover {
-    background-color: rgba(255, 76, 76, 0.2);
+.logout-btn:hover {
+    background: rgba(255, 76, 76, 1);
     transform: scale(1.05);
 }
