@@ -6,81 +6,58 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: ##0e0b28;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #000;
 }
 
-/* Minimalistický panel */
-.sidebar {
-    width: 200px;
-    background: #2cbfe1;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* Nadpis */
-.sidebar h2 {
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-/* Navigácia */
-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-/* Položky menu */
-.menu-item {
+/* Moderné tlačidlo správ */
+.message-button {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(145deg, #2cbfe1, #24a6c8);
+    border-radius: 20px;
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: background 0.2s ease-in-out;
-}
-
-.menu-item i {
-    font-size: 14px;
-}
-
-/* Hover efekt */
-.menu-item:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-/* Sekcia pre odhlásenie */
-.logout-section {
-    margin-top: 10px;
-    display: flex;
     justify-content: center;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.logout-btn {
-    background: rgba(255, 76, 76, 0.8);
+/* Efekt pri najetí myšou */
+.message-button:hover {
+    transform: scale(1.05);
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Ikonka správy */
+.message-button i {
+    font-size: 32px;
+    color: white;
+}
+
+/* Červený indikátor novej správy */
+.notification {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: red;
+    color: white;
+    font-size: 14px;
     font-weight: bold;
-    width: 100%;
+    padding: 4px 8px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    min-width: 24px;
     text-align: center;
-    padding: 8px;
-    border-radius: 6px;
+    transition: transform 0.2s;
 }
 
-.logout-btn:hover {
-    background: rgba(255, 76, 76, 1);
+/* Efekt na červený indikátor */
+.notification:hover {
+    transform: scale(1.1);
 }
