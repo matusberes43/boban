@@ -1,65 +1,81 @@
-/* Reset základného štýlu */
-* {
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    background-color: #1a1a1a;
+    color: #fff;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #000;
-}
-
-/* Moderné tlačidlo správ */
-.message-button {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(145deg, #2cbfe1, #24a6c8);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-/* Efekt pri najetí myšou */
-.message-button:hover {
-    transform: scale(1.08);
-    box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.4);
-}
-
-/* Ikonka správy */
-.message-button i {
-    font-size: 32px;
-    color: white;
-}
-
-/* Červený indikátor novej správy */
-.notification {
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    background: radial-gradient(circle, #ff4e4e, #d60000);
-    color: white;
-    font-size: 16px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 50px;
-    box-shadow: 0 2px 6px rgba(255, 0, 0, 0.4);
-    min-width: 28px;
+header {
+    background-color: #0f0f0f;
+    padding: 20px;
     text-align: center;
-    transition: transform 0.2s, background 0.3s;
+    border-bottom: 2px solid #00ff00;
 }
 
-/* Efekt na červený indikátor */
-.notification:hover {
-    transform: scale(1.15);
-    background: radial-gradient(circle, #ff6666, #ff0000);
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #00ff00;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #fff;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.category-card {
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.category-card:hover {
+    transform: scale(1.05);
+}
+
+.category-card img {
+    width: 100%;
+    height: auto;
+}
+
+.category-card h2 {
+    margin: 10px;
+    font-size: 1.5em;
+}
+
+.category-card p {
+    margin: 0 10px 10px;
+    color: #ccc;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #0f0f0f;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }
