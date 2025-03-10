@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vodka Výber</title>
     <style>
-        /* Základné štýly */
         :root {
             --bottle-width: 120px;
             --bottle-height: 300px;
@@ -63,7 +62,7 @@
             bottom: 0;
             width: 100%;
             background: var(--liquid-color);
-            transition: height 0.5s ease-in-out;
+            transition: height 0.5s ease-in-out, background-color 0.5s ease-in-out;
         }
 
         .label {
@@ -113,8 +112,8 @@
 <div class="container">
     <h1>Vyberte si veľkosť vodky</h1>
     <select id="volumeSelect">
-        <option value="0.7">0.7 litrov</option>
-        <option value="1">1 liter</option>
+        <option value="0.7">0.7 litrov (700 ml)</option>
+        <option value="1">1 liter (1000 ml)</option>
     </select>
     <div class="bottle-container">
         <div class="bottle">
@@ -124,9 +123,9 @@
     </div>
     <div class="menu">
         <label for="totalShots">Celkový počet pohárov:</label>
-        <input type="number" id="totalShots" min="1" value="10">
+        <input type="number" id="totalShots" min="1" value="32">
         <label for="remainingShots">Zostávajúce poháre:</label>
-        <input type="number" id="remainingShots" min="0" value="10">
+        <input type="number" id="remainingShots" min="0" value="32">
         <button onclick="updateLiquid()">Aktualizovať</button>
     </div>
 </div>
@@ -138,20 +137,47 @@
     const totalShots = document.getElementById('totalShots');
     const remainingShots = document.getElementById('remainingShots');
 
+    // Konštanty pre prevod pohárov na objem
+    const SHOT_VOLUME_ML = 350 / 16; // 1 pohár = 21.875 ml
+
+    // Funkcia na interpoláciu farby
+    function interpolateColor(color1, color2, factor) {
+        const result = color1.slice();
+        for (let i = 0; i < 3; i++) {
+            result[i] = Math.round(result[i] + factor * (color2[i] - color1[i]));
+        }
+        return `rgb(${result[0]}, ${result[1]}, ${result[2]})`;
+    }
+
     // Funkcia na aktualizáciu tekutiny
     function updateLiquid() {
         const total = parseInt(totalShots.value);
         const remaining = parseInt(remainingShots.value);
         const consumed = total - remaining;
         const percentageConsumed = (consumed / total) * 100;
+
+        // Aktualizácia výšky tekutiny
         liquid.style.height = `${100 - percentageConsumed}%`;
+
+        // Zmena farby tekutiny (od modrej po červenú)
+        const startColor = [173, 216, 230]; // Svetlomodrá
+        const endColor = [255, 0, 0];       // Červená
+        const colorFactor = percentageConsumed / 100;
+        liquid.style.backgroundColor = interpolateColor(startColor, endColor, colorFactor);
+
+        // Aktualizácia objemu
+        const volumeMl = remaining * SHOT_VOLUME_ML;
+        label.textContent = `${(volumeMl / 1000).toFixed(2)}L`;
     }
 
     // Funkcia na zmenu veľkosti fľaše
     volumeSelect.addEventListener('change', (event) => {
-        const selectedVolume = event.target.value;
+        const selectedVolume = parseFloat(event.target.value);
+        const totalShotsValue = Math.round((selectedVolume * 1000) / SHOT_VOLUME_ML);
+        totalShots.value = totalShotsValue;
+        remainingShots.value = totalShotsValue;
         label.textContent = `${selectedVolume}L`;
-        alert(`Vybrali ste si ${selectedVolume} litrovú fľašu.`);
+        updateLiquid();
     });
 
     // Inicializácia
