@@ -1,52 +1,21 @@
-// Zoznam konšpiračných teórií
-const conspiracies = {
-    "usa": [
-        "Pád dvojčiat (11. september 2001)",
-        "Vražda prezidenta Kennedyho",
-        "Fenomén UFO v Roswelle",
-        "FEMA a koncentračné tábory",
-        "Sandy Hook ako fáma",
-        "Moon landing ako podvod",
-        "JFK Jr. a QAnon",
-        "11. september ako vnútorná záležitosť",
-        "COVID-19 ako biologická zbraň",
-        "Volby v USA 2020 ako podvod"
-    ],
-    "world": [
-        "Smrť princeznej Diany",
-        "Cheopsova pyramída a mimozemšťania",
-        "Nový svetový poriadok",
-        "Ilumináti",
-        "HAARP a ovládanie počasia",
-        "Prázdna Zem",
-        "Fenomén roku 2012",
-        "Chemtrails",
-        "Bilderbergská skupina",
-        "Area 51 a mimozemské technológie"
-    ]
-};
+// Príklad kódu pre filter v Node.js
+app.get('/filmy', async (req, res) => {
+    const { rokOd, rokDo, zaner, hodnotenieOd, hodnotenieDo } = req.query;
 
-// Funkcia na zobrazenie konšpiračných teórií
-function showConspiracies(type) {
-    document.getElementById("main-buttons").style.display = "none";
-    const container = document.getElementById("conspiracy-container");
-    container.innerHTML = "";
+    let query = 'SELECT * FROM filmy WHERE 1=1';
 
-    conspiracies[type].forEach(conspiracy => {
-        const btn = document.createElement("div");
-        btn.classList.add("sub-button");
-        btn.textContent = conspiracy;
-        btn.onclick = () => alert(`Vybrali ste: ${conspiracy}`);
-        container.appendChild(btn);
-    });
+    if (rokOd && rokDo) {
+        query += ` AND rok_výroby BETWEEN ${rokOd} AND ${rokDo}`;
+    }
 
-    container.style.display = "flex";
-    document.getElementById("back-button").style.display = "block";
-}
+    if (zaner) {
+        query += ` AND žáner = '${zaner}'`;
+    }
 
-// Funkcia na návrat na hlavnú obrazovku
-function showMainMenu() {
-    document.getElementById("main-buttons").style.display = "flex";
-    document.getElementById("conspiracy-container").style.display = "none";
-    document.getElementById("back-button").style.display = "none";
-}
+    if (hodnotenieOd && hodnotenieDo) {
+        query += ` AND hodnotenie_csfd BETWEEN ${hodnotenieOd} AND ${hodnotenieDo}`;
+    }
+
+    const filmy = await db.query(query);
+    res.json(filmy);
+});
