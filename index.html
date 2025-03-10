@@ -154,15 +154,15 @@
         const total = parseInt(totalShots.value);
         const remaining = parseInt(remainingShots.value);
         const consumed = total - remaining;
-        const percentageConsumed = (consumed / total) * 100;
+        const percentageRemaining = (remaining / total) * 100;
 
         // Aktualizácia výšky tekutiny
-        liquid.style.height = `${100 - percentageConsumed}%`;
+        liquid.style.height = `${percentageRemaining}%`;
 
         // Zmena farby tekutiny (od modrej po červenú)
         const startColor = [173, 216, 230]; // Svetlomodrá
         const endColor = [255, 0, 0];       // Červená
-        const colorFactor = percentageConsumed / 100;
+        const colorFactor = (100 - percentageRemaining) / 100;
         liquid.style.backgroundColor = interpolateColor(startColor, endColor, colorFactor);
 
         // Aktualizácia objemu
