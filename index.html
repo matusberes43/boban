@@ -3,14 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navigačná lišta – Kategórie</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Vodka Výber</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .bottle {
+            position: relative;
+            width: 100px;
+            height: 200px;
+            margin: 20px auto;
+            border: 2px solid #000;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .liquid {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: #add8e6;
+            transition: height 0.5s;
+        }
+        .menu {
+            margin-top: 20px;
+        }
+        .menu input {
+            margin: 5px;
+            padding: 5px;
+            width: 100px;
+        }
+        .menu button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .menu button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <nav class="category-nav">
-        <button class="nav-button active">ALL</button>
-        <button class="nav-button">Games</button>
-        <button class="nav-button">IRL</button>
-    </nav>
+
+<div class="container">
+    <h1>Vyberte si veľkosť vodky</h1>
+    <select id="volumeSelect">
+        <option value="0.7">0.7 litrov</option>
+        <option value="1">1 liter</option>
+    </select>
+    <div class="bottle">
+        <div id="liquid" class="liquid"></div>
+    </div>
+    <div class="menu">
+        <label for="totalShots">Celkový počet pohárov:</label>
+        <input type="number" id="totalShots" min="1" value="10">
+        <label for="remainingShots">Zostávajúce poháre:</label>
+        <input type="number" id="remainingShots" min="0" value="10">
+        <button onclick="updateLiquid()">Aktualizovať</button>
+    </div>
+</div>
+
+<script>
+    const volumeSelect = document.getElementById('volumeSelect');
+    const liquid = document.getElementById('liquid');
+    const totalShots = document.getElementById('totalShots');
+    const remainingShots = document.getElementById('remainingShots');
+
+    function updateLiquid() {
+        const total = parseInt(totalShots.value);
+        const remaining = parseInt(remainingShots.value);
+        const consumed = total - remaining;
+        const percentageConsumed = (consumed / total) * 100;
+        liquid.style.height = `${100 - percentageConsumed}%`;
+    }
+
+    volumeSelect.addEventListener('change', (event) => {
+        const selectedVolume = event.target.value;
+        alert(`Vybrali ste si ${selectedVolume} litrovú fľašu.`);
+    });
+
+    updateLiquid();
+</script>
+
 </body>
 </html>
