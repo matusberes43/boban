@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PUNISHER Navbar</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap'); /* Profesionálny futuristický font */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
         body {
             margin: 0;
@@ -23,29 +23,33 @@
             height: 60px;
         }
 
+        /* Menu ikonka podľa predlohy */
         .menu-icon {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
             cursor: pointer;
         }
 
         .menu-icon div {
             background-color: white;
-            height: 4px;
-            border-radius: 2px;
+            height: 6px;
+            border-radius: 12px;
         }
 
         .menu-icon div:nth-child(1) {
-            width: 20px;
+            width: 30px;
+            border-top-right-radius: 14px;
         }
 
         .menu-icon div:nth-child(2) {
-            width: 25px;
+            width: 40px;
+            border-top-right-radius: 14px;
         }
 
         .menu-icon div:nth-child(3) {
-            width: 15px;
+            width: 35px;
+            border-top-right-radius: 14px;
         }
 
         .logo-text {
@@ -57,6 +61,7 @@
             letter-spacing: 2px;
         }
 
+        /* Profilová ikonka presne podľa predlohy */
         .profile-icon {
             width: 40px;
             height: 40px;
@@ -64,34 +69,28 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 10px;
+            border-radius: 8px;
             position: relative;
         }
 
-        /* Vytvorenie moderného tvaru ikony používateľa */
         .profile-icon::before {
             content: "";
-            width: 40%;
-            height: 40%;
+            width: 50%;
+            height: 50%;
             border-radius: 50%;
-            background-color: white;
+            border: 3px solid white;
             position: absolute;
             top: 20%;
         }
 
         .profile-icon::after {
             content: "";
-            width: 70%;
-            height: 30%;
+            width: 60%;
+            height: 25%;
             background-color: white;
             position: absolute;
-            bottom: 15%;
-            border-radius: 50px;
-        }
-
-        /* Pridanie jemného tieňa pre moderný efekt */
-        .profile-icon {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            bottom: 20%;
+            border-radius: 8px;
         }
 
     </style>
