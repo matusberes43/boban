@@ -58,8 +58,8 @@
         }
 
         .profile-icon {
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             background-color: black;
             display: flex;
             align-items: center;
@@ -68,12 +68,13 @@
             position: relative;
         }
 
+        /* Vytvorenie moderného tvaru ikony používateľa */
         .profile-icon::before {
             content: "";
-            width: 60%;
-            height: 60%;
+            width: 40%;
+            height: 40%;
             border-radius: 50%;
-            border: 3px solid white;
+            background-color: white;
             position: absolute;
             top: 20%;
         }
@@ -86,6 +87,11 @@
             position: absolute;
             bottom: 15%;
             border-radius: 50px;
+        }
+
+        /* Pridanie jemného tieňa pre moderný efekt */
+        .profile-icon {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
     </style>
