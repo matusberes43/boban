@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PUNISHER Navbar</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap'); /* Profesionálny futuristický font */
+
         body {
             margin: 0;
             padding: 0;
@@ -51,22 +53,39 @@
             font-weight: bold;
             color: white;
             text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
         }
 
         .profile-icon {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             background-color: black;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 5px;
+            border-radius: 10px;
+            position: relative;
         }
 
         .profile-icon::before {
-            content: "\1F464"; /* Unicode pre profilovú ikonu */
-            font-size: 20px;
-            color: white;
+            content: "";
+            width: 60%;
+            height: 60%;
+            border-radius: 50%;
+            border: 3px solid white;
+            position: absolute;
+            top: 20%;
+        }
+
+        .profile-icon::after {
+            content: "";
+            width: 70%;
+            height: 30%;
+            background-color: white;
+            position: absolute;
+            bottom: 15%;
+            border-radius: 50px;
         }
 
     </style>
