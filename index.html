@@ -3,109 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PUNISHER Navbar</title>
+    <title>F1 Countdown</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
         body {
             margin: 0;
             padding: 0;
-            background-color: #fff;
+            background-color: #000;
+            color: white;
             font-family: Arial, sans-serif;
         }
 
-        .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #d40000;
-            padding: 10px 20px;
-            height: 60px;
-        }
-
-        /* Menu ikonka podľa predlohy */
-        .menu-icon {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-        }
-
-        .menu-icon div {
-            background-color: white;
-            height: 6px;
-            border-radius: 12px;
-        }
-
-        .menu-icon div:nth-child(1) {
-            width: 30px;
-            border-top-right-radius: 14px;
-        }
-
-        .menu-icon div:nth-child(2) {
-            width: 40px;
-            border-top-right-radius: 14px;
-        }
-
-        .menu-icon div:nth-child(3) {
-            width: 35px;
-            border-top-right-radius: 14px;
-        }
-
-        .logo-text {
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
-            text-transform: uppercase;
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 2px;
-        }
-
-        /* Profilová ikonka presne podľa predlohy */
-        .profile-icon {
-            width: 40px;
-            height: 40px;
-            background-color: black;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
+        .container {
+            background-image: url('race-background.jpg'); /* Nahraď svojím obrázkom */
+            background-size: cover;
+            background-position: center;
+            padding: 20px;
+            text-align: center;
             position: relative;
         }
 
-        .profile-icon::before {
-            content: "";
-            width: 50%;
-            height: 50%;
-            border-radius: 50%;
-            border: 3px solid white;
-            position: absolute;
-            top: 20%;
+        .event-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
         }
 
-        .profile-icon::after {
-            content: "";
-            width: 60%;
-            height: 25%;
-            background-color: white;
-            position: absolute;
-            bottom: 20%;
-            border-radius: 8px;
+        .event-info img {
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .event-info .date {
+            font-size: 18px;
+        }
+
+        .grand-prix-box {
+            background-color: #111;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .grand-prix-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: space-around;
+            flex: 1;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .countdown div {
+            text-align: center;
+        }
+
+        .countdown span {
+            display: block;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .sponsor-logo img {
+            height: 50px;
         }
 
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="menu-icon">
-            <div></div>
-            <div></div>
-            <div></div>
+    <!-- Hlavný kontajner -->
+    <div class="container">
+        <!-- Informácie o podujatí -->
+        <div class="event-info">
+            <span class="date">14 - 16 MAR</span>
+            <span class="location">
+                <img src="track-icon.png" alt="Circuit"> 
+                <span>AUSTRALIA 2025</span>
+            </span>
         </div>
-        <div class="logo-text">PUNISHER</div>
-        <div class="profile-icon"></div>
-    </nav>
+
+        <!-- Grand Prix box -->
+        <div class="grand-prix-box">
+            <div>
+                <div class="grand-prix-title">GRAND PRIX WEEKEND</div>
+                <div class="countdown">
+                    <div>07 <span>HRS</span></div>
+                    <div>07 <span>MINS</span></div>
+                    <div>21 <span>SECS</span></div>
+                </div>
+            </div>
+            <div class="sponsor-logo">
+                <img src="tag-heuer-logo.png" alt="TAG Heuer">
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
