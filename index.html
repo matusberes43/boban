@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>F1 Navbar</title>
+    <title>PUNISHER Navbar</title>
     <style>
         body {
             margin: 0;
@@ -21,24 +21,66 @@
             height: 60px;
         }
 
-        .menu-icon, .profile-icon {
-            font-size: 24px;
-            color: white;
+        .menu-icon {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
             cursor: pointer;
         }
 
-        .logo {
-            height: 40px;
-            filter: brightness(0) invert(1); /* Zmena farby na bielu */
+        .menu-icon div {
+            background-color: white;
+            height: 4px;
+            border-radius: 2px;
         }
+
+        .menu-icon div:nth-child(1) {
+            width: 20px;
+        }
+
+        .menu-icon div:nth-child(2) {
+            width: 25px;
+        }
+
+        .menu-icon div:nth-child(3) {
+            width: 15px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .profile-icon {
+            width: 32px;
+            height: 32px;
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+        }
+
+        .profile-icon::before {
+            content: "\1F464"; /* Unicode pre profilovú ikonu */
+            font-size: 20px;
+            color: white;
+        }
+
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="menu-icon">&#9776;</div>
-        <img src="logo.png" alt="F1 75 Logo" class="logo">
-        <div class="profile-icon">&#128100;</div>
+        <div class="menu-icon">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="logo-text">PUNISHER</div>
+        <div class="profile-icon"></div>
     </nav>
 
 </body>
