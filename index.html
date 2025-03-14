@@ -1,184 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PUNISHER F1 UI</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Orbitron', sans-serif;
             background-color: #121212;
-            color: #fff;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
         }
 
         .navbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: #d40000;
-            padding: 10px 20px;
-            height: 60px;
+            padding: 10px;
         }
 
-        .menu-icon div {
-            height: 4px;
-            background-color: #fff;
-            margin-bottom: 5px;
-            border-radius: 2px;
-        }
-
-        .menu-icon div:nth-child(1) { width: 25px; }
-        .menu-icon div:nth-child(2) { width: 35px; }
-        .menu-icon div:nth-child(3) { width: 20px; }
-
-        .logo-text {
-            font-size: 22px;
-            letter-spacing: 3px;
-        }
-
-        .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #d40000;
-            padding: 15px 25px;
-        }
-
-        .profile-icon {
-            width: 36px;
-            height: 36px;
-            background-color: #18191b;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .profile-icon::before {
-            content: '';
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            border: 2px solid #fff;
-            position: absolute;
-            transform: translateY(-4px);
-        }
-
-        .profile-icon::after {
-            content: '';
-            width: 22px;
-            height: 10px;
-            background: #fff;
-            border-radius: 10px;
-            position: absolute;
-            transform: translateY(12px);
-        }
-
-        .profile-icon {
-            position: relative;
-            background-color: #181a1b;
-            border-radius: 10px;
-            width: 40px;
+        .logo img {
             height: 40px;
         }
 
-        /* Druhá sekcia – moderný dizajn */
-        .event-section {
-            background-color: #1f1f1f;
-            padding: 20px;
-            border-radius: 12px;
-            max-width: 600px;
-            margin: 20px auto;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-            text-align: center;
-        }
-
-        .event-title {
-            font-size: 22px;
-            margin-bottom: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .countdown {
+        .menu-icon {
+            cursor: pointer;
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            font-size: 26px;
+            flex-direction: column;
+            gap: 4px;
         }
 
-        .countdown-item {
-            background-color: #232323;
-            padding: 8px 14px;
-            border-radius: 8px;
-            margin: 0 4px;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+        .menu-icon:hover {
+            transform: scale(1.1);
         }
 
-        .countdown span {
-            font-size: 12px;
-            color: #aaa;
-            display: block;
-            margin-top: 2px;
+        .bar {
+            height: 3px;
+            background-color: #fff;
+            border-radius: 2px;
         }
 
-        .tag-logo img {
-            height: 45px;
-            margin-top: 15px;
+        .bar:nth-child(1) { width: 28px; }
+        .bar:nth-child(2) { width: 20px; }
+        .bar:nth-child(3) { width: 24px; }
+
+        .search-box {
+            width: 100%;
+            padding: 12px;
+            border-radius: 20px;
+            background-color: #333;
+            color: #ffffff;
+            border: none;
+            font-size: 16px;
+            box-sizing: border-box;
         }
 
-    </style>
+        .search-box::placeholder {
+            color: #888;
+        }
+
+        .search-box:focus {
+            outline: none;
+        }
 </head>
 <body>
-
-    <nav class="navbar">
-        <div class="menu-icon">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <div class="logo-text">PUNISHER</div>
-        <div class="profile-icon"></div>
-    </nav>
-
-    <div class="event-section">
-        <div class="event-info">
-            <p style="margin:10px;font-size:16px;opacity:0.7;">14 - 16 MAR</p>
-            <p class="event-title">Australia <span style="font-weight:600;">2025</span></p>
+    <div class="navbar">
+        <div class="logo">
+            <img src="https://i.postimg.cc/2S4hhVgJ/IMG-8128.png" alt="EDNA Logo">
         </div>
 
-        <div class="event-title">Grand Prix Weekend</div>
-        <div class="countdown">
-            <div class="event-title countdown">
-                <div class="countdown">
-                    <div class="countdown">
-                        <div class="countdown-item">
-                            <div class="countdown-num">07</div>
-                            <span>HRS</span>
-                        </div>
-                        <div class="countdown">
-                            <div class="countdown-item">07 <span>MINS</span></div>
-                            <div class="countdown-item">21 <span>SECS</span></div>
-                        </div>
-                        <img src="tag-heuer-logo.png" alt="TAG Heuer" style="height:40px;margin-top:15px;">
-    </nav>
-
-    <div class="event-info event-info">
-        <div class="event-info">
-        <div class="event-info">
-        <div class="event-title">GRAND PRIX WEEKEND</div>
-        <div class="countdown">
-            <div class="countdown-item">07<span>HRS</span></div>
-            <div class="countdown-item">07<span>MINS</span></div>
-            <div class="countdown-item">21<span>SECS</span></div>
-        </div>
-        <div class="sponsor-logo">
-            <img src="tag-heuer-logo.png" alt="TAG Heuer" style="width:60px;">
+        <div class="menu-icon" onclick="alert('Menu kliknuté!')">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
         </div>
     </div>
+
+    <input class="search-box" type="text" placeholder="Hledej seriály, filmy a další">
 
 </body>
 </html>
