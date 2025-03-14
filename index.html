@@ -3,221 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>F1 News</title>
+    <title>PUNISHER News</title>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         /* Základné nastavenie */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #F8F8F8;
+            background-color: #121212;
+            color: white;
         }
 
-        /* Horný červený panel */
+        /* Horná lišta */
         .top-bar {
             background-color: #D50000;
             color: white;
-            padding: 10px;
+            padding: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .top-bar img {
-            height: 30px;
-        }
-
-        .top-bar .profile-icon {
-            background-color: black;
-            padding: 10px;
-            border-radius: 50%;
-        }
-
-        /* Sekcia odpočítavania */
-        .countdown {
-            background-color: #222;
-            color: white;
-            padding: 20px;
-            text-align: center;
             font-size: 18px;
-        }
-
-        .countdown div {
-            display: inline-block;
-            margin: 5px;
-        }
-
-        /* Nadpisy sekcií */
-        .section-title {
-            font-size: 20px;
             font-weight: bold;
-            margin: 15px;
-            border-bottom: 2px solid red;
-            display: inline-block;
-            padding-bottom: 5px;
         }
 
-        /* Novinkové boxy */
-        .news-container {
-            background-color: white;
-            margin: 10px;
-            padding: 10px;
-            border-radius: 10px;
+        .menu-icon {
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .punisher-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 22px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             display: flex;
             align-items: center;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .news-container img {
-            width: 80px;
-            height: 80px;
-            border-radius: 8px;
-            margin-right: 10px;
+        .punisher-logo span {
+            background: linear-gradient(to right, red 50%, black 50%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transform: skewX(-10deg);
         }
 
-        .news-text {
-            flex: 1;
-        }
-
-        .news-text .category {
-            color: red;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .news-text .headline {
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        /* Sekcia "Moments" */
-        .moments-container {
+        /* Kontajner pre správy */
+        .news-container {
             display: flex;
-            overflow-x: auto;
-            gap: 10px;
-            padding: 10px;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
         }
 
-        .moment {
-            min-width: 200px;
-            background-color: black;
-            color: white;
-            padding: 10px;
-            border-radius: 10px;
-            position: relative;
-        }
-
-        .moment img {
-            width: 100%;
-            border-radius: 10px;
-        }
-
-        .moment .new-label {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: blue;
-            color: white;
-            padding: 5px;
-            font-size: 12px;
-            border-radius: 5px;
-        }
-
-        /* Reklama */
-        .ad-banner {
-            text-align: center;
-            padding: 10px;
-        }
-
-        .ad-banner img {
+        /* Box so správou */
+        .news-box {
+            background-color: #1E1E1E;
             width: 90%;
             border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        /* Spodná navigácia */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
+        .news-box img {
             width: 100%;
-            background-color: white;
-            padding: 10px 0;
-            display: flex;
-            justify-content: space-around;
-            border-top: 1px solid #ccc;
+            border-bottom: 3px solid red;
         }
 
-        .bottom-nav a {
-            text-decoration: none;
-            color: black;
-            text-align: center;
+        .news-content {
+            padding: 15px;
+        }
+
+        .news-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .news-meta {
             font-size: 12px;
+            color: #B0B0B0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
         }
 
-        .bottom-nav i {
-            font-size: 20px;
-            display: block;
-        }
-
-        .active {
-            color: red;
+        .news-meta i {
+            margin-left: 5px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Horný panel -->
+    <!-- Horná lišta -->
     <div class="top-bar">
-        <span>18:57</span>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg" alt="F1 logo">
-        <div class="profile-icon"><i class="fas fa-user"></i></div>
+        <div class="menu-icon"><i class="fas fa-bars"></i></div>
+        <div class="punisher-logo"><span>PUNISHER</span></div>
+        <div></div>
     </div>
 
-    <!-- Sekcia odpočítavania -->
-    <div class="countdown">
-        <div><strong>AUSTRALIA 2025</strong></div>
-        <div>PRACTICE 3</div>
-        <div>07 HRS | 34 MINS | 16 SECS</div>
-    </div>
-
-    <!-- Nadpis sekcie -->
-    <div class="section-title">Top Stories</div>
-
-    <!-- Novinky -->
+    <!-- Správy -->
     <div class="news-container">
-        <img src="https://via.placeholder.com/80" alt="News">
-        <div class="news-text">
-            <div class="category">NEWS</div>
-            <div class="headline">Team bosses voice excitement for ‘F1’ movie after ‘transformative’ effect of Drive to Survive</div>
-        </div>
-    </div>
-
-    <!-- Sekcia "Moments" -->
-    <div class="section-title">Moments</div>
-    <div class="moments-container">
-        <div class="moment">
-            <div class="new-label">NEW</div>
-            <img src="https://via.placeholder.com/200" alt="Moment">
-            <div class="headline">What would F1 drivers call their F1 Fantasy Team?</div>
-        </div>
-        <div class="moment">
-            <div class="new-label">NEW</div>
-            <img src="https://via.placeholder.com/200" alt="Moment">
-            <div class="headline">Nico SLAYS?</div>
-        </div>
-    </div>
-
-    <!-- Reklama -->
-    <div class="ad-banner">
-        <img src="https://via.placeholder.com/600x100" alt="Ad">
-    </div>
-
-    <!-- Spodná navigácia -->
-    <div class="bottom-nav">
-        <a href="#" class="active"><i class="fas fa-bars"></i> Latest</a>
-        <a href="#"><i class="fas fa-play-circle"></i> Video</a>
-        <a href="#"><i class="fas fa-flag-checkered"></i> Racing</a>
-        <a href="#"><i class="fas fa-list"></i> Standings</a>
-        <a href="#"><i class="fas fa-trophy"></i> Fantasy</a>
+        <!-- Vytvoríme 10 rovnakých boxov -->
+        <script>
+            for (let i = 0; i < 10; i++) {
+                document.write(`
+                    <div class="news-box">
+                        <img src="https://via.placeholder.com/800x400" alt="News Image">
+                        <div class="news-content">
+                            <div class="news-title">Captain America: Brave New World Is Officially One of the Highest-Grossing Action Movies in US Box Office History</div>
+                            <div class="news-meta">
+                                <span>By Jake Hodges • 5 hours ago</span>
+                                <span><i class="fas fa-comment"></i> 4</span>
+                            </div>
+                        </div>
+                    </div>
+                `);
+            }
+        </script>
     </div>
 
 </body>
