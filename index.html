@@ -3,148 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uživatelský profil</title>
+    <title>Boční menu</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         body {
             background-color: #12132D;
             font-family: Arial, sans-serif;
             color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* MENU KONTEJNER */
+        .menu-container {
+            position: fixed;
+            left: -100%;
+            top: 0;
+            width: 280px;
+            height: 100%;
+            background-color: #161738;
             padding: 20px;
+            box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.5);
+            transition: left 0.3s ease-in-out;
         }
 
-        .profile-box {
-            width: 350px;
-            border-radius: 10px;
-            padding: 15px;
-            background: linear-gradient(135deg, #1C1D40, #292A50);
-            box-shadow: 0px 0px 10px rgba(78, 139, 255, 0.5);
+        .menu-container.active {
+            left: 0;
         }
 
-        .username {
-            font-size: 28px;
+        /* ZAVÍRACÍ IKONA */
+        .close-menu {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        /* HLAVNÍ NADPIS */
+        .menu-title {
+            font-size: 20px;
             font-weight: bold;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .favorite-icon {
-            width: 22px;
-            height: 22px;
-        }
-
-        .avatar {
-            width: 60px;
-            height: 60px;
-            background-image: url('https://i.postimg.cc/02GqG3J2/IMG-7860.jpg');
-            background-size: cover;
-            border-radius: 8px;
-            border: 2px solid red;
             margin-bottom: 15px;
         }
 
-        .info {
-            font-size: 14px;
-            margin-bottom: 20px;
-            background: rgba(78, 139, 255, 0.1);
-            padding: 10px;
-            border-radius: 6px;
-        }
-
-        .button-container {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8px 12px;
-            background: #4E8BFF;
-            border-radius: 8px;
+        /* ODKAZY V MENU */
+        .menu-links a {
+            display: block;
             color: #FFFFFF;
             text-decoration: none;
-            font-size: 14px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn:hover {
-            background: #3A72D9;
-            transform: scale(1.05);
-        }
-
-        .btn-icon {
-            filter: brightness(0) invert(1);
-            margin-right: 6px;
-            width: 16px;
-            height: 16px;
-        }
-
-        .footer-links {
-            font-size: 14px;
-            margin-top: 15px;
-            text-align: center;
-        }
-
-        /* MENU */
-        .menu {
-            display: flex;
-            justify-content: center;
-            padding: 10px;
-            background-color: #161738;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-
-        .menu a {
-            color: #4E8BFF;
-            text-decoration: none;
-            font-size: 14px;
-            margin: 0 10px;
+            font-size: 16px;
+            padding: 8px 0;
             transition: color 0.3s;
         }
 
-        .menu a:hover {
+        .menu-links a:hover {
+            color: #4E8BFF;
+        }
+
+        .menu-links strong {
+            font-size: 18px;
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        /* ODDĚLOVAČ */
+        .divider {
+            border-top: 1px solid #4E4F71;
+            margin: 15px 0;
+        }
+
+        /* PROFIL SEKCIA */
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-top: 10px;
+        }
+
+        .profile-picture {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid red;
+            background-image: url('https://i.postimg.cc/02GqG3J2/IMG-7860.jpg');
+            background-size: cover;
+        }
+
+        .profile-name {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* SPODNÍ ODKAZY */
+        .bottom-links a {
+            display: flex;
+            align-items: center;
             color: #FFFFFF;
+            font-size: 14px;
+            text-decoration: none;
+            padding: 8px 0;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+
+        .bottom-links a:hover {
+            color: #4E8BFF;
+        }
+
+        .bottom-links i {
+            font-size: 16px;
+        }
+
+        /* TLAČÍTKO NA OTEVŘENÍ MENU */
+        .menu-button {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            background-color: #4E8BFF;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
         }
 
     </style>
 </head>
 <body>
 
-<div class="menu">
-    <a href="#">Hodnocení</a> |
-    <a href="#">Sledováno</a> |
-    <a href="#">Seriály v Bedně</a>
+<!-- TLAČÍTKO OTEVŘENÍ MENU -->
+<button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
+
+<!-- BOČNÍ MENU -->
+<div class="menu-container" id="menu">
+    <span class="close-menu" onclick="toggleMenu()">✖</span>
+    <div class="menu-title">Menu</div>
+
+    <div class="menu-links">
+        <strong>Edna.cz</strong>
+        <a href="#">Úvod</a>
+        <a href="#">Novinky</a>
+        <a href="#">Seriály a filmy</a>
+        <a href="#">Další vysílání</a>
+        <a href="#">Žebříčky</a>
+        <a href="#">Herci</a>
+        <a href="#">Magazín</a>
+        <a href="#">Blog</a>
+        <a href="#">Diskuze</a>
+        <a href="#">Tip na seriál</a>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- PROFIL SEKCE -->
+    <div class="profile-section">
+        <div class="profile-picture"></div>
+        <div class="profile-name">Punisher bude trestať</div>
+    </div>
+
+    <div class="bottom-links">
+        <a href="#"><i class="fas fa-comment"></i> 1 Vzkazník</a>
+        <a href="#"><i class="fas fa-tv"></i> Bedna</a>
+        <a href="#"><i class="fas fa-comments"></i> Oblíbené diskuze</a>
+        <a href="#"><i class="fas fa-cog"></i> Nastavení</a>
+        <a href="#"><i class="fas fa-sign-out-alt"></i> Odhlásit se</a>
+    </div>
 </div>
 
-<div class="profile-box">
-    <div class="username">
-        kenkaku
-        <img src="https://img.icons8.com/ios-filled/50/CCCCCC/ok--v1.png" class="favorite-icon" alt="Neoblíbený">
-    </div>
-    <div class="avatar"></div>
-    <div class="info">
-        <strong>Registrace:</strong> před 7 lety<br>
-        <strong>Sledováno:</strong> 6 měsíců 22 dní 22 hodin 23 minut (6607 epizod, 183 seriálů)
-    </div>
-
-    <div class="button-container">
-        <button class="btn">
-            <img src="https://img.icons8.com/ios/50/FFFFFF/speech-bubble--v1.png" class="btn-icon">
-            Poslat zprávu
-        </button>
-        <button class="btn">
-            <img src="https://img.icons8.com/ios/50/FFFFFF/star--v1.png" class="btn-icon">
-            Přidat do oblíbených
-        </button>
-    </div>
-</div>
+<!-- JAVASCRIPT PRO OTEVÍRÁNÍ/ZAVÍRÁNÍ MENU -->
+<script>
+    function toggleMenu() {
+        let menu = document.getElementById('menu');
+        menu.classList.toggle('active');
+    }
+</script>
 
 </body>
 </html>
