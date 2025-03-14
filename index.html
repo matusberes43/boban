@@ -15,6 +15,74 @@
             font-family: Arial, sans-serif;
         }
 
+        /* 🔴 NAVIGAČNÁ LIŠTA */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #d40000;
+            padding: 10px 20px;
+            height: 60px;
+        }
+
+        .menu-icon {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .menu-icon div {
+            background-color: white;
+            height: 6px;
+            border-radius: 12px;
+        }
+
+        .menu-icon div:nth-child(1) { width: 30px; border-top-right-radius: 14px; }
+        .menu-icon div:nth-child(2) { width: 40px; border-top-right-radius: 14px; }
+        .menu-icon div:nth-child(3) { width: 35px; border-top-right-radius: 14px; }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .profile-icon::before {
+            content: "";
+            width: 50%;
+            height: 50%;
+            border-radius: 50%;
+            border: 3px solid white;
+            position: absolute;
+            top: 20%;
+        }
+
+        .profile-icon::after {
+            content: "";
+            width: 60%;
+            height: 25%;
+            background-color: white;
+            position: absolute;
+            bottom: 20%;
+            border-radius: 8px;
+        }
+
+        /* 🔥 HLAVNÁ SEKCIA (Tvoj obrázok s dátumom) */
         .container {
             background-image: url('race-background.jpg'); /* Nahraď svojím obrázkom */
             background-size: cover;
@@ -42,8 +110,9 @@
             font-size: 18px;
         }
 
+        /* 📦 GRAND PRIX BOX */
         .grand-prix-box {
-            background-color: #111;
+            background-color: rgba(17, 17, 17, 0.9);
             border-radius: 10px;
             padding: 15px;
             margin: 20px auto;
@@ -89,9 +158,19 @@
 </head>
 <body>
 
-    <!-- Hlavný kontajner -->
+    <!-- 🔴 NAVIGAČNÁ LIŠTA -->
+    <nav class="navbar">
+        <div class="menu-icon">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="logo-text">PUNISHER</div>
+        <div class="profile-icon"></div>
+    </nav>
+
+    <!-- 🏁 HLAVNÁ SEKCIA -->
     <div class="container">
-        <!-- Informácie o podujatí -->
         <div class="event-info">
             <span class="date">14 - 16 MAR</span>
             <span class="location">
@@ -100,7 +179,7 @@
             </span>
         </div>
 
-        <!-- Grand Prix box -->
+        <!-- GRAND PRIX BOX -->
         <div class="grand-prix-box">
             <div>
                 <div class="grand-prix-title">GRAND PRIX WEEKEND</div>
