@@ -26,10 +26,13 @@
             font-weight: bold;
         }
 
-        /* Ikona MENU */
+        /* Ikona MENU - viditeľná biela farba */
         .menu-icon {
-            font-size: 22px;
+            font-size: 24px;
+            color: white; /* Biela farba ikonky */
             cursor: pointer;
+            display: flex;
+            align-items: center;
         }
 
         /* Logo PUNISHER v štýle F1 */
@@ -39,7 +42,8 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             display: flex;
-            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
         }
 
         .punisher-logo span {
@@ -102,7 +106,7 @@
     <div class="top-bar">
         <div class="menu-icon"><i class="fas fa-bars"></i></div>
         <div class="punisher-logo"><span>PUNISHER</span></div>
-        <div></div>
+        <div style="width: 24px;"></div> <!-- Vyváženie priestoru vpravo -->
     </div>
 
     <!-- Správy -->
