@@ -95,13 +95,9 @@
             font-size: 12px;
             color: #B0B0B0;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
             margin-top: 10px;
-        }
-
-        .news-meta i {
-            margin-left: 5px;
         }
     </style>
 </head>
@@ -124,12 +120,11 @@
                 <div class="news-title">Je The Electric State od Netflixu opravdu takový propadák?</div>
                 <div class="news-meta">
                     <span>By Matúš Bereš • 14.03.2025</span>
-                    <span><i class="fas fa-comment"></i> 4</span>
                 </div>
             </div>
         </div>
 
-        <!-- Zvyšných 9 boxov zostáva rovnakých -->
+        <!-- Zvyšných 9 boxov zostáva rovnakých, bez ikon komentárov -->
         <script>
             for (let i = 0; i < 9; i++) {
                 document.write(`
@@ -139,7 +134,6 @@
                             <div class="news-title">Captain America: Brave New World Is Officially One of the Highest-Grossing Action Movies in US Box Office History</div>
                             <div class="news-meta">
                                 <span>By Jake Hodges • 5 hours ago</span>
-                                <span><i class="fas fa-comment"></i> 4</span>
                             </div>
                         </div>
                     </div>
