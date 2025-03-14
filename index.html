@@ -3,218 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boční menu</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>F1 News</title>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
+        /* Všeobecné nastavenie */
         body {
-            background-color: #12132D;
-            font-family: Arial, sans-serif;
-            color: #FFFFFF;
             margin: 0;
-            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #F8F8F8;
         }
 
-        /* MENU KONTEJNER */
-        .menu-container {
-            position: fixed;
-            left: -100%;
-            top: 0;
-            width: 300px;
-            height: 100%;
-            background-color: #161738;
-            padding: 20px;
-            box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.6);
-            transition: left 0.3s ease-in-out;
+        /* Horný červený panel */
+        .top-bar {
+            background-color: #D50000;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .menu-container.active {
-            left: 0;
+        .top-bar img {
+            height: 30px;
         }
 
-        /* ZAVÍRACÍ IKONA */
-        .close-menu {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 22px;
-            cursor: pointer;
+        .top-bar .profile-icon {
+            background-color: black;
+            padding: 10px;
+            border-radius: 50%;
         }
 
-        /* HLAVNÍ NADPIS */
-        .menu-title {
+        /* Nadpis sekcií */
+        .section-title {
             font-size: 20px;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin: 15px;
+            border-bottom: 2px solid red;
+            display: inline-block;
+            padding-bottom: 5px;
         }
 
-        /* ODKAZY V MENU */
-        .menu-links a {
-            display: block;
-            color: #FFFFFF;
-            text-decoration: none;
-            font-size: 16px;
-            padding: 10px 0;
-            transition: color 0.3s;
-        }
-
-        .menu-links a:hover {
-            color: #4E8BFF;
-        }
-
-        .menu-links strong {
-            font-size: 18px;
-            display: block;
-            margin-top: 10px;
-            margin-bottom: 5px;
-        }
-
-        /* ODDĚLOVAČ */
-        .divider {
-            border-top: 1px solid #4E4F71;
-            margin: 15px 0;
-        }
-
-        /* PROFIL SEKCIA */
-        .profile-section {
+        /* Boxy so správami */
+        .news-container {
+            background-color: white;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding-top: 10px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .profile-picture {
-            width: 50px;
-            height: 50px;
-            border-radius: 5px;
-            border: 2px solid #40C057; /* ZELENÝ OKRAJ */
-            background-image: url('https://i.postimg.cc/02GqG3J2/IMG-7860.jpg');
-            background-size: cover;
+        .news-container img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            margin-right: 10px;
         }
 
-        .profile-name {
-            font-size: 16px;
+        .news-text {
+            flex: 1;
+        }
+
+        .news-text .category {
+            color: red;
+            font-size: 12px;
             font-weight: bold;
         }
 
-        /* SPODNÍ ODKAZY S IKONAMI */
-        .bottom-links a {
-            display: flex;
-            align-items: center;
-            color: #FFFFFF;
+        .news-text .headline {
             font-size: 14px;
-            text-decoration: none;
-            padding: 12px 0;
-            gap: 12px;
-            transition: color 0.3s;
-        }
-
-        .bottom-links a:hover {
-            color: #4E8BFF;
-        }
-
-        .bottom-links i {
-            font-size: 18px;
-            width: 28px;
-            text-align: center;
-        }
-
-        /* ČIARA PRED ODHLÁSENÍM */
-        .logout-divider {
-            border-top: 1px solid #4E4F71;
-            margin-top: 10px;
-        }
-
-        /* TIP NA SERIÁL */
-        .tip-section {
-            text-align: center;
-            padding: 15px 0;
-        }
-
-        .tip-section a {
-            color: #4E8BFF;
-            font-size: 16px;
-            text-decoration: none;
             font-weight: bold;
-            transition: color 0.3s;
         }
 
-        .tip-section a:hover {
-            color: #FFFFFF;
-        }
-
-        /* TLAČÍTKO NA OTEVŘENÍ MENU */
-        .menu-button {
-            position: fixed;
-            left: 20px;
-            top: 20px;
-            background-color: #4E8BFF;
+        /* Časovač */
+        .countdown {
+            background-color: #222;
             color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            border: none;
+            padding: 20px;
+            text-align: center;
+            font-size: 18px;
         }
 
+        .countdown div {
+            display: inline-block;
+            margin: 5px;
+        }
+
+        /* Spodná navigácia */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: white;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid #ccc;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: black;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .bottom-nav i {
+            font-size: 20px;
+            display: block;
+        }
+
+        .active {
+            color: red;
+        }
     </style>
 </head>
 <body>
 
-<!-- TLAČÍTKO OTEVŘENÍ MENU -->
-<button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
-
-<!-- BOČNÍ MENU -->
-<div class="menu-container" id="menu">
-    <span class="close-menu" onclick="toggleMenu()">✖</span>
-    <div class="menu-title">Menu</div>
-
-    <div class="menu-links">
-        <strong>Edna.cz</strong>
-        <a href="#">Úvod</a>
-        <a href="#">Novinky</a>
-        <a href="#">Seriály a filmy</a>
-        <a href="#">Další vysílání</a>
-        <a href="#">Žebříčky</a>
-        <a href="#">Herci</a>
-        <a href="#">Magazín</a>
-        <a href="#">Blog</a>
-        <a href="#">Diskuze</a>
+    <!-- Horný panel -->
+    <div class="top-bar">
+        <span>18:46</span>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg" alt="F1 logo">
+        <div class="profile-icon"><i class="fas fa-user"></i></div>
     </div>
 
-    <!-- TIP NA SERIÁL -->
-    <div class="tip-section">
-        <a href="#">Tip na seriál</a>
+    <!-- Časovač na preteky -->
+    <div class="countdown">
+        <div><strong>AUSTRALIA 2025</strong></div>
+        <div>PRACTICE 3</div>
+        <div>07 HRS | 43 MINS | 46 SECS</div>
     </div>
 
-    <div class="divider"></div>
+    <!-- Nadpis sekcie -->
+    <div class="section-title">Top Stories</div>
 
-    <!-- PROFIL SEKCE -->
-    <div class="profile-section">
-        <div class="profile-picture"></div>
-        <div class="profile-name">Punisher bude trestať</div>
+    <!-- Novinky -->
+    <div class="news-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Lewis_Hamilton_2016_Malaysia_3.jpg" alt="Hamilton">
+        <div class="news-text">
+            <div class="category">NEWS</div>
+            <div class="headline">
+                ‘We couldn’t have made this film without him’ – The ‘instrumental’ role that Hamilton and the drivers played in the ‘F1’ movie
+            </div>
+        </div>
     </div>
 
-    <!-- SPODNÍ MENU S IKONAMI -->
-    <div class="bottom-links">
-        <a href="#"><i class="far fa-comment"></i> 1 Vzkazník</a>
-        <a href="#"><i class="fas fa-tv"></i> Bedna</a>
-        <a href="#"><i class="far fa-comments"></i> Oblíbené diskuze</a>
-        <a href="#"><i class="fas fa-cog"></i> Nastavení</a>
-        
-        <div class="logout-divider"></div>
-        
-        <a href="#"><i class="fas fa-sign-out-alt"></i> Odhlásit se</a>
+    <div class="news-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Romain_Grosjean_Bahrain_2012.jpg" alt="Grosjean">
+        <div class="news-text">
+            <div class="category">NEWS</div>
+            <div class="headline">
+                ‘It’s a tough choice’ – Grosjean predicts how he thinks Ferrari will deal with Leclerc and Hamilton
+            </div>
+        </div>
     </div>
-</div>
 
-<!-- JAVASCRIPT PRO OTEVÍRÁNÍ/ZAVÍRÁNÍ MENU -->
-<script>
-    function toggleMenu() {
-        let menu = document.getElementById('menu');
-        menu.classList.toggle('active');
-    }
-</script>
+    <div class="news-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Jenson_Button_Monaco_2012.jpg" alt="Button">
+        <div class="news-text">
+            <div class="category">PODCAST</div>
+            <div class="headline">
+                F1 EXPLAINS: Rookie Seasons – with Jenson Button and McLaren’s Tom Stallard
+            </div>
+        </div>
+    </div>
+
+    <!-- Reklama -->
+    <div class="news-container">
+        <img src="https://via.placeholder.com/80" alt="Ad">
+        <div class="news-text">
+            <div class="category">ADVERTISEMENT</div>
+            <div class="headline">
+                Mobland - New Original Series. Subscribe now on Paramount+.
+            </div>
+        </div>
+    </div>
+
+    <!-- Spodná navigácia -->
+    <div class="bottom-nav">
+        <a href="#" class="active"><i class="fas fa-bars"></i> Latest</a>
+        <a href="#"><i class="fas fa-play-circle"></i> Video</a>
+        <a href="#"><i class="fas fa-flag-checkered"></i> Racing</a>
+        <a href="#"><i class="fas fa-list"></i> Standings</a>
+        <a href="#"><i class="fas fa-trophy"></i> Fantasy</a>
+    </div>
 
 </body>
 </html>
