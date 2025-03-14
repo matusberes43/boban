@@ -3,190 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>F1 News</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <title>PUNISHER F1 Style</title>
     <style>
-        /* Všeobecné nastavenie */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
         body {
+            background-color: #12132D;
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #F8F8F8;
         }
 
-        /* Horný červený panel */
-        .top-bar {
-            background-color: #D50000;
-            color: white;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .top-bar img {
-            height: 30px;
-        }
-
-        .top-bar .profile-icon {
-            background-color: black;
-            padding: 10px;
-            border-radius: 50%;
-        }
-
-        /* Nadpis sekcií */
-        .section-title {
-            font-size: 20px;
+        .punisher-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 80px;
             font-weight: bold;
-            margin: 15px;
-            border-bottom: 2px solid red;
+            text-transform: uppercase;
+            position: relative;
             display: inline-block;
-            padding-bottom: 5px;
+            letter-spacing: 2px;
         }
 
-        /* Boxy so správami */
-        .news-container {
-            background-color: white;
-            margin: 10px;
-            padding: 10px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        /* Prvé písmeno P ako efekt F1 */
+        .punisher-logo span:first-child {
+            background: linear-gradient(to right, red 50%, black 50%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .news-container img {
-            width: 80px;
-            height: 80px;
-            border-radius: 8px;
-            margin-right: 10px;
-        }
-
-        .news-text {
-            flex: 1;
-        }
-
-        .news-text .category {
-            color: red;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .news-text .headline {
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        /* Časovač */
-        .countdown {
-            background-color: #222;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            font-size: 18px;
-        }
-
-        .countdown div {
+        /* Skosenie písmen pre rýchlostný efekt */
+        .punisher-logo span {
             display: inline-block;
-            margin: 5px;
+            transform: skewX(-10deg);
+            padding: 0 5px;
         }
 
-        /* Spodná navigácia */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: white;
-            padding: 10px 0;
-            display: flex;
-            justify-content: space-around;
-            border-top: 1px solid #ccc;
-        }
-
-        .bottom-nav a {
-            text-decoration: none;
+        /* Čierna verzia písmen pre druhú časť efektu */
+        .punisher-logo span:nth-child(2) {
             color: black;
-            text-align: center;
-            font-size: 12px;
+            text-shadow: -2px -2px 0 red;
         }
 
-        .bottom-nav i {
-            font-size: 20px;
-            display: block;
-        }
-
-        .active {
+        .punisher-logo span:nth-child(3),
+        .punisher-logo span:nth-child(4),
+        .punisher-logo span:nth-child(5),
+        .punisher-logo span:nth-child(6),
+        .punisher-logo span:nth-child(7),
+        .punisher-logo span:nth-child(8) {
             color: red;
+            text-shadow: -2px -2px 0 black;
         }
     </style>
 </head>
 <body>
 
-    <!-- Horný panel -->
-    <div class="top-bar">
-        <span>18:46</span>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg" alt="F1 logo">
-        <div class="profile-icon"><i class="fas fa-user"></i></div>
-    </div>
-
-    <!-- Časovač na preteky -->
-    <div class="countdown">
-        <div><strong>AUSTRALIA 2025</strong></div>
-        <div>PRACTICE 3</div>
-        <div>07 HRS | 43 MINS | 46 SECS</div>
-    </div>
-
-    <!-- Nadpis sekcie -->
-    <div class="section-title">Top Stories</div>
-
-    <!-- Novinky -->
-    <div class="news-container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Lewis_Hamilton_2016_Malaysia_3.jpg" alt="Hamilton">
-        <div class="news-text">
-            <div class="category">NEWS</div>
-            <div class="headline">
-                ‘We couldn’t have made this film without him’ – The ‘instrumental’ role that Hamilton and the drivers played in the ‘F1’ movie
-            </div>
-        </div>
-    </div>
-
-    <div class="news-container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Romain_Grosjean_Bahrain_2012.jpg" alt="Grosjean">
-        <div class="news-text">
-            <div class="category">NEWS</div>
-            <div class="headline">
-                ‘It’s a tough choice’ – Grosjean predicts how he thinks Ferrari will deal with Leclerc and Hamilton
-            </div>
-        </div>
-    </div>
-
-    <div class="news-container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Jenson_Button_Monaco_2012.jpg" alt="Button">
-        <div class="news-text">
-            <div class="category">PODCAST</div>
-            <div class="headline">
-                F1 EXPLAINS: Rookie Seasons – with Jenson Button and McLaren’s Tom Stallard
-            </div>
-        </div>
-    </div>
-
-    <!-- Reklama -->
-    <div class="news-container">
-        <img src="https://via.placeholder.com/80" alt="Ad">
-        <div class="news-text">
-            <div class="category">ADVERTISEMENT</div>
-            <div class="headline">
-                Mobland - New Original Series. Subscribe now on Paramount+.
-            </div>
-        </div>
-    </div>
-
-    <!-- Spodná navigácia -->
-    <div class="bottom-nav">
-        <a href="#" class="active"><i class="fas fa-bars"></i> Latest</a>
-        <a href="#"><i class="fas fa-play-circle"></i> Video</a>
-        <a href="#"><i class="fas fa-flag-checkered"></i> Racing</a>
-        <a href="#"><i class="fas fa-list"></i> Standings</a>
-        <a href="#"><i class="fas fa-trophy"></i> Fantasy</a>
+    <div class="punisher-logo">
+        <span>P</span><span>U</span><span>N</span><span>I</span><span>S</span><span>H</span><span>E</span><span>R</span>
     </div>
 
 </body>
