@@ -1,176 +1,265 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PUNISHER News</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <style>
-        /* Základné nastavenie */
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: white;
-        }
-
-        /* Horná lišta */
-        .top-bar {
-            background-color: #D50000;
-            color: white;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        /* Ikona MENU */
-        .menu-icon {
-            font-size: 24px;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-        }
-
-        .menu-icon::before {
-            content: "☰"; /* Unicode znak pre menu */
-            font-size: 24px;
-        }
-
-        /* Logo PUNISHER v štýle F1 */
-        .punisher-logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 22px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: flex;
-            justify-content: center;
-            flex-grow: 1;
-        }
-
-        .punisher-logo span {
-            background: linear-gradient(to right, red 50%, black 50%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            transform: skewX(-10deg);
-        }
-
-        /* Kontajner pre správy */
-        .news-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            padding: 20px;
-        }
-
-        /* Box so správou */
-        .news-box {
-            background-color: #1E1E1E;
-            width: 90%;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            text-decoration: none; /* Zrušenie podčiarknutia */
-        }
-
-        .news-box img {
-            width: 100%;
-            border-bottom: 3px solid red;
-        }
-
-        .news-content {
-            padding: 15px;
-        }
-
-        .news-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: white; /* Nadpis článku bude vždy biely */
-        }
-
-        .news-meta {
-            font-size: 12px;
-            color: #B0B0B0;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            margin-top: 10px;
-        }
-
-        /* Štýl pre odkazy */
-        a {
-            text-decoration: none; /* Zruší podčiarknutie odkazu */
-            color: inherit; /* Zaručí, že text zostane biely */
-        }
-
-        a:visited {
-            color: white; /* Farba odkazu po návšteve */
-        }
-
-        a:hover {
-            color: #FF4444; /* Farba odkazu pri prejdení myšou */
-        }
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filmové boxy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+    header {
+      background-color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 16px;
+    }
+    .logo-circle {
+      width: 40px;
+      height: 40px;
+      background-color: transparent;
+      border: 3px solid #ef4444;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: bold;
+      color: white;
+      transform: rotate(-45deg);
+    }
+    .menu-icon, .search-icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      cursor: pointer;
+    }
+    .menu-icon div {
+      width: 100%;
+      height: 2px;
+      background-color: #fff;
+    }
+    .search-icon::before {
+      content: '';
+      width: 14px;
+      height: 14px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      display: block;
+    }
+    .search-icon::after {
+      content: '';
+      width: 2px;
+      height: 8px;
+      background-color: #fff;
+      transform: rotate(-45deg);
+      position: relative;
+      top: -4px;
+      left: 12px;
+      display: block;
+    }
+    .search-bar {
+      display: none;
+      flex-grow: 1;
+      max-width: 260px;
+      margin-left: 10px;
+      background-color: #333;
+      border: 2px solid #ef4444;
+      border-radius: 5px;
+      color: white;
+      padding: 4px 8px;
+    }
+    .swiper-container {
+      overflow-x: auto;
+      display: flex;
+      gap: 12px;
+      padding: 16px;
+      scroll-snap-type: x mandatory;
+      align-items: center;
+    }
+    .swiper-box {
+      flex: 0 0 auto;
+      width: 220px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      scroll-snap-align: start;
+      overflow: hidden;
+    }
+    .swiper-box img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 10px 10px 0 0;
+    }
+    .box-content {
+      padding: 12px;
+    }
+    .box-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    .tag {
+      font-size: 12px;
+      color: gray;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 2px 6px;
+      display: inline-block;
+      margin: 2px 4px 8px 0;
+    }
+    .metascore {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #eaeaea;
+      padding-top: 8px;
+    }
+    .score-box {
+      width: 50px;
+      height: 50px;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .score-description {
+      font-size: 12px;
+      color: gray;
+    }
+    .score-bar {
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(to right, #4ade80 30%, #facc15 50%, #f87171 20%);
+      border-radius: 3px;
+      margin-top: 6px;
+    }
+    .more-button {
+      background-color: #ef4444;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      margin-left: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+  </style>
 </head>
 <body>
-
-    <!-- Horná lišta -->
-    <div class="top-bar">
-        <div class="menu-icon"></div>
-        <div class="punisher-logo"><span>PUNISHER</span></div>
-        <div style="width: 24px;"></div> <!-- Vyváženie priestoru vpravo -->
+  <header>
+    <div class="menu-icon">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+    <div class="logo-circle" id="logo">B</div>
+    <input type="text" class="search-bar" id="searchBar" placeholder="Vyhledat filmy nebo seriály...">
+    <div class="search-icon" onclick="toggleSearch()"></div>
+  </header>
 
-    <!-- Správy -->
-    <div class="news-container">
-
-        <!-- Prvý box - The Electric State -->
-        <a href="theelectricstate.html" class="news-box">
-            <img src="https://i.postimg.cc/bdfnkVGn/IMG-8163.jpg" alt="News Image">
-            <div class="news-content">
-                <div class="news-title">Je The Electric State od Netflixu opravdu takový propadák?</div>
-                <div class="news-meta">
-                    <span>By Matúš Bereš • 14.03.2025</span>
-                </div>
-            </div>
-        </a>
-
-        <!-- Druhý box - Severus Snape / Harry Potter -->
-        <a href="harrypotter.html" class="news-box">
-            <img src="https://i.postimg.cc/kX3JVNnS/IMG-8167.webp" alt="Harry Potter News">
-            <div class="news-content">
-                <div class="news-title">HBO ZNIČILO SEVERUSE SNAPEA? FANOUŠCI ZUŘÍ NAD “DIVERZITNÍM” OBSAZENÍM</div>
-                <div class="news-meta">
-                    <span>By Matúš Bereš • 14.03.2025</span>
-                </div>
-            </div>
-        </a>
-
-        <!-- Ostatné boxy -->
-        <script>
-            for (let i = 0; i < 8; i++) {
-                document.write(`
-                    <div class="news-box">
-                        <img src="https://via.placeholder.com/800x400" alt="News Image">
-                        <div class="news-content">
-                            <div class="news-title">Captain America: Brave New World Is Officially One of the Highest-Grossing Action Movies in US Box Office History</div>
-                            <div class="news-meta">
-                                <span>By Jake Hodges • 5 hours ago</span>
-                            </div>
-                        </div>
-                    </div>
-                `);
-            }
-        </script>
-
+  <h2 class="text-xl font-semibold mt-6 px-4">Běží v kinech</h2>
+  <div class="swiper-container">
+    <div class="swiper-box">
+      <img src="https://i.postimg.cc/x1qdcFtC/IMG-8239.jpg" alt="Film">
+      <div class="box-content">
+        <h3 class="box-title">A Working Man</h3>
+        <span class="tag">Akční</span><span class="tag">Krimi</span><span class="tag">Thriller</span>
+        <div class="metascore">
+          <div>
+            <div class="score-description">Smíšené nebo průměrné</div>
+            <div class="score-description">Založeno na 6 recenzích</div>
+            <div class="score-bar"></div>
+          </div>
+          <div class="score-box" style="background-color: #4591f6">61%</div>
+        </div>
+      </div>
     </div>
+    <div class="swiper-box">
+      <img src="https://i.postimg.cc/8kBVdQ55/IMG-8243.jpg" alt="Film">
+      <div class="box-content">
+        <h3 class="box-title">Death of a Unicorn</h3>
+        <span class="tag">Horor</span><span class="tag">Komedie</span>
+        <div class="metascore">
+          <div>
+            <div class="score-description">Smíšené nebo průměrné</div>
+            <div class="score-description">Založeno na 12 recenzích</div>
+            <div class="score-bar"></div>
+          </div>
+          <div class="score-box" style="background-color: #4591f6">60%</div>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-box">
+      <img src="https://i.postimg.cc/sDN15K5H/IMG-8245.jpg" alt="Film">
+      <div class="box-content">
+        <h3 class="box-title">Novocain</h3>
+        <span class="tag">Akční</span><span class="tag">Thriller</span>
+        <div class="metascore">
+          <div>
+            <div class="score-description">Většinou pozitivní</div>
+            <div class="score-description">Založeno na 53 recenzích</div>
+            <div class="score-bar"></div>
+          </div>
+          <div class="score-box" style="background-color: #be0e0e">72%</div>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-box">
+      <img src="https://i.postimg.cc/mg1kjMwL/IMG-8246.webp" alt="Film">
+      <div class="box-content">
+        <h3 class="box-title">Snow White</h3>
+        <span class="tag">Pohádka</span><span class="tag">Fantasy</span>
+        <div class="metascore">
+          <div>
+            <div class="score-description">Většinou negativní</div>
+            <div class="score-description">Založeno na 95 recenzích</div>
+            <div class="score-bar"></div>
+          </div>
+          <div class="score-box" style="background-color: #5a5655">17%</div>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-box">
+      <img src="https://i.postimg.cc/Gp02527k/IMG-8247.webp" alt="Film">
+      <div class="box-content">
+        <h3 class="box-title">Mickey 17</h3>
+        <span class="tag">Sci-Fi</span><span class="tag">Komedie</span>
+        <div class="metascore">
+          <div>
+            <div class="score-description">Smíšené nebo průměrné</div>
+            <div class="score-description">Založeno na 140 recenzích</div>
+            <div class="score-bar"></div>
+          </div>
+          <div class="score-box" style="background-color: #4591f6">69%</div>
+        </div>
+      </div>
+    </div>
+    <a href="#" class="more-button">Zobrazit všechny</a>
+  </div>
 
+  <script>
+    function toggleSearch() {
+      const searchBar = document.getElementById('searchBar');
+      const logo = document.getElementById('logo');
+      if (searchBar.style.display === 'flex') {
+        searchBar.style.display = 'none';
+        logo.style.display = 'flex';
+      } else {
+        searchBar.style.display = 'flex';
+        logo.style.display = 'none';
+      }
+    }
+  </script>
 </body>
 </html>
