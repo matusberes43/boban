@@ -2,110 +2,116 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profil - PunisherEDNA</title>
+  <title>Profil PunisherEDNA</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f3f4f6;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      color: #111;
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      transition: background-color 0.3s;
     }
 
-    .card {
-      background: linear-gradient(135deg, #ffffff, #f9fafb);
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: white;
       padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      width: 320px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+    }
+
+    .profile-header {
       text-align: center;
-      transition: background 0.3s, color 0.3s;
+      margin-bottom: 30px;
     }
 
-    .card img {
-      width: 130px;
-      height: 130px;
+    .profile-header img {
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid #22c55e;
-      margin-bottom: 15px;
+      border: 4px solid #2563eb;
     }
 
-    .card h2 {
-      font-size: 24px;
-      margin-bottom: 8px;
-      color: #1f2937;
-    }
-
-    .card p {
-      margin: 6px 0;
-      color: #4b5563;
-      font-size: 16px;
-    }
-
-    .card strong {
-      color: #111827;
-    }
-
-    .back-link {
-      display: block;
+    h1 {
       margin-top: 20px;
+      font-size: 28px;
+      color: #2563eb;
+    }
+
+    .info {
+      font-size: 18px;
+      margin: 20px 0;
+      line-height: 1.6;
+    }
+
+    .social-links {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      margin: 10px;
       text-decoration: none;
-      color: #3b82f6;
+      font-size: 18px;
+      color: #2563eb;
       font-weight: bold;
       transition: color 0.3s;
     }
 
-    .back-link:hover {
-      color: #2563eb;
+    .social-links a:hover {
+      color: #1e40af;
     }
 
-    /* Dark mode */
-    body.dark {
-      background-color: #0f172a;
+    .social-links .icon {
+      width: 28px;
+      height: 28px;
+      margin-right: 8px;
     }
 
-    body.dark .card {
-      background: #1e293b;
-      color: #f1f5f9;
-    }
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
 
-    body.dark .card h2,
-    body.dark .card p,
-    body.dark .card strong {
-      color: #f8fafc;
-    }
+      .profile-header img {
+        width: 120px;
+        height: 120px;
+      }
 
-    body.dark .back-link {
-      color: #93c5fd;
-    }
-
-    body.dark .back-link:hover {
-      color: #60a5fa;
+      h1 {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <img src="https://i.postimg.cc/zv2zRHqp/IMG-1637.jpg" alt="Profilová fotka">
-    <h2>Matúš Bereš</h2>
-    <p><strong>Věk:</strong> 30</p>
-    <p><strong>Bydliště:</strong> Hlavní město Praha</p>
-    <p><strong>Počet recenzí:</strong> 4615</p>
-    <p><strong>Platformy:</strong> čsfd.cz, edna.cz</p>
-    <a class="back-link" href="index.html">← Zpět do žebříčku</a>
-  </div>
+  <div class="container">
+    <div class="profile-header">
+      <img src="https://i.postimg.cc/zv2zRHqp/IMG-1637.jpg" alt="Profilová fotka">
+      <h1>PunisherEDNA</h1>
+    </div>
 
-  <script>
-    // Přepínání režimu podle systému
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.body.classList.add('dark');
-    }
-  </script>
+    <div class="info">
+      <p><strong>Jméno:</strong> Matúš Bereš</p>
+      <p><strong>Věk:</strong> 30 let</p>
+      <p><strong>Bydliště:</strong> Hlavní město, Praha</p>
+      <p><strong>Počet recenzí:</strong> Automaticky počítáno</p>
+      <p><strong>Platformy:</strong> ČSFD.cz, Edna.cz</p>
+    </div>
+
+    <div class="social-links">
+      <h3>Moje profily</h3>
+      <a href="https://www.csfd.cz/uzivatel/936529-punisheredna/prehled/" target="_blank">
+        <img src="https://img.icons8.com/color/48/000000/csfd.png" alt="ČSFD" class="icon"> ČSFD.cz
+      </a>
+      <a href="https://www.edna.cz/uzivatele/punisher-bude-trestat/" target="_blank">
+        <img src="https://img.icons8.com/fluency/48/000000/internet.png" alt="Edna" class="icon"> Edna.cz
+      </a>
+    </div>
+  </div>
 </body>
 </html>
