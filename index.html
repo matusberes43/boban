@@ -1,382 +1,549 @@
-<!DOCTYPE html>
-<html lang="cs">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Filmové boxy</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-    }
-    header {
-      background-color: #000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px 16px;
-    }
-    .logo-circle {
-      width: 40px;
-      height: 40px;
-      background-color: transparent;
-      border: 3px solid #ef4444;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      font-weight: bold;
-      color: white;
-      transform: rotate(-45deg);
-    }
-    .menu-icon, .search-icon {
-      width: 24px;
-      height: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      cursor: pointer;
-    }
-    .menu-icon div {
-      width: 100%;
-      height: 2px;
-      background-color: #fff;
-    }
-    .search-icon::before {
-      content: '';
-      width: 14px;
-      height: 14px;
-      border: 2px solid #fff;
-      border-radius: 50%;
-      display: block;
-    }
-    .search-icon::after {
-      content: '';
-      width: 2px;
-      height: 8px;
-      background-color: #fff;
-      transform: rotate(-45deg);
-      position: relative;
-      top: -4px;
-      left: 12px;
-      display: block;
-    }
-    .search-bar {
-      display: none;
-      flex-grow: 1;
-      max-width: 260px;
-      margin-left: 10px;
-      background-color: #333;
-      border: 2px solid #ef4444;
-      border-radius: 5px;
-      color: white;
-      padding: 4px 8px;
-    }
-    .swiper-container {
-      overflow-x: auto;
-      display: flex;
-      gap: 12px;
-      padding: 16px;
-      scroll-snap-type: x mandatory;
-      align-items: center;
-    }
-    .swiper-box {
-      flex: 0 0 auto;
-      width: 220px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      scroll-snap-align: start;
-      overflow: hidden;
-    }
-    .swiper-box img {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 10px 10px 0 0;
-    }
-    .box-content {
-      padding: 12px;
-    }
-    .box-title {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-    .tag {
-      font-size: 12px;
-      color: gray;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      padding: 2px 6px;
-      display: inline-block;
-      margin: 2px 4px 8px 0;
-    }
-    .metascore {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-top: 1px solid #eaeaea;
-      padding-top: 8px;
-    }
-    .score-box {
-      width: 50px;
-      height: 50px;
-      color: white;
-      font-weight: bold;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-    }
-    .score-description {
-      font-size: 12px;
-      color: gray;
-    }
-    .score-bar {
-      width: 100%;
-      height: 6px;
-      background: linear-gradient(to right, #4ade80 30%, #facc15 50%, #f87171 20%);
-      border-radius: 3px;
-      margin-top: 6px;
-    }
-    .more-button {
-      background-color: #ef4444;
-      color: white;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 12px;
-      margin-left: 10px;
-      cursor: pointer;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="menu-icon">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <div class="logo-circle" id="logo">B</div>
-    <input type="text" class="search-bar" id="searchBar" placeholder="Vyhledat filmy nebo seriály...">
-    <div class="search-icon" onclick="toggleSearch()"></div>
-  </header>
+<h1>Přehled: Za kolik dní překonám ostatní uživatele</h1>
+<table style="border-collapse:collapse;width:3px;border-width:3px;border-spacing:3px;" border="1">
+<thead>
+<tr>
+<th style="border-width:3px;">Uživatel</th>
+<th style="border-width:3px;">Počet recenzí</th>
+<th style="border-width:3px;">Dní do překonání</th>
+<th style="border-width:3px;">Datum překonání</th>
+</tr>
+</thead>
+<tbody>
 
-  <h2 class="text-xl font-semibold mt-6 px-4">Běží v kinech</h2>
-  <div class="swiper-container">
-    <div class="swiper-box">
-      <img src="https://i.postimg.cc/x1qdcFtC/IMG-8239.jpg" alt="Film">
-      <div class="box-content">
-        <h3 class="box-title">A Working Man</h3>
-        <span class="tag">Akční</span><span class="tag">Krimi</span><span class="tag">Thriller</span>
-        <div class="metascore">
-          <div>
-            <div class="score-description">Smíšené nebo průměrné</div>
-            <div class="score-description">Založeno na 6 recenzích</div>
-            <div class="score-bar"></div>
-          </div>
-          <div class="score-box" style="background-color: #4591f6">61%</div>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-box">
-      <img src="https://i.postimg.cc/8kBVdQ55/IMG-8243.jpg" alt="Film">
-      <div class="box-content">
-        <h3 class="box-title">Death of a Unicorn</h3>
-        <span class="tag">Horor</span><span class="tag">Komedie</span>
-        <div class="metascore">
-          <div>
-            <div class="score-description">Smíšené nebo průměrné</div>
-            <div class="score-description">Založeno na 12 recenzích</div>
-            <div class="score-bar"></div>
-          </div>
-          <div class="score-box" style="background-color: #4591f6">60%</div>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-box">
-      <img src="https://i.postimg.cc/sDN15K5H/IMG-8245.jpg" alt="Film">
-      <div class="box-content">
-        <h3 class="box-title">Novocain</h3>
-        <span class="tag">Akční</span><span class="tag">Thriller</span>
-        <div class="metascore">
-          <div>
-            <div class="score-description">Většinou pozitivní</div>
-            <div class="score-description">Založeno na 53 recenzích</div>
-            <div class="score-bar"></div>
-          </div>
-          <div class="score-box" style="background-color: #be0e0e">72%</div>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-box">
-      <img src="https://i.postimg.cc/mg1kjMwL/IMG-8246.webp" alt="Film">
-      <div class="box-content">
-        <h3 class="box-title">Snow White</h3>
-        <span class="tag">Pohádka</span><span class="tag">Fantasy</span>
-        <div class="metascore">
-          <div>
-            <div class="score-description">Většinou negativní</div>
-            <div class="score-description">Založeno na 95 recenzích</div>
-            <div class="score-bar"></div>
-          </div>
-          <div class="score-box" style="background-color: #5a5655">17%</div>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-box">
-      <img src="https://i.postimg.cc/Gp02527k/IMG-8247.webp" alt="Film">
-      <div class="box-content">
-        <h3 class="box-title">Mickey 17</h3>
-        <span class="tag">Sci-Fi</span><span class="tag">Komedie</span>
-        <div class="metascore">
-          <div>
-            <div class="score-description">Smíšené nebo průměrné</div>
-            <div class="score-description">Založeno na 140 recenzích</div>
-            <div class="score-bar"></div>
-          </div>
-          <div class="score-box" style="background-color: #4591f6">69%</div>
-        </div>
-      </div>
-    </div>
-    <a href="#" class="more-button">Zobrazit všechny</a>
-  </div>
-  
-    <h2 class="text-xl font-semibold mt-6 px-4">Brzy v kinech</h2>
-  <div class="swiper-container">
-    <div class="swiper-box">
-      <img src="https://i.postimg.cc/RFm8ZYWF/IMG-8276.jpg" alt="Minecraft">
-      <div class="box-content">
-        <h3 class="box-title">A Minecraft Movie</h3>
-        <span class="tag">Fantasy</span><span class="tag">Dobrodružný</span>
-        <div class="metascore">
-          <div>
-            <div class="score-description">Připravuje se</div>
-            <div class="score-description">Zatím bez recenzí</div>
-          </div>
-          <div class="score-box" style="background-color: #999">?</div>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-box">
-      <img src="https://i.postimg.cc/jSVhT7wq/IMG-8277.webp" alt="Until Dawn">
-      <div class="box-content">
-        <h3 class="box-title">Until Dawn</h3>
-        <span class="tag">Horor</span><span class="tag">Thriller</span>
-        <div class="metascore">
-          <div>
-            <div class="score-description">Připravuje se</div>
-            <div class="score-description">Zatím bez recenzí</div>
-          </div>
-          <div class="score-box" style="background-color: #999">?</div>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-box">
-      <img src="https://i.postimg.cc/MTZD4Jcy/IMG-8278.jpg" alt="Accountant 2">
-      <div class="box-content">
-        <h3 class="box-title">The Accountant 2</h3>
-        <span class="tag">Akční</span><span class="tag">Drama</span>
-        <div class="metascore">
-          <div>
-            <div class="score-description">Připravuje se</div>
-            <div class="score-description">Zatím bez recenzí</div>
-          </div>
-          <div class="score-box" style="background-color: #999">?</div>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-box">
-      <img src="https://i.postimg.cc/T27kz1Jh/IMG-8279.webp" alt="Thunderbolts">
-      <div class="box-content">
-        <h3 class="box-title">Thunderbolts*</h3>
-        <span class="tag">Akční</span><span class="tag">Sci-Fi</span>
-        <div class="metascore">
-          <div>
-            <div class="score-description">Připravuje se</div>
-            <div class="score-description">Zatím bez recenzí</div>
-          </div>
-          <div class="score-box" style="background-color: #999">?</div>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-box">
-      <img src="https://i.postimg.cc/CL2Qq5R9/IMG-8280.jpg" alt="Lilo & Stitch">
-      <div class="box-content">
-        <h3 class="box-title">Lilo & Stitch</h3>
-        <span class="tag">Rodinný</span><span class="tag">Fantasy</span>
-        <div class="metascore">
-          <div>
-            <div class="score-description">Připravuje se</div>
-            <div class="score-description">Zatím bez recenzí</div>
-          </div>
-          <div class="score-box" style="background-color: #999">?</div>
-        </div>
-      </div>
-    </div>
-    <a href="#" class="more-button">Zobrazit všechny</a>
-  </div>
+<tr>
+  <td style="background-color:#ffcccc;">blondboss</td>
+  <td>4619</td>
+  <td>1</td>
+  <td>05.05.2025</td>
+</tr>
 
-  <title>Filmové boxy - Novinky</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 font-sans">
-  <section class="px-4 mt-6">
-    <h2 class="text-xl font-semibold mb-4">Novinky</h2>
-    <div class="flex overflow-x-auto space-x-4 pb-4">
-      <!-- Novinkový box 1 -->
-      <div class="min-w-[220px] bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="https://i.postimg.cc/yN3XKzDg/news1.jpg" alt="Novinka 1" class="w-full h-36 object-cover">
-        <div class="p-3">
-          <h3 class="text-base font-semibold">Režisér Batman chystá nový thriller</h3>
-        </div>
-      </div>
-      <!-- Novinkový box 2 -->
-      <div class="min-w-[220px] bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="https://i.postimg.cc/yY6bMpP3/news2.jpg" alt="Novinka 2" class="w-full h-36 object-cover">
-        <div class="p-3">
-          <h3 class="text-base font-semibold">Marvel oznamuje nový film Thunderbolts</h3>
-        </div>
-      </div>
-      <!-- Novinkový box 3 -->
-      <div class="min-w-[220px] bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="https://i.postimg.cc/Kj4FJZb9/news3.jpg" alt="Novinka 3" class="w-full h-36 object-cover">
-        <div class="p-3">
-          <h3 class="text-base font-semibold">Snow White v problémech ješte před premiérou</h3>
-        </div>
-      </div>
-      <!-- Novinkový box 4 -->
-      <div class="min-w-[220px] bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="https://i.postimg.cc/JzGPHWvs/news4.jpg" alt="Novinka 4" class="w-full h-36 object-cover">
-        <div class="p-3">
-          <h3 class="text-base font-semibold">Netflix spouští hororovou sérii Until Dawn</h3>
-        </div>
-      </div>
-      <!-- Novinkový box 5 -->
-      <div class="min-w-[220px] bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="https://i.postimg.cc/6qChTfJx/news5.jpg" alt="Novinka 5" class="w-full h-36 object-cover">
-        <div class="p-3">
-          <h3 class="text-base font-semibold">Animovaný Minecraft dostal datum premiéry</h3>
-        </div>
-
-  <script>
-    function toggleSearch() {
-      const searchBar = document.getElementById('searchBar');
-      const logo = document.getElementById('logo');
-      if (searchBar.style.display === 'flex') {
-        searchBar.style.display = 'none';
-        logo.style.display = 'flex';
-      } else {
-        searchBar.style.display = 'flex';
-        logo.style.display = 'none';
-      }
-    }
-  </script>
-</body>
-</html>
+<tr>
+<td style="border-width:3px;">Radko</td>
+<td style="border-width:3px;">4628</td>
+<td style="border-width:3px;">1</td>
+<td style="border-width:3px;">05.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Rathalos</td>
+<td style="border-width:3px;">4641</td>
+<td style="border-width:3px;">1</td>
+<td style="border-width:3px;">05.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Aljak</td>
+<td style="border-width:3px;">4646</td>
+<td style="border-width:3px;">1</td>
+<td style="border-width:3px;">05.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">bourec</td>
+<td style="border-width:3px;">4652</td>
+<td style="border-width:3px;">1</td>
+<td style="border-width:3px;">05.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">EvilPhoEniX</td>
+<td style="border-width:3px;">4659</td>
+<td style="border-width:3px;">2</td>
+<td style="border-width:3px;">06.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Wacoslav1</td>
+<td style="border-width:3px;">4671</td>
+<td style="border-width:3px;">2</td>
+<td style="border-width:3px;">06.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Fr</td>
+<td style="border-width:3px;">4687</td>
+<td style="border-width:3px;">2</td>
+<td style="border-width:3px;">06.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">dr.fish</td>
+<td style="border-width:3px;">4689</td>
+<td style="border-width:3px;">2</td>
+<td style="border-width:3px;">06.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Hanys_</td>
+<td style="border-width:3px;">4708</td>
+<td style="border-width:3px;">3</td>
+<td style="border-width:3px;">07.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Hanys_</td>
+<td style="border-width:3px;">4708</td>
+<td style="border-width:3px;">3</td>
+<td style="border-width:3px;">07.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">rakovnik</td>
+<td style="border-width:3px;">4741</td>
+<td style="border-width:3px;">4</td>
+<td style="border-width:3px;">08.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">BOURQUE</td>
+<td style="border-width:3px;">4750</td>
+<td style="border-width:3px;">4</td>
+<td style="border-width:3px;">08.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Kimkong</td>
+<td style="border-width:3px;">4760</td>
+<td style="border-width:3px;">4</td>
+<td style="border-width:3px;">08.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">brasek</td>
+<td style="border-width:3px;">4804</td>
+<td style="border-width:3px;">5</td>
+<td style="border-width:3px;">09.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">xxmartinxx</td>
+<td style="border-width:3px;">4842</td>
+<td style="border-width:3px;">6</td>
+<td style="border-width:3px;">10.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">pornogrind</td>
+<td style="border-width:3px;">4872</td>
+<td style="border-width:3px;">7</td>
+<td style="border-width:3px;">11.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">blackrain</td>
+<td style="border-width:3px;">4881</td>
+<td style="border-width:3px;">7</td>
+<td style="border-width:3px;">11.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Xmilden</td>
+<td style="border-width:3px;">4933</td>
+<td style="border-width:3px;">8</td>
+<td style="border-width:3px;">12.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">dopitak</td>
+<td style="border-width:3px;">4919</td>
+<td style="border-width:3px;">8</td>
+<td style="border-width:3px;">12.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">warrenuR</td>
+<td style="border-width:3px;">4946</td>
+<td style="border-width:3px;">9</td>
+<td style="border-width:3px;">13.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">KajusaK</td>
+<td style="border-width:3px;">4963</td>
+<td style="border-width:3px;">9</td>
+<td style="border-width:3px;">13.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">eraserhead666</td>
+<td style="border-width:3px;">4951</td>
+<td style="border-width:3px;">9</td>
+<td style="border-width:3px;">13.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Slarque</td>
+<td style="border-width:3px;">5035</td>
+<td style="border-width:3px;">11</td>
+<td style="border-width:3px;">15.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Likan7</td>
+<td style="border-width:3px;">5134</td>
+<td style="border-width:3px;">13</td>
+<td style="border-width:3px;">17.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Gilmour93</td>
+<td style="border-width:3px;">5181</td>
+<td style="border-width:3px;">15</td>
+<td style="border-width:3px;">19.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">ScarPoul</td>
+<td style="border-width:3px;">5184</td>
+<td style="border-width:3px;">15</td>
+<td style="border-width:3px;">19.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">iXtr3m3</td>
+<td style="border-width:3px;">5236</td>
+<td style="border-width:3px;">16</td>
+<td style="border-width:3px;">20.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">ghatos</td>
+<td style="border-width:3px;">5254</td>
+<td style="border-width:3px;">16</td>
+<td style="border-width:3px;">20.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">misterz</td>
+<td style="border-width:3px;">5322</td>
+<td style="border-width:3px;">18</td>
+<td style="border-width:3px;">22.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">C0R0ner</td>
+<td style="border-width:3px;">5371</td>
+<td style="border-width:3px;">19</td>
+<td style="border-width:3px;">23.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">d-fens</td>
+<td style="border-width:3px;">5410</td>
+<td style="border-width:3px;">20</td>
+<td style="border-width:3px;">24.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Enšpígl</td>
+<td style="border-width:3px;">5521</td>
+<td style="border-width:3px;">23</td>
+<td style="border-width:3px;">27.05.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">zette</td>
+<td style="border-width:3px;">5715</td>
+<td style="border-width:3px;">28</td>
+<td style="border-width:3px;">01.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Trevor</td>
+<td style="border-width:3px;">5753</td>
+<td style="border-width:3px;">29</td>
+<td style="border-width:3px;">02.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Frajer42</td>
+<td style="border-width:3px;">5763</td>
+<td style="border-width:3px;">29</td>
+<td style="border-width:3px;">02.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">otík</td>
+<td style="border-width:3px;">5769</td>
+<td style="border-width:3px;">29</td>
+<td style="border-width:3px;">02.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">slunicko2</td>
+<td style="border-width:3px;">5770</td>
+<td style="border-width:3px;">29</td>
+<td style="border-width:3px;">02.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">JohnSmith</td>
+<td style="border-width:3px;">5908</td>
+<td style="border-width:3px;">33</td>
+<td style="border-width:3px;">06.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Teachman</td>
+<td style="border-width:3px;">5908</td>
+<td style="border-width:3px;">33</td>
+<td style="border-width:3px;">06.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">vitekpe</td>
+<td style="border-width:3px;">5908</td>
+<td style="border-width:3px;">33</td>
+<td style="border-width:3px;">06.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">darkrobyk</td>
+<td style="border-width:3px;">5968</td>
+<td style="border-width:3px;">34</td>
+<td style="border-width:3px;">07.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">*CARNIFEX*</td>
+<td style="border-width:3px;">6008</td>
+<td style="border-width:3px;">35</td>
+<td style="border-width:3px;">08.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">kingik</td>
+<td style="border-width:3px;">6059</td>
+<td style="border-width:3px;">36</td>
+<td style="border-width:3px;">09.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">nessbeal</td>
+<td style="border-width:3px;">6079</td>
+<td style="border-width:3px;">37</td>
+<td style="border-width:3px;">10.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Pitryx</td>
+<td style="border-width:3px;">6100</td>
+<td style="border-width:3px;">38</td>
+<td style="border-width:3px;">11.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Johnny.ARN</td>
+<td style="border-width:3px;">6170</td>
+<td style="border-width:3px;">39</td>
+<td style="border-width:3px;">12.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Snorlax</td>
+<td style="border-width:3px;">6174</td>
+<td style="border-width:3px;">39</td>
+<td style="border-width:3px;">12.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">MickeyStuma</td>
+<td style="border-width:3px;">6347</td>
+<td style="border-width:3px;">44</td>
+<td style="border-width:3px;">17.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Jara.Cimrman.jr</td>
+<td style="border-width:3px;">6500</td>
+<td style="border-width:3px;">48</td>
+<td style="border-width:3px;">21.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Flego</td>
+<td style="border-width:3px;">6521</td>
+<td style="border-width:3px;">48</td>
+<td style="border-width:3px;">21.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">tron</td>
+<td style="border-width:3px;">6601</td>
+<td style="border-width:3px;">50</td>
+<td style="border-width:3px;">23.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Hapretor</td>
+<td style="border-width:3px;">6666</td>
+<td style="border-width:3px;">52</td>
+<td style="border-width:3px;">25.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">M.i.k.e</td>
+<td style="border-width:3px;">6837</td>
+<td style="border-width:3px;">56</td>
+<td style="border-width:3px;">29.06.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Paity</td>
+<td style="border-width:3px;">6928</td>
+<td style="border-width:3px;">58</td>
+<td style="border-width:3px;">01.07.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">MM_Ramone</td>
+<td style="border-width:3px;">7029</td>
+<td style="border-width:3px;">61</td>
+<td style="border-width:3px;">04.07.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Lacike</td>
+<td style="border-width:3px;">7079</td>
+<td style="border-width:3px;">62</td>
+<td style="border-width:3px;">05.07.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Morholt</td>
+<td style="border-width:3px;">7099</td>
+<td style="border-width:3px;">63</td>
+<td style="border-width:3px;">06.07.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Autogram</td>
+<td style="border-width:3px;">7300</td>
+<td style="border-width:3px;">68</td>
+<td style="border-width:3px;">11.07.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">mira007</td>
+<td style="border-width:3px;">7362</td>
+<td style="border-width:3px;">69</td>
+<td style="border-width:3px;">12.07.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">NinadeL</td>
+<td style="border-width:3px;">7669</td>
+<td style="border-width:3px;">77</td>
+<td style="border-width:3px;">20.07.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">honajz</td>
+<td style="border-width:3px;">7931</td>
+<td style="border-width:3px;">83</td>
+<td style="border-width:3px;">26.07.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">castor</td>
+<td style="border-width:3px;">7942</td>
+<td style="border-width:3px;">84</td>
+<td style="border-width:3px;">27.07.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">ostravak30</td>
+<td style="border-width:3px;">7971</td>
+<td style="border-width:3px;">84</td>
+<td style="border-width:3px;">27.07.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Malarkey</td>
+<td style="border-width:3px;">8002</td>
+<td style="border-width:3px;">85</td>
+<td style="border-width:3px;">28.07.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">majo25</td>
+<td style="border-width:3px;">8097</td>
+<td style="border-width:3px;">88</td>
+<td style="border-width:3px;">31.07.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Juto</td>
+<td style="border-width:3px;">8206</td>
+<td style="border-width:3px;">90</td>
+<td style="border-width:3px;">02.08.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Terva</td>
+<td style="border-width:3px;">8222</td>
+<td style="border-width:3px;">91</td>
+<td style="border-width:3px;">03.08.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">SeBig</td>
+<td style="border-width:3px;">8349</td>
+<td style="border-width:3px;">94</td>
+<td style="border-width:3px;">06.08.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">ARI50</td>
+<td style="border-width:3px;">8475</td>
+<td style="border-width:3px;">97</td>
+<td style="border-width:3px;">09.08.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">LiVentura</td>
+<td style="border-width:3px;">8610</td>
+<td style="border-width:3px;">100</td>
+<td style="border-width:3px;">12.08.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Houdini</td>
+<td style="border-width:3px;">8727</td>
+<td style="border-width:3px;">103</td>
+<td style="border-width:3px;">15.08.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">honajz2</td>
+<td style="border-width:3px;">8743</td>
+<td style="border-width:3px;">104</td>
+<td style="border-width:3px;">16.08.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">tranquill</td>
+<td style="border-width:3px;">8819</td>
+<td style="border-width:3px;">106</td>
+<td style="border-width:3px;">18.08.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Necrotongue</td>
+<td style="border-width:3px;">8863</td>
+<td style="border-width:3px;">107</td>
+<td style="border-width:3px;">19.08.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">SOLOM.</td>
+<td style="border-width:3px;">8963</td>
+<td style="border-width:3px;">109</td>
+<td style="border-width:3px;">21.08.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Tommasi3</td>
+<td style="border-width:3px;">9282</td>
+<td style="border-width:3px;">117</td>
+<td style="border-width:3px;">29.08.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Chrustyn</td>
+<td style="border-width:3px;">10631</td>
+<td style="border-width:3px;">151</td>
+<td style="border-width:3px;">02.10.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">kaylin</td>
+<td style="border-width:3px;">11810</td>
+<td style="border-width:3px;">180</td>
+<td style="border-width:3px;">31.10.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Loki_Six</td>
+<td style="border-width:3px;">12099</td>
+<td style="border-width:3px;">188</td>
+<td style="border-width:3px;">08.11.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Arsenal83</td>
+<td style="border-width:3px;">13063</td>
+<td style="border-width:3px;">212</td>
+<td style="border-width:3px;">02.12.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Anderton</td>
+<td style="border-width:3px;">13099</td>
+<td style="border-width:3px;">213</td>
+<td style="border-width:3px;">03.12.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">LUKICKK</td>
+<td style="border-width:3px;">14075</td>
+<td style="border-width:3px;">237</td>
+<td style="border-width:3px;">27.12.2025</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Martin741</td>
+<td style="border-width:3px;">16430</td>
+<td style="border-width:3px;">296</td>
+<td style="border-width:3px;">24.02.2026</td>
+</tr>
+<tr>
+<td style="border-width:3px;">sator</td>
+<td style="border-width:3px;">16740</td>
+<td style="border-width:3px;">304</td>
+<td style="border-width:3px;">04.03.2026</td>
+</tr>
+<tr>
+<td style="border-width:3px;">rivah</td>
+<td style="border-width:3px;">18302</td>
+<td style="border-width:3px;">343</td>
+<td style="border-width:3px;">12.04.2026</td>
+</tr>
+<tr>
+<td style="border-width:3px;">Marze</td>
+<td style="border-width:3px;">19026</td>
+<td style="border-width:3px;">361</td>
+<td style="border-width:3px;">30.04.2026</td>
+</tr>
+<tr>
+<td style="border-width:3px;">T2</td>
+<td style="border-width:3px;">19982</td>
+<td style="border-width:3px;">385</td>
+<td style="border-width:3px;">24.05.2026</td>
+</tr>
+<tr>
+<td style="border-width:3px;">corpSy</td>
+<td style="border-width:3px;">23867</td>
+<td style="border-width:3px;">482</td>
+<td style="border-width:3px;">29.08.2026</td>
+</tr>
+</tbody>
+</table>
