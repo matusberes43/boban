@@ -88,6 +88,45 @@ body.dark .toggle-theme:hover {
 }
 
 
+
+
+
+#progress-container {
+  width: 80%;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.progress-bar-bg {
+  background-color: #e5e7eb;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 24px;
+  margin-top: 5px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #4ade80, #22c55e); /* zelený gradient */
+  text-align: right;
+  color: #000;
+  font-weight: bold;
+  padding-right: 10px;
+  line-height: 24px;
+  transition: width 1s ease-in-out;
+}
+
+body.dark .progress-bar-bg {
+  background-color: #1f2937;
+}
+
+body.dark .progress-bar-fill {
+  background: linear-gradient(90deg, #86efac, #4ade80);
+  color: #000;
+}
+
+
 </style>
   
   <meta charset="UTF-8">
