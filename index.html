@@ -15,14 +15,42 @@
       text-align: center;
       margin-bottom: 20px;
     }
+    .search-legend-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
     #searchInput {
-      display: block;
-      margin: 0 auto 30px auto;
       padding: 10px;
       font-size: 16px;
       width: 300px;
       border: 1px solid #ccc;
       border-radius: 6px;
+    }
+    .legend {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .legend-square {
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+    }
+    .legend-square.pulse-warning {
+      animation: softPulse 2s ease-in-out infinite;
+    }
+    .legend-square.month-warning {
+      animation: softPulseMonth 2.5s ease-in-out infinite;
     }
     .table-wrapper {
       width: 95%;
@@ -73,7 +101,7 @@
     body.dark .pulse-warning {
       animation: softPulseDark 2.5s ease-in-out infinite;
     }
-    /* Nová animace pro < 1 měsíc (oranžová) */
+    /* Animace pro < 1 měsíc (oranžová) */
     @keyframes softPulseMonth {
       0%, 100% { background-color: inherit; }
       50% { background-color: #ffedd5; }
@@ -120,6 +148,15 @@
     body.dark .toggle-theme:hover {
       background: linear-gradient(145deg, #fbbf24, #facc15);
     }
+    body.dark .legend {
+      color: #f1f5f9;
+    }
+    body.dark .legend-square.pulse-warning {
+      animation: softPulseDark 2s ease-in-out infinite;
+    }
+    body.dark .legend-square.month-warning {
+      animation: softPulseMonthDark 2.5s ease-in-out infinite;
+    }
     /* Progress bar */
     #progress-container, #customTargetContainer {
       width: 80%;
@@ -158,12 +195,37 @@
       font-family: 'Arial Black', sans-serif;
       text-shadow: 0 0 3px rgba(255, 0, 0, 0.4);
     }
+    /* Responzivita pro menší obrazovky */
+    @media (max-width: 600px) {
+      .search-legend-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+      #searchInput {
+        width: 90%;
+      }
+      .legend {
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body>
   <h1>Žebříček recenzentů s živým odpočtem</h1>
   <button id="themeToggle" class="toggle-theme" onclick="toggleTheme()" aria-label="Přepnout světlý/tmavý režim">🌙 Přepnout režim</button>
-  <input type="text" id="searchInput" placeholder="Hledej uživatele..." onkeyup="filterTable()">
+  <div class="search-legend-container">
+    <input type="text" id="searchInput" placeholder="Hledej uživatele..." onkeyup="filterTable()">
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-square pulse-warning"></div>
+        <span>Překonání do 24 hodin</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-square month-warning"></div>
+        <span>Překonání do 1 měsíce</span>
+      </div>
+    </div>
+  </div>
   <div class="table-wrapper">
     <table id="reviewTable">
       <thead>
