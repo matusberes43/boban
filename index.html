@@ -21,6 +21,55 @@
 .pulse-warning {
   animation: softPulse 2s infinite;
 }
+
+
+
+body.dark {
+  background-color: #121826;
+  color: #f1f5f9;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+body.dark table {
+  background-color: #1e293b;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+body.dark th {
+  background-color: #334155;
+  color: #f8fafc;
+}
+
+body.dark td {
+  border-bottom: 1px solid #475569;
+}
+
+body.dark #searchInput {
+  background-color: #1e293b;
+  color: #f1f5f9;
+  border: 1px solid #64748b;
+}
+
+body.dark .punisher-row {
+  background-color: #facc15 !important;
+  color: #000;
+}
+
+body.dark .pulse-warning {
+  animation: softPulseDark 2s infinite;
+}
+
+@keyframes softPulseDark {
+  0%, 100% {
+    background-color: inherit;
+  }
+  50% {
+    background-color: #ef44441a;
+  }
+}
+
+
+
 </style>
   
   <meta charset="UTF-8">
