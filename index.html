@@ -150,8 +150,20 @@
 <tr class="overcome"><td>88</td><td>Rathalos <span class="skull">&#9760;</span></td><td>4641</td><td>1</td><td>05.05.2025</td></tr>
 <tr class="overcome"><td>89</td><td>Radko <span class="skull">&#9760;</span></td><td>4628</td><td>1</td><td>05.05.2025</td></tr>
 
-      <tr class="overcome"><td>90</td><td>blondboss <span class="skull">&#9760;</span></td><td>4619</td><td>1</td><td>05.05.2025</td></tr>
-    </tbody>
+     
+ <tr class="overcome"><td>90</td><td>blondboss <span class="skull">&#9760;</span></td><td>4619</td><td>1</td><td>05.05.2025</td></tr>
+<script>
+function filterTable() {
+  const input = document.getElementById("searchInput").value.toLowerCase();
+  const rows = document.querySelectorAll("table tbody tr");
+
+  rows.forEach(row => {
+    const name = row.cells[1].textContent.toLowerCase();
+    row.style.display = name.includes(input) ? "" : "none";
+  });
+}
+</script>
+        </tbody>
   </table>
 </body>
 </html>
