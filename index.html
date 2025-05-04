@@ -9,14 +9,16 @@
     border: 2px solid #000;
   }
   
-  @keyframes softPulse {
+
+@keyframes softPulseDark {
   0%, 100% {
-    background-color: inherit;
+    background-color: transparent;
   }
   50% {
-    background-color: #ffe5e5;
+    background-color: rgba(239, 68, 68, 0.05); /* jemná tmavě červená */
   }
 }
+
 
 .pulse-warning {
   animation: softPulse 2s infinite;
