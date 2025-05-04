@@ -6,43 +6,50 @@
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f4f4f4;
-      color: #111;
+      background-color: #0f172a;
+      color: #f1f5f9;
       margin: 0;
       padding: 0;
     }
 
     .container {
-      max-width: 800px;
+      max-width: 700px;
       margin: 50px auto;
-      background-color: white;
+      background-color: #1e293b;
       padding: 30px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      border-radius: 16px;
     }
 
     .profile-header {
       text-align: center;
-      margin-bottom: 30px;
     }
 
     .profile-header img {
       width: 160px;
       height: 160px;
       border-radius: 50%;
-      border: 4px solid #2563eb;
+      border: 3px solid #facc15;
+      box-shadow: 0 0 15px rgba(250, 204, 21, 0.5);
     }
 
     h1 {
+      font-size: 32px;
       margin-top: 20px;
-      font-size: 28px;
-      color: #2563eb;
+      color: #facc15;
     }
 
     .info {
+      margin: 30px 0;
       font-size: 18px;
-      margin: 20px 0;
-      line-height: 1.6;
+      line-height: 1.7;
+      background-color: #334155;
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    .info p {
+      margin: 10px 0;
     }
 
     .social-links {
@@ -51,23 +58,23 @@
     }
 
     .social-links a {
-      display: inline-flex;
-      align-items: center;
-      margin: 10px;
+      display: inline-block;
+      margin: 10px 15px;
       text-decoration: none;
-      font-size: 18px;
-      color: #2563eb;
+      color: #38bdf8;
       font-weight: bold;
+      font-size: 18px;
       transition: color 0.3s;
     }
 
     .social-links a:hover {
-      color: #1e40af;
+      color: #0ea5e9;
     }
 
-    .social-links .icon {
+    .social-links img.icon {
       width: 28px;
       height: 28px;
+      vertical-align: middle;
       margin-right: 8px;
     }
 
@@ -76,14 +83,12 @@
         margin: 20px;
         padding: 20px;
       }
-
       .profile-header img {
         width: 120px;
         height: 120px;
       }
-
       h1 {
-        font-size: 24px;
+        font-size: 26px;
       }
     }
   </style>
@@ -98,18 +103,17 @@
     <div class="info">
       <p><strong>Jméno:</strong> Matúš Bereš</p>
       <p><strong>Věk:</strong> 30 let</p>
-      <p><strong>Bydliště:</strong> Hlavní město, Praha</p>
-      <p><strong>Počet recenzí:</strong> Automaticky počítáno</p>
+      <p><strong>Bydliště:</strong> Hlavní město Praha</p>
+      <p><strong>Počet recenzí:</strong> Dynamicky počítáno</p>
       <p><strong>Platformy:</strong> ČSFD.cz, Edna.cz</p>
     </div>
 
     <div class="social-links">
-      <h3>Moje profily</h3>
       <a href="https://www.csfd.cz/uzivatel/936529-punisheredna/prehled/" target="_blank">
-        <img src="https://img.icons8.com/color/48/000000/csfd.png" alt="ČSFD" class="icon"> ČSFD.cz
+        <img src="https://img.icons8.com/ios-filled/50/facc15/tv.png" class="icon"> ČSFD.cz
       </a>
       <a href="https://www.edna.cz/uzivatele/punisher-bude-trestat/" target="_blank">
-        <img src="https://img.icons8.com/fluency/48/000000/internet.png" alt="Edna" class="icon"> Edna.cz
+        <img src="https://img.icons8.com/ios-glyphs/30/facc15/web.png" class="icon"> Edna.cz
       </a>
     </div>
   </div>
