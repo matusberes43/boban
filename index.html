@@ -704,6 +704,11 @@ if (!inserted) {
 Array.from(table.rows).forEach((row, idx) => {
   row.cells[0].textContent = idx + 1;
 });
+
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+}
+
 </script>
 
 
