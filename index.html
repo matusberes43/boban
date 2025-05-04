@@ -663,17 +663,47 @@ function filterTable() {
   });
 }
 
-function startCountdown(id, targetDateStr) {
-  const target = new Date(targetDateStr);
-  function update() {
-    const now = new Date();
-    const diff = target - now;
-    if (diff <= 0) {
+
+function startCountdown(id, targetDateStr, targetReviewCount) {
+  const targetDate = new Date(targetDateStr);
   const el = document.getElementById(id);
-  el.innerText = "Překonán!";
-  el.classList.add("prekonan");
-  return;
+  const row = el.closest("tr");
+
+  function update() {
+    // Ak som už prekonal užívateľa podľa recenzí
+    if (currentPunisherReviews > targetReviewCount) {
+      el.innerText = "Překonán!";
+      el.classList.add("prekonan");
+      clearInterval(timer); // zastaví odpočet
+      return;
+    }
+
+    const now = new Date();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+      el.innerText = "Překonán!";
+      el.classList.add("prekonan");
+      return;
+    }
+
+    if (diff <= 24 * 60 * 60 * 1000) {
+      row.classList.add("pulse-warning");
+    }
+
+    const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+    el.innerText = `${months}m ${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  update();
+  const timer = setInterval(update, 1000);
 }
+
+
     
     const row = document.getElementById(id).closest("tr");
 if (diff <= 24 * 60 * 60 * 1000) {
