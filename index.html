@@ -579,6 +579,53 @@ startCountdown("countdown-87", "2025-05-05");
 startCountdown("countdown-88", "2025-05-05");
 startCountdown("countdown-89", "2025-05-05");
 startCountdown("countdown-90", "2025-05-05");
+// Výpočet aktuálních recenzí PunisherEDNA
+const startDate = new Date("2025-05-04");
+const initialReviews = 4615;
+const dailyGain = 40;
+const today = new Date();
+const daysSinceStart = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+const currentPunisherReviews = initialReviews + daysSinceStart * dailyGain;
+
+// Vložení PunisherEDNA do správné pozice
+const table = document.querySelector("#reviewTable tbody");
+const rows = Array.from(table.rows);
+let inserted = false;
+
+for (let i = 0; i < rows.length; i++) {
+  const reviewCount = parseInt(rows[i].cells[2].textContent);
+  if (currentPunisherReviews >= reviewCount) {
+    const newRow = table.insertRow(i);
+    newRow.classList.add("punisher-row");
+    newRow.innerHTML = `
+      <td>${i + 1}</td>
+      <td>PunisherEDNA</td>
+      <td>${currentPunisherReviews}</td>
+      <td>0</td>
+      <td>dnes</td>
+      <td>-</td>`;
+    inserted = true;
+    break;
+  }
+}
+
+// Pokud je poslední, vlož nakonec
+if (!inserted) {
+  const newRow = table.insertRow();
+  newRow.classList.add("punisher-row");
+  newRow.innerHTML = `
+    <td>${rows.length + 1}</td>
+    <td>PunisherEDNA</td>
+    <td>${currentPunisherReviews}</td>
+    <td>0</td>
+    <td>dnes</td>
+    <td>-</td>`;
+}
+
+// Aktualizace pořadí ve sloupci
+Array.from(table.rows).forEach((row, idx) => {
+  row.cells[0].textContent = idx + 1;
+});
 </script>
 
 
