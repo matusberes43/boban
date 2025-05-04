@@ -29,6 +29,18 @@
 }
 
 
+
+/* Výchozí pro světlý režim */
+.pulse-warning {
+  animation: softPulse 2s ease-in-out infinite;
+}
+
+/* Přepíše se automaticky při tmavém režimu */
+body.dark .pulse-warning {
+  animation: softPulseDark 2.5s ease-in-out infinite;
+}
+
+
 body.dark .pulse-warning {
   animation: softPulseDark 2.5s ease-in-out infinite;
 }
