@@ -581,5 +581,59 @@ startCountdown("countdown-89", "2025-05-05");
 startCountdown("countdown-90", "2025-05-05");
 </script>
 
+<script>
+const startDate = new Date("2025-05-04");
+const initialReviews = 4615;
+const dailyGain = 40;
+
+function getDaysSinceStart() {
+    const today = new Date();
+    const diffTime = today - startDate;
+    return Math.floor(diffTime / (1000 * 60 * 60 * 24));
+}
+
+function calculateCurrentReviews() {
+    return initialReviews + getDaysSinceStart() * dailyGain;
+}
+
+function insertPunisherRow() {
+    const currentReviews = calculateCurrentReviews();
+    const tbody = document.getElementById("rankingBody");
+    const rows = Array.from(tbody.querySelectorAll("tr"));
+
+    // Najdi správné místo v žebříčku
+    let inserted = false;
+    for (let i = 0; i < rows.length; i++) {
+        const rowReviews = parseInt(rows[i].dataset.reviews);
+        if (currentReviews >= rowReviews) {
+            const newRow = document.createElement("tr");
+            newRow.classList.add("punisher-row");
+            newRow.innerHTML = `<td></td><td>PunisherEDNA</td><td>${currentReviews}</td>`;
+            newRow.dataset.reviews = currentReviews;
+            tbody.insertBefore(newRow, rows[i]);
+            inserted = true;
+            break;
+        }
+    }
+
+    // Pokud má méně než všichni, dej ho nakonec
+    if (!inserted) {
+        const newRow = document.createElement("tr");
+        newRow.classList.add("punisher-row");
+        newRow.innerHTML = `<td></td><td>PunisherEDNA</td><td>${currentReviews}</td>`;
+        newRow.dataset.reviews = currentReviews;
+        tbody.appendChild(newRow);
+    }
+
+    // Přepiš pořadí ve sloupci
+    const allRows = Array.from(tbody.querySelectorAll("tr"));
+    allRows.forEach((row, index) => {
+        row.cells[0].textContent = index + 1;
+    });
+}
+
+insertPunisherRow();
+</script>
+
 </body>
 </html>
