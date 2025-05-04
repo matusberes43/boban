@@ -850,6 +850,49 @@ function updateProgressBar() {
 updateProgressBar();
 
 
+
+function updateCustomProgress() {
+  const select = document.getElementById("userSelect");
+  const selectedName = select.value;
+  const rows = document.querySelectorAll("#reviewTable tbody tr");
+
+  let targetReviews = null;
+
+  rows.forEach(row => {
+    const name = row.cells[1].textContent.trim();
+    if (name === selectedName) {
+      targetReviews = parseInt(row.cells[2].textContent);
+    }
+  });
+
+  if (!targetReviews) {
+    document.getElementById("custom-progress-wrapper").style.display = "none";
+    return;
+  }
+
+  const current = currentPunisherReviews;
+  const percent = Math.min(100, ((current / targetReviews) * 100).toFixed(2));
+  const remaining = targetReviews - current;
+
+  document.getElementById("custom-progress-wrapper").style.display = "block";
+  document.getElementById("custom-progress-text").textContent =
+    `${current} z ${targetReviews} recenzí (${percent} %) — zbývá ${remaining}`;
+  document.getElementById("custom-progress-bar").style.width = percent + "%";
+}
+
+function fillUserDropdown() {
+  const select = document.getElementById("userSelect");
+  const rows = document.querySelectorAll("#reviewTable tbody tr");
+
+  rows.forEach(row => {
+    const name = row.cells[1].textContent.trim();
+    const option = document.createElement("option");
+    option.value = name;
+    option.textContent = name;
+    select.appendChild(option);
+  });
+}
+fillUserDropdown();
 </script>
 
 
