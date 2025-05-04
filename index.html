@@ -10,12 +10,21 @@
   }
   
 
+@keyframes softPulse {
+  0%, 100% {
+    background-color: inherit;
+  }
+  50% {
+    background-color: #ffe5e5; /* jemná růžová pro světlý režim */
+  }
+}
+
 @keyframes softPulseDark {
   0%, 100% {
     background-color: transparent;
   }
   50% {
-    background-color: rgba(239, 68, 68, 0.05); /* jemná tmavě červená */
+    background-color: rgba(239, 68, 68, 0.05); /* tlumená červená pro tmavý režim */
   }
 }
 
