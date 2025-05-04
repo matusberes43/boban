@@ -586,6 +586,25 @@ body.dark .progress-bar-fill {
   </tbody>
 </table>
 
+<!-- Výběr uživatele -->
+<div id="customTargetContainer">
+  <label for="userSelect"><strong>Porovnat se s uživatelem:</strong></label>
+  <select id="userSelect" onchange="updateCustomProgress()">
+    <option value="">– Vyber uživatele –</option>
+  </select>
+
+  <!-- Bar a text -->
+  <div id="custom-progress-wrapper" style="display:none; margin-top: 15px;">
+    <p><span id="custom-progress-text"></span></p>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="custom-progress-bar"></div>
+    </div>
+  </div>
+</div>
+
+
+
+
 <div id="progress-container">
   <p><strong>Postup k 1. místu:</strong> <span id="progress-text"></span></p>
   <div class="progress-bar-bg">
