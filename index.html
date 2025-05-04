@@ -24,24 +24,45 @@
 
 
 
-.toggle-theme {
-  background: linear-gradient(145deg, #4f46e5, #6366f1);
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  margin-bottom: 20px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+body.dark {
+  background-color: #121826;
+  color: #f1f5f9;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-.toggle-theme:hover {
-  background: linear-gradient(145deg, #6366f1, #4f46e5);
-  transform: scale(1.05);
+body.dark table {
+  background-color: #1e293b;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
 }
 
+body.dark th {
+  background-color: #334155;
+  color: #f8fafc;
+}
+
+body.dark td {
+  border-bottom: 1px solid #475569;
+}
+
+body.dark #searchInput {
+  background-color: #1e293b;
+  color: #f1f5f9;
+  border: 1px solid #64748b;
+}
+
+body.dark .punisher-row {
+  background-color: #facc15 !important;
+  color: #000;
+}
+
+body.dark .toggle-theme {
+  background: linear-gradient(145deg, #facc15, #fbbf24);
+  color: #000;
+}
+
+body.dark .toggle-theme:hover {
+  background: linear-gradient(145deg, #fbbf24, #facc15);
+}
 
 
 </style>
