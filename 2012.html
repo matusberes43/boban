@@ -2,100 +2,110 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
-  <title>Profil – PunisherEDNA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil - PunisherEDNA</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f0f2f5;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f3f4f6;
       margin: 0;
-      padding: 40px;
-      color: #111;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      transition: background-color 0.3s;
     }
 
     .card {
-      max-width: 600px;
-      margin: auto;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      background: linear-gradient(135deg, #ffffff, #f9fafb);
       padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      width: 320px;
+      text-align: center;
+      transition: background 0.3s, color 0.3s;
     }
 
     .card img {
-      width: 140px;
-      height: 140px;
-      border-radius: 12px;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 20px;
+      border: 4px solid #22c55e;
+      margin-bottom: 15px;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 26px;
+    .card h2 {
+      font-size: 24px;
+      margin-bottom: 8px;
+      color: #1f2937;
     }
 
-    .info {
-      margin-top: 15px;
-      font-size: 18px;
-      line-height: 1.8;
-      text-align: center;
+    .card p {
+      margin: 6px 0;
+      color: #4b5563;
+      font-size: 16px;
     }
 
-    .info a {
-      color: #004080;
-      text-decoration: none;
+    .card strong {
+      color: #111827;
     }
 
-    .info a:hover {
-      text-decoration: underline;
-    }
-
-    .badge {
+    .back-link {
+      display: block;
       margin-top: 20px;
-      padding: 8px 18px;
-      background-color: #004080;
-      color: white;
-      border-radius: 20px;
+      text-decoration: none;
+      color: #3b82f6;
       font-weight: bold;
+      transition: color 0.3s;
     }
 
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #111;
-        color: #eee;
-      }
-      .card {
-        background-color: #1e1e1e;
-        color: white;
-      }
-      .badge {
-        background-color: #66b2ff;
-      }
+    .back-link:hover {
+      color: #2563eb;
+    }
+
+    /* Dark mode */
+    body.dark {
+      background-color: #0f172a;
+    }
+
+    body.dark .card {
+      background: #1e293b;
+      color: #f1f5f9;
+    }
+
+    body.dark .card h2,
+    body.dark .card p,
+    body.dark .card strong {
+      color: #f8fafc;
+    }
+
+    body.dark .back-link {
+      color: #93c5fd;
+    }
+
+    body.dark .back-link:hover {
+      color: #60a5fa;
     }
   </style>
 </head>
 <body>
-
   <div class="card">
-   <img src="https://i.postimg.cc/zv2zRHqp/IMG-1637.jpg" alt="Profilová fotka">
-    <h1>PunisherEDNA</h1>
-    <div class="info">
-      <p><strong>Jméno:</strong> Matúš Bereš</p>
-      <p><strong>Věk:</strong> 30</p>
-      <p><strong>Bydliště:</strong> Hlavní město, Praha</p>
-      <p><strong>Počet recenzí:</strong> 4616</p>
-      <p><strong>Platformy:</strong> 
-        <a href="https://www.csfd.cz/" target="_blank">čsfd.cz</a>, 
-        <a href="https://www.edna.cz/" target="_blank">edna.cz</a>
-      </p>
-    </div>
-    <div class="badge">Recenzent elitní ligy</div>
+    <img src="https://i.postimg.cc/zv2zRHqp/IMG-1637.jpg" alt="Profilová fotka">
+    <h2>Matúš Bereš</h2>
+    <p><strong>Věk:</strong> 30</p>
+    <p><strong>Bydliště:</strong> Hlavní město Praha</p>
+    <p><strong>Počet recenzí:</strong> 4615</p>
+    <p><strong>Platformy:</strong> čsfd.cz, edna.cz</p>
+    <a class="back-link" href="index.html">← Zpět do žebříčku</a>
   </div>
 
+  <script>
+    // Přepínání režimu podle systému
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.body.classList.add('dark');
+    }
+  </script>
 </body>
 </html>
