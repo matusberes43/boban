@@ -888,10 +888,24 @@ function updateCustomProgress() {
   const remaining = targetReviews - current;
 
   document.getElementById("custom-progress-wrapper").style.display = "block";
-  document.getElementById("custom-progress-text").textContent =
-    `${current} z ${targetReviews} recenzí (${percent} %) — zbývá ${remaining}`;
-  document.getElementById("custom-progress-bar").style.width = percent + "%";
+
+  const textEl = document.getElementById("custom-progress-text");
+  const barEl = document.getElementById("custom-progress-bar");
+
+  if (remaining <= 0) {
+    textEl.textContent = `Uživatel překonán!`;
+    textEl.style.color = "red";
+    textEl.style.fontWeight = "bold";
+    barEl.style.width = "100%";
+  } else {
+    textEl.textContent = `${current} z ${targetReviews} recenzí (${percent} %) — zbývá ${remaining}`;
+    textEl.style.color = "";
+    textEl.style.fontWeight = "";
+    barEl.style.width = percent + "%";
+  }
 }
+
+
 
 function fillUserDropdown() {
   const select = document.getElementById("userSelect");
