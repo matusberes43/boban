@@ -5,77 +5,67 @@
   <title>Profil PunisherEDNA</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       background-color: #0f172a;
-      color: #f1f5f9;
+      color: #e2e8f0;
       margin: 0;
       padding: 0;
     }
 
     .container {
-      max-width: 700px;
-      margin: 50px auto;
-      background-color: #1e293b;
+      max-width: 720px;
+      margin: 60px auto;
       padding: 30px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      background-color: #1e293b;
       border-radius: 16px;
-    }
-
-    .profile-header {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
       text-align: center;
     }
 
-    .profile-header img {
+    .profile-img {
       width: 160px;
       height: 160px;
+      object-fit: cover;
       border-radius: 50%;
-      border: 3px solid #facc15;
-      box-shadow: 0 0 15px rgba(250, 204, 21, 0.5);
+      border: 4px solid #facc15;
+      box-shadow: 0 0 20px rgba(250, 204, 21, 0.4);
     }
 
     h1 {
-      font-size: 32px;
-      margin-top: 20px;
       color: #facc15;
+      font-size: 32px;
+      margin: 20px 0 10px;
     }
 
     .info {
-      margin: 30px 0;
-      font-size: 18px;
-      line-height: 1.7;
       background-color: #334155;
       padding: 20px;
       border-radius: 12px;
+      margin-top: 25px;
+      text-align: left;
     }
 
     .info p {
+      font-size: 18px;
       margin: 10px 0;
     }
 
-    .social-links {
-      text-align: center;
+    .links {
       margin-top: 30px;
     }
 
-    .social-links a {
+    .links a {
       display: inline-block;
-      margin: 10px 15px;
-      text-decoration: none;
-      color: #38bdf8;
-      font-weight: bold;
+      margin: 10px 20px;
       font-size: 18px;
-      transition: color 0.3s;
+      font-weight: bold;
+      color: #38bdf8;
+      text-decoration: none;
+      transition: color 0.3s ease;
     }
 
-    .social-links a:hover {
+    .links a:hover {
       color: #0ea5e9;
-    }
-
-    .social-links img.icon {
-      width: 28px;
-      height: 28px;
-      vertical-align: middle;
-      margin-right: 8px;
     }
 
     @media (max-width: 600px) {
@@ -83,38 +73,33 @@
         margin: 20px;
         padding: 20px;
       }
-      .profile-header img {
-        width: 120px;
-        height: 120px;
-      }
+
       h1 {
         font-size: 26px;
+      }
+
+      .info p {
+        font-size: 16px;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="profile-header">
-      <img src="https://i.postimg.cc/zv2zRHqp/IMG-1637.jpg" alt="Profilová fotka">
-      <h1>PunisherEDNA</h1>
-    </div>
+    <img src="https://i.postimg.cc/zv2zRHqp/IMG-1637.jpg" alt="Profilová fotka" class="profile-img">
+    <h1>PunisherEDNA</h1>
 
     <div class="info">
       <p><strong>Jméno:</strong> Matúš Bereš</p>
       <p><strong>Věk:</strong> 30 let</p>
       <p><strong>Bydliště:</strong> Hlavní město Praha</p>
-      <p><strong>Počet recenzí:</strong> Dynamicky počítáno</p>
+      <p><strong>Počet recenzí:</strong> Dynamicky vypočítáváno</p>
       <p><strong>Platformy:</strong> ČSFD.cz, Edna.cz</p>
     </div>
 
-    <div class="social-links">
-      <a href="https://www.csfd.cz/uzivatel/936529-punisheredna/prehled/" target="_blank">
-        <img src="https://img.icons8.com/ios-filled/50/facc15/tv.png" class="icon"> ČSFD.cz
-      </a>
-      <a href="https://www.edna.cz/uzivatele/punisher-bude-trestat/" target="_blank">
-        <img src="https://img.icons8.com/ios-glyphs/30/facc15/web.png" class="icon"> Edna.cz
-      </a>
+    <div class="links">
+      <a href="https://www.csfd.cz/uzivatel/936529-punisheredna/prehled/" target="_blank">ČSFD profil</a>
+      <a href="https://www.edna.cz/uzivatele/punisher-bude-trestat/" target="_blank">Edna profil</a>
     </div>
   </div>
 </body>
