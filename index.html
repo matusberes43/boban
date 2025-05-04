@@ -679,8 +679,19 @@ Array.from(table.rows).forEach((row, idx) => {
   row.cells[0].textContent = idx + 1;
 });
 
+
+
 function toggleTheme() {
-  document.body.classList.toggle("dark");
+  const body = document.body;
+  const btn = document.getElementById("themeToggle");
+
+  body.classList.toggle("dark");
+
+  if (body.classList.contains("dark")) {
+    btn.innerHTML = "☀️ Přepnout režim";
+  } else {
+    btn.innerHTML = "🌙 Přepnout režim";
+  }
 }
 
 </script>
