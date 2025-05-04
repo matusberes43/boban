@@ -796,22 +796,33 @@ const table = document.querySelector("#reviewTable tbody");
 const rows = Array.from(table.rows);
 let inserted = false;
 
+
 for (let i = 0; i < rows.length; i++) {
   const reviewCount = parseInt(rows[i].cells[2].textContent);
   if (currentPunisherReviews >= reviewCount) {
+    // Označ prekonaného uživateľa (ten, čo bude pod tebou)
+    const countdownCell = rows[i].querySelector("td:last-child span");
+    if (countdownCell) {
+      countdownCell.innerText = "Překonán!";
+      countdownCell.classList.add("prekonan");
+    }
+
+    // Vlož PunisherEDNA na aktuálnu pozíciu
     const newRow = table.insertRow(i);
     newRow.classList.add("punisher-row");
     newRow.innerHTML = `
-  <td>${i + 1}</td>
-  <td><a href="2012.html" target="_blank">PunisherEDNA</a></td>
-  <td>${currentPunisherReviews}</td>
-  <td>0</td>
-  <td>dnes</td>
-  <td>-</td>`;
+      <td>${i + 1}</td>
+      <td><a href="2012.html" target="_blank">PunisherEDNA</a></td>
+      <td>${currentPunisherReviews}</td>
+      <td>0</td>
+      <td>dnes</td>
+      <td>-</td>`;
+      
     inserted = true;
     break;
   }
 }
+
 
 // Pokud je poslední, vlož nakonec
 if (!inserted) {
