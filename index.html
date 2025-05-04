@@ -784,6 +784,23 @@ function toggleTheme() {
   }
 }
 
+
+
+
+function updateProgressBar() {
+  const punisher = currentPunisherReviews;
+  const topUser = 23867; // corpSy
+  const remaining = topUser - punisher;
+  const percent = Math.min(100, ((punisher / topUser) * 100).toFixed(2));
+
+  document.getElementById("progress-text").textContent =
+    `${punisher} z ${topUser} recenzí (${percent} %) — zbývá ${remaining}`;
+
+  document.getElementById("progress-bar").style.width = percent + "%";
+}
+updateProgressBar();
+
+
 </script>
 
 
