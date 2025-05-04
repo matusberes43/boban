@@ -157,6 +157,17 @@ body.dark .progress-bar-fill {
   color: #000;
 }
 
+
+
+
+.prekonan {
+  color: #ef4444; /* jasně červená */
+  font-weight: 800;
+  font-size: 1.1em;
+  font-family: 'Arial Black', sans-serif;
+  text-shadow: 0 0 3px rgba(255, 0, 0, 0.4);
+}
+
 </style>
   
   <meta charset="UTF-8">
@@ -658,9 +669,11 @@ function startCountdown(id, targetDateStr) {
     const now = new Date();
     const diff = target - now;
     if (diff <= 0) {
-      document.getElementById(id).innerText = "Překonán!";
-      return;
-    }
+  const el = document.getElementById(id);
+  el.innerText = "Překonán!";
+  el.classList.add("prekonan");
+  return;
+}
     
     const row = document.getElementById(id).closest("tr");
 if (diff <= 24 * 60 * 60 * 1000) {
