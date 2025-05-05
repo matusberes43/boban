@@ -192,7 +192,7 @@
       color: #f1f5f9;
     }
     /* Progress bar */
-    #progress-container, #customTargetContainer {
+    #progress-container, #customTargetContainer, #phantomForm {
       width: 80%;
       margin: 30px auto;
       text-align: center;
@@ -229,35 +229,50 @@
       font-family: 'Arial Black', sans-serif;
       text-shadow: 0 0 3px rgba(255, 0, 0, 0.4);
     }
-    /* Formulář pro fantomový náhled */
+    /* Vylepšený formulář pro fantomový náhled */
     #phantomForm {
-      margin: 20px auto;
-      text-align: center;
-      max-width: 400px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    #phantomForm input {
+    body.dark #phantomForm {
+      background-color: #1e293b;
+    }
+    #phantomForm h2 {
+      margin-bottom: 20px;
+      font-size: 1.5em;
+    }
+    #phantomForm label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    #phantomForm input, #phantomForm select {
       padding: 8px;
       font-size: 16px;
-      width: 100px;
+      width: 200px;
       border: 1px solid #ccc;
       border-radius: 4px;
-      margin-right: 10px;
+      margin-bottom: 10px;
     }
     #phantomForm button {
-      padding: 8px 16px;
+      padding: 10px 20px;
       font-size: 16px;
       background-color: #004080;
       color: white;
       border: none;
       border-radius: 4px;
       cursor: pointer;
+      margin-top: 10px;
     }
     #phantomForm button:hover {
       background-color: #0059b3;
     }
     #phantomResult {
-      margin-top: 10px;
-      font-size: 14px;
+      margin-top: 20px;
+      font-size: 16px;
       color: #333;
     }
     body.dark #phantomResult {
@@ -279,20 +294,15 @@
         width: 180px;
         font-size: 12px;
       }
+      #phantomForm input, #phantomForm select {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
   <h1>Žebříček recenzentů s živým odpočtem</h1>
   <button id="themeToggle" class="toggle-theme" onclick="toggleTheme()" aria-label="Přepnout světlý/tmavý režim">🌙 Přepnout režim</button>
-  
-  <!-- Formulář pro fantomový náhled -->
-  <div id="phantomForm">
-    <label for="dailyReviews">Denní přírůstek recenzí:</label>
-    <input type="number" id="dailyReviews" min="1" value="40" placeholder="např. 50">
-    <button onclick="showPhantomRow()">Simulovat postup</button>
-    <div id="phantomResult"></div>
-  </div>
 
   <div class="search-legend-container">
     <input type="text" id="searchInput" placeholder="Hledej uživatele..." onkeyup="filterTable()">
@@ -435,6 +445,30 @@
     </div>
   </div>
 
+  <!-- Vylepšený formulář pro fantomový náhled (přesunutý na konec) -->
+  <div id="phantomForm">
+    <h2>Simulace postupu PunisherEDNA</h2>
+    <label for="dailyReviews">Denní přírůstek recenzí:</label>
+    <input type="number" id="dailyReviews" min="1" value="40" placeholder="např. 50">
+    
+    <label for="simulationDays">Počet dní simulace:</label>
+    <input type="number" id="simulationDays" min="1" value="30" placeholder="např. 30">
+    
+    <label for="targetUser">Cílový uživatel (nepovinné):</label>
+    <select id="targetUser">
+      <option value="">– Vyber uživatele –</option>
+    </select>
+    
+    <button onclick="showPhantomRow()">Spustit simulaci</button>
+    <div id="phantomResult"></div>
+    <div id="phantom-progress-wrapper" style="display:none; margin-top: 15px;">
+      <p><span id="phantom-progress-text"></span></p>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="phantom-progress-bar"></div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Filtrování tabulky podle vyhledávání
     function filterTable() {
@@ -520,33 +554,57 @@
       row.cells[0].textContent = idx + 1;
     });
 
-    // Fantomový náhled postupu
+    // Vylepšený fantomový náhled postupu
     function showPhantomRow() {
       // Odebrat předchozí fantomový řádek
       const existingPhantom = document.querySelector(".phantom-row");
       if (existingPhantom) existingPhantom.remove();
 
       const dailyReviews = parseInt(document.getElementById("dailyReviews").value);
+      const simulationDays = parseInt(document.getElementById("simulationDays").value);
+      const targetUser = document.getElementById("targetUser").value;
+
+      // Validace vstupů
       if (!dailyReviews || dailyReviews < 1) {
         document.getElementById("phantomResult").innerText = "Zadej platný počet recenzí za den.";
         return;
       }
+      if (!simulationDays || simulationDays < 1) {
+        document.getElementById("phantomResult").innerText = "Zadej platný počet dní simulace.";
+        return;
+      }
 
       // Simulace postupu
-      const topUserReviews = 23867; // corpSy
-      const daysToTop = Math.ceil((topUserReviews - currentPunisherReviews) / dailyReviews);
-      const phantomReviews = currentPunisherReviews + dailyReviews * 30; // Simulace za 30 dní
+      const phantomReviews = currentPunisherReviews + dailyReviews * simulationDays;
+      let targetUserReviews = 23867; // corpSy (výchozí)
+      let targetUserName = "corpSy";
+      let targetPosition = 1;
+
+      if (targetUser) {
+        const rows = Array.from(table.rows).filter(row => !row.classList.contains("phantom-row"));
+        for (let i = 0; i < rows.length; i++) {
+          const name = rows[i].cells[1].textContent.trim();
+          if (name === targetUser) {
+            targetUserReviews = parseInt(rows[i].cells[2].textContent);
+            targetUserName = name;
+            targetPosition = i + 1;
+            break;
+          }
+        }
+      }
+
+      const daysToTarget = Math.ceil((targetUserReviews - currentPunisherReviews) / dailyReviews);
 
       // Najít pozici v tabulce
       let phantomPosition = 1;
       let inserted = false;
-      const rows = Array.from(table.rows).filter(row => !row.classList.contains("phantom-row"));
-      for (let i = 0; i < rows.length; i++) {
-        const reviewCount = parseInt(rows[i].cells[2].textContent);
+      const rowsFiltered = Array.from(table.rows).filter(row => !row.classList.contains("phantom-row"));
+      for (let i = 0; i < rowsFiltered.length; i++) {
+        const reviewCount = parseInt(rowsFiltered[i].cells[2].textContent);
         if (phantomReviews >= reviewCount) {
           const newRow = table.insertRow(i);
           newRow.classList.add("phantom-row");
-          newRow.innerHTML = `<td>${i + 1}</td><td class="tooltip">PunisherEDNA (simulace)<span class="tooltip-text">Simulovaný počet recenzí: ${phantomReviews}<br>Denní přírůstek: ${dailyReviews}</span></td><td>${phantomReviews}</td><td>-</td><td>-</td><td>-</td>`;
+          newRow.innerHTML = `<td>${i + 1}</td><td class="tooltip">PunisherEDNA (simulace)<span class="tooltip-text">Simulovaný počet recenzí: ${phantomReviews}<br>Denní přírůstek: ${dailyReviews}<br>Simulováno pro ${simulationDays} dní</span></td><td>${phantomReviews}</td><td>-</td><td>-</td><td>-</td>`;
           inserted = true;
           phantomPosition = i + 1;
           break;
@@ -556,8 +614,8 @@
       if (!inserted) {
         const newRow = table.insertRow();
         newRow.classList.add("phantom-row");
-        newRow.innerHTML = `<td>${rows.length + 1}</td><td class="tooltip">PunisherEDNA (simulace)<span class="tooltip-text">Simulovaný počet recenzí: ${phantomReviews}<br>Denní přírůstek: ${dailyReviews}</span></td><td>${phantomReviews}</td><td>-</td><td>-</td><td>-</td>`;
-        phantomPosition = rows.length + 1;
+        newRow.innerHTML = `<td>${rowsFiltered.length + 1}</td><td class="tooltip">PunisherEDNA (simulace)<span class="tooltip-text">Simulovaný počet recenzí: ${phantomReviews}<br>Denní přírůstek: ${dailyReviews}<br>Simulováno pro ${simulationDays} dní</span></td><td>${phantomReviews}</td><td>-</td><td>-</td><td>-</td>`;
+        phantomPosition = rowsFiltered.length + 1;
       }
 
       // Aktualizace pořadí
@@ -566,7 +624,33 @@
       });
 
       // Výsledek simulace
-      document.getElementById("phantomResult").innerText = `S ${dailyReviews} recenzemi denně bys za 30 dní byl na ${phantomPosition}. místě. Překonáš corpSy za ${daysToTop} dní.`;
+      let resultText = `S ${dailyReviews} recenzemi denně bys za ${simulationDays} dní měl ${phantomReviews} recenzí a byl bys na ${phantomPosition}. místě.\n`;
+      if (phantomReviews >= targetUserReviews) {
+        resultText += `Už bys překonal ${targetUserName}!`;
+      } else {
+        resultText += `Překonáš ${targetUserName} (pozice ${targetPosition}) za ${daysToTarget} dní.`;
+      }
+      document.getElementById("phantomResult").innerText = resultText;
+
+      // Aktualizace fantomového progress baru
+      const percent = Math.min(100, ((phantomReviews / targetUserReviews) * 100).toFixed(2));
+      const remaining = targetUserReviews - phantomReviews;
+      const wrapper = document.getElementById("phantom-progress-wrapper");
+      const textEl = document.getElementById("phantom-progress-text");
+      const barEl = document.getElementById("phantom-progress-bar");
+
+      wrapper.style.display = "block";
+      if (remaining <= 0) {
+        textEl.textContent = `Překonal jsi ${targetUserName}!`;
+        textEl.style.color = "red";
+        textEl.style.fontWeight = "bold";
+        barEl.style.width = "100%";
+      } else {
+        textEl.textContent = `${phantomReviews} z ${targetUserReviews} recenzí (${percent} %) — zbývá ${remaining}`;
+        textEl.style.color = "";
+        textEl.style.fontWeight = "";
+        barEl.style.width = percent + "%";
+      }
     }
 
     // Přepínání světlého/tmavého režimu
@@ -628,9 +712,10 @@
       }
     }
 
-    // Naplnění dropdownu
+    // Naplnění dropdownů
     function fillUserDropdown() {
       const select = document.getElementById("userSelect");
+      const targetSelect = document.getElementById("targetUser");
       const rows = document.querySelectorAll("#reviewTable tbody tr:not(.phantom-row)");
       rows.forEach(row => {
         const name = row.cells[1].textContent.trim();
@@ -638,6 +723,10 @@
         option.value = name;
         option.textContent = name;
         select.appendChild(option);
+        const targetOption = document.createElement("option");
+        targetOption.value = name;
+        targetOption.textContent = name;
+        targetSelect.appendChild(targetOption);
       });
     }
 
