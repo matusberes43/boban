@@ -4,300 +4,477 @@
   <meta charset="UTF-8">
   <title>Žebříček recenzentů</title>
   <style>
-    /* Obecné styly */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f6f8;
-      padding: 40px;
-      transition: background-color 0.5s ease, color 0.5s ease;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .search-legend-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-    #searchInput {
-      padding: 10px;
-      font-size: 16px;
-      width: 300px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-    .legend {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-      font-size: 12px;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .legend-square {
-      width: 12px;
-      height: 12px;
-      border-radius: 2px;
-    }
-    .legend-square.month-warning {
-      animation: softPulseMonth 2.5s ease-in-out infinite;
-    }
-    .table-wrapper {
-      width: 95%;
-      margin: auto;
-      overflow-x: auto;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    th, td {
-      padding: 12px 18px;
-      border-bottom: 1px solid #ddd;
-      text-align: center;
-    }
-    thead {
-      background-color: #004080;
-      color: white;
-    }
-    tr:hover {
-      background-color: #f0f8ff;
-    }
-    .skull {
-      color: red;
-    }
-    .overcome {
-      background-color: #ffe5e5;
-    }
-    .punisher-row {
-      background-color: #ffe600;
-      font-weight: bold;
-      border: 2px solid #000;
-    }
-    .phantom-row {
-      background-color: rgba(200, 200, 200, 0.6);
-      font-style: italic;
-      opacity: 0.6;
-      border: 1px dashed #666;
-    }
-    /* Červený odpočet pro < 24 hodin */
-    .urgent-countdown {
-      color: #ef4444;
-      font-weight: bold;
-    }
-    /* Animace pro < 1 měsíc (oranžová) */
-    @keyframes softPulseMonth {
-      0%, 100% { background-color: inherit; }
-      50% { background-color: #ffedd5; }
-    }
-    @keyframes softPulseMonthDark {
-      0%, 100% { background-color: transparent; }
-      50% { background-color: rgba(249, 115, 22, 0.1); }
-    }
-    .month-warning {
-      animation: softPulseMonth 2.5s ease-in-out infinite;
-    }
-    body.dark .month-warning {
-      animation: softPulseMonthDark 2.5s ease-in-out infinite;
-    }
-    /* Tooltip styly */
-    .tooltip {
-      position: relative;
-      cursor: pointer;
-    }
-    .tooltip .tooltip-text {
-      visibility: hidden;
-      width: 220px;
-      background-color: #333;
-      color: #fff;
-      text-align: left;
-      padding: 8px 12px;
-      border-radius: 6px;
-      position: absolute;
-      z-index: 1;
-      bottom: 125%;
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0;
-      transition: opacity 0.3s, transform 0.3s;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-    .tooltip:hover .tooltip-text {
-      visibility: visible;
-      opacity: 1;
-      transform: translateX(-50%) translateY(-5px);
-    }
-    .tooltip-text::after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      margin-left: -5px;
-      border-width: 5px;
-      border-style: solid;
-      border-color: #333 transparent transparent transparent;
-    }
-    body.dark .tooltip-text {
-      background-color: #475569;
-      color: #f1f5f9;
-    }
-    body.dark .tooltip-text::after {
-      border-color: #475569 transparent transparent transparent;
-    }
-    /* Tmavý režim */
-    body.dark {
-      background-color: #121826;
-      color: #f1f5f9;
-    }
-    body.dark table {
-      background-color: #1e293b;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-    }
-    body.dark th {
-      background-color: #334155;
-      color: #f8fafc;
-    }
-    body.dark td {
-      border-bottom: 1px solid #475569;
-    }
-    body.dark #searchInput {
-      background-color: #1e293b;
-      color: #f1f5f9;
-      border: 1px solid #64748b;
-    }
-    body.dark .punisher-row {
-      background-color: #facc15 !important;
-      color: #000;
-    }
-    body.dark .phantom-row {
-      background-color: rgba(100, 100, 100, 0.6);
-    }
-    body.dark .toggle-theme {
-      background: linear-gradient(145deg, #facc15, #fbbf24);
-      color: #000;
-    }
-    body.dark .toggle-theme:hover {
-      background: linear-gradient(145deg, #fbbf24, #facc15);
-    }
-    body.dark .legend {
-      color: #f1f5f9;
-    }
-    /* Progress bar */
-    #progress-container, #customTargetContainer, #phantomForm {
-      width: 80%;
-      margin: 30px auto;
-      text-align: center;
-    }
-    .progress-bar-bg {
-      background-color: #e5e7eb;
-      border-radius: 20px;
-      overflow: hidden;
-      height: 24px;
-      margin-top: 5px;
-    }
-    .progress-bar-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #4ade80, #22c55e);
-      text-align: right;
-      color: #000;
-      font-weight: bold;
-      padding-right: 10px;
-      line-height: 24px;
-      transition: width 1s ease-in-out;
-    }
-    body.dark .progress-bar-bg {
-      background-color: #1f2937;
-    }
-    body.dark .progress-bar-fill {
-      background: linear-gradient(90deg, #86efac, #4ade80);
-      color: #000;
-    }
-    .prekonan {
-      color: #ef4444;
-      font-weight: 800;
-      font-size: 1.1em;
-      font-family: 'Arial Black', sans-serif;
-      text-shadow: 0 0 3px rgba(255, 0, 0, 0.4);
-    }
-    /* Vylepšený formulář pro fantomový náhled */
-    #phantomForm {
-      margin: 40px auto;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    body.dark #phantomForm {
-      background-color: #1e293b;
-    }
-    #phantomForm h2 {
-      margin-bottom: 20px;
-      font-size: 1.5em;
-    }
-    #phantomForm label {
-      display: block;
-      margin: 10px 0 5px;
-      font-weight: bold;
-    }
-    #phantomForm input, #phantomForm select {
-      padding: 8px;
-      font-size: 16px;
-      width: 200px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-    #phantomForm button {
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #004080;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    #phantomForm button:hover {
-      background-color: #0059b3;
-    }
-    #phantomResult {
-      margin-top: 20px;
-      font-size: 16px;
-      color: #333;
-    }
-    body.dark #phantomResult {
-      color: #f1f5f9;
-    }
-    /* Responzivita */
-    @media (max-width: 600px) {
-      .search-legend-container {
-        flex-direction: column;
-        gap: 10px;
-      }
-      #searchInput {
-        width: 90%;
-      }
-      .legend {
-        justify-content: center;
-      }
-      .tooltip .tooltip-text {
-        width: 180px;
-        font-size: 12px;
-      }
-      #phantomForm input, #phantomForm select {
-        width: 100%;
-      }
-    }
+ 
+
+/* CSS proměnné pro snadnou úpravu */
+:root {
+  --primary-color: #1e40af;
+  --secondary-color: #22c55e;
+  --danger-color: #ef4444;
+  --warning-color: #f97316;
+  --background-light: #f8fafc;
+  --background-dark: #0f172a;
+  --text-light: #1e293b;
+  --text-dark: #f1f5f9;
+  --surface-light: #ffffff;
+  --surface-dark: #1e293b;
+  --border-light: #e2e8f0;
+  --border-dark: #475569;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.15);
+  --transition: all 0.3s ease;
+}
+
+/* Obecné styly */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background-light);
+  color: var(--text-light);
+  margin: 0;
+  padding: 2rem;
+  transition: var(--transition);
+  line-height: 1.6;
+}
+
+/* Tmavý režim */
+body.dark {
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+}
+
+/* Nadpisy */
+h1 {
+  text-align: center;
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Kontejner pro vyhledávání a legendu */
+.search-legend-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Vstupní pole */
+#searchInput {
+  padding: 0.75rem;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 20rem;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+}
+
+#searchInput:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.2);
+}
+
+body.dark #searchInput {
+  background-color: var(--surface-dark);
+  color: var(--text-dark);
+  border-color: var(--border-dark);
+}
+
+/* Legenda */
+.legend {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-square {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 4px;
+}
+
+.legend-square.month-warning {
+  animation: softPulseMonth 2.5s ease-in-out infinite;
+}
+
+/* Tabulka */
+.table-wrapper {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--surface-light);
+  box-shadow: var(--shadow);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+body.dark table {
+  background: var(--surface-dark);
+}
+
+th, td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-light);
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+body.dark th, body.dark td {
+  border-bottom: 1px solid var(--border-dark);
+}
+
+thead {
+  background: var(--primary-color);
+  color: #ffffff;
+}
+
+th {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+tr {
+  transition: var(--transition);
+}
+
+tr:hover {
+  background-color: rgba(30, 64, 175, 0.1);
+}
+
+.punisher-row {
+  background: linear-gradient(90deg, #facc15, #fbbf24);
+  font-weight: 700;
+  border: 2px solid var(--text-light);
+}
+
+.phantom-row {
+  background: rgba(200, 200, 200, 0.4);
+  font-style: italic;
+  opacity: 0.8;
+  border: 1px dashed var(--text-light);
+}
+
+body.dark .punisher-row {
+  background: linear-gradient(90deg, #facc15, #fbbf24);
+  color: var(--text-light);
+}
+
+body.dark .phantom-row {
+  background: rgba(100, 100, 100, 0.4);
+}
+
+/* Urgentní odpočet */
+.urgent-countdown {
+  color: var(--danger-color);
+  font-weight: 700;
+}
+
+/* Animace pro varování */
+@keyframes softPulseMonth {
+  0%, 100% { background-color: transparent; }
+  50% { background-color: rgba(249, 115, 22, 0.2); }
+}
+
+@keyframes softPulseMonthDark {
+  0%, 100% { background-color: transparent; }
+  50% { background-color: rgba(249, 115, 22, 0.3); }
+}
+
+.month-warning {
+  animation: softPulseMonth 2.5s ease-in-out infinite;
+}
+
+body.dark .month-warning {
+  animation: softPulseMonthDark 2.5s ease-in-out infinite;
+}
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+}
+
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: 14rem;
+  background: #1e293b;
+  color: var(--text-dark);
+  text-align: left;
+  padding: 0.75rem;
+  border-radius: 8px;
+  position: absolute;
+  z-index: 10;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+.tooltip-text::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #1e293b transparent transparent transparent;
+}
+
+body.dark .tooltip-text {
+  background: #475569;
+}
+
+body.dark .tooltip-text::after {
+  border-color: #475569 transparent transparent transparent;
+}
+
+/* Tlačítko pro přepínání tématu */
+.toggle-theme {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  background: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+  margin: 1rem auto;
+  display: block;
+}
+
+.toggle-theme:hover {
+  background: #1e3a8a;
+  box-shadow: var(--shadow-hover);
+}
+
+body.dark .toggle-theme {
+  background: linear-gradient(145deg, #facc15, #fbbf24);
+  color: var(--text-light);
+}
+
+body.dark .toggle-theme:hover {
+  background: linear-gradient(145deg, #fbbf24, #facc15);
+}
+
+/* Progress bar */
+#progress-container,
+#customTargetContainer,
+#phantomForm {
+  width: 100%;
+  max-width: 40rem;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.progress-bar-bg {
+  background: var(--border-light);
+  border-radius: 1rem;
+  height: 1.5rem;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--secondary-color), #4ade80);
+  text-align: right;
+  color: var(--text-light);
+  font-weight: 600;
+  padding-right: 0.5rem;
+  line-height: 1.5rem;
+  transition: width 1s ease-in-out;
+}
+
+body.dark .progress-bar-bg {
+  background: var(--border-dark);
+}
+
+body.dark .progress-bar-fill {
+  background: linear-gradient(90deg, #86efac, var(--secondary-color));
+}
+
+/* Formulář */
+#phantomForm {
+  padding: 1.5rem;
+  background: var(--surface-light);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+body.dark #phantomForm {
+  background: var(--surface-dark);
+}
+
+#phantomForm label {
+  display: block;
+  margin: 0.75rem 0 0.25rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+#phantomForm input,
+#phantomForm select {
+  padding: 0.75rem;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 15rem;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+#phantomForm input:focus,
+#phantomForm select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.2);
+}
+
+body.dark #phantomForm input,
+body.dark #phantomForm select {
+  background: var(--surface-dark);
+  color: var(--text-dark);
+  border-color: var(--border-dark);
+}
+
+#phantomForm button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+}
+
+#phantomForm button:hover {
+  background: #1e3a8a;
+  box-shadow: var(--shadow-hover);
+}
+
+#phantomResult {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: var(--text-light);
+}
+
+body.dark #phantomResult {
+  color: var(--text-dark);
+}
+
+/* Responzivní design */
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  .search-legend-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #searchInput {
+    max-width: 100%;
+  }
+
+  .legend {
+    justify-content: center;
+  }
+
+  .tooltip .tooltip-text {
+    width: 12rem;
+    font-size: 0.875rem;
+  }
+
+  #phantomForm input,
+  #phantomForm select {
+    max-width: 100%;
+  }
+
+  th, td {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  th, td {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .toggle-theme {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Animace při načítání tabulky */
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+tr {
+  animation: slideIn 0.5s ease forwards;
+  animation-delay: calc(var(--row-index) * 0.05s);
+}
+
   </style>
 </head>
 <body>
