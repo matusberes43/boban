@@ -1,84 +1,518 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Area 51 a mimozemské technológie - BLCHA.COM</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Žebříček recenzentů</title>
+  <style>
+    /* Obecné styly */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      padding: 40px;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .search-legend-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    #searchInput {
+      padding: 10px;
+      font-size: 16px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .legend {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      font-size: 12px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .legend-square {
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+    }
+    .legend-square.pulse-warning {
+      animation: softPulse 2s ease-in-out infinite;
+    }
+    .legend-square.month-warning {
+      animation: softPulseMonth 2.5s ease-in-out infinite;
+    }
+    .table-wrapper {
+      width: 95%;
+      margin: auto;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px 18px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+    thead {
+      background-color: #004080;
+      color: white;
+    }
+    tr:hover {
+      background-color: #f0f8ff;
+    }
+    .skull {
+      color: red;
+    }
+    .overcome {
+      background-color: #ffe5e5;
+    }
+    .punisher-row {
+      background-color: #ffe600;
+      font-weight: bold;
+      border: 2px solid #000;
+    }
+    /* Animace pro posledních 24 hodin (červená) */
+    @keyframes softPulse {
+      0%, 100% { background-color: inherit; }
+      50% { background-color: #ffe5e5; }
+    }
+    @keyframes softPulseDark {
+      0%, 100% { background-color: transparent; }
+      50% { background-color: rgba(239, 68, 68, 0.05); }
+    }
+    .pulse-warning {
+      animation: softPulse 2s ease-in-out infinite;
+    }
+    body.dark .pulse-warning {
+      animation: softPulseDark 2.5s ease-in-out infinite;
+    }
+    /* Animace pro < 1 měsíc (oranžová) */
+    @keyframes softPulseMonth {
+      0%, 100% { background-color: inherit; }
+      50% { background-color: #ffedd5; }
+    }
+    @keyframes softPulseMonthDark {
+      0%, 100% { background-color: transparent; }
+      50% { background-color: rgba(249, 115, 22, 0.1); }
+    }
+    .month-warning {
+      animation: softPulseMonth 2.5s ease-in-out infinite;
+    }
+    body.dark .month-warning {
+      animation: softPulseMonthDark 2.5s ease-in-out infinite;
+    }
+    /* Tmavý režim */
+    body.dark {
+      background-color: #121826;
+      color: #f1f5f9;
+    }
+    body.dark table {
+      background-color: #1e293b;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    }
+    body.dark th {
+      background-color: #334155;
+      color: #f8fafc;
+    }
+    body.dark td {
+      border-bottom: 1px solid #475569;
+    }
+    body.dark #searchInput {
+      background-color: #1e293b;
+      color: #f1f5f9;
+      border: 1px solid #64748b;
+    }
+    body.dark .punisher-row {
+      background-color: #facc15 !important;
+      color: #000;
+    }
+    body.dark .toggle-theme {
+      background: linear-gradient(145deg, #facc15, #fbbf24);
+      color: #000;
+    }
+    body.dark .toggle-theme:hover {
+      background: linear-gradient(145deg, #fbbf24, #facc15);
+    }
+    body.dark .legend {
+      color: #f1f5f9;
+    }
+    body.dark .legend-square.pulse-warning {
+      animation: softPulseDark 2s ease-in-out infinite;
+    }
+    body.dark .legend-square.month-warning {
+      animation: softPulseMonthDark 2.5s ease-in-out infinite;
+    }
+    /* Progress bar */
+    #progress-container, #customTargetContainer {
+      width: 80%;
+      margin: 30px auto;
+      text-align: center;
+    }
+    .progress-bar-bg {
+      background-color: #e5e7eb;
+      border-radius: 20px;
+      overflow: hidden;
+      height: 24px;
+      margin-top: 5px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #4ade80, #22c55e);
+      text-align: right;
+      color: #000;
+      font-weight: bold;
+      padding-right: 10px;
+      line-height: 24px;
+      transition: width 1s ease-in-out;
+    }
+    body.dark .progress-bar-bg {
+      background-color: #1f2937;
+    }
+    body.dark .progress-bar-fill {
+      background: linear-gradient(90deg, #86efac, #4ade80);
+      color: #000;
+    }
+    .prekonan {
+      color: #ef4444;
+      font-weight: 800;
+      font-size: 1.1em;
+      font-family: 'Arial Black', sans-serif;
+      text-shadow: 0 0 3px rgba(255, 0, 0, 0.4);
+    }
+    /* Responzivita pro menší obrazovky */
+    @media (max-width: 600px) {
+      .search-legend-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+      #searchInput {
+        width: 90%;
+      }
+      .legend {
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div id="article-container">
-        <div id="article-content">
-            
-            <h1>Area 51: Skutočné tajomstvá alebo len vojenská základňa?</h1>
-
-<p><strong>Oblasť Area 51</strong>, nachádzajúca sa v Nevadskej púšti približne 135 km od Las Vegas, je jedným z najzáhadnejších miest na svete. Táto prísne strážená vojenská základňa je oficiálne známa ako <strong>Groom Lake Test Facility</strong> a údajne slúži na testovanie tajných vojenských lietadiel a experimentálnych technológií. No mnohí veria, že za vysokými plotmi a ozbrojenou ochrankou sa skrýva niečo oveľa väčšie – <strong>dôkazy o mimozemskom živote, havarované UFO a utajené mimozemské technológie</strong>.</p>
-
-<h2>História a tajomstvá Area 51</h2>
-
-<p>Area 51 bola založená v <strong>50. rokoch 20. storočia</strong> počas studenej vojny, keď USA potrebovali tajné miesto na vývoj špionážnych lietadiel, ako bol <strong>U-2</strong>. Dlhé roky americká vláda dokonca popierala jej existenciu, až kým <strong>CIA v roku 2013 oficiálne nepriznala</strong>, že Area 51 je skutočná.</p>
-
-<p>No už desaťročia predtým sa objavovali správy, že táto základňa ukrýva niečo oveľa záhadnejšie. Niektorí bývalí zamestnanci tvrdia, že <strong>Area 51 je miestom, kde sa analyzujú a spätne konštruujú mimozemské technológie</strong>, získané z havarovaných UFO.</p>
-
-<h2>Havária v Roswelli a spojenie s Area 51</h2>
-
-<p>Najznámejší prípad, ktorý podporuje teóriu o mimozemšťanoch v Area 51, je <strong>havária v Roswelli v roku 1947</strong>. Podľa oficiálnej verzie americká armáda našla v Roswelli meteorologický balón, no mnohí svedkovia tvrdia, že v skutočnosti išlo o <strong>havarované UFO s mimozemskými telami</strong>.</p>
-
-<p>Podľa konšpiračných teórií boli trosky tohto objektu prepravené práve do Area 51, kde americká vláda tajne skúmala <strong>mimozemské materiály a technológie</strong>. Objavili sa dokonca tvrdenia, že vedci v Area 51 vykonávali <strong>experimenty na mimozemských bytostiach</strong>, ktoré prežili haváriu.</p>
-
-<h2>Bob Lazar a odhalenie mimozemských technológií</h2>
-
-<p>Jeden z najslávnejších whistleblowerov, ktorý tvrdí, že pracoval v Area 51, je <strong>Bob Lazar</strong>. V roku 1989 vystúpil v médiách s tvrdením, že v podzemnom zariadení <strong>S-4</strong> blízko Area 51 pracoval na <strong>reverznom inžinierstve mimozemskej lode</strong>.</p>
-
-<p>Podľa Lazara mala loď <strong>antigravitačný pohon</strong>, ktorý fungoval na princípe <strong>elementu 115</strong> – látky, ktorá v tom čase nebola známa, no v roku 2003 bola skutočne objavená. Lazar tvrdil, že táto technológia umožňovala manipulovať gravitáciou, čo by mohlo vysvetľovať schopnosť UFO vykonávať manévre, ktoré sú pre ľudské stroje nemožné.</p>
-
-<p>Lazar bol označený za konšpirátora, no mnohé jeho tvrdenia sa neskôr ukázali ako pravdivé – vrátane existencie <strong>biometrických skenerov na báze kostí</strong>, ktoré sa v Area 51 používali, a samotného <strong>elementu 115</strong>.</p>
-
-<h2>UFO videá a odtajnenie vládnych dokumentov</h2>
-
-<p>V posledných rokoch došlo k <strong>oficiálnemu priznaniu existencie neidentifikovaných lietajúcich objektov (UFO/UAP)</strong> americkou vládou. V roku 2020 Pentagon <strong>zverejnil autentické videá</strong> neznámych objektov, ktoré sa pohybovali spôsobom, ktorý nebol v súlade so známymi zákonmi fyziky.</p>
-
-<p>Bývalý riaditeľ amerického Národného úradu pre spravodajské služby, <strong>John Ratcliffe</strong>, dokonca vyhlásil, že vláda má množstvo dôkazov o objektoch, ktoré <strong>nepochádzajú z tejto planéty</strong>.</p>
-
-<h2>Mimozemská spolupráca a tajné dohody?</h2>
-
-<p>Niektoré teórie naznačujú, že americká vláda neukrýva mimozemské telá, ale že <strong>s mimozemšťanmi tajne spolupracuje</strong>. Podľa týchto teórií v 50. rokoch došlo k dohode medzi vládou USA a mimozemskou civilizáciou, ktorá mala výmenou za technologické znalosti získať možnosť vykonávať genetické experimenty na ľuďoch.</p>
-
-<p>Ak by táto dohoda skutočne existovala, mohlo by to znamenať, že <strong>Area 51 nie je len základňa, ale miesto skrytých experimentov</strong> na hranici ľudského poznania.</p>
-
-<h2>Prečo je Area 51 tak prísne strážená?</h2>
-
-<p>Na rozdiel od bežných vojenských základní je <strong>Area 51 extrémne strážená</strong>. Každý, kto sa priblíži k jej hraniciam, môže byť okamžite zadržaný. Oblasť je neustále monitorovaná senzormi pohybu, dronmi a vojenskými hliadkami.</p>
-
-<p>V roku 2019 sa dokonca objavila iniciatíva <strong>„Storm Area 51“</strong>, kde sa tisíce ľudí plánovali pokúsiť preniknúť na základňu, no americká armáda okamžite varovala, že použije smrtiacu silu proti každému, kto sa pokúsi o narušenie.</p>
-
-<h2>Čo sa tam skutočne deje?</h2>
-
-<p>Hoci oficiálne zdroje tvrdia, že Area 51 je len testovacím miestom pre vojenské technológie, množstvo dôkazov naznačuje, že tam môže byť niečo oveľa záhadnejšie. Možno sa tam nachádzajú:</p>
-
-<ul>
-    <li><strong>Havarované mimozemské lode a telá mimozemšťanov</strong>.</li>
-    <li><strong>Technológie založené na antigravitácii</strong> a iných fyzikálnych princípoch, ktoré ľudstvo ešte nepozná.</li>
-    <li><strong>Tajné dohody medzi mimozemskými civilizáciami a vládami</strong> na výmenu technologických znalostí.</li>
-</ul>
-
-<h2>Záver: Skrýva Area 51 dôkazy o mimozemskom živote?</h2>
-
-<p>Aj keď americká vláda oficiálne odmieta existenciu mimozemských technológií v Area 51, stále existuje veľa nezodpovedaných otázok. <strong>Prečo Bob Lazar vedel o elemente 115 skôr, ako ho veda objavila?</strong> Prečo sú výpovede svedkov konzistentné? A prečo vláda napriek všetkému stále tak silno stráži túto oblasť?</p>
-
-<p>Možno sa pravdu nikdy nedozvieme, alebo možno svet už pomaly pripravujú na odhalenie niečoho, čo by mohlo zmeniť celé naše chápanie reality. Ak je Area 51 naozaj miestom, kde sa nachádzajú odpovede na najväčšie otázky ľudstva, <strong>máme právo ich poznať? Alebo je lepšie, ak pravda zostane skrytá?</strong></p>
-            
-            <button id="back-to-list">BACK</button>
-        </div>
+  <h1>Žebříček recenzentů</h1>
+  <button id="themeToggle" class="toggle-theme" onclick="toggleTheme()" aria-label="Přepnout světlý/tmavý režim">🌙 Přepnout režim</button>
+  <div class="search-legend-container">
+    <input type="text" id="searchInput" placeholder="Hledej uživatele..." onkeyup="filterTable()">
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-square pulse-warning"></div>
+        <span>Překonání do 24 hodin</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-square month-warning"></div>
+        <span>Překonání do 1 měsíce</span>
+      </div>
     </div>
+  </div>
+  <div class="table-wrapper">
+    <table id="reviewTable">
+      <thead>
+        <tr>
+          <th scope="col">Pořadí</th>
+          <th scope="col">Uživatel</th>
+          <th scope="col">Počet recenzí</th>
+          <th scope="col">Dní do překonání</th>
+          <th scope="col">Datum překonání</th>
+          <th scope="col">Odpočet</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>corpSy 🥇</td><td>23867</td><td>482</td><td>29.08.2026</td><td><span id="countdown-1" data-target-date="2026-08-29"></span></td></tr>
+        <tr><td>2</td><td>T2 🥈</td><td>19982</td><td>385</td><td>24.05.2026</td><td><span id="countdown-2" data-target-date="2026-05-24"></span></td></tr>
+        <tr><td>3</td><td>Marze 🥉</td><td>19026</td><td>361</td><td>30.04.2026</td><td><span id="countdown-3" data-target-date="2026-04-30"></span></td></tr>
+        <tr><td>4</td><td>rivah</td><td>18302</td><td>343</td><td>12.04.2026</td><td><span id="countdown-4" data-target-date="2026-04-12"></span></td></tr>
+        <tr><td>5</td><td>sator</td><td>16740</td><td>304</td><td>04.03.2026</td><td><span id="countdown-5" data-target-date="2026-03-04"></span></td></tr>
+        <tr><td>6</td><td>Martin741</td><td>16430</td><td>296</td><td>24.02.2026</td><td><span id="countdown-6" data-target-date="2026-02-24"></span></td></tr>
+        <tr><td>7</td><td>LUKICKK</td><td>14075</td><td>237</td><td>27.12.2025</td><td><span id="countdown-7" data-target-date="2025-12-27"></span></td></tr>
+        <tr><td>8</td><td>Anderton</td><td>13099</td><td>213</td><td>03.12.2025</td><td><span id="countdown-8" data-target-date="2025-12-03"></span></td></tr>
+        <tr><td>9</td><td>Arsenal83</td><td>13063</td><td>212</td><td>02.12.2025</td><td><span id="countdown-9" data-target-date="2025-12-02"></span></td></tr>
+        <tr><td>10</td><td>Loki_Six</td><td>12099</td><td>188</td><td>08.11.2025</td><td><span id="countdown-10" data-target-date="2025-11-08"></span></td></tr>
+        <tr><td>11</td><td>kaylin</td><td>11810</td><td>180</td><td>31.10.2025</td><td><span id="countdown-11" data-target-date="2025-10-31"></span></td></tr>
+        <tr><td>12</td><td>Chrustyn</td><td>10631</td><td>151</td><td>02.10.2025</td><td><span id="countdown-12" data-target-date="2025-10-02"></span></td></tr>
+        <tr><td>13</td><td>Tommasi3</td><td>9282</td><td>117</td><td>29.08.2025</td><td><span id="countdown-13" data-target-date="2025-08-29"></span></td></tr>
+        <tr><td>14</td><td>SOLOM.</td><td>8963</td><td>109</td><td>21.08.2025</td><td><span id="countdown-14" data-target-date="2025-08-21"></span></td></tr>
+        <tr><td>15</td><td>Necrotongue</td><td>8863</td><td>107</td><td>19.08.2025</td><td><span id="countdown-15" data-target-date="2025-08-19"></span></td></tr>
+        <tr><td>16</td><td>tranquill</td><td>8819</td><td>106</td><td>18.08.2025</td><td><span id="countdown-16" data-target-date="2025-08-18"></span></td></tr>
+        <tr><td>17</td><td>honajz2</td><td>8743</td><td>104</td><td>16.08.2025</td><td><span id="countdown-17" data-target-date="2025-08-16"></span></td></tr>
+        <tr><td>18</td><td>Houdini</td><td>8727</td><td>103</td><td>15.08.2025</td><td><span id="countdown-18" data-target-date="2025-08-15"></span></td></tr>
+        <tr><td>19</td><td>LiVentura</td><td>8610</td><td>100</td><td>12.08.2025</td><td><span id="countdown-19" data-target-date="2025-08-12"></span></td></tr>
+        <tr><td>20</td><td>ARI50</td><td>8475</td><td>97</td><td>09.08.2025</td><td><span id="countdown-20" data-target-date="2025-08-09"></span></td></tr>
+        <tr><td>21</td><td>SeBig</td><td>8349</td><td>94</td><td>06.08.2025</td><td><span id="countdown-21" data-target-date="2025-08-06"></span></td></tr>
+        <tr><td>22</td><td>Terva</td><td>8222</td><td>91</td><td>03.08.2025</td><td><span id="countdown-22" data-target-date="2025-08-03"></span></td></tr>
+        <tr><td>23</td><td>Juto</td><td>8206</td><td>90</td><td>02.08.2025</td><td><span id="countdown-23" data-target-date="2025-08-02"></span></td></tr>
+        <tr><td>24</td><td>majo25</td><td>8097</td><td>88</td><td>31.07.2025</td><td><span id="countdown-24" data-target-date="2025-07-31"></span></td></tr>
+        <tr><td>25</td><td>Malarkey</td><td>8002</td><td>85</td><td>28.07.2025</td><td><span id="countdown-25" data-target-date="2025-07-28"></span></td></tr>
+        <tr><td>26</td><td>ostravak30</td><td>7971</td><td>84</td><td>27.07.2025</td><td><span id="countdown-26" data-target-date="2025-07-27"></span></td></tr>
+        <tr><td>27</td><td>castor</td><td>7942</td><td>84</td><td>27.07.2025</td><td><span id="countdown-27" data-target-date="2025-07-27"></span></td></tr>
+        <tr><td>28</td><td>honajz</td><td>7931</td><td>83</td><td>26.07.2025</td><td><span id="countdown-28" data-target-date="2025-07-26"></span></td></tr>
+        <tr><td>29</td><td>NinadeL</td><td>7669</td><td>77</td><td>20.07.2025</td><td><span id="countdown-29" data-target-date="2025-07-20"></span></td></tr>
+        <tr><td>30</td><td>mira007</td><td>7362</td><td>69</td><td>12.07.2025</td><td><span id="countdown-30" data-target-date="2025-07-12"></span></td></tr>
+        <tr><td>31</td><td>Autogram</td><td>7300</td><td>68</td><td>11.07.2025</td><td><span id="countdown-31" data-target-date="2025-07-11"></span></td></tr>
+        <tr><td>32</td><td>Morholt</td><td>7099</td><td>63</td><td>06.07.2025</td><td><span id="countdown-32" data-target-date="2025-07-06"></span></td></tr>
+        <tr><td>33</td><td>Lacike</td><td>7079</td><td>62</td><td>05.07.2025</td><td><span id="countdown-33" data-target-date="2025-07-05"></span></td></tr>
+        <tr><td>34</td><td>MM_Ramone</td><td>7029</td><td>61</td><td>04.07.2025</td><td><span id="countdown-34" data-target-date="2025-07-04"></span></td></tr>
+        <tr><td>35</td><td>Paity</td><td>6928</td><td>58</td><td>01.07.2025</td><td><span id="countdown-35" data-target-date="2025-07-01"></span></td></tr>
+        <tr><td>36</td><td>M.i.k.e</td><td>6837</td><td>56</td><td>29.06.2025</td><td><span id="countdown-36" data-target-date="2025-06-29"></span></td></tr>
+        <tr><td>37</td><td>Hapretor</td><td>6666</td><td>52</td><td>25.06.2025</td><td><span id="countdown-37" data-target-date="2025-06-25"></span></td></tr>
+        <tr><td>38</td><td>tron</td><td>6601</td><td>50</td><td>23.06.2025</td><td><span id="countdown-38" data-target-date="2025-06-23"></span></td></tr>
+        <tr><td>39</td><td>Flego</td><td>6521</td><td>48</td><td>21.06.2025</td><td><span id="countdown-39" data-target-date="2025-06-21"></span></td></tr>
+        <tr><td>40</td><td>Jara.Cimrman.jr</td><td>6500</td><td>48</td><td>21.06.2025</td><td><span id="countdown-40" data-target-date="2025-06-21"></span></td></tr>
+        <tr><td>41</td><td>MickeyStuma</td><td>6347</td><td>44</td><td>17.06.2025</td><td><span id="countdown-41" data-target-date="2025-06-17"></span></td></tr>
+        <tr><td>42</td><td>Snorlax</td><td>6174</td><td>39</td><td>12.06.2025</td><td><span id="countdown-42" data-target-date="2025-06-12"></span></td></tr>
+        <tr><td>43</td><td>Johnny.ARN</td><td>6170</td><td>39</td><td>12.06.2025</td><td><span id="countdown-43" data-target-date="2025-06-12"></span></td></tr>
+        <tr><td>44</td><td>Pitryx</td><td>6100</td><td>38</td><td>11.06.2025</td><td><span id="countdown-44" data-target-date="2025-06-11"></span></td></tr>
+        <tr><td>45</td><td>nessbeal</td><td>6079</td><td>37</td><td>10.06.2025</td><td><span id="countdown-45" data-target-date="2025-06-10"></span></td></tr>
+        <tr><td>46</td><td>kingik</td><td>6059</td><td>37</td><td>10.06.2025</td><td><span id="countdown-46" data-target-date="2025-06-10"></span></td></tr>
+        <tr><td>47</td><td>*CARNIFEX*</td><td>6008</td><td>35</td><td>08.06.2025</td><td><span id="countdown-47" data-target-date="2025-06-08"></span></td></tr>
+        <tr><td>48</td><td>darkrobyk</td><td>5968</td><td>34</td><td>07.06.2025</td><td><span id="countdown-48" data-target-date="2025-06-07"></span></td></tr>
+        <tr><td>49</td><td>vitekpe</td><td>5908</td><td>33</td><td>06.06.2025</td><td><span id="countdown-49" data-target-date="2025-06-06"></span></td></tr>
+        <tr><td>50</td><td>Teachman</td><td>5908</td><td>33</td><td>06.06.2025</td><td><span id="countdown-50" data-target-date="2025-06-06"></span></td></tr>
+        <tr><td>51</td><td>JohnSmith</td><td>5908</td><td>33</td><td>06.06.2025</td><td><span id="countdown-51" data-target-date="2025-06-06"></span></td></tr>
+        <tr><td>52</td><td>slunicko2</td><td>5770</td><td>29</td><td>02.06.2025</td><td><span id="countdown-52" data-target-date="2025-06-02"></span></td></tr>
+        <tr><td>53</td><td>otík</td><td>5769</td><td>29</td><td>02.06.2025</td><td><span id="countdown-53" data-target-date="2025-06-02"></span></td></tr>
+        <tr><td>54</td><td>Frajer42</td><td>5763</td><td>29</td><td>02.06.2025</td><td><span id="countdown-54" data-target-date="2025-06-02"></span></td></tr>
+        <tr><td>55</td><td>Trevor</td><td>5753</td><td>29</td><td>02.06.2025</td><td><span id="countdown-55" data-target-date="2025-06-02"></span></td></tr>
+        <tr><td>56</td><td>zette</td><td>5715</td><td>28</td><td>01.06.2025</td><td><span id="countdown-56" data-target-date="2025-06-01"></span></td></tr>
+        <tr><td>57</td><td>Enšpígl</td><td>5521</td><td>23</td><td>27.05.2025</td><td><span id="countdown-57" data-target-date="2025-05-27"></span></td></tr>
+        <tr><td>58</td><td>d-fens</td><td>5410</td><td>20</td><td>24.05.2025</td><td><span id="countdown-58" data-target-date="2025-05-24"></span></td></tr>
+        <tr><td>59</td><td>C0r0ner</td><td>5371</td><td>19</td><td>23.05.2025</td><td><span id="countdown-59" data-target-date="2025-05-23"></span></td></tr>
+        <tr><td>60</td><td>misterz</td><td>5322</td><td>18</td><td>22.05.2025</td><td><span id="countdown-60" data-target-date="2025-05-22"></span></td></tr>
+        <tr><td>61</td><td>ghatos</td><td>5254</td><td>16</td><td>20.05.2025</td><td><span id="countdown-61" data-target-date="2025-05-20"></span></td></tr>
+        <tr><td>62</td><td>iXtr3m3</td><td>5236</td><td>16</td><td>20.05.2025</td><td><span id="countdown-62" data-target-date="2025-05-20"></span></td></tr>
+        <tr><td>63</td><td>ScarPoul</td><td>5184</td><td>15</td><td>19.05.2025</td><td><span id="countdown-63" data-target-date="2025-05-19"></span></td></tr>
+        <tr><td>64</td><td>Gilmour93</td><td>5181</td><td>15</td><td>19.05.2025</td><td><span id="countdown-64" data-target-date="2025-05-19"></span></td></tr>
+        <tr><td>65</td><td>Likan7</td><td>5134</td><td>13</td><td>17.05.2025</td><td><span id="countdown-65" data-target-date="2025-05-17"></span></td></tr>
+        <tr><td>66</td><td>Slarque</td><td>5035</td><td>11</td><td>15.05.2025</td><td><span id="countdown-66" data-target-date="2025-05-15"></span></td></tr>
+        <tr><td>67</td><td>KajusaK</td><td>4963</td><td>9</td><td>13.05.2025</td><td><span id="countdown-67" data-target-date="2025-05-13"></span></td></tr>
+        <tr><td>68</td><td>eraserhead666</td><td>4951</td><td>9</td><td>13.05.2025</td><td><span id="countdown-68" data-target-date="2025-05-13"></span></td></tr>
+        <tr><td>69</td><td>warrenuR</td><td>4946</td><td>9</td><td>13.05.2025</td><td><span id="countdown-69" data-target-date="2025-05-13"></span></td></tr>
+        <tr><td>70</td><td>Xmilden</td><td>4933</td><td>8</td><td>12.05.2025</td><td><span id="countdown-70" data-target-date="2025-05-12"></span></td></tr>
+        <tr><td>71</td><td>dopitak</td><td>4919</td><td>8</td><td>12.05.2025</td><td><span id="countdown-71" data-target-date="2025-05-12"></span></td></tr>
+        <tr><td>72</td><td>blackrain</td><td>4881</td><td>7</td><td>11.05.2025</td><td><span id="countdown-72" data-target-date="2025-05-11"></span></td></tr>
+        <tr><td>73</td><td>pornogrind</td><td>4872</td><td>7</td><td>11.05.2025</td><td><span id="countdown-73" data-target-date="2025-05-11"></span></td></tr>
+        <tr><td>74</td><td>xxmartinxx</td><td>4842</td><td>6</td><td>10.05.2025</td><td><span id="countdown-74" data-target-date="2025-05-10"></span></td></tr>
+        <tr><td>75</td><td>brasek</td><td>4804</td><td>5</td><td>09.05.2025</td><td><span id="countdown-75" data-target-date="2025-05-09"></span></td></tr>
+        <tr><td>76</td><td>Kimkong</td><td>4760</td><td>4</td><td>08.05.2025</td><td><span id="countdown-76" data-target-date="2025-05-08"></span></td></tr>
+        <tr><td>77</td><td>BOURQUE</td><td>4750</td><td>4</td><td>08.05.2025</td><td><span id="countdown-77" data-target-date="2025-05-08"></span></td></tr>
+        <tr><td>78</td><td>rakovnik</td><td>4741</td><td>4</td><td>08.05.2025</td><td><span id="countdown-78" data-target-date="2025-05-08"></span></td></tr>
+        <tr><td>79</td><td>bohemia_regent</td><td>4719</td><td>3</td><td>07.05.2025</td><td><span id="countdown-79" data-target-date="2025-05-07"></span></td></tr>
+        <tr><td>80</td><td>Hanys_</td><td>4708</td><td>3</td><td>07.05.2025</td><td><span id="countdown-80" data-target-date="2025-05-07"></span></td></tr>
+        <tr><td>81</td><td>dr.fish</td><td>4689</td><td>2</td><td>06.05.2025</td><td><span id="countdown-81" data-target-date="2025-05-06"></span></td></tr>
+        <tr><td>82</td><td>Fr</td><td>4687</td><td>2</td><td>06.05.2025</td><td><span id="countdown-82" data-target-date="2025-05-06"></span></td></tr>
+        <tr><td>83</td><td>Wacoslav1</td><td>4671</td><td>2</td><td>06.05.2025</td><td><span id="countdown-83" data-target-date="2025-05-06"></span></td></tr>
+        <tr><td>84</td><td>EvilPhoEniX</td><td>4659</td><td>2</td><td>06.05.2025</td><td><span id="countdown-84" data-target-date="2025-05-06"></span></td></tr>
+        <tr><td>85</td><td>bourec</td><td>4652</td><td>1</td><td>05.05.2025</td><td><span id="countdown-85" data-target-date="2025-05-05"></span></td></tr>
+        <tr><td>86</td><td>Aljak</td><td>4646</td><td>1</td><td>05.05.2025</td><td><span id="countdown-86" data-target-date="2025-05-05"></span></td></tr>
+        <tr><td>87</td><td>Rathalos</td><td>4641</td><td>1</td><td>05.05.2025</td><td><span id="countdown-87" data-target-date="2025-05-05"></span></td></tr>
+        <tr><td>88</td><td>Radko</td><td>4628</td><td>1</td><td>05.05.2025</td><td><span id="countdown-88" data-target-date="2025-05-05"></span></td></tr>
+        <tr><td>89</td><td>blondboss</td><td>4619</td><td>1</td><td>05.05.2025</td><td><span id="countdown-89" data-target-date="2025-05-05"></span></td></tr>
+      </tbody>
+    </table>
+  </div>
 
-    <script>
-        document.getElementById('back-to-list').addEventListener('click', function() {
-            window.location.href = 'index.html';
-        });
+  <!-- Výběr uživatele pro porovnání -->
+  <div id="customTargetContainer">
+    <label for="userSelect"><strong>Porovnat se s uživatelem:</strong></label>
+    <select id="userSelect" onchange="updateCustomProgress()">
+      <option value="">– Vyber uživatele –</option>
+    </select>
+    <div id="custom-progress-wrapper" style="display:none; margin-top: 15px;">
+      <p><span id="custom-progress-text"></span></p>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="custom-progress-bar"></div>
+      </div>
+    </div>
+  </div>
 
-        window.scrollTo(0, 0);
-    </script>
+  <!-- Progress bar pro postup k 1. místu -->
+  <div id="progress-container">
+    <p><strong>Postup k 1. místu:</strong> <span id="progress-text"></span></p>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progress-bar"></div>
+    </div>
+  </div>
+
+  <script>
+    // Filtrování tabulky podle vyhledávání
+    function filterTable() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const rows = document.querySelectorAll("#reviewTable tbody tr");
+      rows.forEach(row => {
+        const username = row.cells[1].textContent.toLowerCase();
+        row.style.display = username.includes(input) ? "" : "none";
+      });
+    }
+
+    // Optimalizovaný odpočet s blikáním
+    function updateAllCountdowns() {
+      document.querySelectorAll("[id^=countdown]").forEach(span => {
+        const targetDate = span.dataset.targetDate;
+        const target = new Date(targetDate);
+        const now = new Date();
+        const diff = target - now;
+        const row = span.closest("tr");
+
+        // Odebrání předchozích tříd
+        row.classList.remove("pulse-warning", "month-warning");
+
+        if (diff <= 0) {
+          span.innerText = "Překonán!";
+          span.classList.add("prekonan");
+          return;
+        }
+
+        // Blikání pro < 24 hodin (červená)
+        if (diff <= 24 * 60 * 60 * 1000) {
+          row.classList.add("pulse-warning");
+        }
+        // Blikání pro < 1 měsíc, ale > 24 hodin (oranžová)
+        else if (diff <= 30 * 24 * 60 * 60 * 1000) {
+          row.classList.add("month-warning");
+        }
+
+        const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+        span.innerText = `${months}m ${days}d ${hours}h ${minutes}m ${seconds}s`;
+      });
+    }
+    setInterval(updateAllCountdowns, 1000);
+
+    // Výpočet aktuálních recenzí PunisherEDNA
+    const startDate = new Date("2025-05-04");
+    const initialReviews = 4665; // Počáteční počet recenzí pro PunisherEDNA
+    const dailyGain = 40; // Denní přírůstek
+    const today = new Date();
+    const daysSinceStart = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+    const currentPunisherReviews = initialReviews + daysSinceStart * dailyGain;
+
+    // Vložení PunisherEDNA do správné pozice
+    const table = document.querySelector("#reviewTable tbody");
+    const rows = Array.from(table.rows);
+    let inserted = false;
+
+    for (let i = 0; i < rows.length; i++) {
+      const reviewCount = parseInt(rows[i].cells[2].textContent);
+      if (currentPunisherReviews >= reviewCount) {
+        const newRow = table.insertRow(i);
+        newRow.classList.add("punisher-row");
+        newRow.innerHTML = `<td>${i + 1}</td><td><a href="2012.html" target="_blank">PunisherEDNA</a></td><td>${currentPunisherReviews}</td><td>0</td><td>dnes</td><td>-</td>`;
+        inserted = true;
+        break;
+      }
+    }
+
+    if (!inserted) {
+      const newRow = table.insertRow();
+      newRow.classList.add("punisher-row");
+      newRow.innerHTML = `<td>${rows.length + 1}</td><td><a href="2012.html" target="_blank">PunisherEDNA</a></td><td>${currentPunisherReviews}</td><td>0</td><td>dnes</td><td>-</td>`;
+    }
+
+    Array.from(table.rows).forEach((row, idx) => {
+      row.cells[0].textContent = idx + 1;
+    });
+
+    // Přepínání světlého/tmavého režimu
+    function toggleTheme() {
+      const body = document.body;
+      const btn = document.getElementById("themeToggle");
+      body.classList.toggle("dark");
+      btn.innerHTML = body.classList.contains("dark") ? "☀️ Přepnout režim" : "🌙 Přepnout režim";
+    }
+
+    // Aktualizace progress baru pro postup k 1. místu
+    function updateProgressBar() {
+      const punisher = currentPunisherReviews;
+      const topUser = 23867; // corpSy
+      const remaining = topUser - punisher;
+      const percent = Math.min(100, ((punisher / topUser) * 100).toFixed(2));
+      document.getElementById("progress-text").textContent = `${punisher} z ${topUser} recenzí (${percent} %) — zbývá ${remaining}`;
+      document.getElementById("progress-bar").style.width = percent + "%";
+    }
+    updateProgressBar();
+
+    // Aktualizace progress baru pro porovnání s vybraným uživatelem
+    function updateCustomProgress() {
+      const select = document.getElementById("userSelect");
+      const selectedName = select.value;
+      const rows = document.querySelectorAll("#reviewTable tbody tr");
+      let targetReviews = null;
+
+      rows.forEach(row => {
+        const name = row.cells[1].textContent.trim();
+        if (name === selectedName) {
+          targetReviews = parseInt(row.cells[2].textContent);
+        }
+      });
+
+      if (!targetReviews) {
+        document.getElementById("custom-progress-wrapper").style.display = "none";
+        return;
+      }
+
+      const current = currentPunisherReviews;
+      const percent = Math.min(100, ((current / targetReviews) * 100).toFixed(2));
+      const remaining = targetReviews - current;
+      const wrapper = document.getElementById("custom-progress-wrapper");
+      const textEl = document.getElementById("custom-progress-text");
+      const barEl = document.getElementById("custom-progress-bar");
+
+      wrapper.style.display = "block";
+      if (remaining <= 0) {
+        textEl.textContent = "Uživatel překonán!";
+        textEl.style.color = "red";
+        textEl.style.fontWeight = "bold";
+        barEl.style.width = "100%";
+      } else {
+        textEl.textContent = `${current} z ${targetReviews} recenzí (${percent} %) — zbývá ${remaining}`;
+        textEl.style.color = "";
+        textEl.style.fontWeight = "";
+        barEl.style.width = percent + "%";
+      }
+    }
+
+    // Naplnění dropdownu jmény uživatelů
+    function fillUserDropdown() {
+      const select = document.getElementById("userSelect");
+      const rows = document.querySelectorAll("#reviewTable tbody tr");
+      rows.forEach(row => {
+        const name = row.cells[1].textContent.trim();
+        const option = document.createElement("option");
+        option.value = name;
+        option.textContent = name;
+        select.appendChild(option);
+      });
+    }
+
+    // Inicializace po načtení stránky
+    document.addEventListener("DOMContentLoaded", () => {
+      fillUserDropdown();
+      updateAllCountdowns();
+    });
+  </script>
 </body>
 </html>
