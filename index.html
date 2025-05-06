@@ -549,383 +549,377 @@
     </div>
   </div>
 
-  <script>
-    // Mapování uživatelů na země
-    const userCountries = {
-      "corpSy": "Slovensko",
-      "T2": "Slovensko",
-      "rivah": "Česko",
-      "sator": "Česko",
-      "Martin741": "Slovensko",
-      "LUKICKK": "Česko",
-      "Anderton": "Slovensko",
-      "Loki_Six": "Slovensko",
-      "kaylin": "Česko",
-      "Chrustyn": "Česko",
-      "Tommasi3": "Česko",
-      "SOLOM.": "Česko",
-      "Necrotongue": "Česko",
-      "tranquill": "Česko",
-      "honajz2": "Česko",
-      "Houdini": "Česko",
-      "LiVentura": "Česko",
-      "ARI50": "Česko",
-      "SeBig": "Česko",
-      "Terva": "Česko",
-      "Juto": "Slovensko",
-      "majo25": "Slovensko",
-      "Malarkey": "Česko",
-      "ostravak30": "Česko",
-      "castor": "Česko",
-      "honajz": "Česko",
-      "NinadeL": "Česko",
-      "Autogram": "Slovensko",
-      "mira007": "Česko",
-      "Lacike": "Slovensko",
-      "Morholt": "Česko",
-      "MM_Ramone": "Slovensko",
-      "Paity": "Česko",
-      "M.i.k.e": "Česko",
-      "Hapretor": "Česko",
-      "tron": "Slovensko",
-      "Flego": "Slovensko",
-      "MickeyStuma": "Česko",
-      "Snorlax": "Česko",
-      "Johnny.ARN": "Slovensko",
-      "Pitryx": "Česko",
-      "nessbeal": "Slovensko",
-      "kingik": "Česko",
-      "darkrobyk": "Česko",
-      "Teachman": "Česko",
-      "vitekpe": "Česko",
-      "JohnSmith": "Česko",
-      "slunicko2": "Česko",
-      "otík": "Česko",
-      "Frajer42": "Česko",
-      "Trevor": "Slovensko",
-      "zette": "Česko",
-      "Enšpígl": "Česko",
-      "misterz": "Slovensko",
-      "C0r0ner": "Česko",
-      "ghatos": "Česko",
-      "iXtr3m3": "Slovensko",
-      "Gilmour93": "Česko",
-      "ScarPoul": "Slovensko",
-      "Likan7": "Česko",
-      "Slarque": "Česko",
-      "KajusaK": "Česko",
-      "warrenuR": "Slovensko",
-      "eraserhead666": "Česko",
-      "Xmilden": "Česko",
-      "blackrain": "Česko",
-      "pornogrind": "Česko",
-      "xxmartinxx": "Česko",
-      "brasek": "Slovensko",
-      "PunisherEDNA": "Česko",
-      "Kimkong": "Česko",
-      "rakovnik": "Česko",
-      "BOURQUE": "Slovensko",
-      "bohemia_regent": "Česko",
-      "Hanys_": "Česko",
-      "Fr": "Česko",
-      "dr.fish": "Česko",
-      "Wacoslav1": "Česko",
-      "EvilPhoEniX": "Česko",
-      "bourec": "Česko",
-      "Aljak": "Slovensko",
-      "Rathalos": "Slovensko",
-      "Radko": "Slovensko",
-      "blondboss": "Slovensko"
+<script>
+  // Mapování uživatelů na země
+  const userCountries = {
+    "corpSy": "Slovensko",
+    "T2": "Slovensko",
+    "rivah": "Česko",
+    "sator": "Česko",
+    "Martin741": "Slovensko",
+    "LUKICKK": "Česko",
+    "Anderton": "Slovensko",
+    "Loki_Six": "Slovensko",
+    "kaylin": "Česko",
+    "Chrustyn": "Česko",
+    "Tommasi3": "Česko",
+    "SOLOM.": "Česko",
+    "Necrotongue": "Česko",
+    "tranquill": "Česko",
+    "honajz2": "Česko",
+    "Houdini": "Česko",
+    "LiVentura": "Česko",
+    "ARI50": "Česko",
+    "SeBig": "Česko",
+    "Terva": "Česko",
+    "Juto": "Slovensko",
+    "majo25": "Slovensko",
+    "Malarkey": "Česko",
+    "ostravak30": "Česko",
+    "castor": "Česko",
+    "honajz": "Česko",
+    "NinadeL": "Česko",
+    "Autogram": "Slovensko",
+    "mira007": "Česko",
+    "Lacike": "Slovensko",
+    "Morholt": "Česko",
+    "MM_Ramone": "Slovensko",
+    "Paity": "Česko",
+    "M.i.k.e": "Česko",
+    "Hapretor": "Česko",
+    "tron": "Slovensko",
+    "Flego": "Slovensko",
+    "MickeyStuma": "Česko",
+    "Snorlax": "Česko",
+    "Johnny.ARN": "Slovensko",
+    "Pitryx": "Česko",
+    "nessbeal": "Slovensko",
+    "kingik": "Česko",
+    "darkrobyk": "Česko",
+    "Teachman": "Česko",
+    "vitekpe": "Česko",
+    "JohnSmith": "Česko",
+    "slunicko2": "Česko",
+    "otík": "Česko",
+    "Frajer42": "Česko",
+    "Trevor": "Slovensko",
+    "zette": "Česko",
+    "Enšpígl": "Česko",
+    "misterz": "Slovensko",
+    "C0r0ner": "Česko",
+    "ghatos": "Česko",
+    "iXtr3m3": "Slovensko",
+    "Gilmour93": "Česko",
+    "ScarPoul": "Slovensko",
+    "Likan7": "Česko",
+    "Slarque": "Česko",
+    "KajusaK": "Česko",
+    "warrenuR": "Slovensko",
+    "eraserhead666": "Česko",
+    "Xmilden": "Česko",
+    "blackrain": "Česko",
+    "pornogrind": "Česko",
+    "xxmartinxx": "Česko",
+    "brasek": "Slovensko",
+    "PunisherEDNA": "Česko",
+    "Kimkong": "Česko",
+    "rakovnik": "Česko",
+    "BOURQUE": "Slovensko",
+    "bohemia_regent": "Česko",
+    "Hanys_": "Česko",
+    "Fr": "Česko",
+    "dr.fish": "Česko",
+    "Wacoslav1": "Česko",
+    "EvilPhoEniX": "Česko",
+    "bourec": "Česko",
+    "Aljak": "Slovensko",
+    "Rathalos": "Slovensko",
+    "Radko": "Slovensko",
+    "blondboss": "Slovensko"
+  };
+
+  // Funkce pro získání vlaječky podle země
+  function getFlag(username) {
+    const country = userCountries[username] || "Svět";
+    switch (country) {
+      case "Česko":
+        return '<span class="flag">🇨🇿</span>';
+      case "Slovensko":
+        return '<span class="flag">🇸🇰</span>';
+      default:
+        return '<span class="flag">🌍</span>';
+    }
+  }
+
+  // Výpočet aktuálních recenzí PunisherEDNA
+  const startDate = new Date("2025-05-04");
+  const initialReviews = 4689;
+  const dailyGain = 40;
+  const today = new Date();
+  const daysSinceStart = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+  const currentPunisherReviews = initialReviews + daysSinceStart * dailyGain;
+
+  // Odpočet
+  function updateAllCountdowns() {
+    document.querySelectorAll("[id^=countdown]").forEach(span => {
+      const targetDate = span.dataset.targetDate;
+      const target = new Date(targetDate);
+      const now = new Date();
+      const diff = target - now;
+      const row = span.closest("tr");
+
+      row.classList.remove("month-warning");
+      span.classList.remove("urgent-countdown", "prekonan");
+
+      if (diff <= 0) {
+        span.innerText = "Překonán!";
+        span.classList.add("prekonan");
+        return;
+      }
+
+      if (diff <= 24 * 60 * 60 * 1000) {
+        span.classList.add("urgent-countdown");
+      } else if (diff <= 30 * 24 * 60 * 60 * 1000) {
+        row.classList.add("month-warning");
+      }
+
+      const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      span.innerText = `${months}m ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    });
+  }
+  setInterval(updateAllCountdowns, 1000);
+
+  // Filtrování a řazení tabulky
+  function filterTable() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const countryFilter = document.getElementById("countryFilter").value;
+    const table = document.querySelector("#reviewTable tbody");
+    const rows = Array.from(table.querySelectorAll("tr:not(.phantom-row):not(.punisher-row)"));
+
+    // Vyprázdnění tabulky
+    table.innerHTML = "";
+
+    // Filtrování řádků podle země a vyhledávání
+    const filteredRows = rows.filter(row => {
+      const username = row.cells[1].textContent.replace(/^[🇨🇿🇸🇰🌍]\s*/, '').toLowerCase();
+      const userCountry = userCountries[username] || "Svět";
+      const matchesSearch = username.includes(input);
+
+      return matchesSearch && (
+        countryFilter === "all" ||
+        (countryFilter === "cz" && userCountry === "Česko") ||
+        (countryFilter === "sk" && userCountry === "Slovensko")
+      );
+    });
+
+    // Přidání PunisherEDNA do seznamu pro řazení
+    const punisherRow = {
+      cells: [
+        { textContent: "" },
+        { textContent: `${getFlag("PunisherEDNA")}PunisherEDNA`, innerHTML: `<span class="tooltip">${getFlag("PunisherEDNA")}<a href="2012.html" target="_blank">PunisherEDNA</a><span class="tooltip-text">Počet recenzí: ${currentPunisherReviews}<br>Denní přírůstek: 40<br>Překonáno uživatelů: 0</span></span>` },
+        { textContent: currentPunisherReviews },
+        { textContent: "0" },
+        { textContent: "dnes" },
+        { textContent: "-" }
+      ],
+      classList: { contains: () => false, add: () => {} }
     };
 
-    // Funkce pro získání vlaječky podle země
-    function getFlag(username) {
-      const country = userCountries[username] || "Svět";
-      switch (country) {
-        case "Česko":
-          return '<span class="flag">🇨🇿</span>';
-        case "Slovensko":
-          return '<span class="flag">🇸🇰</span>';
-        default:
-          return '<span class="flag">🌍</span>';
-      }
-    }
+    // Kombinace filtrovaných řádků a PunisherEDNA
+    const allRows = [...filteredRows, punisherRow];
 
-    // Výpočet aktuálních recenzí PunisherEDNA
-    const startDate = new Date("2025-05-04");
-    const initialReviews = 4689;
-    const dailyGain = 40;
-    const today = new Date();
-    const daysSinceStart = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
-    const currentPunisherReviews = initialReviews + daysSinceStart * dailyGain;
+    // Seřazení podle počtu recenzí (sestupně)
+    allRows.sort((a, b) => parseInt(b.cells[2].textContent) - parseInt(a.cells[2].textContent));
 
-    // Odpočet
-    function updateAllCountdowns() {
-      document.querySelectorAll("[id^=countdown]").forEach(span => {
-        const targetDate = span.dataset.targetDate;
-        const target = new Date(targetDate);
-        const now = new Date();
-        const diff = target - now;
-        const row = span.closest("tr");
-
-        row.classList.remove("month-warning");
-        span.classList.remove("urgent-countdown", "prekonan");
-
-        if (diff <= 0) {
-          span.innerText = "Překonán!";
-          span.classList.add("prekonan");
-          return;
-        }
-
-        if (diff <= 24 * 60 * 60 * 1000) {
-          span.classList.add("urgent-countdown");
-        } else if (diff <= 30 * 24 * 60 * 60 * 1000) {
-          row.classList.add("month-warning");
-        }
-
-        const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / (1000 * 60)) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
-        span.innerText = `${months}m ${days}d ${hours}h ${minutes}m ${seconds}s`;
-      });
-    }
-    setInterval(updateAllCountdowns, 1000);
-
-    // Filtrování a řazení tabulky
-    function filterTable() {
-      const input = document.getElementById("searchInput").value.toLowerCase();
-      const countryFilter = document.getElementById("countryFilter").value;
-      const table = document.querySelector("#reviewTable tbody");
-      let rows = Array.from(table.querySelectorAll("tr:not(.phantom-row)"));
-
-      // Filtrování podle země a vyhledávání
-      rows = rows.filter(row => {
-        const username = row.cells[1].textContent.replace(/^[🇨🇿🇸🇰🌍]\s*/, '').toLowerCase();
-        const userCountry = userCountries[username] || "Svět";
-        const matchesSearch = username.includes(input);
-        const isPunisher = username === "punisheredna";
-
-        return matchesSearch && (
-          countryFilter === "all" ||
-          isPunisher ||
-          (countryFilter === "cz" && userCountry === "Česko") ||
-          (countryFilter === "sk" && userCountry === "Slovensko")
-        );
-      });
-
-      // Odstranění stávajícího PunisherEDNA
-      const existingPunisher = document.querySelector(".punisher-row");
-      if (existingPunisher) existingPunisher.remove();
-
-      // Přidání PunisherEDNA na správné místo podle počtu recenzí
-      let inserted = false;
-      let overtakenCount = 0;
-      for (let i = 0; i < rows.length; i++) {
-        const reviewCount = parseInt(rows[i].cells[2].textContent);
-        if (currentPunisherReviews >= reviewCount) {
-          overtakenCount++;
-          const newRow = table.insertRow(i);
-          newRow.classList.add("punisher-row");
-          newRow.innerHTML = `<td><span class="rank">${i + 1}</span></td><td><span class="tooltip">${getFlag("PunisherEDNA")}<a href="2012.html" target="_blank">PunisherEDNA</a><span class="tooltip-text">Počet recenzí: ${currentPunisherReviews}<br>Denní přírůstek: 40<br>Překonáno uživatelů: ${overtakenCount}</span></span></td><td>${currentPunisherReviews}</td><td>0</td><td>dnes</td><td>-</td>`;
-          inserted = true;
-          break;
-        }
+    // Přidání řádků do tabulky
+    let overtakenCount = 0;
+    allRows.forEach((row, index) => {
+      const username = row.cells[1].textContent.replace(/^[🇨🇿🇸🇰🌍]\s*/, '').toLowerCase();
+      const isPunisher = username === "PunisherEDNA";
+      if (!isPunisher && parseInt(row.cells[2].textContent) <= currentPunisherReviews) {
+        overtakenCount++;
       }
 
-      if (!inserted) {
-        const newRow = table.insertRow();
+      const newRow = table.insertRow();
+      if (isPunisher) {
         newRow.classList.add("punisher-row");
-        newRow.innerHTML = `<td><span class="rank">${rows.length + 1}</span></td><td><span class="tooltip">${getFlag("PunisherEDNA")}<a href="2012.html" target="_blank">PunisherEDNA</a><span class="tooltip-text">Počet recenzí: ${currentPunisherReviews}<br>Denní přírůstek: 40<br>Překonáno uživatelů: ${overtakenCount}</span></span></td><td>${currentPunisherReviews}</td><td>0</td><td>dnes</td><td>-</td>`;
+        newRow.innerHTML = `<td>${index + 1}</td><td><span class="tooltip">${getFlag("PunisherEDNA")}<a href="2012.html" target="_blank">PunisherEDNA</a><span class="tooltip-text">Počet recenzí: ${currentPunisherReviews}<br>Denní přírůstek: 40<br>Překonáno uživatelů: ${overtakenCount}</span></span></td><td>${currentPunisherReviews}</td><td>0</td><td>dnes</td><td>-</td>`;
+      } else {
+        newRow.innerHTML = `<td>${index + 1}</td>${row.cells[1].innerHTML}<td>${row.cells[2].textContent}</td><td>${row.cells[3].textContent}</td><td>${row.cells[4].textContent}</td><td>${row.cells[5].innerHTML || row.cells[5].textContent}</td>`;
       }
+    });
+  }
 
-      // Aktualizace pořadí
-      Array.from(table.rows).forEach((row, idx) => {
-        row.cells[0].textContent = idx + 1;
-        row.style.display = "table-row"; // Zajištění zobrazení všech řádků
-      });
+  // Famtomový náhled postupu
+  function showPhantomRow() {
+    const existingPhantom = document.querySelector(".phantom-row");
+    if (existingPhantom) existingPhantom.remove();
 
-      // Skrytí nefilrovaných řádků
-      rows.forEach(row => {
-        const username = row.cells[1].textContent.replace(/^[🇨🇿🇸🇰🌍]\s*/, '').toLowerCase();
-        const userCountry = userCountries[username] || "Svět";
-        const isPunisher = username === "punisheredna";
-        const shouldShow = countryFilter === "all" ||
-          isPunisher ||
-          (countryFilter === "cz" && userCountry === "Česko") ||
-          (countryFilter === "sk" && userCountry === "Slovensko");
+    const dailyReviews = parseInt(document.getElementById("dailyReviews").value);
+    const simulationDays = parseInt(document.getElementById("simulationDays").value);
+    const targetUser = document.getElementById("targetUser").value;
 
-        row.style.display = shouldShow ? "table-row" : "none";
-      });
+    if (!dailyReviews || dailyReviews < 1) {
+      document.getElementById("phantomResult").innerText = "Zadej platný počet recenzí za den.";
+      return;
+    }
+    if (!simulationDays || simulationDays < 1) {
+      document.getElementById("phantomResult").innerText = "Zadej platný počet dní simulace.";
+      return;
     }
 
-    // Famtomový náhled postupu
-    function showPhantomRow() {
-      const existingPhantom = document.querySelector(".phantom-row");
-      if (existingPhantom) existingPhantom.remove();
+    const phantomReviews = currentPunisherReviews + dailyReviews * simulationDays;
+    let targetUserReviews = 23872; // Počet recenzí prvního uživatele (corpSy)
+    let targetUserName = "corpSy";
+    let targetPosition = 1;
 
-      const dailyReviews = parseInt(document.getElementById("dailyReviews").value);
-      const simulationDays = parseInt(document.getElementById("simulationDays").value);
-      const targetUser = document.getElementById("targetUser").value;
-
-      if (!dailyReviews || dailyReviews < 1) {
-        document.getElementById("phantomResult").innerText = "Zadej platný počet recenzí za den.";
-        return;
-      }
-      if (!simulationDays || simulationDays < 1) {
-        document.getElementById("phantomResult").innerText = "Zadej platný počet dní simulace.";
-        return;
-      }
-
-      const phantomReviews = currentPunisherReviews + dailyReviews * simulationDays;
-      let targetUserReviews = 23872; // Počet recenzí prvního uživatele (corpSy)
-      let targetUserName = "corpSy";
-      let targetPosition = 1;
-
-      if (targetUser) {
-        const rows = Array.from(document.querySelectorAll("#reviewTable tbody tr:not(.phantom-row)"));
-        for (let i = 0; i < rows.length; i++) {
-          const name = rows[i].cells[1].textContent.replace(/^[🇨🇿🇸🇰🌍]\s*/, '').trim();
-          if (name === targetUser) {
-            targetUserReviews = parseInt(rows[i].cells[2].textContent);
-            targetUserName = name;
-            targetPosition = i + 1;
-            break;
-          }
-        }
-      }
-
-      const daysToTarget = Math.ceil((targetUserReviews - currentPunisherReviews) / dailyReviews);
-
-      let phantomPosition = 1;
-      let inserted = false;
-      const rowsFiltered = Array.from(document.querySelectorAll("#reviewTable tbody tr:not(.phantom-row)"));
-      for (let i = 0; i < rowsFiltered.length; i++) {
-        const reviewCount = parseInt(rowsFiltered[i].cells[2].textContent);
-        if (phantomReviews >= reviewCount) {
-          const newRow = document.querySelector("#reviewTable tbody").insertRow(i);
-          newRow.classList.add("phantom-row");
-          newRow.innerHTML = `<td><span class="rank">${i + 1}</span></td><td><span class="tooltip">${getFlag("PunisherEDNA")}PunisherEDNA (simulace)<span class="tooltip-text">Simulovaný počet recenzí: ${phantomReviews}<br>Denní přírůstek: ${dailyReviews}<br>Simulováno pro ${simulationDays} dní</span></span></td><td>${phantomReviews}</td><td>-</td><td>-</td><td>-</td>`;
-          inserted = true;
-          phantomPosition = i + 1;
+    if (targetUser) {
+      const rows = Array.from(document.querySelectorAll("#reviewTable tbody tr:not(.phantom-row)"));
+      for (let i = 0; i < rows.length; i++) {
+        const name = rows[i].cells[1].textContent.replace(/^[�-cz🇸🇰🌍]\s*/, '').trim();
+        if (name === targetUser) {
+          targetUserReviews = parseInt(rows[i].cells[2].textContent);
+          targetUserName = name;
+          targetPosition = i + 1;
           break;
         }
       }
+    }
 
-      if (!inserted) {
-        const newRow = document.querySelector("#reviewTable tbody").insertRow();
+    const daysToTarget = Math.ceil((targetUserReviews - currentPunisherReviews) / dailyReviews);
+
+    let phantomPosition = 1;
+    let inserted = false;
+    const rowsFiltered = Array.from(document.querySelectorAll("#reviewTable tbody tr:not(.phantom-row)"));
+    for (let i = 0; i < rowsFiltered.length; i++) {
+      const reviewCount = parseInt(rowsFiltered[i].cells[2].textContent);
+      if (phantomReviews >= reviewCount) {
+        const newRow = document.querySelector("#reviewTable tbody").insertRow(i);
         newRow.classList.add("phantom-row");
-        newRow.innerHTML = `<td><span class="rank">${rowsFiltered.length + 1}</span></td><td><span class="tooltip">${getFlag("PunisherEDNA")}PunisherEDNA (simulace)<span class="tooltip-text">Simulovaný počet recenzí: ${phantomReviews}<br>Denní přírůstek: ${dailyReviews}<br>Simulováno pro ${simulationDays} dní</span></span></td><td>${phantomReviews}</td><td>-</td><td>-</td><td>-</td>`;
-        phantomPosition = rowsFiltered.length + 1;
-      }
-
-      Array.from(document.querySelectorAll("#reviewTable tbody tr")).forEach((row, idx) => {
-        row.cells[0].textContent = idx + 1;
-      });
-
-      let resultText = `S ${dailyReviews} recenzemi denně bys za ${simulationDays} dní měl ${phantomReviews} recenzí a byl bys na ${phantomPosition}. místě.\n`;
-      if (phantomReviews >= targetUserReviews) {
-        resultText += `Už bys překonal ${targetUserName}!`;
-      } else {
-        resultText += `Překonáš ${targetUserName} (pozice ${targetPosition}) za ${daysToTarget} dní.`;
-      }
-      document.getElementById("phantomResult").innerText = resultText;
-
-      const percent = Math.min(100, ((phantomReviews / targetUserReviews) * 100).toFixed(2));
-      const remaining = targetUserReviews - phantomReviews;
-      const wrapper = document.getElementById("phantom-progress-wrapper");
-      const textEl = document.getElementById("phantom-progress-text");
-      const barEl = document.getElementById("phantom-progress-bar");
-
-      wrapper.style.display = "block";
-      if (remaining <= 0) {
-        textEl.textContent = `Překonal jsi ${targetUserName}!`;
-        textEl.style.color = "red";
-        textEl.style.fontWeight = "bold";
-        barEl.style.width = "100%";
-      } else {
-        textEl.textContent = `${phantomReviews} z ${targetUserReviews} recenzí (${percent} %) — zbývá ${remaining}`;
-        textEl.style.color = "";
-        textEl.style.fontWeight = "";
-        barEl.style.width = percent + "%";
+        newRow.innerHTML = `<td><span class="rank">${i + 1}</span></td><td><span class="tooltip">${getFlag("PunisherEDNA")}PunisherEDNA (simulace)<span class="tooltip-text">Simulovaný počet recenzí: ${phantomReviews}<br>Denní přírůstek: ${dailyReviews}<br>Simulováno pro ${simulationDays} dní</span></span></td><td>${phantomReviews}</td><td>-</td><td>-</td><td>-</td>`;
+        inserted = true;
+        phantomPosition = i + 1;
+        break;
       }
     }
 
-    // Aktualizace progress baru pro postup k 1. místu
-    function updateProgressBar() {
-      const punisher = currentPunisherReviews;
-      const topUser = 23872; // Počet recenzí prvního uživatele (corpSy)
-      const remaining = topUser - punisher;
-      const percent = Math.min(100, ((punisher / topUser) * 100).toFixed(2));
-      document.getElementById("progress-text").textContent = `${punisher} z ${topUser} recenzí (${percent} %) — zbývá ${remaining}`;
-      document.getElementById("progress-bar").style.width = percent + "%";
-    }
-    updateProgressBar();
-
-    // Aktualizace progress baru pro porovnání
-    function updateCustomProgress() {
-      const select = document.getElementById("userSelect");
-      const selectedName = select.value;
-      const rows = document.querySelectorAll("#reviewTable tbody tr:not(.phantom-row)");
-      let targetReviews = null;
-
-      rows.forEach(row => {
-        const name = row.cells[1].textContent.replace(/^[🇨🇿🇸🇰🌍]\s*/, '').trim();
-        if (name === selectedName) {
-          targetReviews = parseInt(row.cells[2].textContent);
-        }
-      });
-
-      if (!targetReviews) {
-        document.getElementById("custom-progress-wrapper").style.display = "none";
-        return;
-      }
-
-      const current = currentPunisherReviews;
-      const percent = Math.min(100, ((current / targetReviews) * 100).toFixed(2));
-      const remaining = targetReviews - current;
-      const wrapper = document.getElementById("custom-progress-wrapper");
-      const textEl = document.getElementById("custom-progress-text");
-      const barEl = document.getElementById("custom-progress-bar");
-
-      wrapper.style.display = "block";
-      if (remaining <= 0) {
-        textEl.textContent = "Uživatel překonán!";
-        textEl.style.color = "red";
-        textEl.style.fontWeight = "bold";
-        barEl.style.width = "100%";
-      } else {
-        textEl.textContent = `${current} z ${targetReviews} recenzí (${percent} %) — zbývá ${remaining}`;
-        textEl.style.color = "";
-        textEl.style.fontWeight = "";
-        barEl.style.width = percent + "%";
-      }
+    if (!inserted) {
+      const newRow = document.querySelector("#reviewTable tbody").insertRow();
+      newRow.classList.add("phantom-row");
+      newRow.innerHTML = `<td><span class="rank">${rowsFiltered.length + 1}</span></td><td><span class="tooltip">${getFlag("PunisherEDNA")}PunisherEDNA (simulace)<span class="tooltip-text">Simulovaný počet recenzí: ${phantomReviews}<br>Denní přírůstek: ${dailyReviews}<br>Simulováno pro ${simulationDays} dní</span></span></td><td>${phantomReviews}</td><td>-</td><td>-</td><td>-</td>`;
+      phantomPosition = rowsFiltered.length + 1;
     }
 
-    // Naplnění dropdownů
-    function fillUserDropdown() {
-      const select = document.getElementById("userSelect");
-      const targetSelect = document.getElementById("targetUser");
-      const rows = document.querySelectorAll("#reviewTable tbody tr:not(.phantom-row)");
-      select.innerHTML = '<option value="">– Vyber uživatele –</option>';
-      targetSelect.innerHTML = '<option value="">– Vyber uživatele –</option>';
-      rows.forEach(row => {
-        const name = row.cells[1].textContent.replace(/^[🇨🇿🇸🇰🌍]\s*/, '').trim();
-        const option = document.createElement("option");
-        option.value = name;
-        option.innerHTML = `${getFlag(name)}${name}`;
-        select.appendChild(option.cloneNode(true));
-        targetSelect.appendChild(option);
-      });
-    }
-
-    // Inicializace
-    document.addEventListener("DOMContentLoaded", () => {
-      fillUserDropdown();
-      filterTable(); // Inicializace filtru
-      updateAllCountdowns();
+    Array.from(document.querySelectorAll("#reviewTable tbody tr")).forEach((row, idx) => {
+      row.cells[0].textContent = idx + 1;
     });
-  </script>
+
+    let resultText = `S ${dailyReviews} recenzemi denně bys za ${simulationDays} dní měl ${phantomReviews} recenzí a byl bys na ${phantomPosition}. místě.\n`;
+    if (phantomReviews >= targetUserReviews) {
+      resultText += `Už bys překonal ${targetUserName}!`;
+    } else {
+      resultText += `Překonáš ${targetUserName} (pozice ${targetPosition}) za ${daysToTarget} dní.`;
+    }
+    document.getElementById("phantomResult").innerText = resultText;
+
+    const percent = Math.min(100, ((phantomReviews / targetUserReviews) * 100).toFixed(2));
+    const remaining = targetUserReviews - phantomReviews;
+    const wrapper = document.getElementById("phantom-progress-wrapper");
+    const textEl = document.getElementById("phantom-progress-text");
+    const barEl = document.getElementById("phantom-progress-bar");
+
+    wrapper.style.display = "block";
+    if (remaining <= 0) {
+      textEl.textContent = `Překonal jsi ${targetUserName}!`;
+      textEl.style.color = "red";
+      textEl.style.fontWeight = "bold";
+      barEl.style.width = "100%";
+    } else {
+      textEl.textContent = `${phantomReviews} z ${targetUserReviews} recenzí (${percent} %) — zbývá ${remaining}`;
+      textEl.style.color = "";
+      textEl.style.fontWeight = "";
+      barEl.style.width = percent + "%";
+    }
+  }
+
+  // Aktualizace progress baru pro postup k 1. místu
+  function updateProgressBar() {
+    const punisher = currentPunisherReviews;
+    const topUser = 23872; // Počet recenzí prvního uživatele (corpSy)
+    const remaining = topUser - punisher;
+    const percent = Math.min(100, ((punisher / topUser) * 100).toFixed(2));
+    document.getElementById("progress-text").textContent = `${punisher} z ${topUser} recenzí (${percent} %) — zbývá ${remaining}`;
+    document.getElementById("progress-bar").style.width = percent + "%";
+  }
+  updateProgressBar();
+
+  // Aktualizace progress baru pro porovnání
+  function updateCustomProgress() {
+    const select = document.getElementById("userSelect");
+    const selectedName = select.value;
+    const rows = document.querySelectorAll("#reviewTable tbody tr:not(.phantom-row)");
+    let targetReviews = null;
+
+    rows.forEach(row => {
+      const name = row.cells[1].textContent.replace(/^[�-cz🇸🇰🌍]\s*/, '').trim();
+      if (name === selectedName) {
+        targetReviews = parseInt(row.cells[2].textContent);
+      }
+    });
+
+    if (!targetReviews) {
+      document.getElementById("custom-progress-wrapper").style.display = "none";
+      return;
+    }
+
+    const current = currentPunisherReviews;
+    const percent = Math.min(100, ((current / targetReviews) * 100).toFixed(2));
+    const remaining = targetReviews - current;
+    const wrapper = document.getElementById("custom-progress-wrapper");
+    const textEl = document.getElementById("custom-progress-text");
+    const barEl = document.getElementById("custom-progress-bar");
+
+    wrapper.style.display = "block";
+    if (remaining <= 0) {
+      textEl.textContent = "Uživatel překonán!";
+      textEl.style.color = "red";
+      textEl.style.fontWeight = "bold";
+      barEl.style.width = "100%";
+    } else {
+      textEl.textContent = `${current} z ${targetReviews} recenzí (${percent} %) — zbývá ${remaining}`;
+      textEl.style.color = "";
+      textEl.style.fontWeight = "";
+      barEl.style.width = percent + "%";
+    }
+  }
+
+  // Naplnění dropdownů
+  function fillUserDropdown() {
+    const select = document.getElementById("userSelect");
+    const targetSelect = document.getElementById("targetUser");
+    const rows = document.querySelectorAll("#reviewTable tbody tr:not(.phantom-row)");
+    select.innerHTML = '<option value="">– Vyber uživatele –</option>';
+    targetSelect.innerHTML = '<option value="">– Vyber uživatele –</option>';
+    rows.forEach(row => {
+      const name = row.cells[1].textContent.replace(/^[�-cz🇸🇰🌍]\s*/, '').trim();
+      const option = document.createElement("option");
+      option.value = name;
+      option.innerHTML = `${getFlag(name)}${name}`;
+      select.appendChild(option.cloneNode(true));
+      targetSelect.appendChild(option);
+    });
+  }
+
+  // Inicializace
+  document.addEventListener("DOMContentLoaded", () => {
+    fillUserDropdown();
+    filterTable(); // Inicializace filtru
+    updateAllCountdowns();
+  });
+</script>
 </body>
 </html>
