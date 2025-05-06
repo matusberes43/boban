@@ -580,6 +580,108 @@
   </div>
 
   <script>
+    
+    // Mapování uživatelů na země
+const userCountries = {
+  "corpSy": "Slovensko",
+  "T2": "Slovensko",
+  "rivah": "Česko",
+  "sator": "Česko",
+  "Martin741": "Slovensko",
+  "LUKICKK": "Česko",
+  "Anderton": "Slovensko",
+  "Loki_Six": "Slovensko",
+  "kaylin": "Česko",
+  "Chrustyn": "Česko",
+  "Tommasi3": "Česko",
+  "SOLOM.": "Česko",
+  "Necrotongue": "Česko",
+  "tranquill": "Česko",
+  "honajz2": "Česko",
+  "Houdini": "Česko",
+  "LiVentura": "Česko",
+  "ARI50": "Česko",
+  "SeBig": "Česko",
+  "Terva": "Česko",
+  "Juto": "Slovensko",
+  "majo25": "Slovensko",
+  "Malarkey": "Česko",
+  "ostravak30": "Česko",
+  "castor": "Česko",
+  "honajz": "Česko",
+  "NinadeL": "Česko",
+  "Autogram": "Slovensko",
+  "mira007": "Česko",
+  "Lacike": "Slovensko",
+  "Morholt": "Česko",
+  "MM_Ramone": "Slovensko",
+  "Paity": "Česko",
+  "M.i.k.e": "Česko",
+  "Hapretor": "Česko",
+  "tron": "Slovensko",
+  "Flego": "Slovensko",
+  "MickeyStuma": "Česko",
+  "Snorlax": "Česko",
+  "Johnny.ARN": "Slovensko",
+  "Pitryx": "Česko",
+  "nessbeal": "Slovensko",
+  "kingik": "Česko",
+  "darkrobyk": "Česko",
+  "Teachman": "Česko",
+  "vitekpe": "Česko",
+  "JohnSmith": "Česko",
+  "slunicko2": "Česko",
+  "otík": "Česko",
+  "Frajer42": "Česko",
+  "Trevor": "Slovensko",
+  "zette": "Česko",
+  "Enšpígl": "Česko",
+  "misterz": "Slovensko",
+  "C0r0ner": "Česko",
+  "ghatos": "Česko",
+  "iXtr3m3": "Slovensko",
+  "Gilmour93": "Česko",
+  "ScarPoul": "Slovensko",
+  "Likan7": "Česko",
+  "Slarque": "Česko",
+  "KajusaK": "Česko",
+  "warrenuR": "Slovensko",
+  "eraserhead666": "Česko",
+  "Xmilden": "Česko",
+  "blackrain": "Česko",
+  "pornogrind": "Česko",
+  "xxmartinxx": "Česko",
+  "brasek": "Slovensko",
+  "PunisherEDNA": "Česko",
+  "Kimkong": "Česko",
+  "rakovnik": "Česko",
+  "BOURQUE": "Slovensko",
+  "bohemia_regent": "Česko",
+  "Hanys_": "Česko",
+  "Fr": "Česko",
+  "dr.fish": "Česko",
+  "Wacoslav1": "Česko",
+  "EvilPhoEniX": "Česko",
+  "bourec": "Česko",
+  "Aljak": "Slovensko",
+  "Rathalos": "Slovensko",
+  "Radko": "Slovensko",
+  "blondboss": "Slovensko"
+};
+
+// Funkce pro získání vlaječky podle země
+function getFlag(username) {
+  const country = userCountries[username] || "Svět";
+  switch (country) {
+    case "Česko":
+      return '<span class="flag">🇨🇿</span>';
+    case "Slovensko":
+      return '<span class="flag">🇸🇰</span>';
+    default:
+      return '<span class="flag">🌍</span>';
+  }
+}
+    
     // Filtrování tabulky
     function filterTable() {
       const input = document.getElementById("searchInput").value.toLowerCase();
