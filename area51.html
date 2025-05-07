@@ -460,22 +460,42 @@
   }
 }
     
+    
+    .fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--background-dark);
+  z-index: 999;
+  padding: 1rem 2rem;
+  box-shadow: var(--shadow);
+}
+
+body.fixed-padding {
+  padding-top: 160px; /* výška fixného bloku */
+}
+    
+    
   </style>
 </head>
 <body>
+  
+  <div class="fixed-header">
   <!-- Stylové hamburger menu -->
-<div id="menu-toggle" onclick="toggleMenu()">
-  <div class="bar top"></div>
-  <div class="bar middle"></div>
-  <div class="bar bottom"></div>
-</div>
+  <div id="menu-toggle" onclick="toggleMenu()">
+    <div class="bar top"></div>
+    <div class="bar middle"></div>
+    <div class="bar bottom"></div>
+  </div>
 
-<!-- Navigační menu -->
-<div id="dropdown-menu" class="hidden">
-  <a href="#" class="menu-item">Žebříček ČSFD</a>
-  <a href="2012.html" target="_blank" class="menu-item">PunisherEDNA</a>
-</div>
+  <!-- Navigační menu -->
+  <div id="dropdown-menu" class="hidden">
+    <a href="#" class="menu-item">Žebříček ČSFD</a>
+    <a href="2012.html" target="_blank" class="menu-item">PunisherEDNA</a>
+  </div>
 
+  <!-- Vyhledávání a legenda -->
   <div class="search-legend-container">
     <input type="text" id="searchInput" placeholder="Hledej uživatele..." onkeyup="filterTable()">
     <div class="legend">
@@ -488,6 +508,9 @@
         <span>Překonání do 1 měsíce</span>
       </div>
     </div>
+  </div>
+</div>
+  
   </div>
 
   <div class="table-wrapper">
@@ -904,6 +927,21 @@
   toggle.classList.toggle('active');
   menu.classList.toggle('show');
 }
+    
+    
+    // Pridaj padding k telu kvôli fixnému menu
+window.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.add('fixed-padding');
+});
+
+// Tooltipy sa skryjú pri scrollovaní
+window.addEventListener('scroll', () => {
+  document.querySelectorAll('.tooltip .tooltip-text').forEach(el => {
+    el.style.visibility = 'hidden';
+    el.style.opacity = '0';
+  });
+});
+    
     
   </script>
 </body>
