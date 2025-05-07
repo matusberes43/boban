@@ -6,7 +6,7 @@
   <title>Trollovací rozcestník</title>
   <style>
     body {
-      background-color: #0e1624; /* tmavé pozadí z obrázku */
+      background-color: #0e1624;
       font-family: Arial, sans-serif;
       display: flex;
       flex-direction: column;
@@ -25,11 +25,12 @@
       transform: scale(1.05);
     }
 
-    img {
-      max-width: 90vw;
-      height: auto;
+    .button img {
+      width: 320px; /* jednotná šířka */
+      height: auto; /* zachová poměr stran */
       border-radius: 8px;
       box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      display: block;
     }
   </style>
 </head>
