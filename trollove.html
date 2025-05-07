@@ -11,9 +11,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       min-height: 100vh;
       margin: 0;
+      padding-top: 30px;
     }
 
     .button {
@@ -26,15 +27,35 @@
     }
 
     .button img {
-      width: 320px; /* jednotná šířka */
-      height: auto; /* zachová poměr stran */
+      width: 320px;
+      height: auto;
       border-radius: 8px;
       box-shadow: 0 0 15px rgba(0,0,0,0.5);
       display: block;
     }
+
+    .back-button {
+      background-color: #1f2a3a;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-bottom: 40px;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #2d3b4d;
+    }
   </style>
 </head>
 <body>
+
+  <a href="index.html">
+    <button class="back-button">Zpět na hlavní stránku</button>
+  </a>
 
   <a class="button" href="trollcsfd.html">
     <img src="https://i.postimg.cc/B6SyvMFS/625452-BA-B102-42-A8-9863-28587-C461-A31.png" alt="TROLL CSFD">
