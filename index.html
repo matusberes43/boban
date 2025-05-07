@@ -463,66 +463,99 @@
     
     
 
-/* Sticky horná lišta */
+/* Styl pro hamburger menu */
+#menu-toggle {
+  position: relative;
+  width: 2rem;
+  height: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  z-index: 100;
+}
+
+#menu-toggle .bar {
+  height: 4px;
+  width: 100%;
+  background-color: var(--text-dark);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+#menu-toggle.active .top {
+  transform: rotate(45deg) translateY(8px);
+}
+
+#menu-toggle.active .middle {
+  opacity: 0;
+}
+
+#menu-toggle.active .bottom {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* Rozbalovací menu */
+#dropdown-menu {
+  position: relative;
+  background: var(--surface-dark);
+  border: 1px solid var(--border-dark);
+  border-radius: 8px;
+  padding: 0.5rem 0;
+  box-shadow: var(--shadow);
+  z-index: 99;
+  transition: var(--transition);
+  display: none;
+  margin-bottom: 1.5rem;
+}
+
+#dropdown-menu.show {
+  display: block;
+}
+
+#dropdown-menu a.menu-item {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+#dropdown-menu a.menu-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Sticky wrapper */
 .sticky-wrapper {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 999;
   background-color: var(--background-dark);
-  padding: 1rem;
+  padding: 1rem 1rem 0.5rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Hamburger ikonka */
-#menu-toggle {
-  width: 30px;
-  cursor: pointer;
-  margin-bottom: 1rem;
-}
-#menu-toggle .bar {
-  display: block;
-  width: 100%;
-  height: 4px;
-  background-color: #ffffff;
-  margin: 6px 0;
-  border-radius: 2px;
-  transition: 0.3s ease;
+/* Responzivní doladění */
+@media (max-width: 768px) {
+  #menu-toggle {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  #dropdown-menu {
+    width: 100%;
+  }
 }
 
-/* Rozbalenie ikonky */
-#menu-toggle.open .bar:nth-child(1) {
-  transform: translateY(10px) rotate(45deg);
-}
-#menu-toggle.open .bar:nth-child(2) {
-  opacity: 0;
-}
-#menu-toggle.open .bar:nth-child(3) {
-  transform: translateY(-10px) rotate(-45deg);
-}
-
-/* Dropdown menu */
-#dropdown-menu {
-  display: none;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-#dropdown-menu.visible {
-  display: flex;
-}
-
-/* Položky v menu */
-.menu-item {
-  color: var(--text-dark);
-  text-decoration: none;
-  font-weight: 600;
-  background: var(--surface-dark);
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: background 0.3s ease;
-}
-.menu-item:hover {
-  background: var(--primary-color);
+@media (min-width: 769px) {
+  #menu-toggle {
+    display: none;
+  }
+  #dropdown-menu {
+    display: none;
+  }
 }
 
 
@@ -543,50 +576,36 @@
   <a href="2012.html" target="_blank" class="menu-item">PunisherEDNA</a>
 </div>
 
+  <body>
   <div class="sticky-wrapper">
-    <div class="bar top"></div>
-    <div class="bar middle"></div>
-    <div class="bar bottom"></div>
-  </div>
+    <div id="menu-toggle" onclick="toggleMenu()">
+      <div class="bar top"></div>
+      <div class="bar middle"></div>
+      <div class="bar bottom"></div>
+    </div>
 
-  <div id="dropdown-menu" class="hidden">
-    <a href="#" class="menu-item">Žebříček ČSFD</a>
-    <a href="2012.html" target="_blank" class="menu-item">PunisherEDNA</a>
-  </div>
+    <div id="dropdown-menu" class="hidden">
+      <a href="#" class="menu-item">Žebříček ČSFD</a>
+      <a href="2012.html" target="_blank" class="menu-item">PunisherEDNA</a>
+    </div>
 
-  
-<div class="sticky-wrapper">
-  <!-- Hamburger ikonka -->
-  <div id="menu-toggle" onclick="toggleMenu()">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </div>
-
-  <!-- Rozbaľovacie menu -->
-  <div id="dropdown-menu" class="dropdown hidden">
-    <a href="#" class="menu-item">Žebříček ČSFD</a>
-    <a href="2012.html" target="_blank" class="menu-item">PunisherEDNA</a>
-  </div>
-
-  <!-- Vyhľadávanie + legenda -->
-  <div class="search-legend-container">
-    <input type="text" id="searchInput" placeholder="Hledej uživatele..." onkeyup="filterTable()">
-    <div class="legend">
-      <div class="legend-item">
-        <div class="legend-square" style="background-color: #f56565;"></div>
-        <span>Překonání do 24 hodin</span>
-      </div>
-      <div class="legend-item">
-        <div class="legend-square month-warning"></div>
-        <span>Překonání do 1 měsíce</span>
+    <div class="search-legend-container">
+      <input type="text" id="searchInput" placeholder="Hledej uživatele..." onkeyup="filterTable()">
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-square" style="background-color: #f56565;"></div>
+          <span>Překonání do 24 hodin</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-square month-warning"></div>
+          <span>Překonání do 1 měsíce</span>
+        </div>
       </div>
     </div>
   </div>
-</div>
-  
 
   <div class="table-wrapper">
+    <!-- Zbytek tabulky zůstává nezměněn -->
     <table id="reviewTable">
       <thead>
         <tr>
@@ -996,14 +1015,12 @@
     
     
 
-  <script>
   function toggleMenu() {
     const toggle = document.getElementById("menu-toggle");
     const menu = document.getElementById("dropdown-menu");
     toggle.classList.toggle("open");
     menu.classList.toggle("visible");
   }
-</script>
     
   </script>
 </body>
