@@ -2,191 +2,177 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
-  <title>Trollové z ČSFD</title>
+  <title>TROLLOVÉ Z ČSFD</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     body {
+      background: #1b1b1b;
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0f172a;
-      color: #e2e8f0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .header {
-      background-color: #1e3a8a;
-      padding: 1rem 2rem;
+      background: linear-gradient(to right, #222, #333);
+      width: 100%;
+      padding: 25px 0;
       text-align: center;
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: white;
-      border-bottom: 1px solid #334155;
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      font-weight: 700;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      color: #ff3b3f;
     }
 
     .back-button-container {
-      max-width: 600px;
-      margin: 1rem auto;
-      text-align: left;
+      width: 100%;
+      max-width: 800px;
+      margin-top: 15px;
+      padding-left: 5px;
     }
 
     .back-button-container button {
-      padding: 0.5rem 1rem;
-      background-color: #1e3a8a;
-      color: #fff;
+      background: none;
       border: none;
-      border-radius: 6px;
-      font-weight: bold;
+      color: #aaa;
       cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .back-button-container button:hover {
-      background-color: #1e40af;
+      font-size: 14px;
+      text-transform: uppercase;
     }
 
     .troll-list {
-      max-width: 600px;
-      margin: 2rem auto;
-      background-color: #1e293b;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      width: 100%;
+      max-width: 800px;
+      margin-top: 20px;
+      background-color: rgba(35,35,35,0.9);
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+      border-radius: 4px;
     }
 
     .troll-item {
-      display: flex;
+      display: grid;
+      grid-template-columns: 50px 120px auto 100px;
       align-items: center;
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid #334155;
-      cursor: pointer;
+      padding: 8px 12px;
+      border-bottom: 1px solid #444;
       text-decoration: none;
       color: inherit;
-      transition: background 0.2s;
+      transition: background 0.3s;
     }
 
     .troll-item:hover {
-      background-color: #273549;
+      background-color: rgba(255,255,255,0.05);
     }
 
-    .troll-avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: #475569;
-      margin-right: 1rem;
+    .rank {
+      font-weight: 700;
+      text-align: center;
     }
 
-    .troll-info {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .troll-name {
-      font-weight: bold;
-      font-size: 1.05rem;
-    }
-
-    .troll-username {
+    .rating {
+      font-weight: 700;
+      color: #ffeb3b;
+      background-color: #444;
+      padding: 4px;
+      border-radius: 3px;
+      text-align: center;
       font-size: 0.9rem;
-      color: #94a3b8;
+      letter-spacing: 1px;
     }
 
-    .last-item {
-      border-bottom: none;
+    .name {
+      font-weight: 500;
+      padding-left: 10px;
+    }
+
+    .region {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #ff9800;
     }
   </style>
 </head>
 <body>
-  <div class="header">TROLLOVÉ Z ČSFD.CZ</div>
 
-  <!-- Tlačidlo zpět -->
+  <div class="header">TROLLOVÉ Z ČSFD</div>
+
   <div class="back-button-container">
     <button onclick="history.back()">← Zpět</button>
   </div>
 
   <div class="troll-list">
     <a href="troll-Dragon94.html" class="troll-item">
-      <div class="troll-avatar"></div>
-      <div class="troll-info">
-        <div class="troll-name">Dragon94</div>
-        <div class="troll-username">Dragon94</div>
-      </div>
+      <div class="rank">1</div>
+      <div class="rating">35,864</div>
+      <div class="name">Dragon94</div>
+      <div class="region">AS</div>
     </a>
     <a href="troll-Bellamy.html" class="troll-item">
-      <div class="troll-avatar"></div>
-      <div class="troll-info">
-        <div class="troll-name">Bellamy</div>
-        <div class="troll-username">Bellamy</div>
-      </div>
+      <div class="rank">2</div>
+      <div class="rating">35,548</div>
+      <div class="name">Bellamy</div>
+      <div class="region">SA</div>
     </a>
     <a href="troll-SidneyP.html" class="troll-item">
-      <div class="troll-avatar"></div>
-      <div class="troll-info">
-        <div class="troll-name">SidneyP</div>
-        <div class="troll-username">SidneyP</div>
-      </div>
+      <div class="rank">3</div>
+      <div class="rating">33,729</div>
+      <div class="name">SidneyP</div>
+      <div class="region">AS</div>
     </a>
     <a href="troll-Carlos2325.html" class="troll-item">
-      <div class="troll-avatar"></div>
-      <div class="troll-info">
-        <div class="troll-name">Carlos2325</div>
-        <div class="troll-username">Carlos2325</div>
-      </div>
+      <div class="rank">4</div>
+      <div class="rating">33,432</div>
+      <div class="name">Carlos2325</div>
+      <div class="region">NA</div>
     </a>
     <a href="troll-BaronMartin.html" class="troll-item">
-      <div class="troll-avatar"></div>
-      <div class="troll-info">
-        <div class="troll-name">BaronMartin</div>
-        <div class="troll-username">BaronMartin</div>
-      </div>
+      <div class="rank">5</div>
+      <div class="rating">32,905</div>
+      <div class="name">BaronMartin</div>
+      <div class="region">EU</div>
     </a>
     <a href="troll-Devil2003.html" class="troll-item">
-      <div class="troll-avatar"></div>
-      <div class="troll-info">
-        <div class="troll-name">Devil2003</div>
-        <div class="troll-username">Devil2003</div>
-      </div>
+      <div class="rank">6</div>
+      <div class="rating">32,680</div>
+      <div class="name">Devil2003</div>
+      <div class="region">SA</div>
     </a>
     <a href="troll-dj_kure.html" class="troll-item">
-      <div class="troll-avatar"></div>
-      <div class="troll-info">
-        <div class="troll-name">dj_kure</div>
-        <div class="troll-username">dj_kure</div>
-      </div>
+      <div class="rank">7</div>
+      <div class="rating">32,448</div>
+      <div class="name">dj_kure</div>
+      <div class="region">AS</div>
     </a>
     <a href="troll-Martrix.html" class="troll-item">
-      <div class="troll-avatar"></div>
-      <div class="troll-info">
-        <div class="troll-name">Martrix</div>
-        <div class="troll-username">Martrix</div>
-      </div>
+      <div class="rank">8</div>
+      <div class="rating">32,320</div>
+      <div class="name">Martrix</div>
+      <div class="region">EU</div>
     </a>
     <a href="troll-Malyszs.html" class="troll-item">
-      <div class="troll-avatar"></div>
-      <div class="troll-info">
-        <div class="troll-name">Malyszs</div>
-        <div class="troll-username">Malyszs</div>
-      </div>
+      <div class="rank">9</div>
+      <div class="rating">32,000</div>
+      <div class="name">Malyszs</div>
+      <div class="region">NA</div>
     </a>
     <a href="troll-Textorix.html" class="troll-item">
-      <div class="troll-avatar"></div>
-      <div class="troll-info">
-        <div class="troll-name">Textorix</div>
-        <div class="troll-username">Textorix</div>
-      </div>
+      <div class="rank">10</div>
+      <div class="rating">31,313</div>
+      <div class="name">Textorix</div>
+      <div class="region">EU</div>
     </a>
-    <a href="troll-TR4XY.html" class="troll-item">
-      <div class="troll-avatar"></div>
-      <div class="troll-info">
-        <div class="troll-name">TR4XY</div>
-        <div class="troll-username">TR4XY</div>
-      </div>
-    </a>
-    <a href="troll-MaximMaximS.html" class="troll-item last-item">
-      <div class="troll-avatar"></div>
-      <div class="troll-info">
-        <div class="troll-name">MaximMaximS</div>
-        <div class="troll-username">MaximMaximS</div>
-      </div>
+    <a href="troll-MaximMaximS.html" class="troll-item">
+      <div class="rank">11</div>
+      <div class="rating">30,562</div>
+      <div class="name">MaximMaximS</div>
+      <div class="region">EU</div>
     </a>
   </div>
+
 </body>
 </html>
