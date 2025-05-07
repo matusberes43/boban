@@ -488,17 +488,38 @@ body.fixed-padding {
   padding-top: 160px; /* výška fixného bloku */
 }
     
+    .header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.punisher-logo {
+  height: 40px;
+  margin-right: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.punisher-logo:hover {
+  transform: scale(1.05);
+}
+    
     
   </style>
 </head>
 <body>
   
-  <div class="fixed-header">
-  <!-- Stylové hamburger menu -->
-  <div id="menu-toggle" onclick="toggleMenu()">
-    <div class="bar top"></div>
-    <div class="bar middle"></div>
-    <div class="bar bottom"></div>
+<div class="fixed-header">
+  <div class="header-content">
+    <!-- Logo PunisherEDNA -->
+    <img src="https://i.postimg.cc/xT4WLkQr/88080-B2-C-FA25-4494-888-A-2-DD7-BD427698.png" alt="PunisherEDNA Logo" class="punisher-logo">
+
+    <!-- Stylové hamburger menu -->
+    <div id="menu-toggle" onclick="toggleMenu()">
+      <div class="bar top"></div>
+      <div class="bar middle"></div>
+      <div class="bar bottom"></div>
+    </div>
   </div>
 
   <!-- Navigační menu -->
