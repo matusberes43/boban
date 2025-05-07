@@ -1021,6 +1021,22 @@
     toggle.classList.toggle("open");
     menu.classList.toggle("visible");
   }
+  
+  // Přepínání hamburger menu
+function toggleMenu() {
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("dropdown-menu");
+  toggle.classList.toggle("active");
+  menu.classList.toggle("show");
+}
+
+// Zavření menu při kliknutí na odkaz
+document.querySelectorAll('#dropdown-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('menu-toggle').classList.remove('active');
+    document.getElementById('dropdown-menu').classList.remove('show');
+  });
+});
     
   </script>
 </body>
