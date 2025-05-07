@@ -462,12 +462,12 @@
     
     
     
- /* Fixované menu */
+/* Fixované menu */
 #menu-toggle {
   position: fixed;
-  top: 1rem;
-  left: 1rem;
-  z-index: 1001; /* Nejvyšší priorita */
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 1001;
   margin: 0;
   width: 1.75rem;
   height: 1.25rem;
@@ -476,30 +476,31 @@
 /* Fixovaný vyhledávací kontejner */
 .search-legend-container {
   position: fixed;
-  top: 4rem; /* Více prostoru pod menu */
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 2rem);
+  top: 2.5rem;
+  left: 0;
+  right: 0;
+  width: 100%;
   max-width: 80rem;
+  margin: 0 auto;
   background: var(--surface-dark);
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: var(--shadow);
+  padding: 0.5rem 1rem;
+  border-radius: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
 /* Dropdown menu pod hamburgerem */
 #dropdown-menu {
   position: fixed;
-  top: 3.5rem; /* Pod ikonou menu */
-  left: 1rem;
-  width: 15rem;
-  max-width: calc(100% - 2rem);
+  top: 2.5rem;
+  left: 0.5rem;
+  width: 12rem;
+  max-width: calc(100% - 1rem);
   background: var(--surface-dark);
   border: 1px solid var(--border-dark);
   border-radius: 8px;
@@ -516,35 +517,39 @@ body {
   background-color: var(--background-dark);
   color: var(--text-dark);
   margin: 0;
-  padding: 6rem 2rem 2rem; /* Větší padding-top pro více prostoru */
+  padding: 5.5rem 1rem 1rem; /* Zvýšeno pro více prostoru */
   line-height: 1.6;
+}
+
+/* Fixovaná hlavička tabulky */
+.table-wrapper {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  overflow-x: auto;
+  position: relative;
+  margin-top: 0.5rem; /* Malá mezera pod vyhledávacím kontejnerem */
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--surface-dark);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+thead {
+  position: sticky;
+  top: 3.5rem; /* Nastaveno pod vyhledávací kontejner (2.5rem + padding) */
+  z-index: 998;
+  background: var(--primary-color);
+  color: #ffffff;
 }
 
 /* Responzivní úpravy */
 @media (max-width: 768px) {
-  #menu-toggle {
-    top: 0.75rem;
-    left: 0.75rem;
-  }
-
-  .search-legend-container {
-    top: 3.5rem;
-    width: calc(100% - 1rem);
-    padding: 0.75rem;
-  }
-
-  #dropdown-menu {
-    top: 3rem;
-    width: calc(100% - 2rem);
-    max-width: 100%;
-  }
-
-  body {
-    padding: 5.5rem 1rem 1rem;
-  }
-}
-
-@media (max-width: 480px) {
   #menu-toggle {
     top: 0.5rem;
     left: 0.5rem;
@@ -553,14 +558,64 @@ body {
   .search-legend-container {
     top: 2.5rem;
     padding: 0.5rem;
+    gap: 0.75rem;
   }
 
   #dropdown-menu {
     top: 2.5rem;
+    width: calc(100% - 1rem);
+    max-width: 100%;
   }
 
   body {
-    padding: 4.5rem 0.5rem 0.5rem;
+    padding: 5rem 0.5rem 0.5rem;
+  }
+
+  thead {
+    top: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #menu-toggle {
+    top: 0.25rem;
+    left: 0.25rem;
+    width: 1.5rem;
+    height: 1rem;
+  }
+
+  .search-legend-container {
+    top: 2rem;
+    padding: 0.25rem 0.5rem;
+    gap: 0.5rem;
+  }
+
+  #searchInput {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    max-width: 15rem;
+  }
+
+  .legend {
+    font-size: 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .legend-square {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  #dropdown-menu {
+    top: 2rem;
+  }
+
+  body {
+    padding: 4.5rem 0.25rem 0.25rem;
+  }
+
+  thead {
+    top: 2.5rem;
   }
 }
     
