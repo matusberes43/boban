@@ -120,12 +120,24 @@
     }
 
     th, td {
-      padding: 0.75rem 1rem;
-      text-align: center;
-      font-size: 0.95rem;
-      border-bottom: 1px solid var(--border-dark);
-      height: 48px; /* Jednotná výška riadkov */
-    }
+  text-align: center;
+  font-size: 0.95rem;
+  border-bottom: 1px solid var(--border-dark);
+  height: 48px; /* Jednotná výška riadkov */
+}
+
+/* Oddělený styl pro hlavičku tabulky */
+th {
+  padding-top: 1.2rem;
+  padding-bottom: 0.3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Oddělený styl pro běžné buňky */
+td {
+  padding: 0.75rem 1rem;
+}
 
     thead {
       background: var(--primary-color);
