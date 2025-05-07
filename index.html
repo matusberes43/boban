@@ -381,6 +381,73 @@
       animation: slideIn 0.5s ease forwards;
       animation-delay: calc(var(--row-index) * 0.05s);
     }
+    
+    
+    
+    #menu-toggle {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 100;
+}
+
+#menu-toggle .bar {
+  height: 4px;
+  width: 100%;
+  background-color: var(--text-dark);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+#menu-toggle.active .top {
+  transform: rotate(45deg) translateY(8px);
+}
+
+#menu-toggle.active .middle {
+  opacity: 0;
+}
+
+#menu-toggle.active .bottom {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+#dropdown-menu {
+  position: absolute;
+  top: 4.5rem;
+  left: 1.5rem;
+  background: var(--surface-dark);
+  border: 1px solid var(--border-dark);
+  border-radius: 8px;
+  padding: 0.5rem 0;
+  box-shadow: var(--shadow);
+  z-index: 99;
+  transition: var(--transition);
+  display: none;
+}
+
+#dropdown-menu a.menu-item {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+#dropdown-menu a.menu-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+#dropdown-menu.show {
+  display: block;
+}
+    
   </style>
 </head>
 <body>
