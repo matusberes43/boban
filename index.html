@@ -460,6 +460,23 @@
   }
 }
     
+    
+    .fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--background-dark);
+  z-index: 999;
+  padding: 1rem 2rem;
+  box-shadow: var(--shadow);
+}
+
+body.fixed-padding {
+  padding-top: 160px; /* výška fixného bloku */
+}
+    
+    
   </style>
 </head>
 <body>
@@ -910,6 +927,21 @@
   toggle.classList.toggle('active');
   menu.classList.toggle('show');
 }
+    
+    
+    // Pridaj padding k telu kvôli fixnému menu
+window.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.add('fixed-padding');
+});
+
+// Tooltipy sa skryjú pri scrollovaní
+window.addEventListener('scroll', () => {
+  document.querySelectorAll('.tooltip .tooltip-text').forEach(el => {
+    el.style.visibility = 'hidden';
+    el.style.opacity = '0';
+  });
+});
+    
     
   </script>
 </body>
