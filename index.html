@@ -489,6 +489,21 @@ body.fixed-padding {
 }
     
     
+    
+    .menu-item.highlighted-button {
+  background: linear-gradient(90deg, #facc15, #ca8a04);
+  color: #1e293b;
+  font-weight: 700;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(250, 204, 21, 0.4);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.menu-item.highlighted-button:hover {
+  background: linear-gradient(90deg, #ffd700, #eab308);
+  transform: scale(1.03);
+}
+    
   </style>
 </head>
 <body>
@@ -502,12 +517,11 @@ body.fixed-padding {
   </div>
 
   <!-- Navigační menu -->
-  <div id="dropdown-menu" class="hidden">
-    <a href="2012.html" target="_blank" class="menu-item">PunisherEDNA</a>
-    <a href="#" class="menu-item">Žebříček ČSFD</a>
-    <a href="2012.html" target="_blank" class="menu-item">PunisherEDNA</a>
-      <a href="trollove.html" target="_blank" class="menu-item">Trollové</a>
-  </div>
+ <div id="dropdown-menu" class="hidden">
+  <a href="2012.html" target="_blank" class="menu-item highlighted-button">PunisherEDNA</a>
+  <a href="#" class="menu-item">Žebříček ČSFD</a>
+  <a href="trollove.html" target="_blank" class="menu-item">Trollové</a>
+</div>
 
   <!-- Vyhledávání a legenda -->
   <div class="search-legend-container">
