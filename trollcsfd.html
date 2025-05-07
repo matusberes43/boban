@@ -7,18 +7,19 @@
   <style>
     body {
       background-color: #0e1624;
-      color: #fff;
-      font-family: Arial, sans-serif;
+      color: #e0e6ed;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 20px;
+      padding: 40px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
     a {
-      color: #66aaff;
+      color: #4da3ff;
       text-decoration: none;
+      font-weight: bold;
     }
 
     a:hover {
@@ -28,10 +29,24 @@
     .container {
       max-width: 800px;
       text-align: center;
+      padding: 20px;
+      background-color: #192233;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .container h2 {
+      margin-top: 0;
+      font-size: 26px;
+    }
+
+    .container p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 40px;
     }
 
     .gallery {
-      margin-top: 40px;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
@@ -39,46 +54,46 @@
     }
 
     .gallery img {
-      width: 120px;
-      height: auto;
-      border-radius: 6px;
+      width: 130px;
+      border-radius: 8px;
       cursor: pointer;
       transition: transform 0.2s ease;
     }
 
     .gallery img:hover {
-      transform: scale(1.05);
+      transform: scale(1.07);
     }
 
-    /* Fullscreen viewer */
     .lightbox {
       display: none;
       position: fixed;
-      z-index: 1000;
-      left: 0; top: 0;
+      z-index: 999;
+      top: 0; left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(0, 0, 0, 0.9);
-      align-items: center;
+      background-color: rgba(0, 0, 0, 0.92);
       justify-content: center;
+      align-items: center;
       flex-direction: column;
     }
 
     .lightbox img {
       max-width: 90%;
       max-height: 80%;
+      border-radius: 10px;
     }
 
     .close, .nav {
       color: #fff;
-      font-size: 30px;
+      font-size: 36px;
       cursor: pointer;
       position: absolute;
-      top: 20px;
       padding: 10px;
+      user-select: none;
     }
 
     .close {
+      top: 20px;
       right: 30px;
     }
 
@@ -100,22 +115,20 @@
   <div class="container">
     <h2><a href="dragon94.html">@dragon94</a></h2>
     <p>
-      Tento uživatel žobre o mou pozornost už dlouhodobě, bohužel z velké části nemám zájem s touto osobou interagovat,
-      protože se jedná o dítě – a to nemyslím obrazně, je to nějaké dítě do 13 let. Neustále mě někde označuje, reaguje,
-      mně jako člověku to připadá až trapné. Ale co mám dělat? Někdy z dobráckosti a soucitu odepíšu, ale s radostí to rozhodně není.
+      <strong>@dragon94</strong> se mi snaží upoutat pozornost už delší dobu. Bohužel, většinou o interakci s ním nestojím – protože jde doslova o dítě. Ne obrazně. Je mu zřejmě méně než 13 let. Neustále mě někde zmiňuje, reaguje na mě a mně osobně to přijde až směšné. Co s tím? Občas mu odpovím – spíš z lítosti než ze zájmu.
     </p>
 
     <div class="gallery">
-      <img src="https://i.postimg.cc/13GnNCQ6/IMG-9111.jpg" alt="obrázek 1" onclick="openLightbox(0)">
-      <img src="https://i.postimg.cc/y843xqws/IMG-9112.jpg" alt="obrázek 2" onclick="openLightbox(1)">
-      <img src="https://i.postimg.cc/9Xk73wb4/IMG-9113.jpg" alt="obrázek 3" onclick="openLightbox(2)">
+      <img src="https://i.postimg.cc/13GnNCQ6/IMG-9111.jpg" onclick="openLightbox(0)">
+      <img src="https://i.postimg.cc/y843xqws/IMG-9112.jpg" onclick="openLightbox(1)">
+      <img src="https://i.postimg.cc/9Xk73wb4/IMG-9113.jpg" onclick="openLightbox(2)">
     </div>
   </div>
 
   <div class="lightbox" id="lightbox">
     <span class="close" onclick="closeLightbox()">×</span>
     <span class="nav left" onclick="navigate(-1)">&#10094;</span>
-    <img id="lightbox-img" src="" alt="fullscreen image">
+    <img id="lightbox-img" src="">
     <span class="nav right" onclick="navigate(1)">&#10095;</span>
   </div>
 
@@ -125,7 +138,6 @@
       "https://i.postimg.cc/y843xqws/IMG-9112.jpg",
       "https://i.postimg.cc/9Xk73wb4/IMG-9113.jpg"
     ];
-
     let currentIndex = 0;
 
     function openLightbox(index) {
@@ -138,18 +150,15 @@
       document.getElementById("lightbox").style.display = "none";
     }
 
-    function navigate(direction) {
-      currentIndex += direction;
-      if (currentIndex < 0) currentIndex = images.length - 1;
-      if (currentIndex >= images.length) currentIndex = 0;
+    function navigate(dir) {
+      currentIndex = (currentIndex + dir + images.length) % images.length;
       document.getElementById("lightbox-img").src = images[currentIndex];
     }
 
-    // zavřít ESC
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener("keydown", e => {
       if (e.key === "Escape") closeLightbox();
-      if (e.key === "ArrowLeft") navigate(-1);
       if (e.key === "ArrowRight") navigate(1);
+      if (e.key === "ArrowLeft") navigate(-1);
     });
   </script>
 
