@@ -2,162 +2,163 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TROLL CSFD – @dragon94</title>
+  <title>Trollové</title>
   <style>
     body {
-      background-color: #0e1624;
-      color: #e3eaf2;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: Arial, sans-serif;
+      background-color: #f1f5f9;
       margin: 0;
       padding: 0;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    .container {
-      max-width: 900px;
-      padding: 40px 30px;
-      text-align: center;
-      background: #192435;
-      border-radius: 16px;
-      box-shadow: 0 0 30px rgba(0,0,0,0.4);
-    }
-
-    h2 {
-      margin-top: 0;
-      font-size: 28px;
-    }
-
-    a {
-      color: #4da3ff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    p {
-      font-size: 17px;
-      line-height: 1.6;
-      margin-top: 10px;
-      margin-bottom: 40px;
-      color: #cfd8e3;
-    }
-
-    .gallery {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    .gallery img {
-      width: 140px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.06);
-    }
-
-    /* Fullscreen lightbox */
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      top: 0;
-      left: 0;
-      width: 100vw;
       height: 100vh;
-      background-color: rgba(0, 0, 0, 0.95);
+    }
+
+    .sidebar {
+      width: 300px;
+      background-color: #ffffff;
+      border-right: 1px solid #e2e8f0;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+
+    .sidebar h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      color: #1e3a8a;
+    }
+
+    .user {
+      display: flex;
       align-items: center;
-      justify-content: center;
+      padding: 0.75rem;
+      border-bottom: 1px solid #e2e8f0;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .user:hover {
+      background-color: #e2e8f0;
+    }
+
+    .user img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 1rem;
+    }
+
+    .user-info {
+      display: flex;
       flex-direction: column;
     }
 
-    .lightbox img {
-      max-width: 90%;
-      max-height: 85%;
-      border-radius: 10px;
+    .user-info .name {
+      font-weight: bold;
+      color: #111827;
     }
 
-    .nav, .close {
-      position: absolute;
-      color: #fff;
-      font-size: 40px;
-      cursor: pointer;
-      user-select: none;
-      padding: 10px 20px;
-      z-index: 10000;
+    .user-info .username {
+      font-size: 0.9rem;
+      color: #6b7280;
     }
 
-    .nav.left { left: 20px; top: 50%; transform: translateY(-50%); }
-    .nav.right { right: 20px; top: 50%; transform: translateY(-50%); }
-    .close { top: 20px; right: 30px; font-size: 36px; }
+    .details {
+      flex: 1;
+      padding: 2rem;
+    }
 
-    @media (max-width: 600px) {
-      .gallery img { width: 100px; }
-      .nav, .close { font-size: 30px; }
+    .details h3 {
+      margin-top: 0;
+      color: #1e293b;
+    }
+
+    .details p {
+      font-size: 1rem;
+      color: #374151;
+    }
+
+    .placeholder {
+      color: #9ca3af;
+      font-style: italic;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h2><a href="dragon94.html">@dragon94</a></h2>
-    <p>
-      Tento uživatel se snaží upoutat mou pozornost už delší dobu, bohužel z větší části o interakci s touto osobou nemám zájem, protože se jedná o dítě – a to nemyslím obrazně, ale skutečně o někoho mladšího než 13 let. Neustále mě někde označuje, reaguje na mě, a mně jako člověku to připadá až trapné. Ale co s tím mám dělat? Občas ze slušnosti nebo soucitu odpovím, ale rozhodně z toho nemám radost.
-    </p>
-
-    <div class="gallery">
-      <img src="https://i.postimg.cc/13GnNCQ6/IMG-9111.jpg" onclick="openLightbox(0)">
-      <img src="https://i.postimg.cc/y843xqws/IMG-9112.jpg" onclick="openLightbox(1)">
-      <img src="https://i.postimg.cc/9Xk73wb4/IMG-9113.jpg" onclick="openLightbox(2)">
+  <div class="sidebar">
+    <h2>Trollové</h2>
+    <div class="user" onclick="showDetails('user123')">
+      <img src="https://via.placeholder.com/40" alt="avatar">
+      <div class="user-info">
+        <div class="name">Troll</div>
+        <div class="username">user123</div>
+      </div>
+    </div>
+    <div class="user" onclick="showDetails('edgy_poster')">
+      <img src="https://via.placeholder.com/40" alt="avatar">
+      <div class="user-info">
+        <div class="name">Troll</div>
+        <div class="username">edgy_poster</div>
+      </div>
+    </div>
+    <div class="user" onclick="showDetails('HotTake87')">
+      <img src="https://via.placeholder.com/40" alt="avatar">
+      <div class="user-info">
+        <div class="name">Troll</div>
+        <div class="username">HotTake87</div>
+      </div>
+    </div>
+    <div class="user" onclick="showDetails('spammer456')">
+      <img src="https://via.placeholder.com/40" alt="avatar">
+      <div class="user-info">
+        <div class="name">Spammer456</div>
+        <div class="username">spammer456</div>
+      </div>
     </div>
   </div>
 
-  <div class="lightbox" id="lightbox">
-    <span class="close" onclick="closeLightbox()">×</span>
-    <span class="nav left" onclick="navigate(-1)">&#10094;</span>
-    <img id="lightbox-img" src="" alt="detailní pohled">
-    <span class="nav right" onclick="navigate(1)">&#10095;</span>
+  <div class="details" id="details">
+    <p class="placeholder">Klikni na uživatele vlevo pro zobrazení detailů.</p>
   </div>
 
   <script>
-    const images = [
-      "https://i.postimg.cc/13GnNCQ6/IMG-9111.jpg",
-      "https://i.postimg.cc/y843xqws/IMG-9112.jpg",
-      "https://i.postimg.cc/9Xk73wb4/IMG-9113.jpg"
-    ];
-    let currentIndex = 0;
+    const users = {
+      user123: {
+        name: "Troll (user123)",
+        reason: "Provokuje pod každou recenzí, cílí na konkrétní uživatele.",
+        joined: "leden 2024",
+        activity: "30+ spamových komentářů"
+      },
+      edgy_poster: {
+        name: "Troll (edgy_poster)",
+        reason: "Záměrně kontroverzní příspěvky bez argumentace.",
+        joined: "únor 2024",
+        activity: "Hlášeno 12x komunitou"
+      },
+      HotTake87: {
+        name: "Troll (HotTake87)",
+        reason: "Neustálé urážky jiných recenzentů.",
+        joined: "březen 2024",
+        activity: "Ignoruje varování"
+      },
+      spammer456: {
+        name: "Spammer456",
+        reason: "Opakované vkládání odkazů a nevyžádaných zpráv.",
+        joined: "duben 2024",
+        activity: "Zabanován, stále si zakládá nové účty"
+      }
+    };
 
-    function openLightbox(index) {
-      currentIndex = index;
-      document.getElementById("lightbox-img").src = images[index];
-      document.getElementById("lightbox").style.display = "flex";
+    function showDetails(username) {
+      const data = users[username];
+      const container = document.getElementById('details');
+      container.innerHTML = `
+        <h3>${data.name}</h3>
+        <p><strong>Důvod zařazení:</strong> ${data.reason}</p>
+        <p><strong>Datum registrace:</strong> ${data.joined}</p>
+        <p><strong>Aktivita:</strong> ${data.activity}</p>
+      `;
     }
-
-    function closeLightbox() {
-      document.getElementById("lightbox").style.display = "none";
-    }
-
-    function navigate(direction) {
-      currentIndex = (currentIndex + direction + images.length) % images.length;
-      document.getElementById("lightbox-img").src = images[currentIndex];
-    }
-
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "Escape") closeLightbox();
-      if (e.key === "ArrowLeft") navigate(-1);
-      if (e.key === "ArrowRight") navigate(1);
-    });
   </script>
 
 </body>
