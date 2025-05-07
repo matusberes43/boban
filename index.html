@@ -974,6 +974,17 @@ body {
   menu.classList.toggle('show');
 }
     
+    
+    // Skrytí dropdown menu při scrollování
+window.addEventListener('scroll', () => {
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('dropdown-menu');
+  if (menu.classList.contains('show')) {
+    toggle.classList.remove('active');
+    menu.classList.remove('show');
+  }
+});
+    
   </script>
 </body>
 </html>
