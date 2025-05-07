@@ -462,55 +462,85 @@
     
     
     
-    /* Fixované menu a vyhledávací kontejner */
+ /* Fixované menu */
 #menu-toggle {
   position: fixed;
   top: 1rem;
   left: 1rem;
-  z-index: 1000; /* Vysoký z-index, aby bylo vždy nahoře */
-  margin-bottom: 0; /* Odstraníme margin, protože je fixované */
+  z-index: 1001; /* Nejvyšší priorita */
+  margin: 0;
+  width: 1.75rem;
+  height: 1.25rem;
 }
 
+/* Fixovaný vyhledávací kontejner */
 .search-legend-container {
   position: fixed;
-  top: 3.5rem; /* Posunuto pod menu */
+  top: 4rem; /* Více prostoru pod menu */
   left: 50%;
-  transform: translateX(-50%); /* Vycentrování horizontálně */
-  width: calc(100% - 2rem); /* Šířka s ohledem na padding */
-  max-width: 80rem; /* Maximální šířka odpovídající tabulce */
-  z-index: 999; /* O něco nižší než menu, ale stále nad obsahem */
-  box-shadow: var(--shadow); /* Stín pro lepší vizuální oddělení */
+  transform: translateX(-50%);
+  width: calc(100% - 2rem);
+  max-width: 80rem;
+  background: var(--surface-dark);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 /* Dropdown menu pod hamburgerem */
 #dropdown-menu {
   position: fixed;
-  top: 3rem; /* Pod ikonou menu */
+  top: 3.5rem; /* Pod ikonou menu */
   left: 1rem;
-  width: calc(100% - 2rem); /* Šířka s ohledem na padding */
-  max-width: 15rem; /* Omezení šířky pro estetiku */
-  z-index: 998;
+  width: 15rem;
+  max-width: calc(100% - 2rem);
+  background: var(--surface-dark);
+  border: 1px solid var(--border-dark);
+  border-radius: 8px;
+  padding: 0.5rem 0;
+  box-shadow: var(--shadow);
+  z-index: 999;
+  transition: var(--transition);
+  display: none;
 }
 
-/* Zajistíme, aby obsah pod fixovanými prvky nebyl překryt */
+/* Zajistění prostoru pro fixované prvky */
 body {
-  padding-top: 7rem; /* Vytvoří prostor pro fixované prvky */
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+  margin: 0;
+  padding: 6rem 2rem 2rem; /* Větší padding-top pro více prostoru */
+  line-height: 1.6;
 }
 
 /* Responzivní úpravy */
 @media (max-width: 768px) {
+  #menu-toggle {
+    top: 0.75rem;
+    left: 0.75rem;
+  }
+
   .search-legend-container {
-    top: 3rem; /* Méně místa na menších obrazovkách */
+    top: 3.5rem;
     width: calc(100% - 1rem);
+    padding: 0.75rem;
   }
 
   #dropdown-menu {
+    top: 3rem;
     width: calc(100% - 2rem);
     max-width: 100%;
   }
 
   body {
-    padding-top: 6rem; /* Menší padding na mobilu */
+    padding: 5.5rem 1rem 1rem;
   }
 }
 
@@ -522,10 +552,15 @@ body {
 
   .search-legend-container {
     top: 2.5rem;
+    padding: 0.5rem;
+  }
+
+  #dropdown-menu {
+    top: 2.5rem;
   }
 
   body {
-    padding-top: 5rem;
+    padding: 4.5rem 0.5rem 0.5rem;
   }
 }
     
