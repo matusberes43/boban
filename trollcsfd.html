@@ -7,13 +7,28 @@
   <style>
     body {
       background-color: #0e1624;
-      color: #e0e6ed;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #e3eaf2;
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      padding: 40px 20px;
+      padding: 0;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      padding: 40px 30px;
+      text-align: center;
+      background: #192435;
+      border-radius: 16px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.4);
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 28px;
     }
 
     a {
@@ -26,24 +41,12 @@
       text-decoration: underline;
     }
 
-    .container {
-      max-width: 800px;
-      text-align: center;
-      padding: 20px;
-      background-color: #192233;
-      border-radius: 12px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-    }
-
-    .container h2 {
-      margin-top: 0;
-      font-size: 26px;
-    }
-
-    .container p {
-      font-size: 16px;
+    p {
+      font-size: 17px;
       line-height: 1.6;
+      margin-top: 10px;
       margin-bottom: 40px;
+      color: #cfd8e3;
     }
 
     .gallery {
@@ -54,59 +57,54 @@
     }
 
     .gallery img {
-      width: 130px;
+      width: 140px;
       border-radius: 8px;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: transform 0.3s ease;
     }
 
     .gallery img:hover {
-      transform: scale(1.07);
+      transform: scale(1.06);
     }
 
+    /* Fullscreen lightbox */
     .lightbox {
       display: none;
       position: fixed;
-      z-index: 999;
-      top: 0; left: 0;
+      z-index: 9999;
+      top: 0;
+      left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(0, 0, 0, 0.92);
-      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.95);
       align-items: center;
+      justify-content: center;
       flex-direction: column;
     }
 
     .lightbox img {
       max-width: 90%;
-      max-height: 80%;
+      max-height: 85%;
       border-radius: 10px;
     }
 
-    .close, .nav {
-      color: #fff;
-      font-size: 36px;
-      cursor: pointer;
+    .nav, .close {
       position: absolute;
-      padding: 10px;
+      color: #fff;
+      font-size: 40px;
+      cursor: pointer;
       user-select: none;
+      padding: 10px 20px;
+      z-index: 10000;
     }
 
-    .close {
-      top: 20px;
-      right: 30px;
-    }
+    .nav.left { left: 20px; top: 50%; transform: translateY(-50%); }
+    .nav.right { right: 20px; top: 50%; transform: translateY(-50%); }
+    .close { top: 20px; right: 30px; font-size: 36px; }
 
-    .nav.left {
-      left: 30px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .nav.right {
-      right: 30px;
-      top: 50%;
-      transform: translateY(-50%);
+    @media (max-width: 600px) {
+      .gallery img { width: 100px; }
+      .nav, .close { font-size: 30px; }
     }
   </style>
 </head>
@@ -115,7 +113,7 @@
   <div class="container">
     <h2><a href="dragon94.html">@dragon94</a></h2>
     <p>
-      <strong>@dragon94</strong> se mi snaží upoutat pozornost už delší dobu. Bohužel, většinou o interakci s ním nestojím – protože jde doslova o dítě. Ne obrazně. Je mu zřejmě méně než 13 let. Neustále mě někde zmiňuje, reaguje na mě a mně osobně to přijde až směšné. Co s tím? Občas mu odpovím – spíš z lítosti než ze zájmu.
+      Tento uživatel se snaží upoutat mou pozornost už delší dobu, bohužel z větší části o interakci s touto osobou nemám zájem, protože se jedná o dítě – a to nemyslím obrazně, ale skutečně o někoho mladšího než 13 let. Neustále mě někde označuje, reaguje na mě, a mně jako člověku to připadá až trapné. Ale co s tím mám dělat? Občas ze slušnosti nebo soucitu odpovím, ale rozhodně z toho nemám radost.
     </p>
 
     <div class="gallery">
@@ -128,7 +126,7 @@
   <div class="lightbox" id="lightbox">
     <span class="close" onclick="closeLightbox()">×</span>
     <span class="nav left" onclick="navigate(-1)">&#10094;</span>
-    <img id="lightbox-img" src="">
+    <img id="lightbox-img" src="" alt="detailní pohled">
     <span class="nav right" onclick="navigate(1)">&#10095;</span>
   </div>
 
@@ -150,15 +148,15 @@
       document.getElementById("lightbox").style.display = "none";
     }
 
-    function navigate(dir) {
-      currentIndex = (currentIndex + dir + images.length) % images.length;
+    function navigate(direction) {
+      currentIndex = (currentIndex + direction + images.length) % images.length;
       document.getElementById("lightbox-img").src = images[currentIndex];
     }
 
-    document.addEventListener("keydown", e => {
+    document.addEventListener("keydown", function(e) {
       if (e.key === "Escape") closeLightbox();
-      if (e.key === "ArrowRight") navigate(1);
       if (e.key === "ArrowLeft") navigate(-1);
+      if (e.key === "ArrowRight") navigate(1);
     });
   </script>
 
