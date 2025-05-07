@@ -477,6 +477,11 @@ body.fixed-padding {
 }
     
     
+    
+    body.fixed-padding {
+  padding-top: 160px;
+}
+    
   </style>
 </head>
 <body>
@@ -942,6 +947,10 @@ window.addEventListener('scroll', () => {
   });
 });
     
+    
+    document.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.add('fixed-padding');
+});
     
   </script>
 </body>
