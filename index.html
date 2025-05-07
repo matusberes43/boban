@@ -946,12 +946,21 @@ window.addEventListener('DOMContentLoaded', () => {
   document.body.classList.add('fixed-padding');
 });
 
-// Tooltipy sa skryjú pri scrollovaní
+// Tooltipy a menu sa skryjú pri scrollovaní
 window.addEventListener('scroll', () => {
+  // Skryť tooltipy
   document.querySelectorAll('.tooltip .tooltip-text').forEach(el => {
     el.style.visibility = 'hidden';
     el.style.opacity = '0';
   });
+
+  // Skryť menu, ak je otvorené
+  const menu = document.getElementById('dropdown-menu');
+  const toggle = document.getElementById('menu-toggle');
+  if (menu.classList.contains('show')) {
+    menu.classList.remove('show');
+    toggle.classList.remove('active');
+  }
 });
     
     
