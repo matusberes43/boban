@@ -460,6 +460,75 @@
   }
 }
     
+    
+    
+    /* Fixované menu a vyhledávací kontejner */
+#menu-toggle {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000; /* Vysoký z-index, aby bylo vždy nahoře */
+  margin-bottom: 0; /* Odstraníme margin, protože je fixované */
+}
+
+.search-legend-container {
+  position: fixed;
+  top: 3.5rem; /* Posunuto pod menu */
+  left: 50%;
+  transform: translateX(-50%); /* Vycentrování horizontálně */
+  width: calc(100% - 2rem); /* Šířka s ohledem na padding */
+  max-width: 80rem; /* Maximální šířka odpovídající tabulce */
+  z-index: 999; /* O něco nižší než menu, ale stále nad obsahem */
+  box-shadow: var(--shadow); /* Stín pro lepší vizuální oddělení */
+}
+
+/* Dropdown menu pod hamburgerem */
+#dropdown-menu {
+  position: fixed;
+  top: 3rem; /* Pod ikonou menu */
+  left: 1rem;
+  width: calc(100% - 2rem); /* Šířka s ohledem na padding */
+  max-width: 15rem; /* Omezení šířky pro estetiku */
+  z-index: 998;
+}
+
+/* Zajistíme, aby obsah pod fixovanými prvky nebyl překryt */
+body {
+  padding-top: 7rem; /* Vytvoří prostor pro fixované prvky */
+}
+
+/* Responzivní úpravy */
+@media (max-width: 768px) {
+  .search-legend-container {
+    top: 3rem; /* Méně místa na menších obrazovkách */
+    width: calc(100% - 1rem);
+  }
+
+  #dropdown-menu {
+    width: calc(100% - 2rem);
+    max-width: 100%;
+  }
+
+  body {
+    padding-top: 6rem; /* Menší padding na mobilu */
+  }
+}
+
+@media (max-width: 480px) {
+  #menu-toggle {
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+
+  .search-legend-container {
+    top: 2.5rem;
+  }
+
+  body {
+    padding-top: 5rem;
+  }
+}
+    
   </style>
 </head>
 <body>
