@@ -1,1 +1,157 @@
-ggg
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TROLL CSFD – @dragon94</title>
+  <style>
+    body {
+      background-color: #0e1624;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    a {
+      color: #66aaff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .gallery {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .gallery img {
+      width: 120px;
+      height: auto;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Fullscreen viewer */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.9);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+    }
+
+    .close, .nav {
+      color: #fff;
+      font-size: 30px;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      padding: 10px;
+    }
+
+    .close {
+      right: 30px;
+    }
+
+    .nav.left {
+      left: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .nav.right {
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2><a href="dragon94.html">@dragon94</a></h2>
+    <p>
+      Tento uživatel žobre o mou pozornost už dlouhodobě, bohužel z velké části nemám zájem s touto osobou interagovat,
+      protože se jedná o dítě – a to nemyslím obrazně, je to nějaké dítě do 13 let. Neustále mě někde označuje, reaguje,
+      mně jako člověku to připadá až trapné. Ale co mám dělat? Někdy z dobráckosti a soucitu odepíšu, ale s radostí to rozhodně není.
+    </p>
+
+    <div class="gallery">
+      <img src="https://i.postimg.cc/13GnNCQ6/IMG-9111.jpg" alt="obrázek 1" onclick="openLightbox(0)">
+      <img src="https://i.postimg.cc/y843xqws/IMG-9112.jpg" alt="obrázek 2" onclick="openLightbox(1)">
+      <img src="https://i.postimg.cc/9Xk73wb4/IMG-9113.jpg" alt="obrázek 3" onclick="openLightbox(2)">
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <span class="close" onclick="closeLightbox()">×</span>
+    <span class="nav left" onclick="navigate(-1)">&#10094;</span>
+    <img id="lightbox-img" src="" alt="fullscreen image">
+    <span class="nav right" onclick="navigate(1)">&#10095;</span>
+  </div>
+
+  <script>
+    const images = [
+      "https://i.postimg.cc/13GnNCQ6/IMG-9111.jpg",
+      "https://i.postimg.cc/y843xqws/IMG-9112.jpg",
+      "https://i.postimg.cc/9Xk73wb4/IMG-9113.jpg"
+    ];
+
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      document.getElementById("lightbox-img").src = images[index];
+      document.getElementById("lightbox").style.display = "flex";
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").style.display = "none";
+    }
+
+    function navigate(direction) {
+      currentIndex += direction;
+      if (currentIndex < 0) currentIndex = images.length - 1;
+      if (currentIndex >= images.length) currentIndex = 0;
+      document.getElementById("lightbox-img").src = images[currentIndex];
+    }
+
+    // zavřít ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") navigate(-1);
+      if (e.key === "ArrowRight") navigate(1);
+    });
+  </script>
+
+</body>
+</html>
