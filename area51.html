@@ -503,8 +503,10 @@ body.fixed-padding {
 
   <!-- Navigační menu -->
   <div id="dropdown-menu" class="hidden">
+    <a href="2012.html" target="_blank" class="menu-item">PunisherEDNA</a>
     <a href="#" class="menu-item">Žebříček ČSFD</a>
     <a href="2012.html" target="_blank" class="menu-item">PunisherEDNA</a>
+      <a href="trollove.html" target="_blank" class="menu-item">Trollové</a>
   </div>
 
   <!-- Vyhledávání a legenda -->
@@ -946,12 +948,21 @@ window.addEventListener('DOMContentLoaded', () => {
   document.body.classList.add('fixed-padding');
 });
 
-// Tooltipy sa skryjú pri scrollovaní
+// Tooltipy a menu sa skryjú pri scrollovaní
 window.addEventListener('scroll', () => {
+  // Skryť tooltipy
   document.querySelectorAll('.tooltip .tooltip-text').forEach(el => {
     el.style.visibility = 'hidden';
     el.style.opacity = '0';
   });
+
+  // Skryť menu, ak je otvorené
+  const menu = document.getElementById('dropdown-menu');
+  const toggle = document.getElementById('menu-toggle');
+  if (menu.classList.contains('show')) {
+    menu.classList.remove('show');
+    toggle.classList.remove('active');
+  }
 });
     
     
