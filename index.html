@@ -890,6 +890,13 @@
       updateAllCountdowns();
     });
     
+    document.querySelectorAll('#dropdown-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('menu-toggle').classList.remove('active');
+    document.getElementById('dropdown-menu').classList.remove('show');
+  });
+});
+    
     
     function toggleMenu() {
   const toggle = document.getElementById('menu-toggle');
