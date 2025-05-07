@@ -461,26 +461,67 @@
 }
     
     
-    .sticky-wrapper {
+    
+
+.sticky-wrapper {
   position: sticky;
   top: 0;
   z-index: 999;
-  background: var(--background-dark);
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border-dark);
+  background-color: var(--background-dark);
+  padding: 1rem 1rem 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Hamburger menu */
+#menu-toggle {
+  width: 2rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+#menu-toggle .bar {
+  width: 100%;
+  height: 4px;
+  background-color: white;
+  margin: 5px 0;
+  border-radius: 2px;
+  transition: 0.3s ease;
+}
+
+#menu-toggle.open .top {
+  transform: translateY(9px) rotate(45deg);
+}
+#menu-toggle.open .middle {
+  opacity: 0;
+}
+#menu-toggle.open .bottom {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Menu položky */
+#dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+#dropdown-menu.hidden {
+  display: none;
+}
+.menu-item {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 600;
+  background: var(--surface-dark);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+.menu-item:hover {
+  background: var(--primary-color);
 }
 
 
-
-.sticky-wrapper hr,
-.sticky-wrapper::before,
-.sticky-wrapper::after,
-.search-legend-container::before,
-.search-legend-container::after {
-  display: none !important;
-  border: none !important;
-  height: 0 !important;
-}
     
   </style>
 </head>
@@ -510,8 +551,8 @@
   </div>
 
   
-  
   <div class="sticky-wrapper">
+  <div id="menu-toggle" onclick="toggleMenu()">
     <div class="bar top"></div>
     <div class="bar middle"></div>
     <div class="bar bottom"></div>
@@ -536,6 +577,7 @@
     </div>
   </div>
 </div>
+  
 
   <div class="table-wrapper">
     <table id="reviewTable">
