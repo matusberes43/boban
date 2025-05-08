@@ -6,14 +6,14 @@
   <style>
     /* CSS proměnné */
     :root {
-      --primary-color: #1e3a8a; /* Tmavomodrá pre hlavičku */
+      --primary-color: #1e3a8a;
       --secondary-color: #48bb78;
       --danger-color: #f56565;
       --warning-color: #f6ad55;
-      --background-dark: #0f172a; /* Tmavšie pozadie */
-      --text-dark: #f8fafc; /* Svetlý text */
-      --surface-dark: #1e293b; /* Pozadie riadkov */
-      --border-dark: #334155; /* Jemné ohraničenie */
+      --background-dark: #0f172a;
+      --text-dark: #f8fafc;
+      --surface-dark: #1e293b;
+      --border-dark: #334155;
       --shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
       --transition: all 0.3s ease;
     }
@@ -24,45 +24,119 @@
       background-color: var(--background-dark);
       color: var(--text-dark);
       margin: 0;
-      padding: 2rem;
+      padding: 0;
       line-height: 1.6;
     }
 
-    /* Nadpisy */
-    h1 {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      color: var(--text-dark);
-    }
-
-    h2 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: var(--text-dark);
-    }
-
-    /* Kontejner pre vyhľadávanie a legendu */
-    .search-legend-container {
+    /* Fixovaná hlavička */
+    .fixed-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--background-dark);
+      z-index: 999;
+      padding: 1rem 1rem;
+      box-shadow: var(--shadow);
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-      background: var(--surface-dark);
-      padding: 1rem;
-      border-radius: 8px;
     }
 
-    /* Vstupné pole */
+    body.fixed-padding {
+      padding-top: 120px; /* Výška fixného bloku */
+    }
+
+    /* Hamburger menu */
+    #menu-toggle {
+      width: 1.5rem;
+      height: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    #menu-toggle .bar {
+      height: 3px;
+      width: 100%;
+      background-color: var(--text-dark);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    #menu-toggle.active .top {
+      transform: rotate(45deg) translateY(7px);
+    }
+
+    #menu-toggle.active .middle {
+      opacity: 0;
+    }
+
+    #menu-toggle.active .bottom {
+      transform: rotate(-45deg) translateY(-7px);
+    }
+
+    /* Rozbalovací menu */
+    #dropdown-menu {
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: var(--surface-dark);
+      border: 1px solid var(--border-dark);
+      border-radius: 8px;
+      padding: 0.5rem 0;
+      box-shadow: var(--shadow);
+      z-index: 99;
+      display: none;
+      text-align: center;
+    }
+
+    #dropdown-menu.show {
+      display: block;
+    }
+
+    #dropdown-menu a.menu-item {
+      display: block;
+      padding: 0.75rem 1rem;
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+
+    #dropdown-menu a.menu-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Ikona lupy */
+    .search-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      cursor: pointer;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-8.99 6.52 6.52 0 0 0-9.22 0 6.52 6.52 0 0 0 0 9.22 6.5 6.5 0 0 0 8.99-1.48l.27.28v.79l5 5 1.5-1.5-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg>') no-repeat center;
+      background-size: contain;
+    }
+
+    /* Vyhledávací panel */
+    #search-container {
+      display: none;
+      padding: 1rem;
+      background: var(--surface-dark);
+      border-radius: 8px;
+      margin: 1rem;
+    }
+
+    #search-container.show {
+      display: block;
+    }
+
     #searchInput {
       padding: 0.75rem;
       font-size: 1rem;
       width: 100%;
-      max-width: 20rem;
       border: 1px solid var(--border-dark);
       border-radius: 8px;
       background: var(--surface-dark);
@@ -76,20 +150,33 @@
       box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2);
     }
 
-    /* Legenda */
+    /* Legenda nad textem */
+    .search-legend-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1rem;
+      flex-wrap: wrap;
+      background: var(--surface-dark);
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
     .legend {
       display: flex;
       gap: 1rem;
       align-items: center;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--text-dark);
     }
 
     .legend-item {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.25rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-dark);
     }
 
     .legend-square {
@@ -98,46 +185,46 @@
       border-radius: 4px;
     }
 
-    .legend-square.month-warning {
-      animation: softPulseMonth 2.5s ease-in-out infinite;
+    .legend-square.danger {
+      background-color: var(--danger-color);
+      animation: pulse 1.5s infinite;
     }
 
-    /* Tabulka */
+    .legend-square.warning {
+      background-color: var(--warning-color);
+      animation: pulse 2.5s infinite;
+    }
+
+    /* Animace blikání */
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+
+    /* Responzívní tabulka */
     .table-wrapper {
       width: 100%;
-      max-width: 80rem;
-      margin: 0 auto;
       overflow-x: auto;
+      margin: 0 auto;
+      padding-top: 1rem;
     }
 
     table {
       width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
+      min-width: 600px;
+      border-collapse: collapse;
       background: var(--surface-dark);
       border-radius: 8px;
       overflow: hidden;
     }
 
     th, td {
-  text-align: center;
-  font-size: 0.95rem;
-  border-bottom: 1px solid var(--border-dark);
-  height: 48px; /* Jednotná výška riadkov */
-}
-
-/* Oddělený styl pro hlavičku tabulky */
-th {
-  padding-top: 1.2rem;
-  padding-bottom: 0.3rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-/* Oddělený styl pro běžné buňky */
-td {
-  padding: 0.75rem 1rem;
-}
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--border-dark);
+    }
 
     thead {
       background: var(--primary-color);
@@ -148,10 +235,12 @@ td {
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      position: sticky;
+      top: 0;
     }
 
     tr:last-child td {
-      border-bottom: none; /* Odstránenie spodného ohraničenia posledného riadku */
+      border-bottom: none;
     }
 
     tr {
@@ -162,368 +251,84 @@ td {
       background-color: rgba(255, 255, 255, 0.05);
     }
 
-    .rank {
-      display: inline-block;
-      width: 30px;
-      text-align: center;
-      color: #94a3b8;
-      font-weight: 500;
-    }
-
-    .punisher-row {
-      background: linear-gradient(90deg, #ca8a04, #facc15); /* Žltá pre PunisherEDNA */
-      font-weight: 600;
-      color: #1e293b;
-    }
-
-    .phantom-row {
-      background: rgba(148, 163, 184, 0.2);
-      font-style: italic;
-      opacity: 0.8;
-      border: 1px dashed #94a3b8;
-    }
-
-    /* Urgentní odpočet */
-    .urgent-countdown {
-      color: var(--danger-color);
-      font-weight: 700;
-    }
-
-    /* Animace pro varování */
-    @keyframes softPulseMonth {
-      0%, 100% { background-color: transparent; }
-      50% { background-color: rgba(246, 173, 85, 0.3); }
-    }
-
-    .month-warning {
-      animation: softPulseMonth 2.5s ease-in-out infinite;
-    }
-
-    /* Tooltip */
-    .tooltip {
-      position: relative;
-    }
-
-    .tooltip .tooltip-text {
-      visibility: hidden;
-      width: 14rem;
-      background: var(--surface-dark);
-      color: var(--text-dark);
-      text-align: left;
-      padding: 0.75rem;
-      border-radius: 8px;
-      position: absolute;
-      z-index: 10;
-      bottom: 125%;
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0;
-      transition: var(--transition);
-      box-shadow: var(--shadow);
-    }
-
-    .tooltip:hover .tooltip-text {
-      visibility: visible;
-      opacity: 1;
-      transform: translateX(-50%) translateY(-5px);
-    }
-
-    .tooltip-text::after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      margin-left: -5px;
-      border-width: 5px;
-      border-style: solid;
-      border-color: var(--surface-dark) transparent transparent transparent;
-    }
-
-    /* Progress bar */
-    #progress-container,
-    #customTargetContainer,
-    #phantomForm {
-      width: 100%;
-      max-width: 40rem;
-      margin: 2rem auto;
-      text-align: center;
-      background: var(--surface-dark);
-      padding: 1rem;
-      border-radius: 8px;
-    }
-
-    .progress-bar-bg {
-      background: var(--border-dark);
-      border-radius: 1rem;
-      height: 1.5rem;
-      overflow: hidden;
-      margin-top: 0.5rem;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      width: 0;
-      background: linear-gradient(90deg, var(--secondary-color), #81e6d9);
-      text-align: right;
-      color: #1e293b;
-      font-weight: 600;
-      padding-right: 0.5rem;
-      line-height: 1.5rem;
-      transition: width 1s ease-in-out;
-    }
-
-    /* Formulář */
-    #phantomForm {
-      padding: 1.5rem;
-    }
-
-    #phantomForm label {
-      display: block;
-      margin: 0.75rem 0 0.25rem;
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--text-dark);
-    }
-
-    #phantomForm input,
-    #phantomForm select {
-      padding: 0.75rem;
-      font-size: 1rem;
-      width: 100%;
-      max-width: 15rem;
-      border: 1px solid var(--border-dark);
-      border-radius: 8px;
-      background: var(--surface-dark);
-      color: var(--text-dark);
-      transition: var(--transition);
-    }
-
-    #phantomForm input:focus,
-    #phantomForm select:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2);
-    }
-
-    #phantomForm button {
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      font-weight: 600;
-      background: var(--primary-color);
-      color: #ffffff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    #phantomForm button:hover {
-      background: #1e40af;
-    }
-
-    #phantomResult {
-      margin-top: 1rem;
-      font-size: 1rem;
-      color: var(--text-dark);
-    }
-
-    /* Responzivní design */
+    /* Responzivní úpravy */
     @media (max-width: 768px) {
-      body {
-        padding: 1rem;
+      .fixed-header {
+        padding: 0.5rem;
       }
 
-      h1 {
-        font-size: 1.75rem;
+      #menu-toggle {
+        margin: 0;
+      }
+
+      #dropdown-menu {
+        top: 50px;
       }
 
       .search-legend-container {
         flex-direction: column;
-        gap: 1rem;
+        gap: 0.5rem;
       }
 
-      #searchInput {
-        max-width: 100%;
-      }
-
-      .legend {
-        justify-content: center;
-      }
-
-      .tooltip .tooltip-text {
-        width: 12rem;
-        font-size: 0.875rem;
-      }
-
-      #phantomForm input,
-      #phantomForm select {
-        max-width: 100%;
+      .legend-item {
+        flex-direction: row;
+        gap: 0.5rem;
       }
 
       th, td {
-        padding: 0.75rem;
-        font-size: 0.875rem;
+        font-size: 0.8rem;
+        padding: 0.5rem;
+      }
+
+      table {
+        min-width: 400px;
       }
     }
 
     @media (max-width: 480px) {
-      h1 {
-        font-size: 1.5rem;
-      }
-
       th, td {
-        padding: 0.5rem;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
+        padding: 0.3rem;
+      }
+
+      .legend-square {
+        width: 0.8rem;
+        height: 0.8rem;
       }
     }
-
-    /* Animace při načítání tabulky */
-    @keyframes slideIn {
-      from {
-        transform: translateY(20px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    tr {
-      animation: slideIn 0.5s ease forwards;
-      animation-delay: calc(var(--row-index) * 0.05s);
-    }
-    
-    
-    
-/* Styl pro hamburger menu */
-#menu-toggle {
-  position: relative; /* Aby neprekryval iné prvky */
-  margin-bottom: 1rem;
-  width: 1.75rem;
-  height: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-  z-index: 100;
-}
-
-#menu-toggle .bar {
-  height: 4px;
-  width: 100%;
-  background-color: var(--text-dark);
-  border-radius: 2px;
-  transition: var(--transition);
-}
-
-#menu-toggle.active .top {
-  transform: rotate(45deg) translateY(8px);
-}
-
-#menu-toggle.active .middle {
-  opacity: 0;
-}
-
-#menu-toggle.active .bottom {
-  transform: rotate(-45deg) translateY(-8px);
-}
-
-/* Rozbalovací menu */
-#dropdown-menu {
-  position: relative;
-  background: var(--surface-dark);
-  border: 1px solid var(--border-dark);
-  border-radius: 8px;
-  padding: 0.5rem 0;
-  box-shadow: var(--shadow);
-  z-index: 99;
-  transition: var(--transition);
-  display: none;
-  margin-bottom: 1.5rem;
-}
-
-#dropdown-menu a.menu-item {
-  display: block;
-  padding: 0.75rem 1.5rem;
-  color: var(--text-dark);
-  text-decoration: none;
-  font-weight: 500;
-  transition: background 0.3s ease;
-}
-
-#dropdown-menu a.menu-item:hover {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-#dropdown-menu.show {
-  display: block;
-}
-
-/* Responzivní doladění */
-@media (max-width: 768px) {
-  #menu-toggle {
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-  }
-
-  #dropdown-menu {
-    width: 100%;
-  }
-}
-    
-    
-    .fixed-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: var(--background-dark);
-  z-index: 999;
-  padding: 1rem 2rem;
-  box-shadow: var(--shadow);
-}
-
-body.fixed-padding {
-  padding-top: 160px; /* výška fixného bloku */
-}
-    
-    
   </style>
 </head>
-<body>
-  
+<body class="fixed-padding">
   <div class="fixed-header">
-  <!-- Stylové hamburger menu -->
-  <div id="menu-toggle" onclick="toggleMenu()">
-    <div class="bar top"></div>
-    <div class="bar middle"></div>
-    <div class="bar bottom"></div>
+    <div id="menu-toggle" onclick="toggleMenu()">
+      <div class="bar top"></div>
+      <div class="bar middle"></div>
+      <div class="bar bottom"></div>
+    </div>
+    <div class="search-icon" onclick="toggleSearch()"></div>
   </div>
 
-  <!-- Navigační menu -->
-  <div id="dropdown-menu" class="hidden">
+  <div id="dropdown-menu">
     <a href="2012.html" target="_blank" class="menu-item">PunisherEDNA</a>
     <a href="#" class="menu-item">Žebříček ČSFD</a>
-      <a href="trollove.html" target="_blank" class="menu-item">Trollové</a>
+    <a href="trollove.html" target="_blank" class="menu-item">Trollové</a>
   </div>
 
-  <!-- Vyhledávání a legenda -->
-  <div class="search-legend-container">
+  <div id="search-container">
     <input type="text" id="searchInput" placeholder="Hledej uživatele..." onkeyup="filterTable()">
+  </div>
+
+  <div class="search-legend-container">
     <div class="legend">
       <div class="legend-item">
-        <div class="legend-square" style="background-color: #f56565;"></div>
+        <div class="legend-square danger"></div>
         <span>Překonání do 24 hodin</span>
       </div>
       <div class="legend-item">
-        <div class="legend-square month-warning"></div>
+        <div class="legend-square warning"></div>
         <span>Překonání do 1 měsíce</span>
       </div>
     </div>
-  </div>
-</div>
-  
   </div>
 
   <div class="table-wrapper">
@@ -539,150 +344,41 @@ body.fixed-padding {
         </tr>
       </thead>
       <tbody>
-          <tr><td>1</td><td class="tooltip"><span class="flag">🇸🇰</span>corpSy 🥇<span class="tooltip-text">Počet recenzí: 23872<br>Datum překonání: 29.08.2026<br>Zbývá: 482 dní</span></td><td>23872</td><td>482</td><td>29.08.2026</td><td><span id="countdown-1" data-target-date="2026-08-29"></span></td></tr>
-  <tr><td>2</td><td class="tooltip"><span class="flag"> 🇸🇰 </span>T2 🥈<span class="tooltip-text">Počet recenzí: 19983<br>Datum překonání: 24.05.2026<br>Zbývá: 385 dní</span></td><td>19983</td><td>385</td><td>24.05.2026</td><td><span id="countdown-2" data-target-date="2026-05-24"></span></td></tr>
-  <tr><td>3</td><td class="tooltip"><span class="flag"> 🇨🇿</span>Marze 🥉<span class="tooltip-text">Počet recenzí: 19026<br>Datum překonání: 30.04.2026<br>Zbývá: 361 dní</span></td><td>19026</td><td>361</td><td>30.04.2026</td><td><span id="countdown-3" data-target-date="2026-04-30"></span></td></tr>
-  <tr><td>4</td><td class="tooltip"><span class="flag"> 🇨🇿</span>rivah<span class="tooltip-text">Počet recenzí: 19044<br>Datum překonání: 12.04.2026<br>Zbývá: 343 dní</span></td><td>19044</td><td>343</td><td>12.04.2026</td><td><span id="countdown-4" data-target-date="2026-04-12"></span></td></tr>
-  <tr><td>5</td><td class="tooltip"><span class="flag"> 🇨🇿</span>sator<span class="tooltip-text">Počet recenzí: 16742<br>Datum překonání: 04.03.2026<br>Zbývá: 304 dní</span></td><td>16742</td><td>304</td><td>04.03.2026</td><td><span id="countdown-5" data-target-date="2026-03-04"></span></td></tr>
-  <tr><td>6</td><td class="tooltip"><span class="flag"> 🇸🇰</span>Martin741<span class="tooltip-text">Počet recenzí: 16443<br>Datum překonání: 24.02.2026<br>Zbývá: 296 dní</span></td><td>16443</td><td>296</td><td>24.02.2026</td><td><span id="countdown-6" data-target-date="2026-02-24"></span></td></tr>
-  <tr><td>7</td><td class="tooltip"><span class="flag"> 🇨🇿</span>LUKICKK<span class="tooltip-text">Počet recenzí: 14075<br>Datum překonání: 27.12.2025<br>Zbývá: 237 dní</span></td><td>14075</td><td>237</td><td>27.12.2025</td><td><span id="countdown-7" data-target-date="2025-12-27"></span></td></tr>
-  <tr><td>8</td><td class="tooltip"><span class="flag">🇸🇰</span>Anderton<span class="tooltip-text">Počet recenzí: 13108<br>Datum překonání: 03.12.2025<br>Zbývá: 213 dní</span></td><td>13108</td><td>213</td><td>03.12.2025</td><td><span id="countdown-8" data-target-date="2025-12-03"></span></td></tr>
-  <tr><td>9</td><td class="tooltip"><span class="flag">🇬🇧</span>Arsenal83<span class="tooltip-text">Počet recenzí: 13063<br>Datum překonání: 02.12.2025<br>Zbývá: 212 dní</span></td><td>13063</td><td>212</td><td>02.12.2025</td><td><span id="countdown-9" data-target-date="2025-12-02"></span></td></tr>
-  <tr><td>10</td><td class="tooltip"><span class="flag">🇸🇰</span>Loki_Six<span class="tooltip-text">Počet recenzí: 12110<br>Datum překonání: 08.11.2025<br>Zbývá: 188 dní</span></td><td>12110</td><td>188</td><td>08.11.2025</td><td><span id="countdown-10" data-target-date="2025-11-08"></span></td></tr>
-  <tr><td>11</td><td class="tooltip"><span class="flag">🇨🇿</span>kaylin<span class="tooltip-text">Počet recenzí: 11810<br>Datum překonání: 31.10.2025<br>Zbývá: 180 dní</span></td><td>11810</td><td>180</td><td>31.10.2025</td><td><span id="countdown-11" data-target-date="2025-10-31"></span></td></tr>
-  <tr><td>12</td><td class="tooltip"><span class="flag">🇨🇿</span>Chrustyn<span class="tooltip-text">Počet recenzí: 10638<br>Datum překonání: 02.10.2025<br>Zbývá: 151 dní</span></td><td>10638</td><td>151</td><td>02.10.2025</td><td><span id="countdown-12" data-target-date="2025-10-02"></span></td></tr>
-  <tr><td>13</td><td class="tooltip"><span class="flag">🇨🇿</span>Tommasi3<span class="tooltip-text">Počet recenzí: 9282<br>Datum překonání: 29.08.2025<br>Zbývá: 117 dní</span></td><td>9282</td><td>117</td><td>29.08.2025</td><td><span id="countdown-13" data-target-date="2025-08-29"></span></td></tr>
-  <tr><td>14</td><td class="tooltip"><span class="flag">🇨🇿</span>SOLOM.<span class="tooltip-text">Počet recenzí: 8965<br>Datum překonání: 21.08.2025<br>Zbývá: 109 dní</span></td><td>8965</td><td>109</td><td>21.08.2025</td><td><span id="countdown-14" data-target-date="2025-08-21"></span></td></tr>
-  <tr><td>15</td><td class="tooltip"><span class="flag">🇨🇿</span>Necrotongue<span class="tooltip-text">Počet recenzí: 8868<br>Datum překonání: 19.08.2025<br>Zbývá: 107 dní</span></td><td>8868</td><td>107</td><td>19.08.2025</td><td><span id="countdown-15" data-target-date="2025-08-19"></span></td></tr>
-  <tr><td>16</td><td class="tooltip"><span class="flag">🇨🇿</span>tranquill<span class="tooltip-text">Počet recenzí: 8832<br>Datum překonání: 18.08.2025<br>Zbývá: 106 dní</span></td><td>8832</td><td>106</td><td>18.08.2025</td><td><span id="countdown-16" data-target-date="2025-08-18"></span></td></tr>
-  <tr><td>17</td><td class="tooltip"><span class="flag">🇨🇿</span>honajz2<span class="tooltip-text">Počet recenzí: 8746<br>Datum překonání: 16.08.2025<br>Zbývá: 104 dní</span></td><td>8746</td><td>104</td><td>16.08.2025</td><td><span id="countdown-17" data-target-date="2025-08-16"></span></td></tr>
-  <tr><td>18</td><td class="tooltip"><span class="flag">🇨🇿</span>Houdini<span class="tooltip-text">Počet recenzí: 8727<br>Datum překonání: 15.08.2025<br>Zbývá: 103 dní</span></td><td>8727</td><td>103</td><td>15.08.2025</td><td><span id="countdown-18" data-target-date="2025-08-15"></span></td></tr>
-  <tr><td>19</td><td class="tooltip"><span class="flag">🇨🇿</span>LiVentura<span class="tooltip-text">Počet recenzí: 8612<br>Datum překonání: 12.08.2025<br>Zbývá: 100 dní</span></td><td>8612</td><td>100</td><td>12.08.2025</td><td><span id="countdown-19" data-target-date="2025-08-12"></span></td></tr>
-  <tr><td>20</td><td class="tooltip"><span class="flag">🇨🇿</span>ARI50<span class="tooltip-text">Počet recenzí: 8475<br>Datum překonání: 09.08.2025<br>Zbývá: 97 dní</span></td><td>8475</td><td>97</td><td>09.08.2025</td><td><span id="countdown-20" data-target-date="2025-08-09"></span></td></tr>
-  <tr><td>21</td><td class="tooltip"><span class="flag">🇨🇿</span>SeBig<span class="tooltip-text">Počet recenzí: 8349<br>Datum překonání: 06.08.2025<br>Zbývá: 94 dní</span></td><td>8349</td><td>94</td><td>06.08.2025</td><td><span id="countdown-21" data-target-date="2025-08-06"></span></td></tr>
-  <tr><td>22</td><td class="tooltip"><span class="flag">🇨🇿</span>Terva<span class="tooltip-text">Počet recenzí: 8222<br>Datum překonání: 03.08.2025<br>Zbývá: 91 dní</span></td><td>8222</td><td>91</td><td>03.08.2025</td><td><span id="countdown-22" data-target-date="2025-08-03"></span></td></tr>
-  <tr><td>23</td><td class="tooltip"><span class="flag">🇸🇰</span>Juto<span class="tooltip-text">Počet recenzí: 8207<br>Datum překonání: 02.08.2025<br>Zbývá: 90 dní</span></td><td>8207</td><td>90</td><td>02.08.2025</td><td><span id="countdown-23" data-target-date="2025-08-02"></span></td></tr>
-  <tr><td>24</td><td class="tooltip"><span class="flag">🇸🇰</span>majo25<span class="tooltip-text">Počet recenzí: 8099<br>Datum překonání: 31.07.2025<br>Zbývá: 88 dní</span></td><td>8099</td><td>88</td><td>31.07.2025</td><td><span id="countdown-24" data-target-date="2025-07-31"></span></td></tr>
-  <tr><td>25</td><td class="tooltip"><span class="flag">🇨🇿</span>Malarkey<span class="tooltip-text">Počet recenzí: 8002<br>Datum překonání: 28.07.2025<br>Zbývá: 85 dní</span></td><td>8002</td><td>85</td><td>28.07.2025</td><td><span id="countdown-25" data-target-date="2025-07-28"></span></td></tr>
-  <tr><td>26</td><td class="tooltip"><span class="flag">🇨🇿</span>ostravak30<span class="tooltip-text">Počet recenzí: 7989<br>Datum překonání: 27.07.2025<br>Zbývá: 84 dní</span></td><td>7989</td><td>84</td><td>27.07.2025</td><td><span id="countdown-26" data-target-date="2025-07-27"></span></td></tr>
-  <tr><td>27</td><td class="tooltip"><span class="flag">🇨🇿</span>castor<span class="tooltip-text">Počet recenzí: 7946<br>Datum překonání: 27.07.2025<br>Zbývá: 84 dní</span></td><td>7946</td><td>84</td><td>27.07.2025</td><td><span id="countdown-27" data-target-date="2025-07-27"></span></td></tr>
-  <tr><td>28</td><td class="tooltip"><span class="flag">🇨🇿</span>honajz<span class="tooltip-text">Počet recenzí: 7933<br>Datum překonání: 26.07.2025<br>Zbývá: 83 dní</span></td><td>7933</td><td>83</td><td>26.07.2025</td><td><span id="countdown-28" data-target-date="2025-07-26"></span></td></tr>
-  <tr><td>29</td><td class="tooltip"><span class="flag">🇨🇿</span>NinadeL<span class="tooltip-text">Počet recenzí: 7674<br>Datum překonání: 20.07.2025<br>Zbývá: 77 dní</span></td><td>7674</td><td>77</td><td>20.07.2025</td><td><span id="countdown-29" data-target-date="2025-07-20"></span></td></tr>
-  <tr><td>30</td><td class="tooltip"><span class="flag">🇨🇿</span>mira007<span class="tooltip-text">Počet recenzí: 7365<br>Datum překonání: 12.07.2025<br>Zbývá: 69 dní</span></td><td>7365</td><td>69</td><td>12.07.2025</td><td><span id="countdown-30" data-target-date="2025-07-12"></span></td></tr>
-  <tr><td>31</td><td class="tooltip"><span class="flag">🇸🇰</span>Autogram<span class="tooltip-text">Počet recenzí: 7303<br>Datum překonání: 11.07.2025<br>Zbývá: 68 dní</span></td><td>7303</td><td>68</td><td>11.07.2025</td><td><span id="countdown-31" data-target-date="2025-07-11"></span></td></tr>
-  <tr><td>32</td><td class="tooltip"><span class="flag">🇨🇿</span>Morholt<span class="tooltip-text">Počet recenzí: 7100<br>Datum překonání: 06.07.2025<br>Zbývá: 63 dní</span></td><td>7100</td><td>63</td><td>06.07.2025</td><td><span id="countdown-32" data-target-date="2025-07-06"></span></td></tr>
-  <tr><td>33</td><td class="tooltip"><span class="flag">🇸🇰</span>Lacike<span class="tooltip-text">Počet recenzí: 7079<br>Datum překonání: 05.07.2025<br>Zbývá: 62 dní</span></td><td>7079</td><td>62</td><td>05.07.2025</td><td><span id="countdown-33" data-target-date="2025-07-05"></span></td></tr>
-  <tr><td>34</td><td class="tooltip"><span class="flag">🇸🇰</span>MM_Ramone<span class="tooltip-text">Počet recenzí: 7031<br>Datum překonání: 04.07.2025<br>Zbývá: 61 dní</span></td><td>7031</td><td>61</td><td>04.07.2025</td><td><span id="countdown-34" data-target-date="2025-07-04"></span></td></tr>
-  <tr><td>35</td><td class="tooltip"><span class="flag">🇨🇿</span>Paity<span class="tooltip-text">Počet recenzí: 6928<br>Datum překonání: 01.07.2025<br>Zbývá: 58 dní</span></td><td>6928</td><td>58</td><td>01.07.2025</td><td><span id="countdown-35" data-target-date="2025-07-01"></span></td></tr>
-  <tr><td>36</td><td class="tooltip"><span class="flag">🇨🇿</span>M.i.k.e<span class="tooltip-text">Počet recenzí: 6846<br>Datum překonání: 29.06.2025<br>Zbývá: 56 dní</span></td><td>6846</td><td>56</td><td>29.06.2025</td><td><span id="countdown-36" data-target-date="2025-06-29"></span></td></tr>
-  <tr><td>37</td><td class="tooltip"><span class="flag">🇨🇿</span>Hapretor<span class="tooltip-text">Počet recenzí: 6667<br>Datum překonání: 25.06.2025<br>Zbývá: 52 dní</span></td><td>6667</td><td>52</td><td>25.06.2025</td><td><span id="countdown-37" data-target-date="2025-06-25"></span></td></tr>
-  <tr><td>38</td><td class="tooltip"><span class="flag">🇸🇰</span>tron<span class="tooltip-text">Počet recenzí: 6603<br>Datum překonání: 23.06.2025<br>Zbývá: 50 dní</span></td><td>6603</td><td>50</td><td>23.06.2025</td><td><span id="countdown-38" data-target-date="2025-06-23"></span></td></tr>
-  <tr><td>39</td><td class="tooltip"><span class="flag">🇸🇰</span>Flego<span class="tooltip-text">Počet recenzí: 6521<br>Datum překonání: 21.06.2025<br>Zbývá: 48 dní</span></td><td>6521</td><td>48</td><td>21.06.2025</td><td><span id="countdown-39" data-target-date="2025-06-21"></span></td></tr>
-  <tr><td>40</td><td class="tooltip"><span class="flag">🇻🇺</span>Jara.Cimrman.jr<span class="tooltip-text">Počet recenzí: 6500<br>Datum překonání: 21.06.2025<br>Zbývá: 48 dní</span></td><td>6500</td><td>48</td><td>21.06.2025</td><td><span id="countdown-40" data-target-date="2025-06-21"></span></td></tr>
-  <tr><td>41</td><td class="tooltip"><span class="flag">🇨🇿</span>MickeyStuma<span class="tooltip-text">Počet recenzí: 6349<br>Datum překonání: 17.06.2025<br>Zbývá: 44 dní</span></td><td>6349</td><td>44</td><td>17.06.2025</td><td><span id="countdown-41" data-target-date="2025-06-17"></span></td></tr>
-  <tr><td>42</td><td class="tooltip"><span class="flag">🇨🇿</span>Snorlax<span class="tooltip-text">Počet recenzí: 6174<br>Datum překonání: 12.06.2025<br>Zbývá: 39 dní</span></td><td>6174</td><td>39</td><td>12.06.2025</td><td><span id="countdown-42" data-target-date="2025-06-12"></span></td></tr>
-  <tr><td>43</td><td class="tooltip"><span class="flag">🇸🇰</span>Johnny.ARN<span class="tooltip-text">Počet recenzí: 6178<br>Datum překonání: 12.06.2025<br>Zbývá: 39 dní</span></td><td>6178</td><td>39</td><td>12.06.2025</td><td><span id="countdown-43" data-target-date="2025-06-12"></span></td></tr>
-  <tr><td>44</td><td class="tooltip"><span class="flag">🇨🇿</span>Pitryx<span class="tooltip-text">Počet recenzí: 6102<br>Datum překonání: 11.06.2025<br>Zbývá: 38 dní</span></td><td>6102</td><td>38</td><td>11.06.2025</td><td><span id="countdown-44" data-target-date="2025-06-11"></span></td></tr>
-  <tr><td>45</td><td class="tooltip"><span class="flag">🇸🇰</span>nessbeal<span class="tooltip-text">Počet recenzí: 6082<br>Datum překonání: 10.06.2025<br>Zbývá: 37 dní</span></td><td>6082</td><td>37</td><td>10.06.2025</td><td><span id="countdown-45" data-target-date="2025-06-10"></span></td></tr>
-  <tr><td>46</td><td class="tooltip"><span class="flag">🇨🇿</span>kingik<span class="tooltip-text">Počet recenzí: 6059<br>Datum překonání: 10.06.2025<br>Zbývá: 37 dní</span></td><td>6059</td><td>37</td><td>10.06.2025</td><td><span id="countdown-46" data-target-date="2025-06-10"></span></td></tr>
-  <tr><td>47</td><td class="tooltip"><span class="flag">🇸🇧</span>*CARNIFEX*<span class="tooltip-text">Počet recenzí: 6008<br>Datum překonání: 08.06.2025<br>Zbývá: 35 dní</span></td><td>6008</td><td>35</td><td>08.06.2025</td><td><span id="countdown-47" data-target-date="2025-06-08"></span></td></tr>
-  <tr><td>48</td><td class="tooltip"><span class="flag">🇨🇿</span>darkrobyk<span class="tooltip-text">Počet recenzí: 5971<br>Datum překonání: 07.06.2025<br>Zbývá: 34 dní</span></td><td>5971</td><td>34</td><td>07.06.2025</td><td><span id="countdown-48" data-target-date="2025-06-07"></span></td></tr>
-  <tr><td>49</td><td class="tooltip"><span class="flag">🇨🇿</span>vitekpe<span class="tooltip-text">Počet recenzí: 5908<br>Datum překonání: 06.06.2025<br>Zbývá: 33 dní</span></td><td>5908</td><td>33</td><td>06.06.2025</td><td><span id="countdown-49" data-target-date="2025-06-06"></span></td></tr>
-  <tr><td>50</td><td class="tooltip"><span class="flag">🇨🇿</span>Teachman<span class="tooltip-text">Počet recenzí: 5921<br>Datum překonání: 06.06.2025<br>Zbývá: 33 dní</span></td><td>5921</td><td>33</td><td>06.06.2025</td><td><span id="countdown-50" data-target-date="2025-06-06"></span></td></tr>
-  <tr><td>51</td><td class="tooltip"><span class="flag">🇨🇿</span>JohnSmith<span class="tooltip-text">Počet recenzí: 5908<br>Datum překonání: 06.06.2025<br>Zbývá: 33 dní</span></td><td>5908</td><td>33</td><td>06.06.2025</td><td><span id="countdown-51" data-target-date="2025-06-06"></span></td></tr>
-  <tr><td>52</td><td class="tooltip"><span class="flag">🇨🇿</span>slunicko2<span class="tooltip-text">Počet recenzí: 5775<br>Datum překonání: 02.06.2025<br>Zbývá: 29 dní</span></td><td>5775</td><td>29</td><td>02.06.2025</td><td><span id="countdown-52" data-target-date="2025-06-02"></span></td></tr>
-  <tr><td>53</td><td class="tooltip"><span class="flag">🇨🇿</span>otík<span class="tooltip-text">Počet recenzí: 5771<br>Datum překonání: 02.06.2025<br>Zbývá: 29 dní</span></td><td>5771</td><td>29</td><td>02.06.2025</td><td><span id="countdown-53" data-target-date="2025-06-02"></span></td></tr>
-  <tr><td>54</td><td class="tooltip"><span class="flag">🇨🇿</span>Frajer42<span class="tooltip-text">Počet recenzí: 5763<br>Datum překonání: 02.06.2025<br>Zbývá: 29 dní</span></td><td>5763</td><td>29</td><td>02.06.2025</td><td><span id="countdown-54" data-target-date="2025-06-02"></span></td></tr>
-  <tr><td>55</td><td class="tooltip"><span class="flag">🇸🇰</span>Trevor<span class="tooltip-text">Počet recenzí: 5753<br>Datum překonání: 02.06.2025<br>Zbývá: 29 dní</span></td><td>5753</td><td>29</td><td>02.06.2025</td><td><span id="countdown-55" data-target-date="2025-06-02"></span></td></tr>
-  <tr><td>56</td><td class="tooltip"><span class="flag">🇨🇿</span>zette<span class="tooltip-text">Počet recenzí: 5715<br>Datum překonání: 01.06.2025<br>Zbývá: 28 dní</span></td><td>5715</td><td>28</td><td>01.06.2025</td><td><span id="countdown-56" data-target-date="2025-06-01"></span></td></tr>
-  <tr><td>57</td><td class="tooltip"><span class="flag">🇨🇿</span>Enšpígl<span class="tooltip-text">Počet recenzí: 5524<br>Datum překonání: 27.05.2025<br>Zbývá: 23 dní</span></td><td>5524</td><td>23</td><td>27.05.2025</td><td><span id="countdown-57" data-target-date="2025-05-27"></span></td></tr>
-  <tr><td>58</td><td class="tooltip"><span class="flag">🇪🇪</span>d-fens<span class="tooltip-text">Počet recenzí: 5410<br>Datum překonání: 24.05.2025<br>Zbývá: 20 dní</span></td><td>5410</td><td>20</td><td>24.05.2025</td><td><span id="countdown-58" data-target-date="2025-05-24"></span></td></tr>
-  <tr><td>59</td><td class="tooltip"><span class="flag">🇨🇿</span>C0r0ner<span class="tooltip-text">Počet recenzí: 5373<br>Datum překonání: 23.05.2025<br>Zbývá: 19 dní</span></td><td>5373</td><td>19</td><td>23.05.2025</td><td><span id="countdown-59" data-target-date="2025-05-23"></span></td></tr>
-  <tr><td>60</td><td class="tooltip"><span class="flag">🇸🇰</span>misterz<span class="tooltip-text">Počet recenzí: 5322<br>Datum překonání: 22.05.2025<br>Zbývá: 18 dní</span></td><td>5322</td><td>18</td><td>22.05.2025</td><td><span id="countdown-60" data-target-date="2025-05-22"></span></td></tr>
-  <tr><td>61</td><td class="tooltip"><span class="flag">🇨🇿</span>ghatos<span class="tooltip-text">Počet recenzí: 5257<br>Datum překonání: 20.05.2025<br>Zbývá: 16 dní</span></td><td>5257</td><td>16</td><td>20.05.2025</td><td><span id="countdown-61" data-target-date="2025-05-20"></span></td></tr>
-  <tr><td>62</td><td class="tooltip"><span class="flag">🇸🇰</span>iXtr3m3<span class="tooltip-text">Počet recenzí: 5241<br>Datum překonání: 20.05.2025<br>Zbývá: 16 dní</span></td><td>5241</td><td>16</td><td>20.05.2025</td><td><span id="countdown-62" data-target-date="2025-05-20"></span></td></tr>
-  <tr><td>63</td><td class="tooltip"><span class="flag">🇸🇰</span>ScarPoul<span class="tooltip-text">Počet recenzí: 5185<br>Datum překonání: 19.05.2025<br>Zbývá: 15 dní</span></td><td>5185</td><td>15</td><td>19.05.2025</td><td><span id="countdown-63" data-target-date="2025-05-19"></span></td></tr>
-  <tr><td>64</td><td class="tooltip"><span class="flag">🇨🇿</span>Gilmour93<span class="tooltip-text">Počet recenzí: 5186<br>Datum překonání: 19.05.2025<br>Zbývá: 15 dní</span></td><td>5186</td><td>15</td><td>19.05.2025</td><td><span id="countdown-64" data-target-date="2025-05-19"></span></td></tr>
-  <tr><td>65</td><td class="tooltip"><span class="flag">🇨🇿</span>Likan7<span class="tooltip-text">Počet recenzí: 5135<br>Datum překonání: 17.05.2025<br>Zbývá: 13 dní</span></td><td>5135</td><td>13</td><td>17.05.2025</td><td><span id="countdown-65" data-target-date="2025-05-17"></span></td></tr>
-  <tr><td>66</td><td class="tooltip"><span class="flag">🇨🇿</span>Slarque<span class="tooltip-text">Počet recenzí: 5036<br>Datum překonání: 15.05.2025<br>Zbývá: 11 dní</span></td><td>5036</td><td>11</td><td>15.05.2025</td><td><span id="countdown-66" data-target-date="2025-05-15"></span></td></tr>
-  <tr><td>67</td><td class="tooltip"><span class="flag">🇨🇿</span>KajusaK<span class="tooltip-text">Počet recenzí: 4963<br>Datum překonání: 13.05.2025<br>Zbývá: 9 dní</span></td><td>4963</td><td>9</td><td>13.05.2025</td><td><span id="countdown-67" data-target-date="2025-05-13"></span></td></tr>
-  <tr><td>68</td><td class="tooltip"><span class="flag">🇨🇿</span>eraserhead666<span class="tooltip-text">Počet recenzí: 4951<br>Datum překonání: 13.05.2025<br>Zbývá: 9 dní</span></td><td>4951</td><td>9</td><td>13.05.2025</td><td><span id="countdown-68" data-target-date="2025-05-13"></span></td></tr>
-  <tr><td>69</td><td class="tooltip"><span class="flag">🇸🇰</span>warrenuR<span class="tooltip-text">Počet recenzí: 4948<br>Datum překonání: 13.05.2025<br>Zbývá: 9 dní</span></td><td>4948</td><td>9</td><td>13.05.2025</td><td><span id="countdown-69" data-target-date="2025-05-13"></span></td></tr>
-  <tr><td>70</td><td class="tooltip"><span class="flag">🇨🇿</span>Xmilden<span class="tooltip-text">Počet recenzí: 4933<br>Datum překonání: 12.05.2025<br>Zbývá: 8 dní</span></td><td>4933</td><td>8</td><td>12.05.2025</td><td><span id="countdown-70" data-target-date="2025-05-12"></span></td></tr>
-  <tr><td>71</td><td class="tooltip"><span class="flag">🇬🇷</span>dopitak<span class="tooltip-text">Počet recenzí: 4919<br>Datum překonání: 12.05.2025<br>Zbývá: 8 dní</span></td><td>4919</td><td>8</td><td>12.05.2025</td><td><span id="countdown-71" data-target-date="2025-05-12"></span></td></tr>
-  <tr><td>72</td><td class="tooltip"><span class="flag">🇨🇿</span>blackrain<span class="tooltip-text">Počet recenzí: 4881<br>Datum překonání: 11.05.2025<br>Zbývá: 7 dní</span></td><td>4881</td><td>7</td><td>11.05.2025</td><td><span id="countdown-72" data-target-date="2025-05-11"></span></td></tr>
-  <tr><td>73</td><td class="tooltip"><span class="flag">🇨🇿</span>pornogrind<span class="tooltip-text">Počet recenzí: 4877<br>Datum překonání: 11.05.2025<br>Zbývá: 7 dní</span></td><td>4877</td><td>7</td><td>11.05.2025</td><td><span id="countdown-73" data-target-date="2025-05-11"></span></td></tr>
-  <tr><td>74</td><td class="tooltip"><span class="flag">🇨🇿</span>xxmartinxx<span class="tooltip-text">Počet recenzí: 4842<br>Datum překonání: 10.05.2025<br>Zbývá: 6 dní</span></td><td>4842</td><td>6</td><td>10.05.2025</td><td><span id="countdown-74" data-target-date="2025-05-10"></span></td></tr>
-  <tr><td>75</td><td class="tooltip"><span class="flag">🇸🇰</span>brasek<span class="tooltip-text">Počet recenzí: 4805<br>Datum překonání: 09.05.2025<br>Zbývá: 5 dní</span></td><td>4805</td><td>5</td><td>09.05.2025</td><td><span id="countdown-75" data-target-date="2025-05-09"></span></td></tr>
-  <tr><td>76</td><td class="tooltip"><span class="flag">🇨🇿</span>Kimkong<span class="tooltip-text">Počet recenzí: 4780<br>Datum překonání: 08.05.2025<br>Zbývá: 4 dní</span></td><td>4780</td><td>4</td><td>08.05.2025</td><td><span id="countdown-76" data-target-date="2025-05-08"></span></td></tr>
-  <tr><td>77</td><td class="tooltip"><span class="flag">🇸🇰</span>BOURQUE<span class="tooltip-text">Počet recenzí: 4750<br>Datum překonání: 08.05.2025<br>Zbývá: 4 dní</span></td><td>4750</td><td>4</td><td>08.05.2025</td><td><span id="countdown-77" data-target-date="2025-05-08"></span></td></tr>
-  <tr><td>78</td><td class="tooltip"><span class="flag">🇨🇿</span>rakovnik<span class="tooltip-text">Počet recenzí: 4742<br>Datum překonání: 08.05.2025<br>Zbývá: 4 dní</span></td><td>4742</td><td>4</td><td>08.05.2025</td><td><span id="countdown-78" data-target-date="2025-05-08"></span></td></tr>
-  <tr><td>79</td><td class="tooltip"><span class="flag">🇨🇿</span>bohemia_regent<span class="tooltip-text">Počet recenzí: 4719<br>Datum překonání: 07.05.2025<br>Zbývá: 3 dní</span></td><td>4719</td><td>3</td><td>07.05.2025</td><td><span id="countdown-79" data-target-date="2025-05-07"></span></td></tr>
-  <tr><td>80</td><td class="tooltip"><span class="flag">🇨🇿</span>Hanys_<span class="tooltip-text">Počet recenzí: 4709<br>Datum překonání: 07.05.2025<br>Zbývá: 3 dní</span></td><td>4709</td><td>3</td><td>07.05.2025</td><td><span id="countdown-80" data-target-date="2025-05-07"></span></td></tr>
-  <tr><td>81</td><td class="tooltip"><span class="flag">🇨🇿</span>dr.fish<span class="tooltip-text">Počet recenzí: 4689<br>Datum překonání: 06.05.2025<br>Zbývá: 2 dní</span></td><td>4689</td><td>2</td><td>06.05.2025</td><td><span id="countdown-81" data-target-date="2025-05-06"></span></td></tr>
-  <tr><td>82</td><td class="tooltip"><span class="flag">🇨🇿</span>Fr<span class="tooltip-text">Počet recenzí: 4692<br>Datum překonání: 06.05.2025<br>Zbývá: 2 dní</span></td><td>4692</td><td>2</td><td>06.05.2025</td><td><span id="countdown-82" data-target-date="2025-05-06"></span></td></tr>
-  <tr><td>83</td><td class="tooltip"><span class="flag">🇨🇿</span>Wacoslav1<span class="tooltip-text">Počet recenzí: 4672<br>Datum překonání: 06.05.2025<br>Zbývá: 2 dní</span></td><td>4672</td><td>2</td><td>06.05.2025</td><td><span id="countdown-83" data-target-date="2025-05-06"></span></td></tr>
-  <tr><td>84</td><td class="tooltip"><span class="flag">🇨🇿</span>EvilPhoEniX<span class="tooltip-text">Počet recenzí: 4660<br>Datum překonání: 06.05.2025<br>Zbývá: 2 dní</span></td><td>4660</td><td>2</td><td>06.05.2025</td><td><span id="countdown-84" data-target-date="2025-05-06"></span></td></tr>
-  <tr><td>85</td><td class="tooltip"><span class="flag">🇨🇿</span>bourec<span class="tooltip-text">Počet recenzí: 4652<br>Datum překonání: 05.05.2025<br>Zbývá: 1 den</span></td><td>4652</td><td>1</td><td>05.05.2025</td><td><span id="countdown-85" data-target-date="2025-05-05"></span></td></tr>
-  <tr><td>86</td><td class="tooltip"><span class="flag">🇸🇰</span>Aljak<span class="tooltip-text">Počet recenzí: 4646<br>Datum překonání: 05.05.2025<br>Zbývá: 1 den</span></td><td>4646</td><td>1</td><td>05.05.2025</td><td><span id="countdown-86" data-target-date="2025-05-05"></span></td></tr>
-  <tr><td>87</td><td class="tooltip"><span class="flag">🇸🇰</span>Rathalos<span class="tooltip-text">Počet recenzí: 4644<br>Datum překonání: 05.05.2025<br>Zbývá: 1 den</span></td><td>4644</td><td>1</td><td>05.05.2025</td><td><span id="countdown-87" data-target-date="2025-05-05"></span></td></tr>
-  <tr><td>88</td><td class="tooltip"><span class="flag">🇸🇰</span>Radko<span class="tooltip-text">Počet recenzí: 4628<br>Datum překonání: 05.05.2025<br>Zbývá: 1 den</span></td><td>4628</td><td>1</td><td>05.05.2025</td><td><span id="countdown-88" data-target-date="2025-05-05"></span></td></tr>
-  <tr><td>89</td><td class="tooltip"><span class="flag">🇸🇰</span>blondboss<span class="tooltip-text">Počet recenzí: 4619<br>Datum překonání: 05.05.2025<br>Zbývá: 1 den</span></td><td>4619</td><td>1</td><td>05.05.2025</td><td><span id="countdown-89" data-target-date="2025-05-05"></span></td></tr>
+        <!-- Tu budú dynamicky vkladané riadky -->
       </tbody>
     </table>
   </div>
 
-  <!-- Výběr uživatele pro porovnání -->
-  <div id="customTargetContainer">
-    <label for="userSelect"><strong>Porovnat se s uživatelem:</strong></label>
-    <select id="userSelect" onchange="updateCustomProgress()">
-      <option value="">– Vyber uživatele –</option>
-    </select>
-    <div id="custom-progress-wrapper" style="display:none; margin-top: 15px;">
-      <p><span id="custom-progress-text"></span></p>
-      <div class="progress-bar-bg">
-        <div class="progress-bar-fill" id="custom-progress-bar"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Progress bar pro postup k 1. místu -->
-  <div id="progress-container">
-    <p><strong>Postup k 1. místu:</strong> <span id="progress-text"></span></p>
-    <div class="progress-bar-bg">
-      <div class="progress-bar-fill" id="progress-bar"></div>
-    </div>
-  </div>
-
-  <!-- Formulář pro fantomový náhled -->
-  <div id="phantomForm">
-    <h2>Simulace postupu PunisherEDNA</h2>
-    <label for="dailyReviews">Denní přírůstek recenzí:</label>
-    <input type="number" id="dailyReviews" min="1" value="40" placeholder="např. 50">
-    
-    <label for="simulationDays">Počet dní simulace:</label>
-    <input type="number" id="simulationDays" min="1" value="30" placeholder="např. 30">
-    
-    <label for="targetUser">Cílový uživatel (nepovinné):</label>
-    <select id="targetUser">
-      <option value="">– Vyber uživatele –</option>
-    </select>
-    
-    <button onclick="showPhantomRow()">Spustit simulaci</button>
-    <div id="phantomResult"></div>
-    <div id="phantom-progress-wrapper" style="display:none; margin-top: 15px;">
-      <p><span id="phantom-progress-text"></span></p>
-      <div class="progress-bar-bg">
-        <div class="progress-bar-fill" id="phantom-progress-bar"></div>
-      </div>
-    </div>
-  </div>
-
   <script>
-    // Filtrování tabulky
+    // Načítanie pevných dát (nahradené dynamickým načítaním pri API integrácii)
+    const data = [
+      { username: "corpSy", flag: "🇸🇰", reviews: 23872, daysToOvertake: 482, overtakeDate: "2026-08-29" },
+      { username: "T2", flag: "🇸🇰", reviews: 19983, daysToOvertake: 385, overtakeDate: "2026-05-24" },
+      // Pridajte ďalšie údaje podľa potreby
+    ];
+
+    // Vykreslenie tabulky
+    function renderTable() {
+      const tbody = document.querySelector("#reviewTable tbody");
+      tbody.innerHTML = "";
+      data.forEach((user, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${index + 1}</td>
+          <td class="tooltip"><span class="flag">${user.flag}</span>${user.username}<span class="tooltip-text">Počet recenzí: ${user.reviews}<br>Datum překonání: ${user.overtakeDate}<br>Zbývá: ${user.daysToOvertake} dní</span></td>
+          <td>${user.reviews}</td>
+          <td>${user.daysToOvertake}</td>
+          <td>${user.overtakeDate}</td>
+          <td><span id="countdown-${index + 1}" data-target-date="${user.overtakeDate}"></span></td>`;
+        tbody.appendChild(row);
+      });
+      updateAllCountdowns();
+    }
+
+    // Filtrovanie tabulky
     function filterTable() {
       const input = document.getElementById("searchInput").value.toLowerCase();
-      const rows = document.querySelectorAll("#reviewTable tbody tr:not(.phantom-row)");
+      const rows = document.querySelectorAll("#reviewTable tbody tr");
       rows.forEach(row => {
         const username = row.cells[1].textContent.toLowerCase();
         row.style.display = username.includes(input) ? "" : "none";
@@ -713,258 +409,52 @@ body.fixed-padding {
           row.classList.add("month-warning");
         }
 
-        const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
         const minutes = Math.floor((diff / (1000 * 60)) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
-        span.innerText = `${months}m ${days}d ${hours}h ${minutes}m ${seconds}s`;
+        span.innerText = `${days}d ${hours}h ${minutes}m`;
       });
     }
     setInterval(updateAllCountdowns, 1000);
 
-    // Výpočet aktuálních recenzí PunisherEDNA
-    const startDate = new Date("2025-05-04");
-    const initialReviews = 4665;
-    const dailyGain = 40;
-    const today = new Date();
-    const daysSinceStart = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
-    const currentPunisherReviews = initialReviews + daysSinceStart * dailyGain;
-
-    // Vložení PunisherEDNA do tabulky
-    const table = document.querySelector("#reviewTable tbody");
-    const rows = Array.from(table.rows);
-    let inserted = false;
-    let overtakenCount = 0;
-
-    for (let i = 0; i < rows.length; i++) {
-      const reviewCount = parseInt(rows[i].cells[2].textContent);
-      if (currentPunisherReviews >= reviewCount) {
-        overtakenCount++;
-        const newRow = table.insertRow(i);
-        newRow.classList.add("punisher-row");
-        newRow.innerHTML = `<td><span class="rank">${i + 1}</span></td><td><span class="tooltip"><a href="2012.html" target="_blank">PunisherEDNA</a><span class="tooltip-text">Počet recenzí: ${currentPunisherReviews}<br>Denní přírůstek: 40<br>Překonáno uživatelů: ${overtakenCount}</span></span></td><td>${currentPunisherReviews}</td><td>0</td><td>dnes</td><td>-</td>`;
-        inserted = true;
-        break;
-      }
-    }
-
-    if (!inserted) {
-      const newRow = table.insertRow();
-      newRow.classList.add("punisher-row");
-      newRow.innerHTML = `<td><span class="rank">${rows.length + 1}</span></td><td><span class="tooltip"><a href="2012.html" target="_blank">PunisherEDNA</a><span class="tooltip-text">Počet recenzí: ${currentPunisherReviews}<br>Denní přírůstek: 40<br>Překonáno uživatelů: ${overtakenCount}</span></span></td><td>${currentPunisherReviews}</td><td>0</td><td>dnes</td><td>-</td>`;
-    }
-
-    Array.from(table.rows).forEach((row, idx) => {
-      row.cells[0].textContent = idx + 1;
-    });
-
-    // Famtomový náhled postupu
-    function showPhantomRow() {
-      const existingPhantom = document.querySelector(".phantom-row");
-      if (existingPhantom) existingPhantom.remove();
-
-      const dailyReviews = parseInt(document.getElementById("dailyReviews").value);
-      const simulationDays = parseInt(document.getElementById("simulationDays").value);
-      const targetUser = document.getElementById("targetUser").value;
-
-      if (!dailyReviews || dailyReviews < 1) {
-        document.getElementById("phantomResult").innerText = "Zadej platný počet recenzí za den.";
-        return;
-      }
-      if (!simulationDays || simulationDays < 1) {
-        document.getElementById("phantomResult").innerText = "Zadej platný počet dní simulace.";
-        return;
-      }
-
-      const phantomReviews = currentPunisherReviews + dailyReviews * simulationDays;
-      let targetUserReviews = 23867;
-      let targetUserName = "corpSy";
-      let targetPosition = 1;
-
-      if (targetUser) {
-        const rows = Array.from(table.rows).filter(row => !row.classList.contains("phantom-row"));
-        for (let i = 0; i < rows.length; i++) {
-          const name = rows[i].cells[1].textContent.trim();
-          if (name === targetUser) {
-            targetUserReviews = parseInt(rows[i].cells[2].textContent);
-            targetUserName = name;
-            targetPosition = i + 1;
-            break;
-          }
-        }
-      }
-
-      const daysToTarget = Math.ceil((targetUserReviews - currentPunisherReviews) / dailyReviews);
-
-      let phantomPosition = 1;
-      let inserted = false;
-      const rowsFiltered = Array.from(table.rows).filter(row => !row.classList.contains("phantom-row"));
-      for (let i = 0; i < rowsFiltered.length; i++) {
-        const reviewCount = parseInt(rowsFiltered[i].cells[2].textContent);
-        if (phantomReviews >= reviewCount) {
-          const newRow = table.insertRow(i);
-          newRow.classList.add("phantom-row");
-          newRow.innerHTML = `<td><span class="rank">${i + 1}</span></td><td><span class="tooltip">PunisherEDNA (simulace)<span class="tooltip-text">Simulovaný počet recenzí: ${phantomReviews}<br>Denní přírůstek: ${dailyReviews}<br>Simulováno pro ${simulationDays} dní</span></span></td><td>${phantomReviews}</td><td>-</td><td>-</td><td>-</td>`;
-          inserted = true;
-          phantomPosition = i + 1;
-          break;
-        }
-      }
-
-      if (!inserted) {
-        const newRow = table.insertRow();
-        newRow.classList.add("phantom-row");
-        newRow.innerHTML = `<td><span class="rank">${rowsFiltered.length + 1}</span></td><td><span class="tooltip">PunisherEDNA (simulace)<span class="tooltip-text">Simulovaný počet recenzí: ${phantomReviews}<br>Denní přírůstek: ${dailyReviews}<br>Simulováno pro ${simulationDays} dní</span></span></td><td>${phantomReviews}</td><td>-</td><td>-</td><td>-</td>`;
-        phantomPosition = rowsFiltered.length + 1;
-      }
-
-      Array.from(table.rows).forEach((row, idx) => {
-        row.cells[0].textContent = idx + 1;
-      });
-
-      let resultText = `S ${dailyReviews} recenzemi denně bys za ${simulationDays} dní měl ${phantomReviews} recenzí a byl bys na ${phantomPosition}. místě.\n`;
-      if (phantomReviews >= targetUserReviews) {
-        resultText += `Už bys překonal ${targetUserName}!`;
-      } else {
-        resultText += `Překonáš ${targetUserName} (pozice ${targetPosition}) za ${daysToTarget} dní.`;
-      }
-      document.getElementById("phantomResult").innerText = resultText;
-
-      const percent = Math.min(100, ((phantomReviews / targetUserReviews) * 100).toFixed(2));
-      const remaining = targetUserReviews - phantomReviews;
-      const wrapper = document.getElementById("phantom-progress-wrapper");
-      const textEl = document.getElementById("phantom-progress-text");
-      const barEl = document.getElementById("phantom-progress-bar");
-
-      wrapper.style.display = "block";
-      if (remaining <= 0) {
-        textEl.textContent = `Překonal jsi ${targetUserName}!`;
-        textEl.style.color = "red";
-        textEl.style.fontWeight = "bold";
-        barEl.style.width = "100%";
-      } else {
-        textEl.textContent = `${phantomReviews} z ${targetUserReviews} recenzí (${percent} %) — zbývá ${remaining}`;
-        textEl.style.color = "";
-        textEl.style.fontWeight = "";
-        barEl.style.width = percent + "%";
-      }
-    }
-
-    // Aktualizace progress baru pro postup k 1. místu
-    function updateProgressBar() {
-      const punisher = currentPunisherReviews;
-      const topUser = 23867;
-      const remaining = topUser - punisher;
-      const percent = Math.min(100, ((punisher / topUser) * 100).toFixed(2));
-      document.getElementById("progress-text").textContent = `${punisher} z ${topUser} recenzí (${percent} %) — zbývá ${remaining}`;
-      document.getElementById("progress-bar").style.width = percent + "%";
-    }
-    updateProgressBar();
-
-    // Aktualizace progress baru pro porovnání
-    function updateCustomProgress() {
-      const select = document.getElementById("userSelect");
-      const selectedName = select.value;
-      const rows = document.querySelectorAll("#reviewTable tbody tr:not(.phantom-row)");
-      let targetReviews = null;
-
-      rows.forEach(row => {
-        const name = row.cells[1].textContent.trim();
-        if (name === selectedName) {
-          targetReviews = parseInt(row.cells[2].textContent);
-        }
-      });
-
-      if (!targetReviews) {
-        document.getElementById("custom-progress-wrapper").style.display = "none";
-        return;
-      }
-
-      const current = currentPunisherReviews;
-      const percent = Math.min(100, ((current / targetReviews) * 100).toFixed(2));
-      const remaining = targetReviews - current;
-      const wrapper = document.getElementById("custom-progress-wrapper");
-      const textEl = document.getElementById("custom-progress-text");
-      const barEl = document.getElementById("custom-progress-bar");
-
-      wrapper.style.display = "block";
-      if (remaining <= 0) {
-        textEl.textContent = "Uživatel překonán!";
-        textEl.style.color = "red";
-        textEl.style.fontWeight = "bold";
-        barEl.style.width = "100%";
-      } else {
-        textEl.textContent = `${current} z ${targetReviews} recenzí (${percent} %) — zbývá ${remaining}`;
-        textEl.style.color = "";
-        textEl.style.fontWeight = "";
-        barEl.style.width = percent + "%";
-      }
-    }
-
-    // Naplnění dropdownů
-    function fillUserDropdown() {
-      const select = document.getElementById("userSelect");
-      const targetSelect = document.getElementById("targetUser");
-      const rows = document.querySelectorAll("#reviewTable tbody tr:not(.phantom-row)");
-      rows.forEach(row => {
-        const name = row.cells[1].textContent.trim();
-        const option = document.createElement("option");
-        option.value = name;
-        option.textContent = name;
-        select.appendChild(option);
-        const targetOption = document.createElement("option");
-        targetOption.value = name;
-        targetOption.textContent = name;
-        targetSelect.appendChild(targetOption);
-      });
-    }
-
-    // Inicializace
-    document.addEventListener("DOMContentLoaded", () => {
-      fillUserDropdown();
-      updateAllCountdowns();
-    });
-    
-    document.querySelectorAll('#dropdown-menu a').forEach(link => {
-  link.addEventListener('click', () => {
-    document.getElementById('menu-toggle').classList.remove('active');
-    document.getElementById('dropdown-menu').classList.remove('show');
-  });
-});
-    
-    
+    // Toggle menu
     function toggleMenu() {
-  const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('dropdown-menu');
-  toggle.classList.toggle('active');
-  menu.classList.toggle('show');
-}
-    
-    
-    // Pridaj padding k telu kvôli fixnému menu
-window.addEventListener('DOMContentLoaded', () => {
-  document.body.classList.add('fixed-padding');
-});
+      const toggle = document.getElementById('menu-toggle');
+      const menu = document.getElementById('dropdown-menu');
+      toggle.classList.toggle('active');
+      menu.classList.toggle('show');
+    }
 
-// Tooltipy a menu sa skryjú pri scrollovaní
-window.addEventListener('scroll', () => {
-  // Skryť tooltipy
-  document.querySelectorAll('.tooltip .tooltip-text').forEach(el => {
-    el.style.visibility = 'hidden';
-    el.style.opacity = '0';
-  });
+    // Toggle search
+    function toggleSearch() {
+      const searchContainer = document.getElementById('search-container');
+      searchContainer.classList.toggle('show');
+    }
 
-  // Skryť menu, ak je otvorené
-  const menu = document.getElementById('dropdown-menu');
-  const toggle = document.getElementById('menu-toggle');
-  if (menu.classList.contains('show')) {
-    menu.classList.remove('show');
-    toggle.classList.remove('active');
-  }
-});
-    
-    
+    // Inicializácia
+    document.addEventListener("DOMContentLoaded", () => {
+      renderTable();
+      document.querySelectorAll('#dropdown-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          document.getElementById('menu-toggle').classList.remove('active');
+          document.getElementById('dropdown-menu').classList.remove('show');
+        });
+      });
+
+      // Skrytie menu a tooltipov pri scrollovaní
+      window.addEventListener('scroll', () => {
+        const menu = document.getElementById('dropdown-menu');
+        const toggle = document.getElementById('menu-toggle');
+        if (menu.classList.contains('show')) {
+          menu.classList.remove('show');
+          toggle.classList.remove('active');
+        }
+        document.querySelectorAll('.tooltip .tooltip-text').forEach(el => {
+          el.style.visibility = 'hidden';
+          el.style.opacity = '0';
+        });
+      });
+    });
   </script>
 </body>
 </html>
