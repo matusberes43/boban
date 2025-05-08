@@ -7,21 +7,19 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Žebříček recenzentů</title>
   <style>
-    /* CSS proměnné */
     :root {
-      --primary-color: #1b1b1b; /* Tmavá základná farba */
-      --accent-color: #2ecc71; /* Svieži zelený akcent */
-      --warning-color: #f39c12; /* Teplá oranžová pre varovanie */
-      --danger-color: #e74c3c; /* Červená pre urgentné */
-      --background-dark: #252525; /* Tmavší pozadie */
-      --text-light: #f0f0f0; /* Svetlý text */
-      --surface-dark: #2d2d2d; /* Tmavší povrch */
-      --border-dark: #3d3d3d; /* Jemné ohraničenie */
+      --primary-color: #1b1b1b;
+      --accent-color: #2ecc71;
+      --warning-color: #f39c12;
+      --danger-color: #e74c3c;
+      --background-dark: #252525;
+      --text-light: #f0f0f0;
+      --surface-dark: #2d2d2d;
+      --border-dark: #3d3d3d;
       --shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
       --transition: all 0.3s ease;
     }
 
-    /* Obecné štýly */
     html, body {
       margin: 0;
       padding: 0;
@@ -34,7 +32,6 @@
       user-select: none;
     }
 
-    /* Hlavný kontajner */
     #app-container {
       display: flex;
       flex-direction: column;
@@ -42,7 +39,6 @@
       overflow: hidden;
     }
 
-    /* Fixovaná hlavička */
     .fixed-header {
       display: flex;
       justify-content: space-between;
@@ -53,7 +49,6 @@
       z-index: 999;
     }
 
-    /* Hamburger menu */
     #menu-toggle {
       width: 1.5rem;
       height: 1rem;
@@ -83,7 +78,6 @@
       transform: rotate(-45deg) translateY(-7px);
     }
 
-    /* Rozbalovací menu */
     #dropdown-menu {
       position: absolute;
       top: 48px;
@@ -116,7 +110,6 @@
       background: rgba(255, 255, 255, 0.05);
     }
 
-    /* Moderná ikona lupy */
     .search-icon {
       width: 1.5rem;
       height: 1.5rem;
@@ -130,7 +123,6 @@
       transform: scale(1.1);
     }
 
-    /* Vyhledávací panel */
     #search-container {
       display: none;
       padding: 0.5rem;
@@ -159,7 +151,6 @@
       box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
     }
 
-    /* Legenda */
     .search-legend-container {
       display: flex;
       justify-content: center;
@@ -207,7 +198,6 @@
       100% { opacity: 1; }
     }
 
-    /* Zoznam užívateľov */
     .user-list {
       flex: 1;
       overflow-y: auto;
@@ -267,7 +257,6 @@
       animation: pulse 2.5s infinite;
     }
 
-    /* Spodná navigačná lišta */
     .bottom-nav {
       display: flex;
       justify-content: space-around;
@@ -295,7 +284,49 @@
       fill: var(--text-light);
     }
 
-    /* Responzívne úpravy */
+    /* Nový formulár pre simuláciu postupu */
+    .progress-form {
+      padding: 0.5rem;
+      background: var(--surface-dark);
+      border-top: 1px solid var(--border-dark);
+      margin-top: 0.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group label {
+      font-size: 0.75rem;
+      margin-bottom: 0.25rem;
+      color: var(--text-light);
+    }
+
+    .form-group input {
+      padding: 0.4rem;
+      font-size: 0.9rem;
+      border: 1px solid var(--border-dark);
+      border-radius: 4px;
+      background: var(--background-dark);
+      color: var(--text-light);
+      width: 100%;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+    }
+
+    #compareResult {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--accent-color);
+      text-align: center;
+    }
+
     @media (max-width: 480px) {
       .fixed-header {
         padding: 0.5rem;
@@ -324,6 +355,10 @@
 
       .user-stats {
         font-size: 0.7rem;
+      }
+
+      .form-group input {
+        font-size: 0.8rem;
       }
     }
   </style>
@@ -380,21 +415,39 @@
         <span>Nastavenia</span>
       </div>
     </div>
+
+    <div class="progress-form">
+      <div class="form-group">
+        <label for="days">Počet dní:</label>
+        <input type="number" id="days" min="0" value="0">
+      </div>
+      <div class="form-group">
+        <label for="dailyIncrease">Denný prírastok:</label>
+        <input type="number" id="dailyIncrease" min="0" value="0">
+      </div>
+      <div class="form-group">
+        <label for="oneTimeIncrease">Jednorazový prírastok:</label>
+        <input type="number" id="oneTimeIncrease" min="0" value="0">
+      </div>
+      <div class="form-group">
+        <label for="paceAfter">Tempo po prírastku:</label>
+        <input type="number" id="paceAfter" min="0" value="0">
+      </div>
+      <div id="compareResult"></div>
+    </div>
   </div>
 
   <script>
-    // Dáta
     const data = [
       { username: "corpSy", flag: "🇸🇰", reviews: 23872, daysToOvertake: 482, overtakeDate: "2026-08-29" },
       { username: "T2", flag: "🇸🇰", reviews: 19983, daysToOvertake: 385, overtakeDate: "2026-05-24" },
-      // Pridajte ďalšie údaje
+      { username: "PunisherEDNA", flag: "🇸🇰", reviews: 4665, daysToOvertake: 1000, overtakeDate: "2027-01-01" },
     ];
 
-    // Vykreslenie zoznamu
     function renderList() {
       const userList = document.getElementById("userList");
       userList.innerHTML = "";
-      data.forEach((user, index) => {
+      data.sort((a, b) => b.reviews - a.reviews).forEach((user, index) => {
         const card = document.createElement("div");
         card.className = `user-card ${user.daysToOvertake <= 30 ? 'month-warning' : ''}`;
         card.innerHTML = `
@@ -409,9 +462,9 @@
         userList.appendChild(card);
       });
       updateAllCountdowns();
+      updateComparison();
     }
 
-    // Filtrovanie zoznamu
     function filterList() {
       const input = document.getElementById("searchInput").value.toLowerCase();
       const cards = document.querySelectorAll(".user-card");
@@ -421,7 +474,6 @@
       });
     }
 
-    // Odpočet
     function updateAllCountdowns() {
       document.querySelectorAll("[id^=countdown]").forEach(span => {
         const targetDate = span.dataset.targetDate;
@@ -453,7 +505,6 @@
     }
     setInterval(updateAllCountdowns, 1000);
 
-    // Toggle menu
     function toggleMenu() {
       const toggle = document.getElementById('menu-toggle');
       const menu = document.getElementById('dropdown-menu');
@@ -461,13 +512,39 @@
       menu.classList.toggle('show');
     }
 
-    // Toggle search
     function toggleSearch() {
       const searchContainer = document.getElementById('search-container');
       searchContainer.classList.toggle('show');
     }
 
-    // Inicializácia
+    function updateComparison() {
+      const days = parseInt(document.getElementById("days").value) || 0;
+      const dailyIncrease = parseInt(document.getElementById("dailyIncrease").value) || 0;
+      const oneTimeIncrease = parseInt(document.getElementById("oneTimeIncrease").value) || 0;
+      const paceAfter = parseInt(document.getElementById("paceAfter").value) || 0;
+      const currentUser = data.find(u => u.username === "PunisherEDNA");
+      const leader = data[0]; // Prvý užívateľ v zoradenom zozname
+
+      if (!currentUser || !leader) return;
+
+      let currentReviews = currentUser.reviews;
+      currentReviews += oneTimeIncrease; // Pridanie jednorazového prírastku
+      currentReviews += days * dailyIncrease; // Pridanie denných prírastkov
+      currentReviews += Math.floor(days / 2) * paceAfter; // Tempo po prírastku (zjednodušené)
+
+      const daysToOvertake = Math.ceil((leader.reviews - currentReviews) / dailyIncrease);
+      const result = document.getElementById("compareResult");
+      if (daysToOvertake <= 0) {
+        result.textContent = `Gratulujem! Už si překonal ${leader.username} s ${currentReviews} recenzemi!`;
+      } else {
+        result.textContent = `K překonání ${leader.username} (${leader.reviews} recenzí) ti chybí ${daysToOvertake} dní při aktuálním tempu.`;
+      }
+    }
+
+    document.querySelectorAll(".progress-form input").forEach(input => {
+      input.addEventListener("input", updateComparison);
+    });
+
     document.addEventListener("DOMContentLoaded", () => {
       renderList();
       document.querySelectorAll('#dropdown-menu a').forEach(link => {
