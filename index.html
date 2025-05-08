@@ -1,125 +1,263 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mobilná hlavička</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Žebříček recenzentů</title>
   <style>
-    body {
-      margin: 0;
-      background-color: #000;
-      font-family: sans-serif;
+    :root {
+      --primary: #1e3a8a;
+      --background: #0f172a;
+      --surface: #1e293b;
+      --text: #f8fafc;
+      --danger: #f56565;
+      --shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
 
-    .mobile-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-      background-color: #000;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      padding-top: 70px;
+    }
+
+    .fixed-header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 1000;
+      background: var(--surface);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 999;
+      box-shadow: var(--shadow);
     }
 
-    .hamburger {
+    #menu-toggle {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 4px;
       cursor: pointer;
     }
 
-    .hamburger span {
-      width: 24px;
+    #menu-toggle div {
+      width: 25px;
       height: 3px;
-      background-color: white;
-      border-radius: 2px;
+      background: var(--text);
     }
 
-    .center-box {
-      width: 16px;
-      height: 16px;
-      background-color: #facc15;
-      border-radius: 3px;
-      animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
-    .search-icon {
-      background-color: #222;
-      border-radius: 50%;
-      padding: 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    #search-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--text);
       cursor: pointer;
     }
 
-    .search-icon svg {
-      stroke: white;
+    #dropdown-menu {
+      position: absolute;
+      top: 60px;
+      left: 1rem;
+      background: var(--surface);
+      border-radius: 8px;
+      display: none;
+      flex-direction: column;
+      width: 200px;
+      box-shadow: var(--shadow);
+    }
+
+    #dropdown-menu.show {
+      display: flex;
+    }
+
+    #dropdown-menu a {
+      color: var(--text);
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+    }
+
+    #dropdown-menu a:hover {
+      background: rgba(255,255,255,0.1);
     }
 
     #search-box {
       display: none;
       padding: 1rem;
-      background-color: #111;
+      background: var(--surface);
       text-align: center;
     }
 
-    #search-box input {
+    #search-box.show {
+      display: block;
+    }
+
+    #searchInput {
       padding: 0.5rem;
       border-radius: 5px;
       border: none;
       width: 80%;
-      max-width: 300px;
-      font-size: 1rem;
+      background: #334155;
+      color: white;
+    }
+
+    table {
+      width: 90%;
+      margin: 1rem auto;
+      border-collapse: collapse;
+      background: var(--surface);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 0.75rem;
+      border-bottom: 1px solid #334155;
+      text-align: center;
+    }
+
+    thead {
+      background: var(--primary);
+    }
+
+    .progress-bar-bg {
+      width: 90%;
+      height: 20px;
+      background: #334155;
+      border-radius: 10px;
+      margin: 1rem auto;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--danger);
+      width: 0;
+      transition: width 0.4s ease;
+    }
+
+    @media (max-width: 600px) {
+      table {
+        font-size: 0.8rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="mobile-header">
-    <!-- Hamburger -->
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-    <!-- Center blinking box -->
-    <div class="center-box"></div>
-
-    <!-- Search icon -->
-    <div class="search-icon" onclick="toggleSearch()">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
-           viewBox="0 0 24 24" stroke-width="2">
-        <circle cx="11" cy="11" r="8" stroke="white"/>
-        <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="white"/>
-      </svg>
-    </div>
+<div class="fixed-header">
+  <div id="menu-toggle" onclick="toggleMenu()">
+    <div></div><div></div><div></div>
   </div>
-
-  <!-- Hidden search input -->
-  <div id="search-box">
-    <input type="text" placeholder="Hľadaj používateľa...">
+  <div id="search-icon" onclick="toggleSearch()">
+    <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
   </div>
+</div>
 
-  <script>
-    function toggleSearch() {
-      const box = document.getElementById('search-box');
-      box.style.display = (box.style.display === 'block') ? 'none' : 'block';
+<div id="dropdown-menu">
+  <a href="#">PunisherEDNA</a>
+  <a href="#">Žebříček ČSFD</a>
+  <a href="#">Trollové</a>
+</div>
+
+<div id="search-box">
+  <input type="text" id="searchInput" placeholder="Hledej uživatele..." onkeyup="filterTable()">
+</div>
+
+<table id="reviewTable">
+  <thead>
+    <tr>
+      <th>Pořadí</th>
+      <th>Uživatel</th>
+      <th>Recenzí</th>
+      <th>Odpočet</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>corpSy</td>
+      <td>23872</td>
+      <td><span id="countdown-1" data-target-date="2026-08-29"></span></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>PunisherEDNA</td>
+      <td>4805</td>
+      <td><span id="countdown-2" data-target-date="2025-05-09"></span></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="progress-bar-bg">
+  <div class="progress-bar-fill" id="progress-bar"></div>
+</div>
+<p id="progress-text" style="text-align:center"></p>
+
+<script>
+function toggleMenu() {
+  document.getElementById('dropdown-menu').classList.toggle('show');
+}
+
+function toggleSearch() {
+  document.getElementById('search-box').classList.toggle('show');
+  if (document.getElementById('search-box').classList.contains('show')) {
+    document.getElementById('searchInput').focus();
+  }
+}
+
+function filterTable() {
+  const input = document.getElementById("searchInput").value.toLowerCase();
+  const rows = document.querySelectorAll("#reviewTable tbody tr");
+  rows.forEach(row => {
+    const user = row.cells[1].textContent.toLowerCase();
+    row.style.display = user.includes(input) ? "" : "none";
+  });
+}
+
+function updateAllCountdowns() {
+  document.querySelectorAll("[id^=countdown]").forEach(span => {
+    const targetDate = span.dataset.targetDate;
+    if (!targetDate) return;
+    const now = new Date();
+    const future = new Date(targetDate);
+    const diff = future - now;
+
+    if (diff <= 0) {
+      span.innerText = "Překonán!";
+      span.style.color = "var(--danger)";
+      return;
     }
 
-    function toggleMenu() {
-      alert('Menu toggle (tu pridaj vlastné zobrazenie menu)');
-    }
-  </script>
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((diff / (1000 * 60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+
+    span.innerText = `${d}d ${h}h ${m}m ${s}s`;
+  });
+}
+setInterval(updateAllCountdowns, 1000);
+
+function updateProgressBar() {
+  const punisher = 4805;
+  const top = 23872;
+  const percent = Math.min(100, (punisher / top * 100).toFixed(2));
+  const remaining = top - punisher;
+  document.getElementById("progress-bar").style.width = percent + "%";
+  document.getElementById("progress-text").textContent =
+    `${punisher} z ${top} recenzí (${percent} %) — zbývá ${remaining}`;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateAllCountdowns();
+  updateProgressBar();
+});
+</script>
 
 </body>
 </html>
