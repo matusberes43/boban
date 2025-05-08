@@ -2,183 +2,544 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Žebříček recenzentů</title>
   <style>
+    /* CSS proměnné */
     :root {
-      --primary: #1e3a8a;
-      --background: #0f172a;
-      --surface: #1e293b;
-      --text: #f8fafc;
-      --danger: #f56565;
-      --shadow: 0 2px 4px rgba(0,0,0,0.3);
+      --primary-color: #1e3a8a; /* Tmavomodrá pre hlavičku */
+      --secondary-color: #48bb78;
+      --danger-color: #f56565;
+      --warning-color: #f6ad55;
+      --background-dark: #0f172a; /* Tmavšie pozadie */
+      --text-dark: #f8fafc; /* Svetlý text */
+      --surface-dark: #1e293b; /* Pozadie riadkov */
+      --border-dark: #334155; /* Jemné ohraničenie */
+      --shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      --transition: all 0.3s ease;
     }
 
+    /* Obecné štýly */
     body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background-dark);
+      color: var(--text-dark);
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--background);
-      color: var(--text);
-      padding-top: 70px;
+      padding: 2rem;
+      line-height: 1.6;
     }
 
-    .fixed-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: var(--surface);
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 999;
-      box-shadow: var(--shadow);
-    }
-
-    #menu-toggle {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      cursor: pointer;
-    }
-
-    #menu-toggle div {
-      width: 25px;
-      height: 3px;
-      background: var(--text);
-    }
-
-    #search-icon svg {
-      width: 24px;
-      height: 24px;
-      stroke: var(--text);
-      cursor: pointer;
-    }
-
-    #dropdown-menu {
-      position: absolute;
-      top: 60px;
-      left: 1rem;
-      background: var(--surface);
-      border-radius: 8px;
-      display: none;
-      flex-direction: column;
-      width: 200px;
-      box-shadow: var(--shadow);
-    }
-
-    #dropdown-menu.show {
-      display: flex;
-    }
-
-    #dropdown-menu a {
-      color: var(--text);
-      padding: 0.75rem 1rem;
-      text-decoration: none;
-    }
-
-    #dropdown-menu a:hover {
-      background: rgba(255,255,255,0.1);
-    }
-
-    #search-box {
-      display: none;
-      padding: 1rem;
-      background: var(--surface);
+    /* Nadpisy */
+    h1 {
       text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--text-dark);
     }
 
-    #search-box.show {
-      display: block;
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
     }
 
+    /* Kontejner pre vyhľadávanie a legendu */
+    .search-legend-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      background: var(--surface-dark);
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    /* Vstupné pole */
     #searchInput {
-      padding: 0.5rem;
-      border-radius: 5px;
-      border: none;
-      width: 80%;
-      background: #334155;
-      color: white;
+      padding: 0.75rem;
+      font-size: 1rem;
+      width: 100%;
+      max-width: 20rem;
+      border: 1px solid var(--border-dark);
+      border-radius: 8px;
+      background: var(--surface-dark);
+      color: var(--text-dark);
+      transition: var(--transition);
+    }
+
+    #searchInput:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2);
+    }
+
+    /* Legenda */
+    .legend {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .legend-square {
+      width: 1rem;
+      height: 1rem;
+      border-radius: 4px;
+    }
+
+    .legend-square.month-warning {
+      animation: softPulseMonth 2.5s ease-in-out infinite;
+    }
+
+    /* Tabulka */
+    .table-wrapper {
+      width: 100%;
+      max-width: 80rem;
+      margin: 0 auto;
+      overflow-x: auto;
     }
 
     table {
-      width: 90%;
-      margin: 1rem auto;
-      border-collapse: collapse;
-      background: var(--surface);
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: var(--surface-dark);
       border-radius: 8px;
       overflow: hidden;
     }
 
     th, td {
-      padding: 0.75rem;
-      border-bottom: 1px solid #334155;
-      text-align: center;
-    }
+  text-align: center;
+  font-size: 0.95rem;
+  border-bottom: 1px solid var(--border-dark);
+  height: 48px; /* Jednotná výška riadkov */
+}
+
+/* Oddělený styl pro hlavičku tabulky */
+th {
+  padding-top: 1.2rem;
+  padding-bottom: 0.3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Oddělený styl pro běžné buňky */
+td {
+  padding: 0.75rem 1rem;
+}
 
     thead {
-      background: var(--primary);
+      background: var(--primary-color);
+      color: #ffffff;
+    }
+
+    th {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    tr:last-child td {
+      border-bottom: none; /* Odstránenie spodného ohraničenia posledného riadku */
+    }
+
+    tr {
+      transition: background-color 0.3s ease;
+    }
+
+    tr:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .rank {
+      display: inline-block;
+      width: 30px;
+      text-align: center;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    .punisher-row {
+      background: linear-gradient(90deg, #ca8a04, #facc15); /* Žltá pre PunisherEDNA */
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .phantom-row {
+      background: rgba(148, 163, 184, 0.2);
+      font-style: italic;
+      opacity: 0.8;
+      border: 1px dashed #94a3b8;
+    }
+
+    /* Urgentní odpočet */
+    .urgent-countdown {
+      color: var(--danger-color);
+      font-weight: 700;
+    }
+
+    /* Animace pro varování */
+    @keyframes softPulseMonth {
+      0%, 100% { background-color: transparent; }
+      50% { background-color: rgba(246, 173, 85, 0.3); }
+    }
+
+    .month-warning {
+      animation: softPulseMonth 2.5s ease-in-out infinite;
+    }
+
+    /* Tooltip */
+    .tooltip {
+      position: relative;
+    }
+
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      width: 14rem;
+      background: var(--surface-dark);
+      color: var(--text-dark);
+      text-align: left;
+      padding: 0.75rem;
+      border-radius: 8px;
+      position: absolute;
+      z-index: 10;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+    }
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(-50%) translateY(-5px);
+    }
+
+    .tooltip-text::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: var(--surface-dark) transparent transparent transparent;
+    }
+
+    /* Progress bar */
+    #progress-container,
+    #customTargetContainer,
+    #phantomForm {
+      width: 100%;
+      max-width: 40rem;
+      margin: 2rem auto;
+      text-align: center;
+      background: var(--surface-dark);
+      padding: 1rem;
+      border-radius: 8px;
     }
 
     .progress-bar-bg {
-      width: 90%;
-      height: 20px;
-      background: #334155;
-      border-radius: 10px;
-      margin: 1rem auto;
+      background: var(--border-dark);
+      border-radius: 1rem;
+      height: 1.5rem;
       overflow: hidden;
+      margin-top: 0.5rem;
     }
 
     .progress-bar-fill {
       height: 100%;
-      background: var(--danger);
       width: 0;
-      transition: width 0.4s ease;
+      background: linear-gradient(90deg, var(--secondary-color), #81e6d9);
+      text-align: right;
+      color: #1e293b;
+      font-weight: 600;
+      padding-right: 0.5rem;
+      line-height: 1.5rem;
+      transition: width 1s ease-in-out;
     }
 
-    @media (max-width: 600px) {
-      table {
+    /* Formulář */
+    #phantomForm {
+      padding: 1.5rem;
+    }
+
+    #phantomForm label {
+      display: block;
+      margin: 0.75rem 0 0.25rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+    }
+
+    #phantomForm input,
+    #phantomForm select {
+      padding: 0.75rem;
+      font-size: 1rem;
+      width: 100%;
+      max-width: 15rem;
+      border: 1px solid var(--border-dark);
+      border-radius: 8px;
+      background: var(--surface-dark);
+      color: var(--text-dark);
+      transition: var(--transition);
+    }
+
+    #phantomForm input:focus,
+    #phantomForm select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2);
+    }
+
+    #phantomForm button {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      background: var(--primary-color);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    #phantomForm button:hover {
+      background: #1e40af;
+    }
+
+    #phantomResult {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: var(--text-dark);
+    }
+
+    /* Responzivní design */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      .search-legend-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      #searchInput {
+        max-width: 100%;
+      }
+
+      .legend {
+        justify-content: center;
+      }
+
+      .tooltip .tooltip-text {
+        width: 12rem;
+        font-size: 0.875rem;
+      }
+
+      #phantomForm input,
+      #phantomForm select {
+        max-width: 100%;
+      }
+
+      th, td {
+        padding: 0.75rem;
+        font-size: 0.875rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      th, td {
+        padding: 0.5rem;
         font-size: 0.8rem;
       }
     }
+
+    /* Animace při načítání tabulky */
+    @keyframes slideIn {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    tr {
+      animation: slideIn 0.5s ease forwards;
+      animation-delay: calc(var(--row-index) * 0.05s);
+    }
+    
+    
+    
+/* Styl pro hamburger menu */
+#menu-toggle {
+  position: relative; /* Aby neprekryval iné prvky */
+  margin-bottom: 1rem;
+  width: 1.75rem;
+  height: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 100;
+}
+
+#menu-toggle .bar {
+  height: 4px;
+  width: 100%;
+  background-color: var(--text-dark);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+#menu-toggle.active .top {
+  transform: rotate(45deg) translateY(8px);
+}
+
+#menu-toggle.active .middle {
+  opacity: 0;
+}
+
+#menu-toggle.active .bottom {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* Rozbalovací menu */
+#dropdown-menu {
+  position: relative;
+  background: var(--surface-dark);
+  border: 1px solid var(--border-dark);
+  border-radius: 8px;
+  padding: 0.5rem 0;
+  box-shadow: var(--shadow);
+  z-index: 99;
+  transition: var(--transition);
+  display: none;
+  margin-bottom: 1.5rem;
+}
+
+#dropdown-menu a.menu-item {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+#dropdown-menu a.menu-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+#dropdown-menu.show {
+  display: block;
+}
+
+/* Responzivní doladění */
+@media (max-width: 768px) {
+  #menu-toggle {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  #dropdown-menu {
+    width: 100%;
+  }
+}
+    
+    
+    .fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--background-dark);
+  z-index: 999;
+  padding: 1rem 2rem;
+  box-shadow: var(--shadow);
+}
+
+body.fixed-padding {
+  padding-top: 160px; /* výška fixného bloku */
+}
+    
+    
   </style>
 </head>
 <body>
-
-<div class="fixed-header">
+  
+  <div class="fixed-header">
+  <!-- Stylové hamburger menu -->
   <div id="menu-toggle" onclick="toggleMenu()">
-    <div></div><div></div><div></div>
+    <div class="bar top"></div>
+    <div class="bar middle"></div>
+    <div class="bar bottom"></div>
   </div>
-  <div id="search-icon" onclick="toggleSearch()">
-    <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="11" cy="11" r="8"></circle>
-      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-    </svg>
+
+  <!-- Navigační menu -->
+  <div id="dropdown-menu" class="hidden">
+    <a href="2012.html" target="_blank" class="menu-item">PunisherEDNA</a>
+    <a href="#" class="menu-item">Žebříček ČSFD</a>
+      <a href="trollove.html" target="_blank" class="menu-item">Trollové</a>
+  </div>
+
+  <!-- Vyhledávání a legenda -->
+  <div class="search-legend-container">
+    <input type="text" id="searchInput" placeholder="Hledej uživatele..." onkeyup="filterTable()">
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-square" style="background-color: #f56565;"></div>
+        <span>Překonání do 24 hodin</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-square month-warning"></div>
+        <span>Překonání do 1 měsíce</span>
+      </div>
+    </div>
   </div>
 </div>
+  
+  </div>
 
-<div id="dropdown-menu">
-  <a href="#">PunisherEDNA</a>
-  <a href="#">Žebříček ČSFD</a>
-  <a href="#">Trollové</a>
-</div>
-
-<div id="search-box">
-  <input type="text" id="searchInput" placeholder="Hledej uživatele..." onkeyup="filterTable()">
-</div>
-
-<table id="reviewTable">
-  <thead>
-    <tr>
-      <th>Pořadí</th>
-      <th>Uživatel</th>
-      <th>Recenzí</th>
-      <th>Odpočet</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>1</td><td class="tooltip"><span class="flag">🇸🇰</span>corpSy 🥇<span class="tooltip-text">Počet recenzí: 23872<br>Datum překonání: 29.08.2026<br>Zbývá: 482 dní</span></td><td>23872</td><td>482</td><td>29.08.2026</td><td><span id="countdown-1" data-target-date="2026-08-29"></span></td></tr>
+  <div class="table-wrapper">
+    <table id="reviewTable">
+      <thead>
+        <tr>
+          <th scope="col">Pořadí</th>
+          <th scope="col">Uživatel</th>
+          <th scope="col">Počet recenzí</th>
+          <th scope="col">Dní do překonání</th>
+          <th scope="col">Datum překonání</th>
+          <th scope="col">Odpočet</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr><td>1</td><td class="tooltip"><span class="flag">🇸🇰</span>corpSy 🥇<span class="tooltip-text">Počet recenzí: 23872<br>Datum překonání: 29.08.2026<br>Zbývá: 482 dní</span></td><td>23872</td><td>482</td><td>29.08.2026</td><td><span id="countdown-1" data-target-date="2026-08-29"></span></td></tr>
   <tr><td>2</td><td class="tooltip"><span class="flag"> 🇸🇰 </span>T2 🥈<span class="tooltip-text">Počet recenzí: 19983<br>Datum překonání: 24.05.2026<br>Zbývá: 385 dní</span></td><td>19983</td><td>385</td><td>24.05.2026</td><td><span id="countdown-2" data-target-date="2026-05-24"></span></td></tr>
   <tr><td>3</td><td class="tooltip"><span class="flag"> 🇨🇿</span>Marze 🥉<span class="tooltip-text">Počet recenzí: 19026<br>Datum překonání: 30.04.2026<br>Zbývá: 361 dní</span></td><td>19026</td><td>361</td><td>30.04.2026</td><td><span id="countdown-3" data-target-date="2026-04-30"></span></td></tr>
   <tr><td>4</td><td class="tooltip"><span class="flag"> 🇨🇿</span>rivah<span class="tooltip-text">Počet recenzí: 19044<br>Datum překonání: 12.04.2026<br>Zbývá: 343 dní</span></td><td>19044</td><td>343</td><td>12.04.2026</td><td><span id="countdown-4" data-target-date="2026-04-12"></span></td></tr>
@@ -267,74 +628,343 @@
   <tr><td>87</td><td class="tooltip"><span class="flag">🇸🇰</span>Rathalos<span class="tooltip-text">Počet recenzí: 4644<br>Datum překonání: 05.05.2025<br>Zbývá: 1 den</span></td><td>4644</td><td>1</td><td>05.05.2025</td><td><span id="countdown-87" data-target-date="2025-05-05"></span></td></tr>
   <tr><td>88</td><td class="tooltip"><span class="flag">🇸🇰</span>Radko<span class="tooltip-text">Počet recenzí: 4628<br>Datum překonání: 05.05.2025<br>Zbývá: 1 den</span></td><td>4628</td><td>1</td><td>05.05.2025</td><td><span id="countdown-88" data-target-date="2025-05-05"></span></td></tr>
   <tr><td>89</td><td class="tooltip"><span class="flag">🇸🇰</span>blondboss<span class="tooltip-text">Počet recenzí: 4619<br>Datum překonání: 05.05.2025<br>Zbývá: 1 den</span></td><td>4619</td><td>1</td><td>05.05.2025</td><td><span id="countdown-89" data-target-date="2025-05-05"></span></td></tr>
-  </tbody>
-</table>
+      </tbody>
+    </table>
+  </div>
 
-<div class="progress-bar-bg">
-  <div class="progress-bar-fill" id="progress-bar"></div>
-</div>
-<p id="progress-text" style="text-align:center"></p>
+  <!-- Výběr uživatele pro porovnání -->
+  <div id="customTargetContainer">
+    <label for="userSelect"><strong>Porovnat se s uživatelem:</strong></label>
+    <select id="userSelect" onchange="updateCustomProgress()">
+      <option value="">– Vyber uživatele –</option>
+    </select>
+    <div id="custom-progress-wrapper" style="display:none; margin-top: 15px;">
+      <p><span id="custom-progress-text"></span></p>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="custom-progress-bar"></div>
+      </div>
+    </div>
+  </div>
 
-<script>
-function toggleMenu() {
-  document.getElementById('dropdown-menu').classList.toggle('show');
-}
+  <!-- Progress bar pro postup k 1. místu -->
+  <div id="progress-container">
+    <p><strong>Postup k 1. místu:</strong> <span id="progress-text"></span></p>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progress-bar"></div>
+    </div>
+  </div>
 
-function toggleSearch() {
-  document.getElementById('search-box').classList.toggle('show');
-  if (document.getElementById('search-box').classList.contains('show')) {
-    document.getElementById('searchInput').focus();
-  }
-}
+  <!-- Formulář pro fantomový náhled -->
+  <div id="phantomForm">
+    <h2>Simulace postupu PunisherEDNA</h2>
+    <label for="dailyReviews">Denní přírůstek recenzí:</label>
+    <input type="number" id="dailyReviews" min="1" value="40" placeholder="např. 50">
+    
+    <label for="simulationDays">Počet dní simulace:</label>
+    <input type="number" id="simulationDays" min="1" value="30" placeholder="např. 30">
+    
+    <label for="targetUser">Cílový uživatel (nepovinné):</label>
+    <select id="targetUser">
+      <option value="">– Vyber uživatele –</option>
+    </select>
+    
+    <button onclick="showPhantomRow()">Spustit simulaci</button>
+    <div id="phantomResult"></div>
+    <div id="phantom-progress-wrapper" style="display:none; margin-top: 15px;">
+      <p><span id="phantom-progress-text"></span></p>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="phantom-progress-bar"></div>
+      </div>
+    </div>
+  </div>
 
-function filterTable() {
-  const input = document.getElementById("searchInput").value.toLowerCase();
-  const rows = document.querySelectorAll("#reviewTable tbody tr");
-  rows.forEach(row => {
-    const user = row.cells[1].textContent.toLowerCase();
-    row.style.display = user.includes(input) ? "" : "none";
-  });
-}
-
-function updateAllCountdowns() {
-  document.querySelectorAll("[id^=countdown]").forEach(span => {
-    const targetDate = span.dataset.targetDate;
-    if (!targetDate) return;
-    const now = new Date();
-    const future = new Date(targetDate);
-    const diff = future - now;
-
-    if (diff <= 0) {
-      span.innerText = "Překonán!";
-      span.style.color = "var(--danger)";
-      return;
+  <script>
+    // Filtrování tabulky
+    function filterTable() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const rows = document.querySelectorAll("#reviewTable tbody tr:not(.phantom-row)");
+      rows.forEach(row => {
+        const username = row.cells[1].textContent.toLowerCase();
+        row.style.display = username.includes(input) ? "" : "none";
+      });
     }
 
-    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const m = Math.floor((diff / (1000 * 60)) % 60);
-    const s = Math.floor((diff / 1000) % 60);
+    // Odpočet
+    function updateAllCountdowns() {
+      document.querySelectorAll("[id^=countdown]").forEach(span => {
+        const targetDate = span.dataset.targetDate;
+        const target = new Date(targetDate);
+        const now = new Date();
+        const diff = target - now;
+        const row = span.closest("tr");
 
-    span.innerText = `${d}d ${h}h ${m}m ${s}s`;
+        row.classList.remove("month-warning");
+        span.classList.remove("urgent-countdown", "prekonan");
+
+        if (diff <= 0) {
+          span.innerText = "Překonán!";
+          span.classList.add("prekonan");
+          return;
+        }
+
+        if (diff <= 24 * 60 * 60 * 1000) {
+          span.classList.add("urgent-countdown");
+        } else if (diff <= 30 * 24 * 60 * 60 * 1000) {
+          row.classList.add("month-warning");
+        }
+
+        const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+        span.innerText = `${months}m ${days}d ${hours}h ${minutes}m ${seconds}s`;
+      });
+    }
+    setInterval(updateAllCountdowns, 1000);
+
+    // Výpočet aktuálních recenzí PunisherEDNA
+    const startDate = new Date("2025-05-04");
+    const initialReviews = 4665;
+    const dailyGain = 40;
+    const today = new Date();
+    const daysSinceStart = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+    const currentPunisherReviews = initialReviews + daysSinceStart * dailyGain;
+
+    // Vložení PunisherEDNA do tabulky
+    const table = document.querySelector("#reviewTable tbody");
+    const rows = Array.from(table.rows);
+    let inserted = false;
+    let overtakenCount = 0;
+
+    for (let i = 0; i < rows.length; i++) {
+      const reviewCount = parseInt(rows[i].cells[2].textContent);
+      if (currentPunisherReviews >= reviewCount) {
+        overtakenCount++;
+        const newRow = table.insertRow(i);
+        newRow.classList.add("punisher-row");
+        newRow.innerHTML = `<td><span class="rank">${i + 1}</span></td><td><span class="tooltip"><a href="2012.html" target="_blank">PunisherEDNA</a><span class="tooltip-text">Počet recenzí: ${currentPunisherReviews}<br>Denní přírůstek: 40<br>Překonáno uživatelů: ${overtakenCount}</span></span></td><td>${currentPunisherReviews}</td><td>0</td><td>dnes</td><td>-</td>`;
+        inserted = true;
+        break;
+      }
+    }
+
+    if (!inserted) {
+      const newRow = table.insertRow();
+      newRow.classList.add("punisher-row");
+      newRow.innerHTML = `<td><span class="rank">${rows.length + 1}</span></td><td><span class="tooltip"><a href="2012.html" target="_blank">PunisherEDNA</a><span class="tooltip-text">Počet recenzí: ${currentPunisherReviews}<br>Denní přírůstek: 40<br>Překonáno uživatelů: ${overtakenCount}</span></span></td><td>${currentPunisherReviews}</td><td>0</td><td>dnes</td><td>-</td>`;
+    }
+
+    Array.from(table.rows).forEach((row, idx) => {
+      row.cells[0].textContent = idx + 1;
+    });
+
+    // Famtomový náhled postupu
+    function showPhantomRow() {
+      const existingPhantom = document.querySelector(".phantom-row");
+      if (existingPhantom) existingPhantom.remove();
+
+      const dailyReviews = parseInt(document.getElementById("dailyReviews").value);
+      const simulationDays = parseInt(document.getElementById("simulationDays").value);
+      const targetUser = document.getElementById("targetUser").value;
+
+      if (!dailyReviews || dailyReviews < 1) {
+        document.getElementById("phantomResult").innerText = "Zadej platný počet recenzí za den.";
+        return;
+      }
+      if (!simulationDays || simulationDays < 1) {
+        document.getElementById("phantomResult").innerText = "Zadej platný počet dní simulace.";
+        return;
+      }
+
+      const phantomReviews = currentPunisherReviews + dailyReviews * simulationDays;
+      let targetUserReviews = 23867;
+      let targetUserName = "corpSy";
+      let targetPosition = 1;
+
+      if (targetUser) {
+        const rows = Array.from(table.rows).filter(row => !row.classList.contains("phantom-row"));
+        for (let i = 0; i < rows.length; i++) {
+          const name = rows[i].cells[1].textContent.trim();
+          if (name === targetUser) {
+            targetUserReviews = parseInt(rows[i].cells[2].textContent);
+            targetUserName = name;
+            targetPosition = i + 1;
+            break;
+          }
+        }
+      }
+
+      const daysToTarget = Math.ceil((targetUserReviews - currentPunisherReviews) / dailyReviews);
+
+      let phantomPosition = 1;
+      let inserted = false;
+      const rowsFiltered = Array.from(table.rows).filter(row => !row.classList.contains("phantom-row"));
+      for (let i = 0; i < rowsFiltered.length; i++) {
+        const reviewCount = parseInt(rowsFiltered[i].cells[2].textContent);
+        if (phantomReviews >= reviewCount) {
+          const newRow = table.insertRow(i);
+          newRow.classList.add("phantom-row");
+          newRow.innerHTML = `<td><span class="rank">${i + 1}</span></td><td><span class="tooltip">PunisherEDNA (simulace)<span class="tooltip-text">Simulovaný počet recenzí: ${phantomReviews}<br>Denní přírůstek: ${dailyReviews}<br>Simulováno pro ${simulationDays} dní</span></span></td><td>${phantomReviews}</td><td>-</td><td>-</td><td>-</td>`;
+          inserted = true;
+          phantomPosition = i + 1;
+          break;
+        }
+      }
+
+      if (!inserted) {
+        const newRow = table.insertRow();
+        newRow.classList.add("phantom-row");
+        newRow.innerHTML = `<td><span class="rank">${rowsFiltered.length + 1}</span></td><td><span class="tooltip">PunisherEDNA (simulace)<span class="tooltip-text">Simulovaný počet recenzí: ${phantomReviews}<br>Denní přírůstek: ${dailyReviews}<br>Simulováno pro ${simulationDays} dní</span></span></td><td>${phantomReviews}</td><td>-</td><td>-</td><td>-</td>`;
+        phantomPosition = rowsFiltered.length + 1;
+      }
+
+      Array.from(table.rows).forEach((row, idx) => {
+        row.cells[0].textContent = idx + 1;
+      });
+
+      let resultText = `S ${dailyReviews} recenzemi denně bys za ${simulationDays} dní měl ${phantomReviews} recenzí a byl bys na ${phantomPosition}. místě.\n`;
+      if (phantomReviews >= targetUserReviews) {
+        resultText += `Už bys překonal ${targetUserName}!`;
+      } else {
+        resultText += `Překonáš ${targetUserName} (pozice ${targetPosition}) za ${daysToTarget} dní.`;
+      }
+      document.getElementById("phantomResult").innerText = resultText;
+
+      const percent = Math.min(100, ((phantomReviews / targetUserReviews) * 100).toFixed(2));
+      const remaining = targetUserReviews - phantomReviews;
+      const wrapper = document.getElementById("phantom-progress-wrapper");
+      const textEl = document.getElementById("phantom-progress-text");
+      const barEl = document.getElementById("phantom-progress-bar");
+
+      wrapper.style.display = "block";
+      if (remaining <= 0) {
+        textEl.textContent = `Překonal jsi ${targetUserName}!`;
+        textEl.style.color = "red";
+        textEl.style.fontWeight = "bold";
+        barEl.style.width = "100%";
+      } else {
+        textEl.textContent = `${phantomReviews} z ${targetUserReviews} recenzí (${percent} %) — zbývá ${remaining}`;
+        textEl.style.color = "";
+        textEl.style.fontWeight = "";
+        barEl.style.width = percent + "%";
+      }
+    }
+
+    // Aktualizace progress baru pro postup k 1. místu
+    function updateProgressBar() {
+      const punisher = currentPunisherReviews;
+      const topUser = 23867;
+      const remaining = topUser - punisher;
+      const percent = Math.min(100, ((punisher / topUser) * 100).toFixed(2));
+      document.getElementById("progress-text").textContent = `${punisher} z ${topUser} recenzí (${percent} %) — zbývá ${remaining}`;
+      document.getElementById("progress-bar").style.width = percent + "%";
+    }
+    updateProgressBar();
+
+    // Aktualizace progress baru pro porovnání
+    function updateCustomProgress() {
+      const select = document.getElementById("userSelect");
+      const selectedName = select.value;
+      const rows = document.querySelectorAll("#reviewTable tbody tr:not(.phantom-row)");
+      let targetReviews = null;
+
+      rows.forEach(row => {
+        const name = row.cells[1].textContent.trim();
+        if (name === selectedName) {
+          targetReviews = parseInt(row.cells[2].textContent);
+        }
+      });
+
+      if (!targetReviews) {
+        document.getElementById("custom-progress-wrapper").style.display = "none";
+        return;
+      }
+
+      const current = currentPunisherReviews;
+      const percent = Math.min(100, ((current / targetReviews) * 100).toFixed(2));
+      const remaining = targetReviews - current;
+      const wrapper = document.getElementById("custom-progress-wrapper");
+      const textEl = document.getElementById("custom-progress-text");
+      const barEl = document.getElementById("custom-progress-bar");
+
+      wrapper.style.display = "block";
+      if (remaining <= 0) {
+        textEl.textContent = "Uživatel překonán!";
+        textEl.style.color = "red";
+        textEl.style.fontWeight = "bold";
+        barEl.style.width = "100%";
+      } else {
+        textEl.textContent = `${current} z ${targetReviews} recenzí (${percent} %) — zbývá ${remaining}`;
+        textEl.style.color = "";
+        textEl.style.fontWeight = "";
+        barEl.style.width = percent + "%";
+      }
+    }
+
+    // Naplnění dropdownů
+    function fillUserDropdown() {
+      const select = document.getElementById("userSelect");
+      const targetSelect = document.getElementById("targetUser");
+      const rows = document.querySelectorAll("#reviewTable tbody tr:not(.phantom-row)");
+      rows.forEach(row => {
+        const name = row.cells[1].textContent.trim();
+        const option = document.createElement("option");
+        option.value = name;
+        option.textContent = name;
+        select.appendChild(option);
+        const targetOption = document.createElement("option");
+        targetOption.value = name;
+        targetOption.textContent = name;
+        targetSelect.appendChild(targetOption);
+      });
+    }
+
+    // Inicializace
+    document.addEventListener("DOMContentLoaded", () => {
+      fillUserDropdown();
+      updateAllCountdowns();
+    });
+    
+    document.querySelectorAll('#dropdown-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('menu-toggle').classList.remove('active');
+    document.getElementById('dropdown-menu').classList.remove('show');
   });
-}
-setInterval(updateAllCountdowns, 1000);
-
-function updateProgressBar() {
-  const punisher = 4805;
-  const top = 23872;
-  const percent = Math.min(100, (punisher / top * 100).toFixed(2));
-  const remaining = top - punisher;
-  document.getElementById("progress-bar").style.width = percent + "%";
-  document.getElementById("progress-text").textContent =
-    `${punisher} z ${top} recenzí (${percent} %) — zbývá ${remaining}`;
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  updateAllCountdowns();
-  updateProgressBar();
 });
-</script>
+    
+    
+    function toggleMenu() {
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('dropdown-menu');
+  toggle.classList.toggle('active');
+  menu.classList.toggle('show');
+}
+    
+    
+    // Pridaj padding k telu kvôli fixnému menu
+window.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.add('fixed-padding');
+});
 
+// Tooltipy a menu sa skryjú pri scrollovaní
+window.addEventListener('scroll', () => {
+  // Skryť tooltipy
+  document.querySelectorAll('.tooltip .tooltip-text').forEach(el => {
+    el.style.visibility = 'hidden';
+    el.style.opacity = '0';
+  });
+
+  // Skryť menu, ak je otvorené
+  const menu = document.getElementById('dropdown-menu');
+  const toggle = document.getElementById('menu-toggle');
+  if (menu.classList.contains('show')) {
+    menu.classList.remove('show');
+    toggle.classList.remove('active');
+  }
+});
+    
+    
+  </script>
 </body>
 </html>
