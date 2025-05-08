@@ -2,6 +2,13 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
+    <div id="search-icon" onclick="toggleSearch()">
+  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+    <circle cx="11" cy="11" r="8"></circle>
+    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+</div>
   <title>Žebříček recenzentů</title>
   <style>
     
@@ -285,6 +292,11 @@ body.fixed-padding {
   }
 }
     
+    #search-icon {
+  margin-left: 1rem;
+  cursor: pointer;
+  color: var(--text-dark);
+}
   </style>
 </head>
 <body>
@@ -306,7 +318,9 @@ body.fixed-padding {
 
   <!-- Vyhledávání a legenda -->
   <div class="search-legend-container">
-    <input type="text" id="searchInput" placeholder="Hledej uživatele..." onkeyup="filterTable()">
+   <div id="search-box" style="display: none;">
+  <input type="text" id="searchInput" placeholder="Hledej uživatele..." onkeyup="filterTable()">
+</div>
     <div class="legend">
       <div class="legend-item">
         <div class="legend-square" style="background-color: #f56565;"></div>
@@ -750,7 +764,15 @@ window.addEventListener('scroll', () => {
   }
 });
     
-    
+    function toggleSearch() {
+  const searchBox = document.getElementById('search-box');
+  if (searchBox.style.display === 'none' || !searchBox.style.display) {
+    searchBox.style.display = 'block';
+    document.getElementById('searchInput').focus();
+  } else {
+    searchBox.style.display = 'none';
+  }
+}
   </script>
 </body>
 </html>
