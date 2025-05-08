@@ -42,9 +42,9 @@
       position: sticky;
       top: 0;
       display: flex;
-      justify-content: center; /* Ikona lupy v strede */
+      justify-content: space-between; /* Vyvážené rozloženie */
       align-items: center;
-      padding: 0.5rem;
+      padding: 0.5rem 1rem;
       background: var(--surface-dark);
       border-bottom: 1px solid var(--border-dark);
       z-index: 999;
@@ -57,8 +57,6 @@
       flex-direction: column;
       justify-content: space-between;
       cursor: pointer;
-      position: absolute;
-      left: 0.5rem; /* Hamburger naľavo */
     }
 
     #menu-toggle .bar {
@@ -120,6 +118,7 @@
       background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23f0f0f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>') no-repeat center;
       background-size: contain;
       transition: transform 0.3s ease;
+      margin-left: 1rem; /* Posun od kraja */
     }
 
     .search-icon:hover {
@@ -365,11 +364,11 @@
       <div class="legend">
         <div class="legend-item">
           <div class="legend-square danger"></div>
-          <span>Překonání do 24 hodin</span>
+          <span>Překročení do 24 hodin</span>
         </div>
         <div class="legend-item">
           <div class="legend-square warning"></div>
-          <span>Překonání do 1 měsíce</span>
+          <span>Překročení do 1 měsíce</span>
         </div>
       </div>
     </div>
@@ -384,11 +383,11 @@
         <input type="number" id="days" min="0" value="0">
       </div>
       <div class="form-group">
-        <label for="dailyReviews">Recenzie denne:</label>
+        <label for="dailyReviews">Recenze denně:</label>
         <input type="number" id="dailyReviews" min="0" value="0">
       </div>
       <div class="form-group">
-        <label for="extraReviews">Extra recenzie (jednorazový prírastok):</label>
+        <label for="extraReviews">Extra recenze (jednorázový přírůstek):</label>
         <input type="number" id="extraReviews" min="0" value="0">
       </div>
       <div id="simulationResult"></div>
@@ -444,7 +443,7 @@
         span.classList.remove("urgent-countdown", "prekonan");
 
         if (diff <= 0) {
-          span.innerText = "Překonán!";
+          span.innerText = "Překročen!";
           span.classList.add("prekonan");
           return;
         }
@@ -491,11 +490,11 @@
       const existingPhantom = document.querySelector(".phantom-card");
       if (existingPhantom) existingPhantom.remove();
 
-      // Vyhľadanie pozície v tabuľke
-      let position = sortedData.findIndex(user => user.reviews < projectedReviews) + 1;
-      if (position === 0) position = sortedData.length + 1; // Ak je na prvom mieste
+      // Vyhľadanie správnej pozície pre fantóma
+      let insertIndex = sortedData.findIndex(user => user.reviews < projectedReviews);
+      if (insertIndex === -1) insertIndex = sortedData.length; // Ak je na prvej pozícii
 
-      // Pridanie fantómového zobrazenia
+      // Vytvorenie a vloženie fantómového zobrazenia na správne miesto
       const phantomCard = document.createElement("div");
       phantomCard.className = "user-card phantom-card";
       phantomCard.innerHTML = `
@@ -505,13 +504,18 @@
         </div>
         <div class="user-stats">
           <div class="reviews">${projectedReviews}</div>
-          <div class="countdown">Odhad po ${days} dňoch</div>
+          <div class="countdown">Odhad po ${days} dnech</div>
         </div>`;
-      userList.appendChild(phantomCard);
+      if (insertIndex < sortedData.length) {
+        userList.insertBefore(phantomCard, userList.children[insertIndex]);
+      } else {
+        userList.appendChild(phantomCard);
+      }
 
-      // Výsledok simulácie
+      // Výsledok simulace
       const result = document.getElementById("simulationResult");
-      result.textContent = `Za ${days} dní s tempom ${dailyReviews} recenzií denne a ${extraReviews} extra recenziami budeš mať ${projectedReviews} recenzií a umiestniš sa na ${position}. mieste.`;
+      const position = insertIndex + 1;
+      result.textContent = `Za ${days} dní s tempem ${dailyReviews} recenzí denně a ${extraReviews} extra recenzemi budeš mít ${projectedReviews} recenzí a umístíš se na ${position}. místě.`;
     }
 
     document.querySelectorAll(".progress-form input").forEach(input => {
