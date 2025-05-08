@@ -4,74 +4,6 @@
   <meta charset="UTF-8">
   <title>Žebříček recenzentů</title>
   <style>
-    .top-alert {
-  background: linear-gradient(90deg, #1e3a8a, #2dd4bf);
-  padding: 1rem;
-  text-align: center;
-  color: white;
-  font-weight: bold;
-  font-size: 0.95rem;
-}
-
-.legend-inline {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.pulse-red {
-  background-color: #f56565;
-  animation: softPulseRed 2s infinite;
-}
-
-.pulse-orange {
-  background-color: #f6ad55;
-  animation: softPulseOrange 2.5s infinite;
-}
-
-@keyframes softPulseRed {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-@keyframes softPulseOrange {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-.mobile-header {
-  background-color: #000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-}
-
-.search-icon {
-  font-size: 1.5rem;
-  color: white;
-  cursor: pointer;
-}
-
-/* Vyhledávání pod headerem */
-.hidden-search {
-  display: none;
-  padding: 1rem;
-  background-color: var(--surface-dark);
-  text-align: center;
-}
-
-.hidden-search input {
-  width: 100%;
-  max-width: 20rem;
-  padding: 0.75rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-dark);
-  background: var(--surface-dark);
-  color: var(--text-dark);
-}
-    
     /* CSS proměnné */
     :root {
       --primary-color: #1e3a8a; /* Tmavomodrá pre hlavičku */
@@ -560,36 +492,7 @@ body.fixed-padding {
   </style>
 </head>
 <body>
-  <!-- Horní informační banner -->
-<div class="top-alert">
-  <div class="legend-inline">
-    <div class="legend-item">
-      <div class="legend-square pulse-red"></div>
-      <span>Překonání do 24 hodin</span>
-    </div>
-    <div class="legend-item">
-      <div class="legend-square pulse-orange"></div>
-      <span>Překonání do 1 měsíce</span>
-    </div>
-  </div>
-</div>
-
-<!-- Černá horní lišta -->
-<div class="mobile-header">
-  <div id="menu-toggle" onclick="toggleMenu()">
-    <div class="bar top"></div>
-    <div class="bar middle"></div>
-    <div class="bar bottom"></div>
-  </div>
-  <div id="search-icon" onclick="toggleSearch()">
-    <span class="search-icon">&#128269;</span>
-  </div>
-</div>
-
-<!-- Skrytý input pro vyhledávání -->
-<div id="mobile-search" class="hidden-search">
-  <input type="text" id="searchInput" placeholder="Hledej uživatele..." onkeyup="filterTable()">
-</div>
+  
   <div class="fixed-header">
   <!-- Stylové hamburger menu -->
   <div id="menu-toggle" onclick="toggleMenu()">
@@ -1061,10 +964,7 @@ window.addEventListener('scroll', () => {
   }
 });
     
-    function toggleSearch() {
-  const search = document.getElementById("mobile-search");
-  search.style.display = (search.style.display === "block") ? "none" : "block";
-}
+    
   </script>
 </body>
 </html>
