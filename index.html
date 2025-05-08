@@ -42,7 +42,7 @@
       position: sticky;
       top: 0;
       display: flex;
-      justify-content: space-between; /* Vyvážené rozloženie */
+      justify-content: space-between;
       align-items: center;
       padding: 0.5rem 1rem;
       background: var(--surface-dark);
@@ -111,6 +111,12 @@
       background: rgba(255, 255, 255, 0.05);
     }
 
+    .header-content {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem; /* Väčší odstup pre lupu */
+    }
+
     .search-icon {
       width: 1.5rem;
       height: 1.5rem;
@@ -118,7 +124,6 @@
       background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23f0f0f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>') no-repeat center;
       background-size: contain;
       transition: transform 0.3s ease;
-      margin-left: 1rem; /* Posun od kraja */
     }
 
     .search-icon:hover {
@@ -130,6 +135,8 @@
       padding: 0.5rem;
       background: var(--surface-dark);
       border-bottom: 1px solid var(--border-dark);
+      width: 100%; /* Zabezpečenie, že pole nepresiahne stránku */
+      box-sizing: border-box;
     }
 
     #search-container.show {
@@ -145,6 +152,7 @@
       background: var(--background-dark);
       color: var(--text-light);
       transition: var(--transition);
+      box-sizing: border-box; /* Zabezpečenie správneho rozmeru */
     }
 
     #searchInput:focus {
@@ -217,6 +225,12 @@
 
     .user-card:hover {
       transform: translateY(-2px);
+    }
+
+    .user-card.punisher {
+      background: #1a3c34; /* Tmavšia zelená pre odlíšenie */
+      border: 1px solid var(--accent-color);
+      box-shadow: 0 0 5px rgba(46, 204, 113, 0.3);
     }
 
     .user-info {
@@ -347,7 +361,9 @@
         <div class="bar middle"></div>
         <div class="bar bottom"></div>
       </div>
-      <div class="search-icon" onclick="toggleSearch()"></div>
+      <div class="header-content">
+        <div class="search-icon" onclick="toggleSearch()"></div>
+      </div>
     </div>
 
     <div id="dropdown-menu">
@@ -407,7 +423,7 @@
       const sortedData = [...data].sort((a, b) => b.reviews - a.reviews);
       sortedData.forEach((user, index) => {
         const card = document.createElement("div");
-        card.className = `user-card ${user.daysToOvertake <= 30 ? 'month-warning' : ''}`;
+        card.className = `user-card ${user.daysToOvertake <= 30 ? 'month-warning' : ''} ${user.username === "PunisherEDNA" ? 'punisher' : ''}`;
         card.innerHTML = `
           <div class="user-info">
             <span class="flag">${user.flag}</span>
@@ -492,7 +508,7 @@
 
       // Vyhľadanie správnej pozície pre fantóma
       let insertIndex = sortedData.findIndex(user => user.reviews < projectedReviews);
-      if (insertIndex === -1) insertIndex = sortedData.length; // Ak je na prvej pozícii
+      if (insertIndex === -1) insertIndex = sortedData.length;
 
       // Vytvorenie a vloženie fantómového zobrazenia na správne miesto
       const phantomCard = document.createElement("div");
