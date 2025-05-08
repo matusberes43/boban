@@ -29,22 +29,22 @@
       -webkit-user-select: none;
       user-select: none;
       height: 100%;
-      overflow: auto; /* Povolenie scrollovania na celej stránke */
+      overflow: auto;
     }
 
     #app-container {
       display: flex;
       flex-direction: column;
-      min-height: 100vh; /* Zabezpečenie, že obsah zaberá aspoň celú výšku */
+      min-height: 100vh;
     }
 
     .fixed-header {
-      position: sticky; /* Sticky namiesto fixed, aby nezostávala na mieste */
+      position: sticky;
       top: 0;
       display: flex;
-      justify-content: space-between;
+      justify-content: center; /* Ikona lupy v strede */
       align-items: center;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem;
       background: var(--surface-dark);
       border-bottom: 1px solid var(--border-dark);
       z-index: 999;
@@ -57,6 +57,8 @@
       flex-direction: column;
       justify-content: space-between;
       cursor: pointer;
+      position: absolute;
+      left: 0.5rem; /* Hamburger naľavo */
     }
 
     #menu-toggle .bar {
@@ -256,6 +258,11 @@
       animation: pulse 2.5s infinite;
     }
 
+    .phantom-card {
+      opacity: 0.6;
+      font-style: italic;
+    }
+
     .progress-form {
       padding: 0.5rem;
       background: var(--surface-dark);
@@ -290,7 +297,7 @@
       box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
     }
 
-    #compareResult {
+    #simulationResult {
       margin-top: 0.5rem;
       font-size: 0.8rem;
       color: var(--accent-color);
@@ -377,18 +384,14 @@
         <input type="number" id="days" min="0" value="0">
       </div>
       <div class="form-group">
-        <label for="dailyIncrease">Denný prírastok:</label>
-        <input type="number" id="dailyIncrease" min="0" value="0">
+        <label for="dailyReviews">Recenzie denne:</label>
+        <input type="number" id="dailyReviews" min="0" value="0">
       </div>
       <div class="form-group">
-        <label for="oneTimeIncrease">Jednorazový prírastok:</label>
-        <input type="number" id="oneTimeIncrease" min="0" value="0">
+        <label for="extraReviews">Extra recenzie (jednorazový prírastok):</label>
+        <input type="number" id="extraReviews" min="0" value="0">
       </div>
-      <div class="form-group">
-        <label for="paceAfter">Tempo po prírastku:</label>
-        <input type="number" id="paceAfter" min="0" value="0">
-      </div>
-      <div id="compareResult"></div>
+      <div id="simulationResult"></div>
     </div>
   </div>
 
@@ -402,7 +405,8 @@
     function renderList() {
       const userList = document.getElementById("userList");
       userList.innerHTML = "";
-      data.sort((a, b) => b.reviews - a.reviews).forEach((user, index) => {
+      const sortedData = [...data].sort((a, b) => b.reviews - a.reviews);
+      sortedData.forEach((user, index) => {
         const card = document.createElement("div");
         card.className = `user-card ${user.daysToOvertake <= 30 ? 'month-warning' : ''}`;
         card.innerHTML = `
@@ -416,8 +420,7 @@
           </div>`;
         userList.appendChild(card);
       });
-      updateAllCountdowns();
-      updateComparison();
+      updateSimulation();
     }
 
     function filterList() {
@@ -472,32 +475,47 @@
       searchContainer.classList.toggle('show');
     }
 
-    function updateComparison() {
+    function updateSimulation() {
       const days = parseInt(document.getElementById("days").value) || 0;
-      const dailyIncrease = parseInt(document.getElementById("dailyIncrease").value) || 0;
-      const oneTimeIncrease = parseInt(document.getElementById("oneTimeIncrease").value) || 0;
-      const paceAfter = parseInt(document.getElementById("paceAfter").value) || 0;
+      const dailyReviews = parseInt(document.getElementById("dailyReviews").value) || 0;
+      const extraReviews = parseInt(document.getElementById("extraReviews").value) || 0;
       const currentUser = data.find(u => u.username === "PunisherEDNA");
-      const leader = data[0];
 
-      if (!currentUser || !leader) return;
+      if (!currentUser) return;
 
-      let currentReviews = currentUser.reviews;
-      currentReviews += oneTimeIncrease;
-      currentReviews += days * dailyIncrease;
-      currentReviews += Math.floor(days / 2) * paceAfter;
+      let projectedReviews = currentUser.reviews + extraReviews + (days * dailyReviews);
+      const userList = document.getElementById("userList");
+      const sortedData = [...data].sort((a, b) => b.reviews - a.reviews);
 
-      const daysToOvertake = Math.ceil((leader.reviews - currentReviews) / dailyIncrease);
-      const result = document.getElementById("compareResult");
-      if (daysToOvertake <= 0) {
-        result.textContent = `Gratulujem! Už si překonal ${leader.username} s ${currentReviews} recenzemi!`;
-      } else {
-        result.textContent = `K překonání ${leader.username} (${leader.reviews} recenzí) ti chybí ${daysToOvertake} dní při aktuálním tempu.`;
-      }
+      // Odstránenie predchádzajúceho fantómového zobrazenia
+      const existingPhantom = document.querySelector(".phantom-card");
+      if (existingPhantom) existingPhantom.remove();
+
+      // Vyhľadanie pozície v tabuľke
+      let position = sortedData.findIndex(user => user.reviews < projectedReviews) + 1;
+      if (position === 0) position = sortedData.length + 1; // Ak je na prvom mieste
+
+      // Pridanie fantómového zobrazenia
+      const phantomCard = document.createElement("div");
+      phantomCard.className = "user-card phantom-card";
+      phantomCard.innerHTML = `
+        <div class="user-info">
+          <span class="flag">${currentUser.flag}</span>
+          <span class="username">${currentUser.username} (Fantóm)</span>
+        </div>
+        <div class="user-stats">
+          <div class="reviews">${projectedReviews}</div>
+          <div class="countdown">Odhad po ${days} dňoch</div>
+        </div>`;
+      userList.appendChild(phantomCard);
+
+      // Výsledok simulácie
+      const result = document.getElementById("simulationResult");
+      result.textContent = `Za ${days} dní s tempom ${dailyReviews} recenzií denne a ${extraReviews} extra recenziami budeš mať ${projectedReviews} recenzií a umiestniš sa na ${position}. mieste.`;
     }
 
     document.querySelectorAll(".progress-form input").forEach(input => {
-      input.addEventListener("input", updateComparison);
+      input.addEventListener("input", updateSimulation);
     });
 
     document.addEventListener("DOMContentLoaded", () => {
