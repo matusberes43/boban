@@ -23,23 +23,24 @@
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
-      overflow: hidden;
       font-family: 'Inter', sans-serif;
       background-color: var(--background-dark);
       color: var(--text-light);
       -webkit-user-select: none;
       user-select: none;
+      height: 100%;
+      overflow: auto; /* Povolenie scrollovania na celej stránke */
     }
 
     #app-container {
       display: flex;
       flex-direction: column;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh; /* Zabezpečenie, že obsah zaberá aspoň celú výšku */
     }
 
     .fixed-header {
+      position: sticky; /* Sticky namiesto fixed, aby nezostávala na mieste */
+      top: 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -199,8 +200,6 @@
     }
 
     .user-list {
-      flex: 1;
-      overflow-y: auto;
       padding: 0.5rem;
     }
 
@@ -257,7 +256,6 @@
       animation: pulse 2.5s infinite;
     }
 
-    /* Formulár pre simuláciu postupu */
     .progress-form {
       padding: 0.5rem;
       background: var(--surface-dark);
