@@ -257,39 +257,11 @@
       animation: pulse 2.5s infinite;
     }
 
-    .bottom-nav {
-      display: flex;
-      justify-content: space-around;
-      padding: 0.5rem;
-      background: var(--surface-dark);
-      border-top: 1px solid var(--border-dark);
-      position: sticky;
-      bottom: 0;
-      z-index: 999;
-    }
-
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.25rem;
-      color: var(--text-light);
-      font-size: 0.75rem;
-      cursor: pointer;
-    }
-
-    .nav-item svg {
-      width: 1.5rem;
-      height: 1.5rem;
-      fill: var(--text-light);
-    }
-
-    /* Nový formulár pre simuláciu postupu */
+    /* Formulár pre simuláciu postupu */
     .progress-form {
       padding: 0.5rem;
       background: var(--surface-dark);
       border-top: 1px solid var(--border-dark);
-      margin-top: 0.5rem;
     }
 
     .form-group {
@@ -401,21 +373,6 @@
       <!-- Dynamicky generované karty -->
     </div>
 
-    <div class="bottom-nav">
-      <div class="nav-item" onclick="alert('Domov')">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-        <span>Domov</span>
-      </div>
-      <div class="nav-item" onclick="alert('Štatistiky')">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14h-2V9h2v8zm-4 0H8V7h2v10zm8 0h-2V5h2v12z"/></svg>
-        <span>Štatistiky</span>
-      </div>
-      <div class="nav-item" onclick="alert('Nastavenia')">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.44.17-.48.41l-.36 2.54c-.59.24-1.12.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.3-.06.62-.06.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.04.24.24.41.48.41h3.84c.24 0 .44-.17.48-.41l.36-2.54c.59-.24 1.12-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.08-.47-.12-.61l-2.03-1.58zM12 15.6c-1.99 0-3.6-1.61-3.6-3.6s1.61-3.6 3.6-3.6 3.6 1.61 3.6 3.6-1.61 3.6-3.6 3.6z"/></svg>
-        <span>Nastavenia</span>
-      </div>
-    </div>
-
     <div class="progress-form">
       <div class="form-group">
         <label for="days">Počet dní:</label>
@@ -523,14 +480,14 @@
       const oneTimeIncrease = parseInt(document.getElementById("oneTimeIncrease").value) || 0;
       const paceAfter = parseInt(document.getElementById("paceAfter").value) || 0;
       const currentUser = data.find(u => u.username === "PunisherEDNA");
-      const leader = data[0]; // Prvý užívateľ v zoradenom zozname
+      const leader = data[0];
 
       if (!currentUser || !leader) return;
 
       let currentReviews = currentUser.reviews;
-      currentReviews += oneTimeIncrease; // Pridanie jednorazového prírastku
-      currentReviews += days * dailyIncrease; // Pridanie denných prírastkov
-      currentReviews += Math.floor(days / 2) * paceAfter; // Tempo po prírastku (zjednodušené)
+      currentReviews += oneTimeIncrease;
+      currentReviews += days * dailyIncrease;
+      currentReviews += Math.floor(days / 2) * paceAfter;
 
       const daysToOvertake = Math.ceil((leader.reviews - currentReviews) / dailyIncrease);
       const result = document.getElementById("compareResult");
