@@ -583,14 +583,43 @@
   updateSimulation();
 }
 
-    function filterList() {
-      const input = document.getElementById("searchInput").value.toLowerCase();
-      const cards = document.querySelectorAll(".user-card");
-      cards.forEach(card => {
-        const username = card.querySelector(".username").textContent.toLowerCase();
-        card.style.display = username.includes(input) ? "flex" : "none";
-      });
-    }
+    function renderList() {
+  const userList = document.getElementById("userList");
+  userList.innerHTML = "";
+
+  const input = document.getElementById("searchInput").value.toLowerCase();
+  const selectedCountry = document.getElementById("countryFilter").value;
+
+  const filteredData = data
+    .filter(user => {
+      const matchesName = user.username.toLowerCase().includes(input);
+      const matchesCountry =
+        selectedCountry === "all" ||
+        (selectedCountry === "other" && !["🇨🇿", "🇸🇰"].includes(user.flag)) ||
+        user.flag === selectedCountry;
+      return matchesName && matchesCountry;
+    })
+    .sort((a, b) => b.reviews - a.reviews); // zoradené podľa recenzí
+
+  filteredData.forEach((user, index) => {
+    const card = document.createElement("div");
+    card.className = `user-card ${user.daysToOvertake <= 30 ? 'month-warning' : ''} ${user.username === "PunisherEDNA" ? 'punisher' : ''}`;
+    card.innerHTML = `
+      <div class="user-info">
+        <span class="username">#${index + 1}</span>
+        <span class="flag">${user.flag}</span>
+        <span class="username">${user.username}</span>
+      </div>
+      <div class="user-stats">
+        <div class="reviews">${user.reviews}</div>
+        <div class="countdown" id="countdown-${index + 1}" data-target-date="${user.overtakeDate}"></div>
+      </div>`;
+    userList.appendChild(card);
+  });
+
+  updateAllCountdowns(); // aktualizuj časovače
+  updateSimulation();    // aktualizuj simuláciu
+}
 
     function updateAllCountdowns() {
       document.querySelectorAll("[id^=countdown]").forEach(span => {
