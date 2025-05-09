@@ -7,6 +7,19 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Žebříček recenzentů</title>
   <style>
+    
+    @keyframes blinkRed {
+  0% { color: #e74c3c; }
+  50% { color: #f0f0f0; }
+  100% { color: #e74c3c; }
+}
+
+.urgent-countdown {
+  color: var(--danger-color);
+  font-weight: 700;
+  animation: blinkRed 1s infinite;
+}
+    
     :root {
       --primary-color: #1b1b1b;
       --accent-color: #2ecc71;
