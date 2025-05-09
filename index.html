@@ -203,6 +203,16 @@
       border-bottom: 1px solid var(--border-dark);
     }
 
+<div class="filter-container" style="padding: 0.5rem; text-align: center; background: var(--surface-dark); border-bottom: 1px solid var(--border-dark);">
+  <label for="countryFilter" style="margin-right: 0.5rem;">Filtrovat podle země:</label>
+  <select id="countryFilter" onchange="filterList()" style="padding: 0.4rem; border-radius: 4px; background: var(--background-dark); color: var(--text-light); border: 1px solid var(--border-dark);">
+    <option value="all">Vše</option>
+    <option value="🇨🇿">Česko</option>
+    <option value="🇸🇰">Slovensko</option>
+    <option value="other">Ostatní</option>
+  </select>
+</div>
+
     .legend {
       display: flex;
       gap: 1rem;
@@ -685,6 +695,24 @@ const target = new Date(targetDate);
         }
       });
     });
+    
+    function filterList() {
+  const input = document.getElementById("searchInput").value.toLowerCase();
+  const selectedCountry = document.getElementById("countryFilter").value;
+
+  document.querySelectorAll(".user-card").forEach(card => {
+    const username = card.querySelector(".username:last-of-type").textContent.toLowerCase();
+    const flag = card.querySelector(".flag").textContent;
+
+    const matchesName = username.includes(input);
+    const matchesCountry =
+      selectedCountry === "all" ||
+      (selectedCountry === "other" && !["🇨🇿", "🇸🇰"].includes(flag)) ||
+      flag === selectedCountry;
+
+    card.style.display = matchesName && matchesCountry ? "flex" : "none";
+  });
+}
   </script>
   <footer style="text-align: center; padding: 1rem; font-size: 0.8rem; color: var(--text-light); background: var(--surface-dark); border-top: 1px solid var(--border-dark);">
   Copyright © 2025 Matúš Bereš, s.r.o. Všechna práva vyhrazena
