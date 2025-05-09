@@ -19,16 +19,26 @@
       box-sizing: border-box;
     }
 
-    body {
-      background-color: var(--primary-color);
+    html, body {
+      margin: 0;
+      padding: 0;
       font-family: 'Inter', sans-serif;
+      background-color: var(--primary-color);
       color: var(--text-light);
+      min-height: 100vh;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content {
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      min-height: 100vh;
-      margin: 0;
       padding: 30px 20px;
     }
 
@@ -77,10 +87,12 @@
     }
 
     footer {
-      margin-top: 60px;
+      text-align: center;
       font-size: 0.8rem;
       color: #888;
-      text-align: center;
+      padding: 20px;
+      border-top: 1px solid var(--border-dark);
+      background: var(--surface-dark);
     }
 
     @media (max-width: 480px) {
@@ -93,17 +105,19 @@
 </head>
 <body>
 
-  <a href="index.html">
-    <button class="back-button">Zpět na hlavní stránku</button>
-  </a>
+  <div class="content">
+    <a href="index.html">
+      <button class="back-button">Zpět na hlavní stránku</button>
+    </a>
 
-  <a class="button" href="trollcsfd.html">
-    <img src="https://i.postimg.cc/3N7gxy62/E5-EC0-AAE-FBAB-4750-8-ED8-3624-C3999655.png" alt="TROLL CSFD"> 
-  </a>
+    <a class="button" href="trollcsfd.html">
+      <img src="https://i.postimg.cc/3N7gxy62/E5-EC0-AAE-FBAB-4750-8-ED8-3624-C3999655.png" alt="TROLL CSFD"> 
+    </a>
 
-  <a class="button" href="trolledna.html">
-    <img src="https://i.postimg.cc/Rh0jgXCs/9495-D555-9425-4-D51-8-E6-C-789131806009.png" alt="TROLL EDNA">
-  </a>
+    <a class="button" href="trolledna.html">
+      <img src="https://i.postimg.cc/Rh0jgXCs/9495-D555-9425-4-D51-8-E6-C-789131806009.png" alt="TROLL EDNA">
+    </a>
+  </div>
 
   <footer>
     Copyright © 2025 Matúš Bereš, s.r.o. Všechna práva vyhrazena
