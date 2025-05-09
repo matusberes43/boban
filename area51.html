@@ -7,6 +7,28 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Žebříček recenzentů</title>
   <style>
+  
+    
+    @keyframes blinkRed {
+  0% { color: #e74c3c; }
+  50% { color: #f0f0f0; }
+  100% { color: #e74c3c; }
+  
+}
+
+
+  
+  .legend-square.success {
+  background-color: var(--accent-color); /* zelená */
+  animation: heartbeat 1.2s infinite;
+}
+
+.urgent-countdown {
+  color: var(--danger-color);
+  font-weight: 700;
+  animation: blinkRed 1s infinite;
+}
+    
     :root {
       --primary-color: #1b1b1b;
       --accent-color: #2ecc71;
@@ -48,6 +70,7 @@
       background: var(--surface-dark);
       border-bottom: 1px solid var(--border-dark);
       z-index: 999;
+      position: relative; /* Pre centrovanie loga */
     }
 
     #menu-toggle {
@@ -114,7 +137,17 @@
     .header-content {
       display: flex;
       align-items: center;
-      gap: 1.5rem; /* Väčší odstup pre lupu */
+      gap: 1rem;
+    }
+
+    .header-logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%); /* Centrovanie na stred */
+      width: 2rem; /* Zväčšené logo */
+      height: 2rem;
+      background: url('https://i.postimg.cc/gJ703r3c/4-A743648-AE6-C-41-F1-9107-B9-C127-F43977.png') no-repeat center;
+      background-size: contain;
     }
 
     .search-icon {
@@ -135,7 +168,7 @@
       padding: 0.5rem;
       background: var(--surface-dark);
       border-bottom: 1px solid var(--border-dark);
-      width: 100%; /* Zabezpečenie, že pole nepresiahne stránku */
+      width: 100%;
       box-sizing: border-box;
     }
 
@@ -152,7 +185,7 @@
       background: var(--background-dark);
       color: var(--text-light);
       transition: var(--transition);
-      box-sizing: border-box; /* Zabezpečenie správneho rozmeru */
+      box-sizing: border-box;
     }
 
     #searchInput:focus {
@@ -208,6 +241,12 @@
       100% { opacity: 1; }
     }
 
+    @keyframes heartbeat {
+      0% { opacity: 1; }
+      50% { opacity: 0.3; }
+      100% { opacity: 1; }
+    }
+
     .user-list {
       padding: 0.5rem;
     }
@@ -228,7 +267,7 @@
     }
 
     .user-card.punisher {
-      background: #1a3c34; /* Tmavšia zelená pre odlíšenie */
+      background: #1a3c34;
       border: 1px solid var(--accent-color);
       box-shadow: 0 0 5px rgba(46, 204, 113, 0.3);
     }
@@ -265,10 +304,12 @@
     .urgent-countdown {
       color: var(--danger-color);
       font-weight: 700;
+      /* Animácia heartbeat odstránená */
     }
 
     .month-warning .countdown {
-      animation: pulse 2.5s infinite;
+      color: var(--warning-color);
+      animation: pulse 2.5s infinite; /* Oranžové blikanie zostáva */
     }
 
     .phantom-card {
@@ -361,6 +402,7 @@
         <div class="bar middle"></div>
         <div class="bar bottom"></div>
       </div>
+      <div class="header-logo"></div>
       <div class="header-content">
         <div class="search-icon" onclick="toggleSearch()"></div>
       </div>
@@ -373,21 +415,25 @@
     </div>
 
     <div id="search-container">
-      <input type="text" id="searchInput" placeholder="Hledej uživatele..." onkeyup="filterList()">
-    </div>
+  <input type="text" id="searchInput" placeholder="Hledej uživatele..." onkeyup="filterList()">
+</div>
 
-    <div class="search-legend-container">
-      <div class="legend">
-        <div class="legend-item">
-          <div class="legend-square danger"></div>
-          <span>Překročení do 24 hodin</span>
-        </div>
-        <div class="legend-item">
-          <div class="legend-square warning"></div>
-          <span>Překročení do 1 měsíce</span>
-        </div>
-      </div>
+<div class="search-legend-container">
+  <div class="legend">
+    <div class="legend-item">
+      <div class="legend-square danger"></div>
+      <span>Překročení do 24 hodin</span>
     </div>
+    <div class="legend-item">
+      <div class="legend-square warning"></div>
+      <span>Překročení do 1 měsíce</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-square blinking success"></div>
+      <span>Recenze uživatelů</span>
+    </div>
+  </div>
+</div>
 
     <div class="user-list" id="userList">
       <!-- Dynamicky generované karty -->
@@ -537,30 +583,42 @@
     function updateAllCountdowns() {
       document.querySelectorAll("[id^=countdown]").forEach(span => {
         const targetDate = span.dataset.targetDate;
-        const target = new Date(targetDate);
+        if (targetDate === "0000-00-00") {
+  span.innerText = "Bez odpočtu";
+  return;
+}
+const target = new Date(targetDate);
         const now = new Date();
         const diff = target - now;
         const card = span.closest(".user-card");
 
+        // Odstránenie predchádzajúcich tried
         card.classList.remove("month-warning");
         span.classList.remove("urgent-countdown", "prekonan");
+
+        console.log(`Target: ${target}, Now: ${now}, Diff: ${diff}`); // Debug výpis
 
         if (diff <= 0) {
           span.innerText = "Překročen!";
           span.classList.add("prekonan");
-          return;
-        }
-
-        if (diff <= 24 * 60 * 60 * 1000) {
+        } else if (diff <= 24 * 60 * 60 * 1000) { // Menej ako 24 hodín
           span.classList.add("urgent-countdown");
-        } else if (diff <= 30 * 24 * 60 * 60 * 1000) {
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((diff / (1000 * 60)) % 60);
+          span.innerText = `${days}d ${hours}h ${minutes}m`;
+        } else if (diff <= 30 * 24 * 60 * 60 * 1000) { // Do 1 mesiaca
           card.classList.add("month-warning");
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((diff / (1000 * 60)) % 60);
+          span.innerText = `${days}d ${hours}h ${minutes}m`;
+        } else {
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((diff / (1000 * 60)) % 60);
+          span.innerText = `${days}d ${hours}h ${minutes}m`;
         }
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / (1000 * 60)) % 60);
-        span.innerText = `${days}d ${hours}h ${minutes}m`;
       });
     }
     setInterval(updateAllCountdowns, 1000);
@@ -589,15 +647,12 @@
       const userList = document.getElementById("userList");
       const sortedData = [...data].sort((a, b) => b.reviews - a.reviews);
 
-      // Odstránenie predchádzajúceho fantómového zobrazenia
       const existingPhantom = document.querySelector(".phantom-card");
       if (existingPhantom) existingPhantom.remove();
 
-      // Vyhľadanie správnej pozície pre fantóma
       let insertIndex = sortedData.findIndex(user => user.reviews < projectedReviews);
       if (insertIndex === -1) insertIndex = sortedData.length;
 
-      // Vytvorenie a vloženie fantómového zobrazenia na správne miesto
       const phantomCard = document.createElement("div");
       phantomCard.className = "user-card phantom-card";
       phantomCard.innerHTML = `
@@ -615,7 +670,6 @@
         userList.appendChild(phantomCard);
       }
 
-      // Výsledok simulace
       const result = document.getElementById("simulationResult");
       const position = insertIndex + 1;
       result.textContent = `Za ${days} dní s tempem ${dailyReviews} recenzí denně a ${extraReviews} extra recenzemi budeš mít ${projectedReviews} recenzí a umístíš se na ${position}. místě.`;
