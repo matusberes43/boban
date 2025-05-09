@@ -583,7 +583,11 @@
     function updateAllCountdowns() {
       document.querySelectorAll("[id^=countdown]").forEach(span => {
         const targetDate = span.dataset.targetDate;
-        const target = new Date(targetDate);
+        if (targetDate === "0000-00-00") {
+  span.innerText = "Bez odpočtu";
+  return;
+}
+const target = new Date(targetDate);
         const now = new Date();
         const diff = target - now;
         const card = span.closest(".user-card");
