@@ -730,11 +730,17 @@ const target = new Date(targetDate);
       <div class="user-info">
         <span class="username">#${index + 1}</span>
         <span class="flag">${user.flag}</span>
-        <img src="${user.avatar || 'default-avatar.png'}" alt="${user.username}" class="avatar">
+        <img src="DED5B744-E3EC-49CF-B506-D1B4C561ADEF.png" alt="${user.username}" class="avatar">
         <span class="username">${user.username}</span>
+        <span style="color: var(--danger-color); font-weight: bold; font-size: 0.75rem; margin-left: 6px;">
+          ${user.fans !== undefined ? user.fans : ''}
+        </span>
       </div>
       <div class="user-stats">
         <div class="reviews">${user.reviews}</div>
+        <div style="font-size: 0.65rem; color: #bbb;">
+          ${user.ratings !== undefined ? user.ratings + ' hodnocení' : ''}
+        </div>
         <div class="countdown" id="countdown-${index + 1}" data-target-date="${user.overtakeDate}"></div>
       </div>`;
     userList.appendChild(card);
@@ -743,7 +749,6 @@ const target = new Date(targetDate);
   updateAllCountdowns();
   updateSimulation();
 }
-
 
 
 document.addEventListener("DOMContentLoaded", () => {
