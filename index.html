@@ -575,14 +575,7 @@
   updateSimulation();
 }
 
-    function filterList() {
-      const input = document.getElementById("searchInput").value.toLowerCase();
-      const cards = document.querySelectorAll(".user-card");
-      cards.forEach(card => {
-        const username = card.querySelector(".username").textContent.toLowerCase();
-        card.style.display = username.includes(input) ? "flex" : "none";
-      });
-    }
+    
 
     function updateAllCountdowns() {
       document.querySelectorAll("[id^=countdown]").forEach(span => {
