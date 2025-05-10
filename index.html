@@ -547,19 +547,6 @@
   { username: "Kimkong", flag: "🇨🇿", reviews: 4780, daysToOvertake: 4, overtakeDate: "2025-05-08" },
     ];
 
-    
-
-  userList.innerHTML = "";
-  const filtered = [...data]
-    .filter(user => {
-      const matchesName = user.username.toLowerCase().includes(input);
-      const matchesCountry =
-        selectedCountry === "all" ||
-        (selectedCountry === "other" && !["🇨🇿", "🇸🇰"].includes(user.flag)) ||
-        user.flag === selectedCountry;
-      return matchesName && matchesCountry;
-    })
-    .sort((a, b) => b.reviews - a.reviews);
 
   filtered.forEach((user, index) => {
     const card = document.createElement("div");
