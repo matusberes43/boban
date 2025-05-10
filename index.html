@@ -569,7 +569,6 @@ function renderList() {
     const card = document.createElement("div");
     card.className = `user-card ${user.daysToOvertake <= 30 ? 'month-warning' : ''} ${user.username === "PunisherEDNA" ? 'punisher' : ''}`;
     card.innerHTML = `
-     card.innerHTML = `
   <div class="user-info">
     <span class="username">#${index + 1}</span>
     <span class="flag">${user.flag}</span>
