@@ -567,12 +567,17 @@
   filtered.forEach((user, index) => {
     const card = document.createElement("div");
     card.className = `user-card ${user.daysToOvertake <= 30 ? 'month-warning' : ''} ${user.username === "PunisherEDNA" ? 'punisher' : ''}`;
-    card.innerHTML = `
-      <div class="user-info">
-        <span class="username">#${index + 1}</span>
-        <span class="flag">${user.flag}</span>
-        <span class="username">${user.username}</span>
-      </div>
+    const imageHTML = user.username === "corpSy"
+  ? `<img src="IMG_9142.jpeg" alt="corpSy" style="height: 1.5rem; margin-left: 0.5rem; border-radius: 4px;">`
+  : "";
+
+card.innerHTML = `
+  <div class="user-info">
+    <span class="username">#${index + 1}</span>
+    <span class="flag">${user.flag}</span>
+    <span class="username">${user.username}</span>
+    ${imageHTML}
+  </div>
       <div class="user-stats">
         <div class="reviews">${user.reviews}</div>
         <div class="countdown" id="countdown-${index + 1}" data-target-date="${user.overtakeDate}"></div>
