@@ -547,10 +547,7 @@
   { username: "Kimkong", flag: "🇨🇿", reviews: 4780, daysToOvertake: 4, overtakeDate: "2025-05-08" },
     ];
 
-    function renderList() {
-  const userList = document.getElementById("userList");
-  const input = document.getElementById("searchInput").value.toLowerCase();
-  const selectedCountry = document.getElementById("countryFilter").value;
+    
 
   userList.innerHTML = "";
   const filtered = [...data]
