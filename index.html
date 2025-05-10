@@ -548,26 +548,27 @@
     ];
 
     function renderList() {
-      const userList = document.getElementById("userList");
-      userList.innerHTML = "";
-      const sortedData = [...data].sort((a, b) => b.reviews - a.reviews);
-      sortedData.forEach((user, index) => {
-        const card = document.createElement("div");
-        card.className = `user-card ${user.daysToOvertake <= 30 ? 'month-warning' : ''} ${user.username === "PunisherEDNA" ? 'punisher' : ''}`;
-        card.innerHTML = `
-  <div class="user-info">
-    <span class="username">#${index + 1}</span>
-    <span class="flag">${user.flag}</span>
-    <span class="username">${user.username}</span>
-  </div>
-          <div class="user-stats">
-            <div class="reviews">${user.reviews}</div>
-            <div class="countdown" id="countdown-${index + 1}" data-target-date="${user.overtakeDate}"></div>
-          </div>`;
-        userList.appendChild(card);
-      });
-      updateSimulation();
-    }
+  const userList = document.getElementById("userList");
+  userList.innerHTML = "";
+  const sortedData = [...data].sort((a, b) => b.reviews - a.reviews);
+  sortedData.forEach((user, index) => {
+    const card = document.createElement("div");
+    card.className = `user-card ${user.daysToOvertake <= 30 ? 'month-warning' : ''} ${user.username === "PunisherEDNA" ? 'punisher' : ''}`;
+    card.innerHTML = `
+      <div class="user-info">
+        <span class="username">#${index + 1}</span>
+        <span class="flag">${user.flag}</span>
+        <img src="${user.avatar || 'default-avatar.png'}" alt="${user.username}" class="avatar">
+        <span class="username">${user.username}</span>
+      </div>
+      <div class="user-stats">
+        <div class="reviews">${user.reviews}</div>
+        <div class="countdown" id="countdown-${index + 1}" data-target-date="${user.overtakeDate}"></div>
+      </div>`;
+    userList.appendChild(card);
+  });
+  updateSimulation();
+}
 
     function filterList() {
       const input = document.getElementById("searchInput").value.toLowerCase();
