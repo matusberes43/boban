@@ -62,6 +62,18 @@
       line-height: 1.5;
     }
 
+    .fav-link {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .fav-link:hover {
+      color: #27ae60;
+      text-decoration: underline;
+    }
+
     .stats {
       display: flex;
       justify-content: space-between;
@@ -140,11 +152,11 @@
       <p><strong>Jméno:</strong> Matúš Bereš</p>
       <p><strong>Věk:</strong> 30 let</p>
       <p><strong>Bydliště:</strong> Hlavní město Praha</p>
-     <p><strong>Oblíbený seriál:</strong> Stargate SG-1</p>
-       <p><strong>Oblíbený film:</strong> Armageddon</p>
-      <p><strong>Platformy:</strong> ČSFD.CZ - EDNA.CZ</p>
-   <p><strong>Oblíbená filmová série:</strong> Lord of the Rings</p>
-     </div>
+      <p><strong>Oblíbený seriál:</strong> <a href="stargate.html" class="fav-link">Stargate SG-1</a></p>
+      <p><strong>Oblíbený film:</strong> <a href="armageddon.html" class="fav-link">Armageddon</a></p>
+      <p><strong>Oblíbená filmová série:</strong> <a href="lotr.html" class="fav-link">Lord of the Rings</a></p>
+      <p><strong>Platformy:</strong> ČSFD.CZ – EDNA.CZ</p>
+    </div>
 
     <div class="stats">
       <div class="stat-box">
