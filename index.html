@@ -561,23 +561,24 @@ function renderList() {
     const card = document.createElement("div");
     card.className = `user-card ${user.daysToOvertake <= 30 ? 'month-warning' : ''} ${user.username === "PunisherEDNA" ? 'punisher' : ''}`;
     card.innerHTML = `
-      <div class="user-info">
-        <span class="username">#${index + 1}</span>
-        <span class="flag">${user.flag}</span>
-        <img src="${user.avatar}" class="avatar" alt="${user.username}">
-        <span class="username">${user.username}</span>
-        <img src="DED5B744-E3EC-49CF-B506-D1B4C561ADEF.png" class="avatar" alt="github" style="margin-left: 4px;">
-        <span style="color: var(--danger-color); font-weight: bold; font-size: 0.75rem; margin-left: 6px;">
-          ${user.fans !== undefined ? user.fans : ''}
-        </span>
-      </div>
-      <div class="user-stats">
-        <div class="reviews">${user.reviews}</div>
-        <div style="font-size: 0.65rem; color: #bbb;">
-          ${user.ratings !== undefined ? user.ratings + ' hodnocení' : ''}
-        </div>
-        <div class="countdown" id="countdown-${index + 1}" data-target-date="${user.overtakeDate}"></div>
-      </div>`;
+     card.innerHTML = `
+  <div class="user-info">
+    <span class="username">#${index + 1}</span>
+    <span class="flag">${user.flag}</span>
+    <img src="${user.avatar}" alt="${user.username}" class="avatar">
+    <span class="username">${user.username}</span>
+    <img src="DED5B744-E3EC-49CF-B506-D1B4C561ADEF.png" alt="github" class="github-icon" style="margin-left: 4px;">
+    <span style="color: var(--danger-color); font-weight: bold; font-size: 0.75rem; margin-left: 6px;">
+      ${user.fans !== undefined ? user.fans : ''}
+    </span>
+  </div>
+  <div class="user-stats">
+    <div class="reviews">${user.reviews}</div>
+    <div style="font-size: 0.65rem; color: #bbb;">
+      ${user.ratings !== undefined ? user.ratings + ' hodnocení' : ''}
+    </div>
+    <div class="countdown" id="countdown-${index + 1}" data-target-date="${user.overtakeDate}"></div>
+  </div>`;
     userList.appendChild(card);
   });
   updateAllCountdowns();
