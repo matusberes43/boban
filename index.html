@@ -459,13 +459,6 @@
     <option value="🇸🇰">Slovensko</option>
     <option value="other">Ostatní</option>
   </select>
-
-  <label for="sortBy" style="margin-left: 1rem; margin-right: 0.5rem;">Seřadit podle:</label>
-  <select id="sortBy" onchange="filterList()" style="padding: 0.4rem; border-radius: 4px; background: var(--background-dark); color: var(--text-light); border: 1px solid var(--border-dark);">
-    <option value="reviews">Recenze</option>
-    <option value="fans">Fanoušci</option>
-    <option value="ratings">Hodnocení</option>
-  </select>
 </div>
 
     <div class="user-list" id="userList">
@@ -571,10 +564,7 @@
 function renderList() {
   const userList = document.getElementById("userList");
   userList.innerHTML = "";
-const sortBy = document.getElementById("sortBy").value;
-const sortedData = filteredData.sort((a, b) => {
-  return (b[sortBy] || 0) - (a[sortBy] || 0);
-});
+  const sortedData = [...data].sort((a, b) => b.reviews - a.reviews);
   sortedData.forEach((user, index) => {
     const card = document.createElement("div");
     card.className = `user-card ${user.daysToOvertake <= 30 ? 'month-warning' : ''} ${user.username === "PunisherEDNA" ? 'punisher' : ''}`;
