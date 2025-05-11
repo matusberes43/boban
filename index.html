@@ -459,6 +459,13 @@
     <option value="🇸🇰">Slovensko</option>
     <option value="other">Ostatní</option>
   </select>
+
+  <label for="sortBy" style="margin-left: 1rem; margin-right: 0.5rem;">Seřadit podle:</label>
+  <select id="sortBy" onchange="filterList()" style="padding: 0.4rem; border-radius: 4px; background: var(--background-dark); color: var(--text-light); border: 1px solid var(--border-dark);">
+    <option value="reviews">Recenze</option>
+    <option value="fans">Fanoušci</option>
+    <option value="ratings">Hodnocení</option>
+  </select>
 </div>
 
     <div class="user-list" id="userList">
