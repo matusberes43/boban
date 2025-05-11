@@ -571,7 +571,10 @@
 function renderList() {
   const userList = document.getElementById("userList");
   userList.innerHTML = "";
-  const sortedData = [...data].sort((a, b) => b.reviews - a.reviews);
+const sortBy = document.getElementById("sortBy").value;
+const sortedData = filteredData.sort((a, b) => {
+  return (b[sortBy] || 0) - (a[sortBy] || 0);
+});
   sortedData.forEach((user, index) => {
     const card = document.createElement("div");
     card.className = `user-card ${user.daysToOvertake <= 30 ? 'month-warning' : ''} ${user.username === "PunisherEDNA" ? 'punisher' : ''}`;
