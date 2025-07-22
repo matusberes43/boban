@@ -2,97 +2,193 @@
 <html lang="sk">
 <head>
   <meta charset="UTF-8">
-  <title>Osobný plán výcviku služobného psa</title>
+  <title>Časová os filmov – Úspech vs. Neúspech</title>
   <style>
-    body { font-family: Arial, sans-serif; }
-    table { border-collapse: collapse; width: 100%; }
-    td, th { border: 1px solid black; padding: 4px; text-align: center; }
-    .no-border { border: none; }
-    .left { text-align: left; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      padding: 40px;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .form-container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: auto;
+      padding-left: 20px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: #ccc;
+    }
+
+    .entry {
+      margin: 20px 0;
+      padding-left: 30px;
+      position: relative;
+    }
+
+    .entry::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 10px;
+      width: 14px;
+      height: 14px;
+      background: #ccc;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .entry.success {
+      border-left: 4px solid #28a745;
+    }
+
+    .entry.success::before {
+      background: #28a745;
+    }
+
+    .entry.fail {
+      border-left: 4px solid #dc3545;
+    }
+
+    .entry.fail::before {
+      background: #dc3545;
+    }
+
+    .entry-content {
+      background: #fff;
+      padding: 15px;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .entry h3 {
+      margin: 0 0 10px;
+    }
+
+    .result {
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
   </style>
 </head>
 <body>
 
-<h3>Osobný plán výcviku služobného psa</h3>
-<p>mesiac.....apríl........rok....2025</p>
+  <h1>Analýza filmov – Úspešnosť na časovej osi</h1>
 
-<table>
-  <tr>
-    <td class="left" colspan="4">Hodnosť, meno a priezvisko psovoda: </td>
-    <td colspan="4">ppor. Marián Beňes</td>
-  </tr>
-  <tr>
-    <td class="left" colspan="4">Meno služobného psa:</td>
-    <td colspan="4">VRGO</td>
-  </tr>
-  <tr>
-    <td class="left" colspan="4">Evidenčné číslo psa:</td>
-    <td colspan="4">01314381, 59361428</td>
-  </tr>
-  <tr>
-    <td class="left" colspan="4">Dátum narodenia psa:</td>
-    <td colspan="4">21.03.2018</td>
-  </tr>
-  <tr>
-    <td class="left" colspan="4">Udelená kategória:</td>
-    <td colspan="4">VŠE 2</td>
-  </tr>
-</table>
+  <div class="form-container">
+    <label for="nazov">Názov filmu:</label>
+    <input type="text" id="nazov" placeholder="Napr. Avatar">
 
-<br>
+    <label for="trzby">Tržby v kinách (€):</label>
+    <input type="number" id="trzby" placeholder="Napr. 1000000000">
 
-<table>
-  <tr>
-    <th rowspan="2">Dátum</th>
-    <th colspan="2">Plánovaný výcvik psa</th>
-    <th colspan="2">Skutočný výcvik psa</th>
-    <th rowspan="2">Miesto výcviku</th>
-    <th rowspan="2">Služobný obvod</th>
-    <th rowspan="2">OHK výcvik</th>
-    <th rowspan="2">Skutočný počet hodín výcviku za mesiac</th>
-  </tr>
-  <tr>
-    <th>Od - do</th>
-    <th>Počet hodín</th>
-    <th>Od - do</th>
-    <th>Počet hodín</th>
-  </tr>
-  <tr>
-    <td>01.04.2025</td>
-    <td>06.00-18.00</td>
-    <td>11</td>
-    <td></td>
-    <td></td>
-    <td>OZ PZ Prešovce</td>
-    <td>Obvod</td>
-    <td>PZ Prešovce</td>
-    <td rowspan="3">33</td>
-  </tr>
-  <tr>
-    <td>09.04.2025</td>
-    <td>06.00-18.00</td>
-    <td>11</td>
-    <td></td>
-    <td></td>
-    <td>OZ PZ Prešovce</td>
-    <td>Obvod</td>
-    <td>PZ Prešovce</td>
-  </tr>
-  <tr>
-    <td>29.04.2025</td>
-    <td>06.00-18.00</td>
-    <td>11</td>
-    <td></td>
-    <td></td>
-    <td>OZ PZ Prešovce</td>
-    <td>Obvod</td>
-    <td>PZ Prešovce</td>
-  </tr>
-</table>
+    <label for="rozpocet">Rozpočet (€):</label>
+    <input type="number" id="rozpocet" placeholder="Napr. 250000000">
 
-<br>
+    <label for="marketing">Rozpočet na marketing (€):</label>
+    <input type="number" id="marketing" placeholder="Napr. 150000000">
 
-<p>Spracoval: ppor. Marián Beňes</p>
+    <button onclick="pridajFilm()">Pridať film</button>
+  </div>
+
+  <div class="timeline" id="timeline">
+    <!-- Dynamicky pridané filmy -->
+  </div>
+
+  <script>
+    function pridajFilm() {
+      const nazov = document.getElementById('nazov').value.trim();
+      const trzby = parseFloat(document.getElementById('trzby').value);
+      const rozpocet = parseFloat(document.getElementById('rozpocet').value);
+      const marketing = parseFloat(document.getElementById('marketing').value);
+
+      if (!nazov || isNaN(trzby) || isNaN(rozpocet) || isNaN(marketing)) {
+        alert('Prosím, vyplň všetky polia správne.');
+        return;
+      }
+
+      const celkovyRozpocet = rozpocet + marketing;
+      const minimalnyZisk = celkovyRozpocet * 2.5;
+      const uspesny = trzby >= minimalnyZisk;
+
+      const timeline = document.getElementById('timeline');
+
+      const entry = document.createElement('div');
+      entry.className = 'entry ' + (uspesny ? 'success' : 'fail');
+
+      const content = document.createElement('div');
+      content.className = 'entry-content';
+
+      content.innerHTML = `
+        <h3>${nazov}</h3>
+        <p>Tržby: €${trzby.toLocaleString()}</p>
+        <p>Rozpočet: €${rozpocet.toLocaleString()}</p>
+        <p>Marketing: €${marketing.toLocaleString()}</p>
+        <p class="result">${uspesny ? '✅ Úspešný film' : '❌ Neúspešný film'}</p>
+      `;
+
+      entry.appendChild(content);
+      timeline.appendChild(entry);
+
+      // Reset formulára
+      document.getElementById('nazov').value = '';
+      document.getElementById('trzby').value = '';
+      document.getElementById('rozpocet').value = '';
+      document.getElementById('marketing').value = '';
+    }
+  </script>
 
 </body>
 </html>
