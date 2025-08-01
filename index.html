@@ -1,194 +1,107 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-  <meta charset="UTF-8">
-  <title>Časová os filmov – Úspech vs. Neúspech</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Top používatelia</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f0f2f5;
-      padding: 40px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
       margin: 0;
+      padding: 0;
     }
 
-    h1 {
+    .header {
+      background-color: #d32f2f;
+      color: white;
+      padding: 20px;
       text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .chat-container {
+      max-width: 600px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .user:last-child {
+      border-bottom: none;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      background-color: #cfd8dc;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 15px;
+    }
+
+    .username {
+      font-weight: bold;
       color: #333;
     }
 
-    .form-container {
-      max-width: 500px;
-      margin: auto;
-      background: #fff;
-      padding: 25px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      margin-bottom: 40px;
+    .status {
+      font-size: 13px;
+      color: #777;
     }
-
-    label {
-      font-weight: bold;
-      display: block;
-      margin-top: 15px;
-    }
-
-    input {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #007BFF;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #0056b3;
-    }
-
-    .timeline {
-      position: relative;
-      max-width: 800px;
-      margin: auto;
-      padding-left: 20px;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 10px;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background: #ccc;
-    }
-
-    .entry {
-      margin: 20px 0;
-      padding-left: 30px;
-      position: relative;
-    }
-
-    .entry::before {
-      content: '';
-      position: absolute;
-      left: 5px;
-      top: 10px;
-      width: 14px;
-      height: 14px;
-      background: #ccc;
-      border-radius: 50%;
-      z-index: 1;
-    }
-
-    .entry.success {
-      border-left: 4px solid #28a745;
-    }
-
-    .entry.success::before {
-      background: #28a745;
-    }
-
-    .entry.fail {
-      border-left: 4px solid #dc3545;
-    }
-
-    .entry.fail::before {
-      background: #dc3545;
-    }
-
-    .entry-content {
-      background: #fff;
-      padding: 15px;
-      border-radius: 6px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .entry h3 {
-      margin: 0 0 10px;
-    }
-
-    .result {
-      font-weight: bold;
-      margin-top: 5px;
-    }
-
   </style>
 </head>
 <body>
 
-  <h1>Analýza filmov – Úspešnosť na časovej osi</h1>
+  <div class="header">Top používatelia</div>
 
-  <div class="form-container">
-    <label for="nazov">Názov filmu:</label>
-    <input type="text" id="nazov" placeholder="Napr. Avatar">
-
-    <label for="trzby">Tržby v kinách (€):</label>
-    <input type="number" id="trzby" placeholder="Napr. 1000000000">
-
-    <label for="rozpocet">Rozpočet (€):</label>
-    <input type="number" id="rozpocet" placeholder="Napr. 250000000">
-
-    <label for="marketing">Rozpočet na marketing (€):</label>
-    <input type="number" id="marketing" placeholder="Napr. 150000000">
-
-    <button onclick="pridajFilm()">Pridať film</button>
+  <div class="chat-container">
+    <div class="user">
+      <div class="avatar"></div>
+      <div>
+        <div class="username">Yoshitsune</div>
+        <div class="status">Aktívny člen, prispieva často</div>
+      </div>
+    </div>
+    <div class="user">
+      <div class="avatar"></div>
+      <div>
+        <div class="username">TheDarKnig</div>
+        <div class="status">Diskutuje v Marvel témach</div>
+      </div>
+    </div>
+    <div class="user">
+      <div class="avatar"></div>
+      <div>
+        <div class="username">tomas.malo</div>
+        <div class="status">Občas provokatér, ale aktívny</div>
+      </div>
+    </div>
+    <div class="user">
+      <div class="avatar"></div>
+      <div>
+        <div class="username">SidneyP</div>
+        <div class="status">Zapája sa do DC diskusií</div>
+      </div>
+    </div>
+    <div class="user">
+      <div class="avatar"></div>
+      <div>
+        <div class="username">Knowho</div>
+        <div class="status">Komentuje všetko, má prehľad</div>
+      </div>
+    </div>
   </div>
-
-  <div class="timeline" id="timeline">
-    <!-- Dynamicky pridané filmy -->
-  </div>
-
-  <script>
-    function pridajFilm() {
-      const nazov = document.getElementById('nazov').value.trim();
-      const trzby = parseFloat(document.getElementById('trzby').value);
-      const rozpocet = parseFloat(document.getElementById('rozpocet').value);
-      const marketing = parseFloat(document.getElementById('marketing').value);
-
-      if (!nazov || isNaN(trzby) || isNaN(rozpocet) || isNaN(marketing)) {
-        alert('Prosím, vyplň všetky polia správne.');
-        return;
-      }
-
-      const celkovyRozpocet = rozpocet + marketing;
-      const minimalnyZisk = celkovyRozpocet * 2.5;
-      const uspesny = trzby >= minimalnyZisk;
-
-      const timeline = document.getElementById('timeline');
-
-      const entry = document.createElement('div');
-      entry.className = 'entry ' + (uspesny ? 'success' : 'fail');
-
-      const content = document.createElement('div');
-      content.className = 'entry-content';
-
-      content.innerHTML = `
-        <h3>${nazov}</h3>
-        <p>Tržby: €${trzby.toLocaleString()}</p>
-        <p>Rozpočet: €${rozpocet.toLocaleString()}</p>
-        <p>Marketing: €${marketing.toLocaleString()}</p>
-        <p class="result">${uspesny ? '✅ Úspešný film' : '❌ Neúspešný film'}</p>
-      `;
-
-      entry.appendChild(content);
-      timeline.appendChild(entry);
-
-      // Reset formulára
-      document.getElementById('nazov').value = '';
-      document.getElementById('trzby').value = '';
-      document.getElementById('rozpocet').value = '';
-      document.getElementById('marketing').value = '';
-    }
-  </script>
 
 </body>
 </html>
