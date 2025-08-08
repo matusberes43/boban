@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-<title>Flappy Blcha vs. Benny — s Menu</title>
+<title>Flappy Blcha vs. Benny — menu + nastavenia</title>
 <style>
   :root{
     --bg:#0f172a; --bg2:#0b1220; --ui:#e5e7eb; --muted:#9aa5b1;
     --flea:#22d3ee; --pipe1:#f8bf42; --pipe2:#b57409; --ground:#1f2937;
     --benny1:#f3d47a; --benny2:#d1a84b;
-    --panel:#0b1220dd; --accent:#0ea5b7; --danger:#ef4444;
+    --panel:#0b1220dd; --accent:#0ea5b7;
   }
   *{box-sizing:border-box}
   html,body{height:100%}
@@ -29,15 +29,17 @@
     position:relative; flex:1 1 auto; border-radius:16px; overflow:hidden;
     box-shadow:0 15px 40px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.06);
     background:linear-gradient(#0b1020 0 75%, #0d1326 75% 100%);
-    touch-action:none;
+    touch-action:none; /* bez scroll/zoom počas hry */
   }
   canvas{display:block; width:100%; height:100%}
+
+  /* Panely */
   .panel{
     position:absolute; inset:0; display:none; place-items:center; background:rgba(0,0,0,.45);
   }
   .panel.show{display:grid}
   .card{
-    width:min(92%, 440px); border-radius:16px; padding:18px; background:var(--panel);
+    width:min(92%, 460px); border-radius:16px; padding:18px; background:var(--panel);
     box-shadow:0 10px 30px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.06);
   }
   .card h2{margin:0 0 10px 0; font-size:20px}
@@ -51,10 +53,11 @@
   label{font-size:14px; color:var(--muted)}
   input[type="range"]{width:100%}
   .row .val{font-weight:800; color:#b8eaff}
-  .card .close{
+  .close{
     width:100%; margin-top:10px; appearance:none; border:0; border-radius:12px; padding:12px 16px; font:700 14px/1 system-ui;
     background:#243244; color:#c9d7e7; box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
   }
+
   footer{margin-top:8px; text-align:center; color:var(--muted); font-size:13px}
 </style>
 </head>
@@ -66,162 +69,392 @@
     </header>
 
     <div class="stage" id="stage">
-      <canvas id="game"></canvas>
+      <canvas id="game" aria-label="Flappy Blcha vs. Benny" role="application"></canvas>
 
+      <!-- MENU -->
       <div class="panel show" id="menuPanel">
         <div class="card">
           <h2>Menu</h2>
           <div class="list">
             <button class="btn primary" id="newGameBtn">Nová hra</button>
+            <button class="btn" id="settingsBtn">Nastavenia</button>
             <button class="btn" id="aboutBtn">Autor</button>
           </div>
         </div>
       </div>
 
+      <!-- NASTAVENIA -->
+      <div class="panel" id="settingsPanel">
+        <div class="card">
+          <h2>Nastavenia</h2>
+          <div class="row">
+            <label>Sila skoku <span class="val" id="vJumpVal"></span></label>
+            <input type="range" id="vJump" min="12" max="36" step="1">
+          </div>
+          <div class="row">
+            <label>Veľkosť medzery <span class="val" id="gapVal"></span></label>
+            <input type="range" id="gap" min="20" max="45" step="1">
+          </div>
+          <div class="row">
+            <label>Šanca Bennyho v medzere <span class="val" id="bennyVal"></span></label>
+            <input type="range" id="benny" min="0" max="100" step="5">
+          </div>
+          <button class="close" id="closeSettings">Hotovo</button>
+        </div>
+      </div>
+
+      <!-- AUTOR -->
       <div class="panel" id="aboutPanel">
         <div class="card">
           <h2>Autor</h2>
-          <div style="margin:6px 0 14px 0">Matúš Bereš</div>
+          <div style="margin:6px 0 14px 0; line-height:1.5">
+            Hru pripravil: <b>Matúš Bereš</b>
+          </div>
           <button class="close" id="closeAbout">Späť</button>
         </div>
       </div>
     </div>
 
-    <footer>📱 Tap = skok • Tap po „Koniec“ = reštart</footer>
+    <footer>📱 Tap = skok • Tap po „Koniec“ = reštart • Menu pauzuje hru</footer>
   </div>
 
 <script>
 (()=>{
-
+// ===== DOM =====
 const stage = document.getElementById('stage');
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 
 const menuPanel = document.getElementById('menuPanel');
+const settingsPanel = document.getElementById('settingsPanel');
 const aboutPanel = document.getElementById('aboutPanel');
+
 const openMenu = document.getElementById('openMenu');
 const newGameBtn = document.getElementById('newGameBtn');
+const settingsBtn = document.getElementById('settingsBtn');
 const aboutBtn = document.getElementById('aboutBtn');
+const closeSettings = document.getElementById('closeSettings');
 const closeAbout = document.getElementById('closeAbout');
 
+const vJumpIn = document.getElementById('vJump');
+const gapIn   = document.getElementById('gap');
+const bennyIn = document.getElementById('benny');
+const vJumpVal = document.getElementById('vJumpVal');
+const gapVal   = document.getElementById('gapVal');
+const bennyVal = document.getElementById('bennyVal');
+
+// ===== Storage =====
+const BEST_KEY = 'flappy_blcha_best_v2';
+const CFG_KEY  = 'flappy_blcha_cfg_v2';
+let best = Number(localStorage.getItem(BEST_KEY) || 0);
+let cfg = loadCfg();
+function loadCfg(){
+  const defaults = { vJump: 20, gapPct: 30, bennyPct: 45 };
+  try{
+    const r = localStorage.getItem(CFG_KEY);
+    if(!r) return defaults;
+    return Object.assign(defaults, JSON.parse(r));
+  }catch{return defaults;}
+}
+function saveCfg(){ localStorage.setItem(CFG_KEY, JSON.stringify(cfg)); }
+function syncSettingsUI(){
+  vJumpIn.value = cfg.vJump; vJumpVal.textContent = cfg.vJump;
+  gapIn.value   = cfg.gapPct; gapVal.textContent   = cfg.gapPct + '%';
+  bennyIn.value = cfg.bennyPct; bennyVal.textContent = cfg.bennyPct + '%';
+}
+syncSettingsUI();
+
+// ===== Game state =====
 const STATE = { MENU:'menu', READY:'ready', PLAY:'play', OVER:'over' };
 let state = STATE.MENU;
 
-let W=0,H=0,DPR=1;
-let gravity, jumpV, flea, pipes, gap, speed, groundH, bennyProb;
-let best=0, score=0;
+let W=0, H=0, DPR=1;
+const world = {};
+const flea = { x:0, y:0, vy:0, r:0, score:0 };
+const pipes = []; // {x, gy, _scored?, benny?{y,w,h}}
+let distSinceLast = 0;
 
-function resetGame(full=true){
-  DPR = window.devicePixelRatio||1;
-  const r = stage.getBoundingClientRect();
-  W = r.width; H = r.height;
-  canvas.width=W*DPR; canvas.height=H*DPR;
-  ctx.setTransform(DPR,0,0,DPR,0,0);
+function recomputeWorld(){
+  world.groundH = Math.max(20, H*0.10);
+  world.fleaR   = Math.max(7,  H*0.025);
+  world.gravity = H*0.00125;
+  // sila skoku podľa nastavení (12..36) => prevod na px/frame
+  world.jumpV   = -H * (cfg.vJump/1000);
+  world.pipeW   = Math.max(24, H*0.08);
+  world.gap     = Math.max(110, (cfg.gapPct/100)*(H - world.groundH));
+  world.speed   = Math.max(2.2, H*0.0045);
+  world.spawnDist= H*0.55;
+  world.maxFall = H - world.groundH - world.fleaR;
 
-  groundH = H*0.1;
-  gravity = H*0.0013;
-  jumpV = -H*0.022; // jemný skok
-  gap = H*0.28;
-  speed = H*0.004;
-  bennyProb = 0.4;
-
-  flea={x:W*0.25,y:H/2,vy:0,r:H*0.025};
-  pipes=[];
-  if(full) score=0;
+  world.bennyW  = Math.max(28, H*0.09);
+  world.bennyH  = Math.max(20, H*0.07);
+  world.bennyProb = cfg.bennyPct/100;
+  world.bennyOffsetMax = Math.max(0, world.gap*0.28);
 }
 
+function resetGame(full=true){
+  DPR = Math.max(1, Math.min(window.devicePixelRatio||1, 2));
+  const r = stage.getBoundingClientRect();
+  W = Math.max(260, Math.floor(r.width));
+  H = Math.max(360, Math.floor(r.height));
+  canvas.width  = Math.floor(W*DPR);
+  canvas.height = Math.floor(H*DPR);
+  canvas.style.width = W+'px'; canvas.style.height = H+'px';
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+
+  recomputeWorld();
+
+  flea.x = Math.floor(W*0.28);
+  flea.y = Math.floor(H*0.45);
+  flea.vy= 0;
+  flea.r = world.fleaR;
+  if (full) flea.score = 0;
+
+  pipes.length = 0;
+  distSinceLast = world.spawnDist*0.6; // prvá prekážka príde skoro
+}
+
+function rand(a,b){ return Math.random()*(b-a)+a; }
+
 function spawnPipe(){
-  const margin=H*0.15;
-  const gy=Math.random()*(H-groundH-2*margin-gap)+margin+gap/2;
-  const pipe={x:W,gy};
-  if(Math.random()<bennyProb) pipe.benny={y:gy,w:H*0.09,h:H*0.07};
-  pipes.push(pipe);
+  const margin = H*0.18;
+  const gy = rand(margin, H - world.groundH - margin); // stred medzery
+  const p = { x: W + world.pipeW, gy };
+  if (Math.random() < world.bennyProb){
+    const offset = rand(-world.bennyOffsetMax, world.bennyOffsetMax);
+    p.benny = { y: gy + offset, w: world.bennyW, h: world.bennyH };
+  }
+  pipes.push(p);
+}
+
+function circleRectHit(cx, cy, cr, rx, ry, rw, rh){
+  const nx = Math.max(rx, Math.min(cx, rx+rw));
+  const ny = Math.max(ry, Math.min(cy, ry+rh));
+  const dx = cx - nx, dy = cy - ny;
+  return (dx*dx + dy*dy) <= cr*cr;
+}
+
+function drawBenny(cx, cy, w, h){
+  const x = cx - w/2, y = cy - h/2;
+  // telo
+  const gBody = ctx.createLinearGradient(x, y, x, y+h*0.65);
+  gBody.addColorStop(0, getCss('--benny1'));
+  gBody.addColorStop(1, getCss('--benny2'));
+  ctx.fillStyle = gBody; roundRect(x, y+h*0.2, w*0.68, h*0.65, Math.min(10, h*0.25)); ctx.fill();
+  // hlava
+  const hr = Math.min(w,h)*0.22, hx = x + w*0.68 + hr*0.6, hy = y + h*0.45;
+  const gHead = ctx.createLinearGradient(hx, hy-hr, hx, hy+hr);
+  gHead.addColorStop(0, getCss('--benny1')); gHead.addColorStop(1, getCss('--benny2'));
+  ctx.fillStyle = gHead; ctx.beginPath(); ctx.arc(hx,hy,hr,0,Math.PI*2); ctx.fill();
+  // ucho
+  ctx.fillStyle = 'rgba(0,0,0,.15)'; ctx.beginPath();
+  ctx.ellipse(hx-hr*0.4, hy-hr*0.3, hr*0.35, hr*0.5, -0.3, 0, Math.PI*2); ctx.fill();
+  // chvost
+  ctx.fillStyle = getCss('--benny2'); roundRect(x - w*0.10, y + h*0.28, w*0.14, h*0.10, h*0.05); ctx.fill();
+  // nohy
+  ctx.fillStyle = getCss('--benny2');
+  const legW=Math.max(4,w*0.14), legH=Math.max(4,h*0.22);
+  roundRect(x + w*0.20, y + h*0.62, legW, legH, 3); ctx.fill();
+  roundRect(x + w*0.42, y + h*0.62, legW, legH, 3); ctx.fill();
+  // oko
+  ctx.fillStyle = '#1a1a1a'; ctx.beginPath(); ctx.arc(hx + hr*0.15, hy - hr*0.1, hr*0.10, 0, Math.PI*2); ctx.fill();
 }
 
 function drawFlea(x,y,r){
-  ctx.fillStyle='#22d3ee';
-  ctx.beginPath(); ctx.ellipse(x,y,r*1.2,r,0,0,Math.PI*2); ctx.fill();
+  ctx.save(); ctx.translate(x,y);
+  const rx=r*1.2, ry=r*0.9;
+  const g = ctx.createRadialGradient(-r*0.4,-r*0.3,1,0,0,rx);
+  g.addColorStop(0,'#c6f6ff'); g.addColorStop(1,getCss('--flea'));
+  ctx.fillStyle=g; ctx.beginPath(); ctx.ellipse(0,0,rx,ry,0,0,Math.PI*2); ctx.fill();
+  // segment
+  ctx.strokeStyle='rgba(0,0,0,.25)'; ctx.lineWidth=Math.max(1,r*0.12);
+  ctx.beginPath(); ctx.arc(0,0,ry*0.9,-0.9,0.9); ctx.stroke();
+  // tykadlá
+  ctx.strokeStyle='#7dd3fc'; ctx.lineWidth=Math.max(1,r*0.12); ctx.lineCap='round';
+  ctx.beginPath(); ctx.moveTo(-r*0.6,-ry); ctx.quadraticCurveTo(-r*1.0,-ry*1.5,-r*0.4,-ry*1.8); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo( r*0.6,-ry); ctx.quadraticCurveTo( r*1.0,-ry*1.5, r*0.4,-ry*1.8); ctx.stroke();
+  // nožičky
+  ctx.strokeStyle='rgba(180,230,255,.9)'; ctx.lineWidth=Math.max(1,r*0.10);
+  const ll=r*1.2; for(let i=-1;i<=1;i++){ ctx.beginPath(); ctx.moveTo(-rx*0.7,r*0.2*i); ctx.lineTo(-rx*0.7-ll,r*0.2*i+ll*0.1); ctx.stroke();
+                                        ctx.beginPath(); ctx.moveTo( rx*0.7,r*0.2*i); ctx.lineTo( rx*0.7+ll,r*0.2*i+ll*0.1); ctx.stroke();}
+  ctx.restore();
 }
-function drawBenny(x,y,w,h){
-  ctx.fillStyle='#f3d47a';
-  ctx.fillRect(x-w/2,y-h/2,w,h);
+
+function getCss(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim() || '#fff'; }
+function roundRect(x,y,w,h,r){
+  const rr = Math.min(r, w/2, h/2);
+  ctx.beginPath();
+  ctx.moveTo(x+rr, y);
+  ctx.arcTo(x+w,y, x+w,y+h, rr);
+  ctx.arcTo(x+w,y+h, x,y+h, rr);
+  ctx.arcTo(x,y+h, x,y, rr);
+  ctx.arcTo(x,y, x+w,y, rr);
+  ctx.closePath();
 }
 
-function loop(){
-  ctx.fillStyle='#0b1020'; ctx.fillRect(0,0,W,H);
-  ctx.fillStyle='#1f2937'; ctx.fillRect(0,H-groundH,W,groundH);
+// ===== Game loop =====
+let lastTs = 0;
+function loop(ts){
+  const dt = Math.min(50, ts - lastTs || 16); // cap pre stabilitu
+  lastTs = ts;
 
-  if(state===STATE.PLAY){
-    flea.vy+=gravity;
-    flea.y+=flea.vy;
-    if(flea.y>H-groundH-flea.r) state=STATE.OVER;
+  // pozadie
+  const grd = ctx.createLinearGradient(0,0,0,H);
+  grd.addColorStop(0, '#0b1020'); grd.addColorStop(0.75, '#0d1326');
+  grd.addColorStop(0.76, '#121a2d'); grd.addColorStop(1, '#0e1629');
+  ctx.fillStyle = grd; ctx.fillRect(0,0,W,H);
 
-    for(let i=pipes.length-1;i>=0;i--){
-      let p=pipes[i];
-      p.x-=speed*16;
-      if(p.x+H*0.08<0) pipes.splice(i,1);
-      if(p.x===Math.floor(flea.x)) score++;
-      if(flea.x+flea.r>p.x && flea.x-flea.r<p.x+H*0.08){
-        if(flea.y-flea.r<p.gy-gap/2 || flea.y+flea.r>p.gy+gap/2) state=STATE.OVER;
+  // zem
+  ctx.fillStyle = '#203048'; ctx.fillRect(0, H - world.groundH, W, 2);
+  ctx.fillStyle = '#1b273d'; for (let x=0; x<W; x+=24){ ctx.fillRect(x, H - world.groundH + 6, 12, world.groundH - 6); }
+
+  if (state === STATE.PLAY){
+    // fyzika blchy
+    flea.vy += world.gravity * (dt/16);
+    flea.y  += flea.vy * (dt/16);
+    if (flea.y < flea.r){ flea.y = flea.r; flea.vy = 0; }
+    if (flea.y > world.maxFall){ flea.y = world.maxFall; gameOver(); }
+
+    // posun & spawn
+    const dx = world.speed * (dt/16);
+    distSinceLast += dx;
+    if (distSinceLast >= world.spawnDist){ distSinceLast = 0; spawnPipe(); }
+    for (let i=pipes.length-1;i>=0;i--){
+      const p = pipes[i];
+      p.x -= dx;
+      if (!p._scored && p.x + world.pipeW < flea.x){
+        p._scored = true; flea.score++;
+        if (flea.score > best){ best = flea.score; localStorage.setItem(BEST_KEY, String(best)); }
+      }
+      if (p.x + world.pipeW < -10) pipes.splice(i,1);
+    }
+
+    // kolízie
+    for (const p of pipes){
+      const topH = p.gy - world.gap/2;
+      const botY = p.gy + world.gap/2;
+      if (circleRectHit(flea.x, flea.y, flea.r, p.x, 0, world.pipeW, topH)) { gameOver(); break; }
+      if (circleRectHit(flea.x, flea.y, flea.r, p.x, botY, world.pipeW, H - world.groundH - botY)) { gameOver(); break; }
+      if (p.benny){
+        const cx = p.x + world.pipeW/2, cy = p.benny.y, w = p.benny.w, h = p.benny.h;
+        const bodyX = cx - w*0.45, bodyY = cy - h*0.25, bodyW = w*0.7, bodyH = h*0.5;
+        const headX = cx + w*0.15, headY = cy - h*0.30, headW = w*0.35, headH = h*0.35;
+        if (circleRectHit(flea.x, flea.y, flea.r, bodyX, bodyY, bodyW, bodyH) ||
+            circleRectHit(flea.x, flea.y, flea.r, headX, headY, headW, headH)) { gameOver(); break; }
       }
     }
-    if(pipes.length<3) spawnPipe();
   }
 
-  for(const p of pipes){
-    ctx.fillStyle='#f8bf42';
-    ctx.fillRect(p.x,0,H*0.08,p.gy-gap/2);
-    ctx.fillRect(p.x,p.gy+gap/2,H*0.08,H-groundH-(p.gy+gap/2));
-    if(p.benny) drawBenny(p.x+H*0.04,p.benny.y,p.benny.w,p.benny.h);
+  // vykresli rúry
+  for (const p of pipes){
+    const topH = p.gy - world.gap/2;
+    const botY = p.gy + world.gap/2;
+    ctx.fillStyle = getCss('--pipe1'); ctx.fillRect(p.x, 0, world.pipeW, topH);
+    ctx.fillStyle = 'rgba(0,0,0,.2)';  ctx.fillRect(p.x+2, 0, world.pipeW-4, 4);
+    ctx.fillStyle = getCss('--pipe2'); ctx.fillRect(p.x, botY, world.pipeW, H - world.groundH - botY);
+    ctx.fillStyle = 'rgba(0,0,0,.25)'; ctx.fillRect(p.x+2, botY, world.pipeW-4, 4);
+    if (p.benny) drawBenny(p.x + world.pipeW/2, p.benny.y, p.benny.w, p.benny.h);
   }
 
-  drawFlea(flea.x,flea.y,flea.r);
+  // blcha
+  drawFlea(flea.x, flea.y, flea.r);
 
-  ctx.fillStyle='#fff';
-  ctx.fillText(`Skóre: ${score}`,10,20);
+  // HUD
+  if (state !== STATE.MENU){
+    ctx.fillStyle = 'rgba(15,23,42,.65)';
+    ctx.fillRect(W-140, 10, 130, 34);
+    ctx.fillRect(W-140, 50, 130, 28);
+    ctx.fillStyle = '#e5e7eb'; ctx.font = 'bold 20px system-ui';
+    ctx.fillText(`Skóre: ${flea.score}`, W-132, 34);
+    ctx.font = 'bold 14px system-ui'; ctx.fillStyle = '#94a3b8';
+    ctx.fillText(`Rekord: ${best}`, W-132, 68);
+  }
 
-  if(state===STATE.MENU || state===STATE.READY || state===STATE.OVER){
-    ctx.fillStyle='rgba(0,0,0,0.4)';
-    ctx.fillRect(0,0,W,H);
-    ctx.fillStyle='#fff';
-    ctx.textAlign='center';
-    ctx.fillText(state===STATE.OVER?'Koniec hry':'Ťukni pre štart',W/2,H/2);
-    ctx.textAlign='start';
+  // READY/OVER overlay
+  if (state === STATE.READY || state === STATE.OVER){
+    ctx.fillStyle = 'rgba(0,0,0,.35)'; ctx.fillRect(0,0,W,H);
+    ctx.textAlign = 'center';
+    if (state === STATE.READY){
+      ctx.fillStyle = '#b8eaff'; ctx.font = 'bold 22px system-ui';
+      ctx.fillText('Ťukni pre štart', W/2, H*0.42);
+      ctx.fillStyle = '#94a3b8'; ctx.font = '600 14px system-ui';
+      ctx.fillText('Preskáč rúry a Bennyho bloky', W/2, H*0.48);
+    } else if (state === STATE.OVER){
+      ctx.fillStyle = '#ffb4b4'; ctx.font = 'bold 24px system-ui';
+      ctx.fillText('Koniec hry', W/2, H*0.42);
+      ctx.fillStyle = '#b8eaff'; ctx.font = 'bold 18px system-ui';
+      ctx.fillText('Ťukni pre reštart', W/2, H*0.50);
+    }
+    ctx.textAlign = 'start';
   }
 
   requestAnimationFrame(loop);
 }
 
-function startPlay(){
-  hideAll();
-  state=STATE.READY;
+function gameOver(){ if (state !== STATE.OVER) state = STATE.OVER; }
+
+// ===== Controls (tap only) =====
+function startFromMenu(){
+  hidePanels();
+  state = STATE.READY;
   resetGame(true);
-  state=STATE.PLAY;
-  flea.vy=jumpV;
+  // prvý tap rovno skočí
 }
-
-function hideAll(){ menuPanel.classList.remove('show'); aboutPanel.classList.remove('show'); }
-function showMenu(){ hideAll(); menuPanel.classList.add('show'); state=STATE.MENU; }
-function showAbout(){ hideAll(); aboutPanel.classList.add('show'); }
-
 function onTap(e){
   e.preventDefault();
-  if(menuPanel.classList.contains('show')||aboutPanel.classList.contains('show')){
-    startPlay(); return;
+  // ak je nejaký panel otvorený → prvý tap spustí hru
+  if (menuPanel.classList.contains('show') ||
+      settingsPanel.classList.contains('show') ||
+      aboutPanel.classList.contains('show')) {
+    startFromMenu();
+    return;
   }
-  if(state===STATE.OVER){ startPlay(); return; }
-  if(state===STATE.PLAY){ flea.vy=jumpV; }
+  if (state === STATE.READY){ state = STATE.PLAY; flea.vy = world.jumpV; return; }
+  if (state === STATE.OVER){ state = STATE.READY; resetGame(false); setTimeout(()=>{ state = STATE.PLAY; flea.vy = world.jumpV; }, 80); return; }
+  if (state === STATE.PLAY){ flea.vy = world.jumpV; }
 }
+stage.addEventListener('pointerdown', onTap, {passive:false});
+stage.addEventListener('touchstart', onTap, {passive:false});
 
-stage.addEventListener('pointerdown',onTap,{passive:false});
-openMenu.addEventListener('click',showMenu);
-newGameBtn.addEventListener('click',startPlay);
-aboutBtn.addEventListener('click',showAbout);
-closeAbout.addEventListener('click',showMenu);
+// zatvorenie panelov klikom mimo karty
+[menuPanel, settingsPanel, aboutPanel].forEach(panel=>{
+  panel.addEventListener('pointerdown', (e)=>{
+    if (!e.target.closest('.card')) {
+      if (panel === menuPanel) startFromMenu();
+      else if (panel === settingsPanel){ saveCfg(); resetGame(false); showMenu(); }
+      else showMenu();
+    }
+  });
+});
+// zamedziť bublaniu na kartách
+document.addEventListener('pointerdown', (e)=>{
+  const card = e.target.closest('.card'); if (card) e.stopPropagation();
+});
 
+// ===== Panels =====
+function hidePanels(){ menuPanel.classList.remove('show'); settingsPanel.classList.remove('show'); aboutPanel.classList.remove('show'); }
+function showMenu(){ hidePanels(); menuPanel.classList.add('show'); state = STATE.MENU; }
+function showSettings(){ hidePanels(); settingsPanel.classList.add('show'); state = STATE.MENU; }
+function showAbout(){ hidePanels(); aboutPanel.classList.add('show'); state = STATE.MENU; }
+
+openMenu.addEventListener('click', showMenu);
+newGameBtn.addEventListener('click', startFromMenu);
+settingsBtn.addEventListener('click', showSettings);
+aboutBtn.addEventListener('click', showAbout);
+closeSettings.addEventListener('click', ()=>{ saveCfg(); resetGame(false); showMenu(); });
+closeAbout.addEventListener('click', showMenu);
+
+// ===== Settings bindings =====
+vJumpIn.addEventListener('input', e=>{ cfg.vJump = Number(e.target.value); vJumpVal.textContent = cfg.vJump; });
+gapIn.addEventListener('input',   e=>{ cfg.gapPct = Number(e.target.value); gapVal.textContent   = cfg.gapPct + '%'; });
+bennyIn.addEventListener('input', e=>{ cfg.bennyPct = Number(e.target.value); bennyVal.textContent = cfg.bennyPct + '%'; });
+
+// ===== Resize =====
+new ResizeObserver(()=> resetGame(false)).observe(stage);
+
+// ===== Start =====
 resetGame(true);
 requestAnimationFrame(loop);
-
 })();
 </script>
 </body>
