@@ -18,7 +18,7 @@
     html, body { height: 100%; }
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans";
       color: var(--fg);
       background: radial-gradient(1200px 800px at 20% 0%, #16233b 0%, transparent 60%),
                   radial-gradient(1200px 800px at 100% 100%, #1a2642 0%, transparent 55%),
@@ -36,8 +36,6 @@
     @media (min-width: 940px) {
       .wrap { grid-template-columns: 1fr 1fr; gap: 26px; }
     }
-
-    /* Karta s plakátem */
     .poster {
       position: relative;
       border: 1px solid var(--line);
@@ -55,15 +53,6 @@
       object-fit: cover;
       filter: saturate(0.95) contrast(1.05) brightness(0.95);
     }
-    .poster__fallback {
-      position: absolute; inset: 0;
-      display: grid; place-items: center;
-      padding: 20px; text-align: center;
-      color: var(--muted);
-      background:
-        linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0)) ,
-        repeating-linear-gradient(135deg, rgba(255,255,255,0.03) 0 6px, transparent 6px 12px);
-    }
     .poster__veil {
       position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(0,0,0,0.78) 8%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0));
@@ -80,8 +69,6 @@
     .sub {
       margin-top: 2px; color: rgba(255,255,255,.85); font-weight: 600; font-size: 16px;
     }
-
-    /* Info panel */
     .card {
       border: 1px solid var(--line);
       border-radius: 18px;
@@ -106,8 +93,6 @@
     }
     .meta .label { font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); }
     .meta .value { margin-top: 6px; font-size: 18px; font-weight: 700; }
-
-    /* Progres */
     .progress-head {
       display: flex; align-items: baseline; justify-content: space-between;
     }
@@ -124,50 +109,33 @@
       border-right: 1px solid rgba(255,255,255,.6);
       transition: width .6s ease;
     }
-    .footnote { color: var(--muted); font-size: 12px; }
-
-    /* Tlačítka & odkazy */
     .actions { display: flex; flex-wrap: wrap; gap: 10px; }
     .btn {
       appearance: none; border: 1px solid var(--line); border-radius: 12px;
       padding: 10px 14px; font-weight: 700; cursor: pointer;
       background: #fff; color: #000; text-decoration: none; display: inline-flex; align-items: center; justify-content: center;
     }
-    .btn--ghost { background: transparent; color: #fff; }
     .btn:hover { opacity: .92; }
-    .warn { font-size: 12px; color: var(--muted); }
     .small { font-size: 13px; }
   </style>
 </head>
 <body>
   <main class="wrap">
-    <!-- LEVÁ KARTA: plakát -->
-    <section class="poster" aria-label="Plakát k epizodě">
-      <!-- POZN.: Odkaz zadaný uživatelem je stránka na ibb.co, ne přímý obrázek.
-           Jakmile budeš mít přímé JPG/PNG URL, nastav ho do src níže. -->
-      <img class="poster__img" src="" alt="Plakát Dexter: Vzkříšení — Course Correction" onerror="this.style.display='none'">
-      <div class="poster__veil" aria-hidden="true"></div>
-      <div class="poster__fallback">
-        <div>
-          <div class="kicker">Náhled plakátu</div>
-          <p class="small">Zadej přímou URL obrázku (JPG/PNG) do atributu <code>src</code> výše.<br>
-          Aktuální odkaz <em>https://ibb.co/3Yf0R40h</em> je stránka, ne soubor s obrázkem.</p>
-        </div>
-      </div>
+    <section class="poster">
+      <img class="poster__img" src="https://i.ibb.co/cKzZy7rX/yourimage.jpg" alt="Plakát Dexter: Vzkříšení — Course Correction">
+      <div class="poster__veil"></div>
       <div class="poster__text">
         <div class="kicker">Progres překladu</div>
         <h1>Dexter: Vzkříšení <span class="sub">E07 • Course Correction</span></h1>
       </div>
     </section>
 
-    <!-- PRAVÁ KARTA: informace a progres -->
-    <section class="card" aria-label="Informace o překladu">
+    <section class="card">
       <header>
         <h2 style="margin:0 0 6px 0;">Stav překladu</h2>
         <p class="small" style="margin:0;color:var(--muted)">Aktuální přehled postupu překladu českých titulků.</p>
       </header>
 
-      <!-- PROGRES (změň číslo i šířku na jednom místě) -->
       <div class="progress">
         <div class="progress-head">
           <span class="label">Progres:</span>
@@ -176,10 +144,8 @@
         <div class="bar">
           <i id="progressBar" style="width: 0%"></i>
         </div>
-        <p class="footnote">Start: 0 % • aktualizace proběhne průběžně</p>
       </div>
 
-      <!-- META -->
       <div class="meta-grid">
         <div class="meta">
           <div class="label">Překládá</div>
@@ -191,23 +157,9 @@
         </div>
       </div>
 
-      <!-- ODKAZ, KDE BUDOU TITULKY -->
       <div class="actions">
         <a class="btn" href="https://www.csfd.sk/uzivatel/936529-punisheredna/prehlad/" target="_blank" rel="noopener">Kde budou titulky</a>
-        <!-- Volitelné „interní“ tlačítko pro ruční změnu čísla přímo v prohlížeči (neukláda se). 
-             Pokud chceš jen HTML+CSS, můžeš tlačítko smazat; jinak to pomáhá rychle testovat. -->
-        <button class="btn btn--ghost small" onclick="
-          const v = prompt('Zadej nové procento (0–100):', '25');
-          if(v!==null){ 
-            const n = Math.max(0, Math.min(100, parseInt(v,10)||0));
-            document.getElementById('progressNumber').textContent = n + '%';
-            document.getElementById('progressBar').style.width = n + '%';
-          }
-        ">Změnit % (lokálně)</button>
       </div>
-
-      <p class="warn">* Chceš-li změnit výchozí číslo natrvalo, uprav v kódu hodnotu
-        <code>0%</code> v <strong>#progressNumber</strong> a šířku <code>width: 0%</code> v <strong>#progressBar</strong>.</p>
     </section>
   </main>
 </body>
