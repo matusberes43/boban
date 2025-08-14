@@ -85,14 +85,24 @@
     @media (min-width: 520px) {
       .meta-grid { grid-template-columns: 1fr 1fr; }
     }
+    @media (min-width: 720px) {
+      .meta-grid { grid-template-columns: 1fr 1fr 1fr; }
+    }
     .meta {
       border: 1px solid var(--line);
       border-radius: 14px;
       background: var(--card);
       padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
     }
     .meta .label { font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); }
-    .meta .value { margin-top: 6px; font-size: 18px; font-weight: 700; }
+    .meta .value { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+    .flag {
+      width: 24px; height: 16px; display: inline-block; border: 1px solid #ccc;
+    }
     .progress-head {
       display: flex; align-items: baseline; justify-content: space-between;
     }
@@ -116,7 +126,6 @@
       background: #fff; color: #000; text-decoration: none; display: inline-flex; align-items: center; justify-content: center;
     }
     .btn:hover { opacity: .92; }
-    .small { font-size: 13px; }
   </style>
 </head>
 <body>
@@ -133,7 +142,7 @@
     <section class="card">
       <header>
         <h2 style="margin:0 0 6px 0;">Stav překladu</h2>
-        <p class="small" style="margin:0;color:var(--muted)">Aktuální přehled postupu překladu českých titulků.</p>
+        <p style="margin:0;color:var(--muted);font-size:13px">Aktuální přehled postupu překladu českých titulků.</p>
       </header>
 
       <div class="progress">
@@ -154,6 +163,18 @@
         <div class="meta">
           <div class="label">Epizoda</div>
           <div class="value">E07 • Course Correction</div>
+        </div>
+        <div class="meta">
+          <div class="label">Jazyk titulků</div>
+          <div class="value">
+            <!-- Česká vlajka jako inline SVG -->
+            <svg class="flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 341">
+              <path fill="#fff" d="M0 0h512v341H0z"/>
+              <path fill="#d7141a" d="M0 170.5h512v170.5H0z"/>
+              <path fill="#11457e" d="M0 0l256 170.5L0 341z"/>
+            </svg>
+            Čeština
+          </div>
         </div>
       </div>
 
