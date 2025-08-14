@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="cs">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dexter: Vzkříšení — E07 „Course Correction“ — Progres překladu</title>
   <style>
     :root {
@@ -15,13 +15,12 @@
       --glow: 0 10px 30px rgba(0,0,0,0.45);
     }
     * { box-sizing: border-box; }
-    html, body { height: 100%; }
+    html, body { height: 100%; margin: 0; }
     body {
-      margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans";
       color: var(--fg);
-      background: radial-gradient(1200px 800px at 20% 0%, #16233b 0%, transparent 60%),
-                  radial-gradient(1200px 800px at 100% 100%, #1a2642 0%, transparent 55%),
+      background: radial-gradient(1200px 800px at 20% 0%, #16233b, transparent 60%),
+                  radial-gradient(1200px 800px at 100% 100%, #1a2642, transparent 55%),
                   linear-gradient(135deg, var(--bg1), var(--bg2));
       display: grid;
       place-items: center;
@@ -54,20 +53,34 @@
       filter: saturate(0.95) contrast(1.05) brightness(0.95);
     }
     .poster__veil {
-      position: absolute; inset: 0;
+      position: absolute;
+      inset: 0;
       background: linear-gradient(to top, rgba(0,0,0,0.78) 8%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0));
     }
     .poster__text {
-      position: absolute; left: 0; right: 0; bottom: 0;
-      padding: 18px 18px 16px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 18px;
     }
-    .kicker { text-transform: uppercase; letter-spacing: .14em; font-size: 12px; color: var(--muted); }
+    .kicker {
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: 12px;
+      color: var(--muted);
+    }
     h1 {
       margin: 6px 0 0;
-      font-size: 26px; line-height: 1.15; font-weight: 800;
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.15;
     }
     .sub {
-      margin-top: 2px; color: rgba(255,255,255,.85); font-weight: 600; font-size: 16px;
+      margin-top: 2px;
+      color: rgba(255,255,255,.85);
+      font-weight: 600;
+      font-size: 16px;
     }
     .card {
       border: 1px solid var(--line);
@@ -76,10 +89,12 @@
       backdrop-filter: blur(4px);
       box-shadow: var(--glow);
       padding: 22px;
-      display: grid; gap: 18px;
+      display: grid;
+      gap: 18px;
     }
     .meta-grid {
-      display: grid; gap: 12px;
+      display: grid;
+      gap: 12px;
       grid-template-columns: 1fr;
     }
     @media (min-width: 520px) {
@@ -98,40 +113,85 @@
       align-items: flex-start;
       gap: 6px;
     }
-    .meta .label { font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); }
-    .meta .value { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+    .meta .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: var(--muted);
+    }
+    .meta .value {
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
     .flag {
-      width: 24px; height: 16px; display: inline-block; border: 1px solid #ccc;
+      width: 24px;
+      height: 16px;
     }
     .progress-head {
-      display: flex; align-items: baseline; justify-content: space-between;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
     }
-    .progress-head .label { color: var(--muted); font-size: 14px; }
-    .progress-head .value { font-variant-numeric: tabular-nums; font-size: 34px; font-weight: 900; }
+    .progress-head .label {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .progress-head .value {
+      font-variant-numeric: tabular-nums;
+      font-size: 34px;
+      font-weight: 900;
+    }
     .bar {
-      margin-top: 12px; width: 100%; height: 12px; border-radius: 999px; overflow: hidden;
+      margin-top: 12px;
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      overflow: hidden;
       background: rgba(255,255,255,0.12);
       border: 1px solid var(--line);
     }
     .bar > i {
-      display: block; height: 100%; width: 0%;
+      display: block;
+      height: 100%;
+      width: 0%;
       background: linear-gradient(90deg, rgba(255,255,255,.95), rgba(255,255,255,.75));
       border-right: 1px solid rgba(255,255,255,.6);
       transition: width .6s ease;
     }
-    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
     .btn {
-      appearance: none; border: 1px solid var(--line); border-radius: 12px;
-      padding: 10px 14px; font-weight: 700; cursor: pointer;
-      background: #fff; color: #000; text-decoration: none; display: inline-flex; align-items: center; justify-content: center;
+      appearance: none;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      background: #fff;
+      color: #000;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
     .btn:hover { opacity: .92; }
   </style>
 </head>
 <body>
   <main class="wrap">
+    <!-- Plakát -->
     <section class="poster">
-      <img class="poster__img" src="https://i.ibb.co/cKzZy7rX/yourimage.jpg" alt="Plakát Dexter: Vzkříšení — Course Correction">
+      <img
+        class="poster__img"
+        src="PUT_YOUR_DIRECT_IMAGE_URL_HERE"
+        alt="Plakát Dexter: Vzkříšení — Course Correction"
+      >
       <div class="poster__veil"></div>
       <div class="poster__text">
         <div class="kicker">Progres překladu</div>
@@ -139,10 +199,13 @@
       </div>
     </section>
 
+    <!-- Panel s informacemi -->
     <section class="card">
       <header>
-        <h2 style="margin:0 0 6px 0;">Stav překladu</h2>
-        <p style="margin:0;color:var(--muted);font-size:13px">Aktuální přehled postupu překladu českých titulků.</p>
+        <h2 style="margin: 0 0 6px 0;">Stav překladu</h2>
+        <p style="margin: 0; color: var(--muted); font-size: 13px;">
+          Aktuální přehled postupu překladu českých titulků.
+        </p>
       </header>
 
       <div class="progress">
@@ -179,7 +242,12 @@
       </div>
 
       <div class="actions">
-        <a class="btn" href="https://www.csfd.sk/uzivatel/936529-punisheredna/prehlad/" target="_blank" rel="noopener">Kde budou titulky</a>
+        <a
+          class="btn"
+          href="https://www.csfd.sk/uzivatel/936529-punisheredna/prehlad/"
+          target="_blank"
+          rel="noopener"
+        >Kde budou titulky</a>
       </div>
     </section>
   </main>
