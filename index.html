@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="cs">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dexter: Vzkříšení — E07 „Course Correction“ — Progres překladu</title>
   <style>
     :root {
@@ -64,24 +64,9 @@
       right: 0;
       padding: 18px;
     }
-    .kicker {
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      font-size: 12px;
-      color: var(--muted);
-    }
-    h1 {
-      margin: 6px 0 0;
-      font-size: 26px;
-      font-weight: 800;
-      line-height: 1.15;
-    }
-    .sub {
-      margin-top: 2px;
-      color: rgba(255,255,255,.85);
-      font-weight: 600;
-      font-size: 16px;
-    }
+    .kicker { text-transform: uppercase; letter-spacing: .14em; font-size: 12px; color: var(--muted); }
+    h1 { margin: 6px 0 0; font-size: 26px; font-weight: 800; line-height: 1.15; }
+    .sub { margin-top: 2px; color: rgba(255,255,255,.85); font-weight: 600; font-size: 16px; }
     .card {
       border: 1px solid var(--line);
       border-radius: 18px;
@@ -97,12 +82,8 @@
       gap: 12px;
       grid-template-columns: 1fr;
     }
-    @media (min-width: 520px) {
-      .meta-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (min-width: 720px) {
-      .meta-grid { grid-template-columns: 1fr 1fr 1fr; }
-    }
+    @media (min-width: 520px) { .meta-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 720px) { .meta-grid { grid-template-columns: 1fr 1fr 1fr; } }
     .meta {
       border: 1px solid var(--line);
       border-radius: 14px;
@@ -113,37 +94,12 @@
       align-items: flex-start;
       gap: 6px;
     }
-    .meta .label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      color: var(--muted);
-    }
-    .meta .value {
-      font-size: 18px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .flag {
-      width: 24px;
-      height: 16px;
-    }
-    .progress-head {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-    }
-    .progress-head .label {
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .progress-head .value {
-      font-variant-numeric: tabular-nums;
-      font-size: 34px;
-      font-weight: 900;
-    }
+    .meta .label { font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); }
+    .meta .value { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+    .flag { width: 24px; height: 16px; }
+    .progress-head { display: flex; align-items: baseline; justify-content: space-between; }
+    .progress-head .label { color: var(--muted); font-size: 14px; }
+    .progress-head .value { font-variant-numeric: tabular-nums; font-size: 34px; font-weight: 900; }
     .bar {
       margin-top: 12px;
       width: 100%;
@@ -156,16 +112,12 @@
     .bar > i {
       display: block;
       height: 100%;
-      width: 0%;
+      width: 20%;
       background: linear-gradient(90deg, rgba(255,255,255,.95), rgba(255,255,255,.75));
       border-right: 1px solid rgba(255,255,255,.6);
-      transition: width .6s ease;
     }
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
+    .countdown { font-size: 15px; font-weight: 600; color: #fff; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
     .btn {
       appearance: none;
       border: 1px solid var(--line);
@@ -185,13 +137,8 @@
 </head>
 <body>
   <main class="wrap">
-    <!-- Plakát -->
     <section class="poster">
-      <img
-        class="poster__img"
-        src="https://i.postimg.cc/d3BDNHMJ/IMG-9989.jpg"
-        alt="Plakát Dexter: Vzkříšení — Course Correction"
-      >
+      <img class="poster__img" src="https://i.postimg.cc/d3BDNHMJ/IMG-9989.jpg" alt="Plakát Dexter: Vzkříšení — Course Correction">
       <div class="poster__veil"></div>
       <div class="poster__text">
         <div class="kicker">Progres překladu</div>
@@ -199,13 +146,10 @@
       </div>
     </section>
 
-    <!-- Panel s informacemi -->
     <section class="card">
       <header>
-        <h2 style="margin: 0 0 6px 0;">Stav překladu</h2>
-        <p style="margin: 0; color: var(--muted); font-size: 13px;">
-          Aktuální přehled postupu překladu českých titulků.
-        </p>
+        <h2 style="margin:0 0 6px 0;">Stav překladu</h2>
+        <p style="margin:0;color:var(--muted);font-size:13px">Aktuální přehled postupu překladu českých titulků.</p>
       </header>
 
       <div class="progress">
@@ -214,7 +158,7 @@
           <span class="value" id="progressNumber">20%</span>
         </div>
         <div class="bar">
-          <i id="progressBar" style="width: 20%"></i>
+          <i id="progressBar"></i>
         </div>
       </div>
 
@@ -230,7 +174,6 @@
         <div class="meta">
           <div class="label">Jazyk titulků</div>
           <div class="value">
-            <!-- Česká vlajka jako inline SVG -->
             <svg class="flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 341">
               <path fill="#fff" d="M0 0h512v341H0z"/>
               <path fill="#d7141a" d="M0 170.5h512v170.5H0z"/>
@@ -241,15 +184,35 @@
         </div>
       </div>
 
+      <div class="countdown" id="countdown">Odpočet: --:--:--</div>
+
       <div class="actions">
-        <a
-          class="btn"
-          href="https://www.csfd.sk/uzivatel/936529-punisheredna/prehlad/"
-          target="_blank"
-          rel="noopener"
-        >Kde budou titulky</a>
+        <a class="btn" href="https://www.csfd.sk/uzivatel/936529-punisheredna/prehlad/" target="_blank" rel="noopener">Kde budou titulky</a>
       </div>
     </section>
   </main>
+
+  <script>
+    // Nastavení odpočtu na zítřek 12:30
+    const countdownEl = document.getElementById('countdown');
+    const now = new Date();
+    const target = new Date();
+    target.setDate(now.getDate() + 1);
+    target.setHours(12, 30, 0, 0);
+
+    function updateCountdown() {
+      const diff = target - new Date();
+      if (diff <= 0) {
+        countdownEl.textContent = "Termín uplynul";
+        return;
+      }
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      countdownEl.textContent = `Odpočet: ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
 </body>
 </html>
