@@ -19,13 +19,22 @@
         radial-gradient(1200px 800px at 20% 0%, #16233b, transparent 60%),
         radial-gradient(1200px 800px at 100% 100%, #1a2642, transparent 55%),
         linear-gradient(135deg, var(--bg1), var(--bg2));
-      padding:24px; display:grid; place-items:start center; gap:28px;
+      padding:24px;
+      display:block; /* změna z grid na block */
     }
-    .wrap{width:min(1100px,100%); display:grid; gap:28px}
+    .wrap{
+      width:100%;
+      max-width:1100px; /* obsah max 1100px */
+      margin:0 auto; /* vycentrování uprostřed */
+      display:grid;
+      gap:28px;
+    }
 
+    /* Re-usable layout for each item (poster + card) */
     .item{display:grid; grid-template-columns:1fr; gap:22px}
     @media (min-width:940px){ .item{grid-template-columns:1fr 1fr; gap:26px} }
 
+    /* Poster */
     .poster{
       position:relative; border:1px solid var(--line); border-radius:18px;
       overflow:hidden; background:#0c1220; box-shadow:var(--glow); min-height:520px;
@@ -37,6 +46,7 @@
     h1{margin:6px 0 0; font-size:26px; font-weight:800; line-height:1.15}
     .sub{margin-top:4px; color:rgba(255,255,255,.85); font-weight:600; font-size:16px}
 
+    /* Card */
     .card{
       border:1px solid var(--line); border-radius:18px; background:color-mix(in oklab, white 4%, transparent);
       backdrop-filter:blur(4px); box-shadow:var(--glow); padding:22px; display:grid; gap:18px;
@@ -62,6 +72,7 @@
     .btn{appearance:none; border:1px solid var(--line); border-radius:12px; padding:10px 14px; font-weight:700; cursor:pointer; background:#fff; color:#000; text-decoration:none}
     .btn:hover{opacity:.92}
 
+    /* Modal */
     .modal-backdrop{position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; align-items:center; justify-content:center; padding:16px; z-index:50}
     .modal-backdrop.show{display:flex}
     .modal{width:min(680px,100%); background:#0f172a; color:#fff; border:1px solid var(--line); border-radius:16px; box-shadow:var(--glow); padding:20px}
@@ -73,7 +84,7 @@
 <body>
   <div class="wrap">
 
-    <!-- === FILM === -->
+    <!-- === JEDNOTKA 1: FILM === -->
     <section class="item" aria-labelledby="filmTitle">
       <div class="poster">
         <img class="poster__img" src="https://i.postimg.cc/tJcgCYFs/IMG-0010.webp" alt="Plakát Nobody 2 (2025)">
@@ -126,7 +137,7 @@
       </div>
     </section>
 
-    <!-- === SERIÁL === -->
+    <!-- === JEDNOTKA 2: SERIÁL === -->
     <section class="item" aria-labelledby="serialTitle">
       <div class="poster">
         <img class="poster__img" src="https://i.postimg.cc/d3BDNHMJ/IMG-9989.jpg" alt="Plakát Dexter: Vzkříšení — E07 Course Correction">
@@ -202,6 +213,7 @@
   </div>
 
   <script>
+    // Ovládání modalů
     document.querySelectorAll('.info-btn').forEach(btn=>{
       btn.addEventListener('click',()=>document.getElementById(btn.dataset.modal).classList.add('show'));
     });
