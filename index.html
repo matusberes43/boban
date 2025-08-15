@@ -11,7 +11,7 @@
       --card:rgba(255,255,255,.05); --glow:0 10px 30px rgba(0,0,0,.45);
     }
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0}
+    html,body{height:100%;margin:0;display:flex;flex-direction:column}
     body{
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans";
       color:var(--fg);
@@ -20,14 +20,15 @@
         radial-gradient(1200px 800px at 100% 100%, #1a2642, transparent 55%),
         linear-gradient(135deg, var(--bg1), var(--bg2));
       padding:24px;
-      display:block; /* změna z grid na block */
+      flex:1;
     }
     .wrap{
       width:100%;
-      max-width:1100px; /* obsah max 1100px */
-      margin:0 auto; /* vycentrování uprostřed */
+      max-width:1100px;
+      margin:0 auto;
       display:grid;
       gap:28px;
+      flex:1;
     }
 
     /* Re-usable layout for each item (poster + card) */
@@ -71,6 +72,16 @@
     .actions{display:flex; flex-wrap:wrap; gap:10px}
     .btn{appearance:none; border:1px solid var(--line); border-radius:12px; padding:10px 14px; font-weight:700; cursor:pointer; background:#fff; color:#000; text-decoration:none}
     .btn:hover{opacity:.92}
+
+    /* Footer */
+    footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+      padding:16px 0;
+      border-top:1px solid var(--line);
+      margin-top:28px;
+    }
 
     /* Modal */
     .modal-backdrop{position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; align-items:center; justify-content:center; padding:16px; z-index:50}
@@ -194,6 +205,11 @@
       </div>
     </section>
   </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 PunisherEDNA
+  </footer>
 
   <!-- Modaly -->
   <div class="modal-backdrop" id="filmModal" role="dialog" aria-modal="true" aria-labelledby="filmInfoTitle">
