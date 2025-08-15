@@ -23,11 +23,9 @@
     }
     .wrap{width:min(1100px,100%); display:grid; gap:28px}
 
-    /* Re-usable layout for each item (poster + card) */
     .item{display:grid; grid-template-columns:1fr; gap:22px}
     @media (min-width:940px){ .item{grid-template-columns:1fr 1fr; gap:26px} }
 
-    /* Poster */
     .poster{
       position:relative; border:1px solid var(--line); border-radius:18px;
       overflow:hidden; background:#0c1220; box-shadow:var(--glow); min-height:520px;
@@ -39,7 +37,6 @@
     h1{margin:6px 0 0; font-size:26px; font-weight:800; line-height:1.15}
     .sub{margin-top:4px; color:rgba(255,255,255,.85); font-weight:600; font-size:16px}
 
-    /* Card */
     .card{
       border:1px solid var(--line); border-radius:18px; background:color-mix(in oklab, white 4%, transparent);
       backdrop-filter:blur(4px); box-shadow:var(--glow); padding:22px; display:grid; gap:18px;
@@ -52,7 +49,7 @@
     .progress-head .label{color:var(--muted); font-size:14px}
     .progress-head .value{font-variant-numeric:tabular-nums; font-size:34px; font-weight:900}
     .bar{margin-top:12px; width:100%; height:12px; border-radius:999px; overflow:hidden; background:rgba(255,255,255,.12); border:1px solid var(--line)}
-    .bar>i{display:block; height:100%; width:100%; background:linear-gradient(90deg, rgba(255,255,255,.95), rgba(255,255,255,.75)); border-right:1px solid rgba(255,255,255,.6)}
+    .bar>i{display:block; height:100%; background:linear-gradient(90deg, rgba(255,255,255,.95), rgba(255,255,255,.75)); border-right:1px solid rgba(255,255,255,.6)}
 
     .meta-grid{display:grid; gap:12px; grid-template-columns:1fr}
     @media (min-width:520px){ .meta-grid{grid-template-columns:1fr 1fr} }
@@ -65,7 +62,6 @@
     .btn{appearance:none; border:1px solid var(--line); border-radius:12px; padding:10px 14px; font-weight:700; cursor:pointer; background:#fff; color:#000; text-decoration:none}
     .btn:hover{opacity:.92}
 
-    /* Modal */
     .modal-backdrop{position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; align-items:center; justify-content:center; padding:16px; z-index:50}
     .modal-backdrop.show{display:flex}
     .modal{width:min(680px,100%); background:#0f172a; color:#fff; border:1px solid var(--line); border-radius:16px; box-shadow:var(--glow); padding:20px}
@@ -77,7 +73,7 @@
 <body>
   <div class="wrap">
 
-    <!-- === JEDNOTKA 1: FILM === -->
+    <!-- === FILM === -->
     <section class="item" aria-labelledby="filmTitle">
       <div class="poster">
         <img class="poster__img" src="https://i.postimg.cc/tJcgCYFs/IMG-0010.webp" alt="Plakát Nobody 2 (2025)">
@@ -103,7 +99,7 @@
             <span class="label">Progres:</span>
             <span class="value">5%</span>
           </div>
-          <div class="bar"><i></i></div>
+          <div class="bar"><i style="width:5%"></i></div>
         </div>
 
         <div class="meta-grid">
@@ -130,7 +126,7 @@
       </div>
     </section>
 
-    <!-- === JEDNOTKA 2: SERIÁL === -->
+    <!-- === SERIÁL === -->
     <section class="item" aria-labelledby="serialTitle">
       <div class="poster">
         <img class="poster__img" src="https://i.postimg.cc/d3BDNHMJ/IMG-9989.jpg" alt="Plakát Dexter: Vzkříšení — E07 Course Correction">
@@ -156,7 +152,7 @@
             <span class="label">Progres:</span>
             <span class="value">100%</span>
           </div>
-          <div class="bar"><i></i></div>
+          <div class="bar"><i style="width:100%"></i></div>
         </div>
 
         <div class="meta-grid">
@@ -206,7 +202,6 @@
   </div>
 
   <script>
-    // Ovládání modalů (bez odpočtu)
     document.querySelectorAll('.info-btn').forEach(btn=>{
       btn.addEventListener('click',()=>document.getElementById(btn.dataset.modal).classList.add('show'));
     });
